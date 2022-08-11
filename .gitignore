@@ -1,0 +1,7 @@
+.idea
+.laya
+.rpt2_cache
+bin/js
+node_modules
+package-lock.json
+package.json
