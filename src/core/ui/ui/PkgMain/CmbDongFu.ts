@@ -9,7 +9,7 @@ export default class CmbDongFu extends fgui.GComboBox {
 		return <CmbDongFu>(fgui.UIPackage.createObject("PkgMain", "CmbDongFu"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.ctrlBgColor = this.getControllerAt(1);
 	}
 }

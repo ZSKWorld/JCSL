@@ -11,7 +11,7 @@ export default class ProgressBar1 extends fgui.GProgressBar {
 		return <ProgressBar1>(fgui.UIPackage.createObject("PkgCommon", "ProgressBar1"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.ctrlColor = this.getControllerAt(0);
 		this.ctrlFontSize = this.getControllerAt(1);
 		this.ctrlText = this.getControllerAt(2);

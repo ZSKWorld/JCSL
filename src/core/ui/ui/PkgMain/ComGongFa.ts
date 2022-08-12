@@ -10,7 +10,7 @@ export default class ComGongFa extends fgui.GComponent {
 		return <ComGongFa>(fgui.UIPackage.createObject("PkgMain", "ComGongFa"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.ListItem = <fgui.GList>(this.getChildAt(0));
 		this.EffectShow = this.getTransitionAt(0);
 	}

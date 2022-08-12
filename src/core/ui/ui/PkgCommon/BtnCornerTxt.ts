@@ -9,7 +9,7 @@ export default class BtnCornerTxt extends fgui.GButton {
 		return <BtnCornerTxt>(fgui.UIPackage.createObject("PkgCommon", "BtnCornerTxt"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.ctrlBgColor = this.getControllerAt(1);
 	}
 }

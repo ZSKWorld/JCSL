@@ -10,7 +10,7 @@ export default class CmbDongFu_popup extends fgui.GComponent {
 		return <CmbDongFu_popup>(fgui.UIPackage.createObject("PkgMain", "CmbDongFu_popup"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.list = <fgui.GList>(this.getChildAt(0));
 		this.t0 = this.getTransitionAt(0);
 	}

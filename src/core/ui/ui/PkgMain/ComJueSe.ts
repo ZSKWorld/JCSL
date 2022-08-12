@@ -9,7 +9,7 @@ export default class ComJueSe extends fgui.GComponent {
 		return <ComJueSe>(fgui.UIPackage.createObject("PkgMain", "ComJueSe"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.ListRole = <fgui.GList>(this.getChildAt(0));
 	}
 }

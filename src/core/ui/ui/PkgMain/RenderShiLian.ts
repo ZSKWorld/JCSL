@@ -10,7 +10,7 @@ export default class RenderShiLian extends fgui.GComponent {
 		return <RenderShiLian>(fgui.UIPackage.createObject("PkgMain", "RenderShiLian"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.TxtDesc = <fgui.GRichTextField>(this.getChildAt(1));
 		this.BtnEnter = <fgui.GButton>(this.getChildAt(2));
 	}

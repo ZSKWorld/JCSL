@@ -11,7 +11,7 @@ export default class UIWaiting extends fgui.GComponent {
 		return <UIWaiting>(fgui.UIPackage.createObject("PkgCommon", "UIWaiting"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.ComWaiting = <WaitingItem>(this.getChildAt(1));
 	}
 }

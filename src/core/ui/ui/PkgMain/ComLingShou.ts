@@ -9,7 +9,7 @@ export default class ComLingShou extends fgui.GComponent {
 		return <ComLingShou>(fgui.UIPackage.createObject("PkgMain", "ComLingShou"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.BtnCreate = <fgui.GButton>(this.getChildAt(0));
 	}
 }

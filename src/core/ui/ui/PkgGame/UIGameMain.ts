@@ -9,7 +9,7 @@ export default class UIGameMain extends fgui.GComponent {
 		return <UIGameMain>(fgui.UIPackage.createObject("PkgGame", "UIGameMain"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.BtnSetting = <fgui.GButton>(this.getChildAt(0));
 	}
 }

@@ -11,7 +11,7 @@ export default class ComXiuXing extends fgui.GComponent {
 		return <ComXiuXing>(fgui.UIPackage.createObject("PkgMain", "ComXiuXing"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.ctrlSelectType = this.getControllerAt(0);
 		this.EffectShow = this.getTransitionAt(0);
 		this.EffectList = this.getTransitionAt(1);

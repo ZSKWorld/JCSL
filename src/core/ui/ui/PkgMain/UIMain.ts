@@ -29,7 +29,7 @@ export default class UIMain extends fgui.GComponent {
 		return <UIMain>(fgui.UIPackage.createObject("PkgMain", "UIMain"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.ctrlShow = this.getControllerAt(0);
 		this.ComLingShou = <ComLingShou>(this.getChildAt(1));
 		this.ComGongFa = <ComGongFa>(this.getChildAt(2));

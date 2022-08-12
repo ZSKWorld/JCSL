@@ -9,7 +9,7 @@ export default class CmbDongFu_item extends fgui.GButton {
 		return <CmbDongFu_item>(fgui.UIPackage.createObject("PkgMain", "CmbDongFu_item"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.ctrlSelected = this.getControllerAt(1);
 	}
 }

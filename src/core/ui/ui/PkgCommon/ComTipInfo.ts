@@ -9,7 +9,7 @@ export default class ComTipInfo extends fgui.GLabel {
 		return <ComTipInfo>(fgui.UIPackage.createObject("PkgCommon", "ComTipInfo"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.t0 = this.getTransitionAt(0);
 	}
 }

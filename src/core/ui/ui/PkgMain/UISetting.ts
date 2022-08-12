@@ -15,7 +15,7 @@ export default class UISetting extends fgui.GComponent {
 		return <UISetting>(fgui.UIPackage.createObject("PkgMain", "UISetting"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.BtnBg = <fgui.GGraph>(this.getChildAt(0));
 		this.BtnHangUp = <fgui.GButton>(this.getChildAt(3));
 		this.BtnMute = <fgui.GButton>(this.getChildAt(4));

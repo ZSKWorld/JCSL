@@ -15,7 +15,7 @@ export default class UITipConfirm extends fgui.GComponent {
 		return <UITipConfirm>(fgui.UIPackage.createObject("PkgCommon", "UITipConfirm"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.BtnBg = <fgui.GGraph>(this.getChildAt(0));
 		this.BtnConfirm = <BtnCornerTxt>(this.getChildAt(4));
 		this.TxtContent = <fgui.GRichTextField>(this.getChildAt(5));

@@ -11,7 +11,7 @@ export default class RenderJueSe extends fgui.GButton {
 		return <RenderJueSe>(fgui.UIPackage.createObject("PkgMain", "RenderJueSe"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.bg = <fgui.GGraph>(this.getChildAt(0));
 		this.TxtName = <fgui.GTextField>(this.getChildAt(2));
 		this.TxtCount = <fgui.GTextField>(this.getChildAt(3));

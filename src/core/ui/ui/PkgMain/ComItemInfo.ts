@@ -17,7 +17,7 @@ export default class ComItemInfo extends fgui.GComponent {
 		return <ComItemInfo>(fgui.UIPackage.createObject("PkgMain", "ComItemInfo"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.ctrlUse = this.getControllerAt(0);
 		this.ctrlSell = this.getControllerAt(1);
 		this.BtnBg = <fgui.GGraph>(this.getChildAt(0));

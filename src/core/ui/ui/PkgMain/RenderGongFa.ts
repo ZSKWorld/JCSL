@@ -10,7 +10,7 @@ export default class RenderGongFa extends fgui.GComponent {
 		return <RenderGongFa>(fgui.UIPackage.createObject("PkgMain", "RenderGongFa"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.TxtName = <fgui.GTextField>(this.getChildAt(2));
 		this.TxtDesc = <fgui.GTextField>(this.getChildAt(3));
 	}

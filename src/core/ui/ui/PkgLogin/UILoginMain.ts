@@ -19,7 +19,7 @@ export default class UILoginMain extends fgui.GComponent {
 		return <UILoginMain>(fgui.UIPackage.createObject("PkgLogin", "UILoginMain"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.ctrlState = this.getControllerAt(0);
 		this.BtnLogin = <fgui.GButton>(this.getChildAt(3));
 		this.BtnLoginRegister = <fgui.GButton>(this.getChildAt(4));

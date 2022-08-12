@@ -9,7 +9,7 @@ export default class WaitingItem extends fgui.GComponent {
 		return <WaitingItem>(fgui.UIPackage.createObject("PkgCommon", "WaitingItem"));
 	}
 
-	protected onConstruct():void {
+	protected override onConstruct():void {
 		this.t1 = this.getTransitionAt(0);
 	}
 }
