@@ -11,8 +11,10 @@ interface IViewStateMethod {
 	// onBackground?(): void;
 }
 
-/**开放给页面和控制器的页面方法 */
-interface IViewMethod {
+export interface GComponentExtend {
+
+	/**派发全局事件 */
+	dispatch?(notifyName: string, data?: any): void;
 	/** 打开页面
 	 * @param viewId 页面id
 	 * @param data 传入参数
@@ -31,9 +33,13 @@ interface IViewMethod {
 	 * @param viewId 页面id
 	 */
 	removeView?(viewId: ViewID): void;
+}
+
+/**开放给页面和控制器的页面方法 */
+interface IViewMethod extends GComponentExtend {
 
 	/** 移除当前页面 */
-	removeSelf?():void;
+	removeSelf?(): void;
 }
 
 /**页面实例类型 */
@@ -59,9 +65,6 @@ export interface ViewExtension extends IViewMethod, IViewStateMethod {
 
 	/**向控制器发送消息 */
 	sendMessage?(type: string, data?: any): void;
-
-	/**派发全局事件 */
-	dispatch?(notifyName: string, data?: any): void;
 
 	/**
 	 * @description 初始化页面

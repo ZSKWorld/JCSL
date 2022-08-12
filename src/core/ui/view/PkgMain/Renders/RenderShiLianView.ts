@@ -1,18 +1,13 @@
 import { LogicSceneType } from "../../../../../logicScene/LogicSceneType";
 import { NotifyConst } from "../../../../common/NotifyConst";
-import { INotifier } from "../../../../libs/event/Notifier";
 import { ExtensionClass } from "../../../../libs/utils/Util";
+import { GComponentExtend } from "../../../core/interfaces";
 import RenderShiLian from "../../../ui/PkgMain/RenderShiLian";
 
-export class RenderShiLianView extends ExtensionClass<INotifier, RenderShiLian>(RenderShiLian) {
+export class RenderShiLianView extends ExtensionClass<GComponentExtend, RenderShiLian>(RenderShiLian) {
 
     protected override onConstruct(): void {
         super.onConstruct();
-        this.BtnEnter.onClick(this, this.onBtnEnterClick);
+        this.BtnEnter.onClick(this, this.dispatch, [ NotifyConst.EnterScene, LogicSceneType.GameScene ]);
     }
-
-    private onBtnEnterClick() {
-        this.dispatch(NotifyConst.EnterScene, LogicSceneType.GameScene);
-    }
-
 }
