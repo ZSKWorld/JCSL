@@ -8,19 +8,14 @@ class JinGangQuanItem extends WeaponBase {
         this.anchor(0.5, 0.5);
         this.changeSource(GameUtil.getFGUITexture(ResPath.PkgCommon, "Btn_Xingxi"));
     }
-
-    update(): void {
-
-    }
-
 }
 
 const logger = Logger.Create("JinGangQuan").setEnable(true);
 
 export class JinGangQuan extends WeaponBase {
-    private items: JinGangQuanItem[] = [];
+    private _items: JinGangQuanItem[] = [];
 
-    private time: number;
+    private _time: number;
 
     override onAwake() {
         super.onAwake();
@@ -29,41 +24,40 @@ export class JinGangQuan extends WeaponBase {
 
     override onEnable(): void {
         super.onEnable();
-        this.level = 5;
-        this.speed = 2;
-        this.time = 0;
+        this._level = 5;
+        this._time = 0;
         this._duration = 3000;
         this._coolDown = 1000;
         this.resetItems();
     }
 
-    update(): void {
+    override recover() {
+        super.recover();
+        this._items.forEach(item => item.recover());
+        this._items.length = 0;
+        this.visible = true;
+    }
+
+    protected override onUpdate(): void {
         if (this._duration >= 0) {
-            this.time += Laya.timer.delta;
+            this._time += Laya.timer.delta;
             if (this.visible) {
-                if (this.time >= this._duration) {
+                if (this._time >= this._duration) {
                     this.visible = false;
-                    this.time = 0;
+                    this._time = 0;
                     return;
                 }
             } else {
-                if (this.time >= this._coolDown) {
+                if (this._time >= this._coolDown) {
                     this.visible = true;
-                    this.time = 0;
+                    this._time = 0;
                 }
             }
         }
-        this.rotation += this._speed;
-    }
-
-    override recover() {
-        super.recover();
-        this.items.forEach(item => item.recover());
-        this.items.length = 0;
     }
 
     private resetItems() {
-        const { items, level, _range } = this;
+        const { _items: items, level, _range } = this;
         const itemCount = items.length;
         if (itemCount < level) {
             for (let i = level - itemCount; i > 0; i--) {

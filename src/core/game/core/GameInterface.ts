@@ -1,9 +1,5 @@
 import { GameObject } from "./GameObject";
 
-export interface IUpdate {
-    update(): void;
-}
-
 export interface ITrigger {
     onTriggerEnter(other: GameObject): void;
     onTriggerStay(other: GameObject): void;

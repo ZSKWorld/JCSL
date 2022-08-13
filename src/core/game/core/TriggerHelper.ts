@@ -1,5 +1,6 @@
 import { Vector2 } from "../../libs/math/Vector2";
 import { Logger } from "../../libs/utils/Logger";
+import { MovementBase } from "../moveController/MovementBase";
 import { EnemyBase } from "../role/EnemyBase";
 import { GameObject } from "./GameObject";
 
@@ -13,17 +14,12 @@ const logger = Logger.Create("TriggerHelper").setEnable(true);
 
 export class TriggerHelper {
     private static tempV20 = new Vector2();
-    // private static tempV21 = new Vector2();
     private static triggerStateMap: { [ key: string ]: TriggerState } = {};
 
     static checkTrigger() {
         const allObjs: GameObject[][] = [];
-        const enemys: EnemyBase[] = [];
         for (const value of GameObject.instances.values()) {
             allObjs.push(value);
-            if (value.length && value[ 0 ] instanceof EnemyBase) {
-                enemys.push(...(value as EnemyBase[]));
-            }
         }
         const triggerMap = this.triggerStateMap;
         const len = allObjs.length;
@@ -74,28 +70,31 @@ export class TriggerHelper {
             }
         }
 
-        const enemyCount = enemys.length;
-        let enemyA: EnemyBase, enemyB: EnemyBase, tempEnemy: EnemyBase;
+        const movements = MovementBase.instances.get("Movement_FollowPlayer");
+        const moveCount = movements.length;
+        let ownerA: EnemyBase, ownerB: EnemyBase;
+        let moveA: MovementBase, moveB: MovementBase, tempmove: MovementBase;
         const { tempV20 } = this;
-        for (i = 0; i < enemyCount; i++) {
-            enemyA = enemys[ i ];
-            if (!enemyA.colliderEnable) continue;
-            if (!enemyA.collisionEnemyEnable) continue;
-            for (j = i + 1; j < enemyCount; j++) {
-                enemyB = enemys[ j ];
-                if (enemyA == enemyB) continue;
-                if (!enemyB.colliderEnable) continue;
-                if (!enemyB.collisionEnemyEnable) continue;
+        for (i = 0; i < moveCount; i++) {
+            moveA = movements[ i ];
+            ownerA = moveA.owner as EnemyBase;
+            if (!ownerA.colliderEnable) continue;
+            if (!ownerA.collisionEnemyEnable) continue;
+            for (j = i + 1; j < moveCount; j++) {
+                moveB = movements[ j ];
+                ownerB = moveB.owner as EnemyBase;
+                if (moveA == moveB) continue;
+                if (!ownerB.colliderEnable) continue;
+                if (!ownerB.collisionEnemyEnable) continue;
 
-                tempV20.setValue(enemyA.x - enemyB.x, enemyA.y - enemyB.y);
-                if (tempV20.lengthSquared <= (enemyA.colliderRadius + enemyB.colliderRadius) ** 2) {
-                    if (Vector2.dot(enemyB.moveDir, tempV20) > 0) tempEnemy = enemyB;
-                    else if (Vector2.dot(enemyA.moveDir, tempV20.scale(- 1)) > 0) tempEnemy = enemyA;
+                tempV20.setValue(ownerA.x - ownerB.x, ownerA.y - ownerB.y);
+                if (tempV20.lengthSquared <= (ownerA.colliderRadius + ownerB.colliderRadius) ** 2) {
+                    if (Vector2.dot(moveB.moveDir, tempV20) > 0) tempmove = moveB;
+                    else if (Vector2.dot(moveA.moveDir, tempV20.scale(- 1)) > 0) tempmove = moveA;
                     else continue;
-                    tempEnemy.collisionDir.add(tempV20.normalize());//.normalize();
+                    tempmove.collisionDir.add(tempV20.normalize()).normalize();
                 }
             }
         }
-
     }
 }

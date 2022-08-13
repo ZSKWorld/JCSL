@@ -1,8 +1,27 @@
-export class  UIUtils {
-    static grayFilter = new Laya.ColorFilter([0.3086, 0.6094, 0.082, 0, 0, 0.3086, 0.6094, 0.082, 0, 0, 0.3086, 0.6094, 0.082, 0, 0, 0, 0, 0, 1, 0]);
+export class UIUtils {
+    static grayFilter = new Laya.ColorFilter([
+        0.3086, 0.6094, 0.082, 0, 0, 
+        0.3086, 0.6094, 0.082, 0, 0, 
+        0.3086, 0.6094, 0.082, 0, 0, 
+        0, 0, 0, 1, 0
+    ]);
+    static whileFilter = new Laya.ColorFilter([
+        0,0,0,1,0,
+        0,0,0,1,0,
+        0,0,0,1,0,
+        0,0,0,0,0,
+    ]);
     static gray(traget, isGray = true) {
         if (isGray) {
             this.addFilter(traget, this.grayFilter);
+        }
+        else {
+            this.clearFilter(traget, Laya.ColorFilter);
+        }
+    }
+    static white(traget, isWhite = true) {
+        if (isWhite) {
+            this.addFilter(traget, this.whileFilter);
         }
         else {
             this.clearFilter(traget, Laya.ColorFilter);
@@ -17,7 +36,7 @@ export class  UIUtils {
         var filters = target.filters;
         if (filters != null && filters.length > 0) {
             for (var i = filters.length - 1; i > -1; i--) {
-                var filter = filters[i];
+                var filter = filters[ i ];
                 if (filter instanceof filterType)
                     filters.splice(i, 1);
             }
@@ -29,10 +48,10 @@ export class  UIUtils {
         if (str) {
             var a = str.split(",");
             for (var i = 0, n = Math.min(temp.length, a.length); i < n; i++) {
-                var value = a[i];
-                temp[i] = (value == "true" ? true : (value == "false" ? false : value));
+                var value = a[ i ];
+                temp[ i ] = (value == "true" ? true : (value == "false" ? false : value));
                 if (type != null)
-                    temp[i] = type(value);
+                    temp[ i ] = type(value);
             }
         }
         return temp;

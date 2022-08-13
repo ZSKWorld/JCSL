@@ -7,6 +7,7 @@ import { GameObject } from "./core/GameObject";
 import { GameUtil } from "./core/GameUtil";
 import { objectFactory } from "./core/ObjectFactory";
 import { TriggerHelper } from "./core/TriggerHelper";
+import { MovementBase } from "./moveController/MovementBase";
 import { player } from "./role/Player";
 
 const logger = Logger.Create("GameMgr").setEnable(true);
@@ -36,7 +37,7 @@ class GameMgr extends Observer {
         this.container.addChild(player);
         player.addWeapon(objectFactory.createObject(GamePoolKey.Weapon_JingGangFu));
 
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 0; i++) {
             const enemy = objectFactory.createObject(GamePoolKey.Enemy_Fllow);
             i == 0 && enemy.changeSource(GameUtil.getFGUITexture(ResPath.PkgCommon, "Icon_Book_Yue"));
             enemy.pos(Math.random() * Laya.stage.width, Math.random() * Laya.stage.height);
@@ -74,7 +75,7 @@ class GameMgr extends Observer {
         if (this._state == GameState.Running) {
             TriggerHelper.checkTrigger();
 
-            for (const value of GameObject.instances.values()) {
+            for (const value of MovementBase.instances.values()) {
                 value.forEach(obj => obj.update());
             }
         }

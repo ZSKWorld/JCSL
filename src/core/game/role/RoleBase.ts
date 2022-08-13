@@ -5,17 +5,13 @@ export abstract class RoleBase extends GameObject {
     protected _hp: number = 0;
     protected _maxHp: number = 0;
     protected _atk: number = 0;
-    protected _moveSpeed: number = 0;
-    protected _moveDir: Vector2 = new Vector2();
 
-    get moveDir(): Readonly<Vector2> { return this._moveDir; }
-
-    update() {
-        this.onUpdate();
-    }
+    get isDead() { return this._hp < 0; }
 
     getHurt(hurt: number) {
         this._hp = Math.max(this._hp - hurt, 0);
+        this.onHurt(hurt);
+        this._hp <= 0 && this.dead();
     }
 
     override recover() {
@@ -23,9 +19,12 @@ export abstract class RoleBase extends GameObject {
         this._hp = 0;
         this._maxHp = 0;
         this._atk = 0;
-        this._moveSpeed = 0;
-        this._moveDir.setValue(0, 0);
     }
 
-    protected abstract onUpdate(): void;
+    private dead(){
+        this.onDead();
+        this.recover();
+    }
+    protected abstract onHurt(hurt: number): void;
+    protected abstract onDead(): void;
 }
