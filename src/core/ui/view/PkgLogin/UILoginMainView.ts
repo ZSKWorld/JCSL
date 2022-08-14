@@ -21,4 +21,9 @@ export class UILoginMainView extends ExtensionClass<ViewExtension, UILoginMain>(
 	    BtnRegister.onClick(this, this.sendMessage, [UILoginMainMsg.OnBtnRegisterClick]);
     }
 
+	setLoginInfo(account:string,password:string){
+		this.TxtAccount.text = account;
+		this.TxtPassword.text = password;
+	}
+
 }

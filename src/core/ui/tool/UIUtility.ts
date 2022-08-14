@@ -13,7 +13,7 @@ export class UIUtility {
 	 * @param color 文字颜色，默认："#ffffff"
 	 */
 	static ShowTipInfo(text: string, color?: string) {
-		const tip = this.getViewFromPool(UIPoolKey.TipInfo, ViewID.ComTipInfoView, Layer.Bottom, { info: text, color }, false);
+		const tip = this.getViewFromPool(UIPoolKey.TipInfo, ViewID.ComTipInfoView, Layer.Bottom, { text, color }, false);
 		tip.touchable = false;
 		eventMgr.event(NotifyConst.AddMainLog, text);
 	}

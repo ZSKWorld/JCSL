@@ -13,5 +13,18 @@ export class ComTipInfoView extends ExtensionClass<ViewExtension, ComTipInfo>(Co
 	override onCreate(): void {
         
     }
+    setAlpha(alpha: number) {
+        this.alpha = alpha;
+    }
+    setContent(text: string, color: string) {
+        this.text = text;
+        this.color = color;
+        this.setAlpha(1);
+        this.setXY(Laya.stage.width / 2, Laya.stage.height / 2);
+    }
+
+    playShowAni(onComplete?: Laya.Handler, times?: number, delay?: number, startTime?: number, endTime?: number) {
+        this.t0.play(onComplete, times, delay, startTime, endTime);
+    }
 
 }

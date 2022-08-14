@@ -1,4 +1,4 @@
-import { IPlayerData } from "../../playerData/PlayerData";
+import { IUserData } from "../../playerData/UserData";
 import { BaseViewCtrl } from "./BaseViewCtrl";
 import { Layer } from "./GameLayer";
 import { ViewID } from "./ViewID";
@@ -57,7 +57,7 @@ export interface IView_Class {
 /**页面扩展 */
 export interface ViewExtension extends IViewMethod, IViewStateMethod {
 	layer?: Layer;
-	userData?: IPlayerData;
+	userData?: IUserData;
 	listener?: Laya.EventDispatcher;
 
 	/**页面创建完毕之后执行，只执行一次, 该方法为虚方法，使用时重写即可 */
@@ -84,7 +84,7 @@ export type IViewCtrl_Class = new () => IViewCtrl;
 
 /**页面控制器扩展 */
 export interface ViewCtrlExtension extends IViewMethod, IViewStateMethod {
-	userData?: IPlayerData;
+	userData?: IUserData;
 	/** 每次面板前置调用该方法，onEnable之后调用，和onEnable的区别在于：如果当前面板已经前置onEnable不会重复调用，onForeground会重复调用 */
 	onForeground?(): void;
 };

@@ -1,16 +1,16 @@
-import { playerData } from "../../playerData/PlayerData";
+import { userData } from "../../playerData/UserData";
 import { LangCode } from "../../table/LangCode";
 import { IPlatform } from "./IPlatform";
 
 export class PlatDev implements IPlatform {
     login(account: string, password: string): Promise<LangCode> {
         return new Promise<LangCode>((resolve) => {
-            resolve(playerData.loginData(account, password));
+            resolve(null);
         });
     }
     register(account: string, password: string, nickName: string): Promise<LangCode> {
         return new Promise<LangCode>((resolve) => {
-            resolve(playerData.register(account, password, nickName));
+            resolve(null);
         });
     }
     confirm(msg: string, confirmText: string, showCancel: boolean, success?: Function, fail?: Function): void {

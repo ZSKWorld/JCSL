@@ -5,7 +5,7 @@
  * @LastEditTime : 2021-09-17 13:47:04
  * @Description  : null
  */
-export const enum LocalStorageKey {
+export const enum LocalDataKey {
     LastLoginAccount = "LastLoginAccount",
     BattleSpeed = "BattleSpeed",
 }

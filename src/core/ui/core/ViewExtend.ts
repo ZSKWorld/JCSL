@@ -1,5 +1,5 @@
 import { eventMgr } from "../../libs/event/EventMgr";
-import { playerData } from "../../playerData/PlayerData";
+import { userData } from "../../playerData/UserData";
 import { BaseViewCtrl } from "./BaseViewCtrl";
 import { IView, IViewCtrl } from "./interfaces";
 import { CtrlClass } from "./UIGlobal";
@@ -35,9 +35,9 @@ export class ViewExtend {
 			if (viewCtrl) {
 				data != undefined && (viewCtrl.data = data);
 				viewCtrl.listener = listener;
-				viewCtrl.userData = playerData;
+				viewCtrl.userData = userData;
 			}
-			viewInst.userData = playerData;
+			viewInst.userData = userData;
 			//这里不能使用传入的listener
 			viewInst.listener = viewCtrl?.listener;
 			newComp && viewInst.onCreate?.();

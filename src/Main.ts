@@ -1,4 +1,3 @@
-import { Logger } from "./core/libs/utils/Logger";
 import { FixEngine } from "./FixEngine";
 import GameConfig from "./GameConfig";
 import { logicSceneMgr } from './logicScene/LogicSceneMgr';

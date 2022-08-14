@@ -3,7 +3,7 @@ import { Logger } from "../libs/utils/Logger";
 type Resolve = (value: any) => void;
 const logger = Logger.Create("WebSocket").setEnable(true);
 class WebSocket extends Observer {
-    private url: string = "ws://localhost:3000?id=123&name=zsk";
+    private url: string = "ws://192.168.1.19:3000";
     private socket: Laya.Socket;
     private waitList: [ any, Resolve ][];
     private current: any;
@@ -14,7 +14,6 @@ class WebSocket extends Observer {
 
     public init(): void {
         this.socket = new Laya.Socket();
-        this.socket.protocols = [ "echo-protocol" ];
         this.socket.connectByUrl(this.url);
 
         this.waitList = [];
@@ -93,3 +92,4 @@ class WebSocket extends Observer {
 }
 
 export const websocket = new WebSocket();
+windowImmit("websocket", websocket)

@@ -6,7 +6,7 @@
  * @LastEditTime : 2021-09-17 14:07:41
  * @Description  : null
  */
-class LocalStorage {
+class LocalData {
     set(key: string, value: any): void {
         Laya.LocalStorage.setJSON(key, value);
     }
@@ -23,4 +23,4 @@ class LocalStorage {
         Laya.LocalStorage.clear();
     }
 }
-export const storage = new LocalStorage();
+export const localData = new LocalData();

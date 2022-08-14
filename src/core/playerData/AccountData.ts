@@ -1,4 +1,4 @@
-import { storage } from "../libs/localStorage/LocalStorage";
+import { localData } from "../libs/localStorage/LocalData";
 
 export class AccountData {
     private _account: string = "";
@@ -24,7 +24,7 @@ export class AccountData {
     }
 
     static getLocalData(key: string) {
-        const data = storage.get<AccountData>(key);
+        const data = localData.get<AccountData>(key);
         let result: AccountData;
         if (data) {
             result = new AccountData(data._account, data._password, data._nickName);

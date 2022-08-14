@@ -25,7 +25,6 @@ class LogicSceneMgr extends Observer {
 
 	@InsertNotify(NotifyConst.EnterScene)
 	enterScene(type: LogicSceneType, data?: any) {
-		logger.log(type, this.enterCompleted);
 		if (!this.enterCompleted) return;
 		if (this.currentType != type) {
 			this.enterCompleted = false;
