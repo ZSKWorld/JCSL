@@ -1,0 +1,34 @@
+import * as fs from "fs";
+import * as path from "path";
+import { UserData } from "../core/UserData";
+export class Util {
+    /**生成uid */
+    static CreateUID() {
+        return (Date.now() ** (Math.random() + 0.01)).toString(32).replace(".", "");
+    }
+
+    static getData(account: string, password: string) {
+        const filePath = this.getDataPath(account, password);
+        if (fs.existsSync(filePath) == false) return null;
+        const conent = fs.readFileSync(filePath).toString();
+        try {
+            return JSON.parse(conent);
+        } catch (error) {
+            return null;
+        }
+    }
+
+    static saveData(data: UserData) {
+        const filePath = this.getDataPath(data.account, data.password);
+        if(!filePath) return;
+        fs.writeFileSync(filePath, JSON.stringify(data));
+    }
+
+    private static getDataPath(account: string, password: string) {
+        if(!account || !password) return null;
+        const fileName = (account + "" + password).split("").reduce((pValue, value) => {
+            return pValue + value.charCodeAt(0);
+        }, "");
+        return path.resolve(__dirname, "../../../data/" + fileName + ".json");
+    }
+}

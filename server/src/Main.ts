@@ -1,0 +1,31 @@
+import * as http from "http";
+import { AddressInfo } from "net";
+import * as websocket from "websocket";
+import { Connection } from "./core/Connection";
+import { Color, Logger } from "./utils/Logger";
+Logger.setEnable(true);
+
+const server = http.createServer(function (request, response) {
+    response.writeHead(200);
+    response.end();
+}).listen({ port: 3000, host: "192.168.1.19" }, function () {
+    Logger.log("服务器已启动，端口号：" + (server.address() as AddressInfo).port, Color.green);
+});
+
+const wsServer = new websocket.server({ httpServer: server, autoAcceptConnections: false });
+
+wsServer.on('request', function (request) {
+    const connection = request.accept();
+    //request.resourceURL
+    Logger.log(`${ connection.remoteAddress }：通信已连接，连接数量：${ wsServer.connections.length }`, Color.green);
+    new Connection(connection);
+});
+
+wsServer.on("connect", (connection) => {
+    Logger.log("wsServer connect");
+});
+
+wsServer.on("close", (connection, reson, desc) => {
+    Logger.log(`${ connection.remoteAddress }：断开连接。${ reson }-${ desc }`, Color.red);
+    Logger.log(`剩余连接数量：${ wsServer.connections.length }`);
+});

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="950,300">
+  <displayList>
+    <graph id="n2_neb7" name="n2" xy="0,0" size="950,300" type="rect" lineSize="0" fillColor="#ffd2b98b">
+      <relation target="" sidePair="width-width,height-height"/>
+    </graph>
+    <richtext id="n4_neb7" name="TxtDesc" xy="339,89" size="272,54" fontSize="40" ubb="true" singleLine="true" text="极寒冻土  [size=30][color=#ff0000]五重境[/color][/size]">
+      <relation target="" sidePair="center-center,middle-middle"/>
+    </richtext>
+    <component id="n6_neb7" name="BtnEnter" src="sbd05i" fileName="Component/BtnCornerTxt.xml" pkg="vx9zwser" xy="398,218" controller="ctrlBgColor,1">
+      <Button title="进入" titleColor="#ffffff"/>
+    </component>
+  </displayList>
+  <customProperty target="title" propertyId="0"/>
+</component>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1064" overflow="hidden" designImageOffsetX="-753" designImageAlpha="100">
+  <displayList>
+    <component id="n3_sbd0" name="BtnCreate" src="sbd05i" fileName="Component/BtnCornerTxt.xml" pkg="vx9zwser" xy="541,333" size="148,93" controller="ctrlBgColor,5">
+      <Button title="炼妖炉" titleColor="#000000" titleFontSize="30"/>
+    </component>
+  </displayList>
+</component>

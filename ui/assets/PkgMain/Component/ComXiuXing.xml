@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1064" overflow="hidden" designImageOffsetX="-763" designImageOffsetY="-233" designImageAlpha="46" designImageLayer="1" bgColorEnabled="true" bgColor="#000000">
+  <controller name="ctrlSelectType" pages="0,,1,,2,,3,,4,,5,,6," selected="0"/>
+  <displayList/>
+  <transition name="EffectShow" autoPlay="true"/>
+  <transition name="EffectList" autoPlay="true"/>
+</component>
