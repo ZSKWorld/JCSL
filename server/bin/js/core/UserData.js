@@ -11,6 +11,9 @@ var UserData = /** @class */ (function () {
         this.nickname = "";
         this.account = "";
         this.password = "";
+        this.registerTime = Date.now();
+        this.lastLoginTime = 0;
+        this.coin = 0;
         this.account = String(account);
         this.password = String(password);
         this.nickname = String(nickname);
@@ -18,6 +21,7 @@ var UserData = /** @class */ (function () {
     UserData.prototype.initData = function (data) {
         var _this = this;
         Object.keys(data).forEach(function (v) { return _this[v] = data[v]; });
+        this.lastLoginTime = Date.now();
     };
     UserData.prototype.save = function () {
         Util_1.Util.saveData(this);

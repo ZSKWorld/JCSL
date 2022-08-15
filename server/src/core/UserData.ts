@@ -1,11 +1,16 @@
 import { Util } from "../utils/Util";
+import { IUserData } from "./interface/Interface";
 
-export class UserData {
-    public uid: string = Util.CreateUID();
-    public nickname: string = "";
-    public account: string = "";
-    public password: string = "";
-    constructor(account:string = "",password:string = ""  ,nickname:string = ""  ) { 
+export class UserData implements IUserData {
+    uid: string = Util.CreateUID();
+    nickname: string = "";
+    account: string = "";
+    password: string = "";
+    registerTime: number = Date.now();
+    lastLoginTime: number = 0;
+    coin: number = 0;
+
+    constructor(account: string = "", password: string = "", nickname: string = "") {
         this.account = String(account);
         this.password = String(password);
         this.nickname = String(nickname);
@@ -13,6 +18,7 @@ export class UserData {
 
     initData(data: any) {
         Object.keys(data).forEach(v => this[ v ] = data[ v ]);
+        this.lastLoginTime = Date.now();
     }
 
     save() {

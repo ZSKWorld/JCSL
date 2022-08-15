@@ -6,11 +6,13 @@ import { AddCMD, BaseController } from "./BaseController";
 export class LoginController extends BaseController implements ILogin {
     @AddCMD
     login(data: LoginInput): void {
-        const userData = Util.getData(data.account, data.password);
+        let userData = Util.getData(data.account, data.password);
         if (!userData) this.response(data.cmd, null, ErrorCode.USER_NOT_EXIST);
         else {
             this.connection.userLogin(userData);
-            this.response(data.cmd, userData);
+            userData = JSON.parse(JSON.stringify(this.connection.playerData));
+            delete data.password;
+            this.response(data.cmd, { userData });
         }
     }
 }

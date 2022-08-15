@@ -5,4 +5,16 @@ export interface UserInput {
 export interface UserOutput {
     cmd: string,
     error?: number;
+    syncInfo?: any;
+}
+
+export interface IUserData {
+    uid: string;
+    nickname: string;
+    account: string;
+    password: string;
+    registerTime: number;
+    lastLoginTime: number;
+    /** 金币 */
+    coin: number;
 }

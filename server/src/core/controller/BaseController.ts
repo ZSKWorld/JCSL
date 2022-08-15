@@ -8,9 +8,17 @@ export class BaseController {
         this.connection = connection;
         if (this._cmds) {
             for (let key in this._cmds) {
-                this.connection.listener.on(key, this, this[key]);
+                this.connection.listener.on(key, this, this[ key ]);
             }
         }
+        this.onConstruct();
+    }
+
+    onConstruct() { }
+
+    clear() {
+        this._cmds = null;
+        this.connection = null;
     }
 
     protected response(cmd: string, data?: object, error: number = ErrorCode.None) {
@@ -25,12 +33,6 @@ export class BaseController {
     }
 }
 
-// export function AddCMD() {
-//     return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-//         target._cmds = target._cmds || {};
-//         target._cmds[ propertyKey ] = descriptor.value;
-//     }
-// }
 export function AddCMD(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
     target._cmds = target._cmds || {};
     target._cmds[ propertyKey ] = propertyKey;

@@ -1,4 +1,4 @@
-import { IUserData } from "../../playerData/UserData";
+import { IUserData } from "../../net/network/Interface";
 import { BaseViewCtrl } from "./BaseViewCtrl";
 import { Layer } from "./GameLayer";
 import { ViewID } from "./ViewID";

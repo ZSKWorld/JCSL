@@ -6,6 +6,7 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "outDir": "./bin/js",
+    "noImplicitOverride": true,
     // "declaration": true,
     // "declarationDir": "./bin/declare"
   },

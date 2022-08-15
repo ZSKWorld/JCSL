@@ -1,4 +1,4 @@
-import { userData } from "../../playerData/UserData";
+import { userData } from "../../userData/UserData";
 import { LangCode } from "../../table/LangCode";
 import { IPlatform } from "./IPlatform";
 

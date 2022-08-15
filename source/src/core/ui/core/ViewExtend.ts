@@ -1,5 +1,5 @@
 import { eventMgr } from "../../libs/event/EventMgr";
-import { userData } from "../../playerData/UserData";
+import { userData } from "../../userData/UserData";
 import { BaseViewCtrl } from "./BaseViewCtrl";
 import { IView, IViewCtrl } from "./interfaces";
 import { CtrlClass } from "./UIGlobal";

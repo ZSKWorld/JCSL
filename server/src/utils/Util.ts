@@ -1,13 +1,13 @@
 import * as fs from "fs";
 import * as path from "path";
-import { UserData } from "../core/UserData";
+import { IUserData } from "../core/interface/Interface";
 export class Util {
     /**生成uid */
     static CreateUID() {
         return (Date.now() ** (Math.random() + 0.01)).toString(32).replace(".", "");
     }
 
-    static getData(account: string, password: string) {
+    static getData(account: string, password: string): IUserData {
         const filePath = this.getDataPath(account, password);
         if (fs.existsSync(filePath) == false) return null;
         const conent = fs.readFileSync(filePath).toString();
@@ -18,14 +18,14 @@ export class Util {
         }
     }
 
-    static saveData(data: UserData) {
+    static saveData(data: IUserData) {
         const filePath = this.getDataPath(data.account, data.password);
-        if(!filePath) return;
+        if (!filePath) return;
         fs.writeFileSync(filePath, JSON.stringify(data));
     }
 
     private static getDataPath(account: string, password: string) {
-        if(!account || !password) return null;
+        if (!account || !password) return null;
         const fileName = (account + "" + password).split("").reduce((pValue, value) => {
             return pValue + value.charCodeAt(0);
         }, "");

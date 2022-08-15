@@ -35,7 +35,9 @@ var LoginController = /** @class */ (function (_super) {
             this.response(data.cmd, null, 1002 /* ErrorCode.USER_NOT_EXIST */);
         else {
             this.connection.userLogin(userData);
-            this.response(data.cmd, userData);
+            userData = JSON.parse(JSON.stringify(this.connection.playerData));
+            delete data.password;
+            this.response(data.cmd, { userData: userData });
         }
     };
     __decorate([

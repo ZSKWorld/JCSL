@@ -4,8 +4,7 @@ import { InsertNotify } from "../../../libs/event/EventMgr";
 import { localData } from "../../../libs/localStorage/LocalData";
 import { LocalDataKey } from "../../../libs/localStorage/LocalDataKey";
 import { NetResponse } from "../../../net/NetResponse";
-import { LoginInput, LoginOutput } from "../../../net/network/ILogin";
-import { RegisterOutput } from "../../../net/network/IRegister";
+import { LoginInput } from "../../../net/network/ILogin";
 import { LoginService, RegisterService } from "../../../net/Services";
 import { BaseViewCtrl } from "../../core/BaseViewCtrl";
 import { UIUtility } from "../../tool/UIUtility";
@@ -61,22 +60,18 @@ export class UILoginMainCtrl extends BaseViewCtrl<UILoginMainView, UILoginMainDa
     }
 
     @InsertNotify(NetResponse.Response_Login)
-    private loginResponse(msg: LoginOutput) {
-        if (!msg.error) {
-            const { TxtAccount, TxtPassword } = this.view;
-            const param = { account: TxtAccount.text, password: TxtPassword.text };
-            localData.set(LocalDataKey.LastLoginAccount, param);
-            this.dispatch(NotifyConst.EnterScene, LogicSceneType.MainScene);
-        }
+    private loginResponse() {
+        const { TxtAccount, TxtPassword } = this.view;
+        const param = { account: TxtAccount.text, password: TxtPassword.text };
+        localData.set(LocalDataKey.LastLoginAccount, param);
+        this.dispatch(NotifyConst.EnterScene, LogicSceneType.MainScene);
     }
 
     @InsertNotify(NetResponse.Response_Register)
-    private registerResponse(msg: RegisterOutput) {
-        if (!msg.error) {
-            const { TxtRegisterAccount, TxtRegisterPassword } = this.view;
-            this.view.setLoginInfo(TxtRegisterAccount.text, TxtRegisterPassword.text);
-            this.view.ctrlState.selectedIndex = 0;
-            this.UILoginMain_OnBtnLoginClick();
-        }
+    private registerResponse() {
+        const { TxtRegisterAccount, TxtRegisterPassword } = this.view;
+        this.view.setLoginInfo(TxtRegisterAccount.text, TxtRegisterPassword.text);
+        this.view.ctrlState.selectedIndex = 0;
+        this.UILoginMain_OnBtnLoginClick();
     }
 }

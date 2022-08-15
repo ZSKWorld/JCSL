@@ -9,7 +9,13 @@ var BaseController = /** @class */ (function () {
                 this.connection.listener.on(key, this, this[key]);
             }
         }
+        this.onConstruct();
     }
+    BaseController.prototype.onConstruct = function () { };
+    BaseController.prototype.clear = function () {
+        this._cmds = null;
+        this.connection = null;
+    };
     BaseController.prototype.response = function (cmd, data, error) {
         if (error === void 0) { error = 0 /* ErrorCode.None */; }
         if (this.connection) {
@@ -25,12 +31,6 @@ var BaseController = /** @class */ (function () {
     return BaseController;
 }());
 exports.BaseController = BaseController;
-// export function AddCMD() {
-//     return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-//         target._cmds = target._cmds || {};
-//         target._cmds[ propertyKey ] = descriptor.value;
-//     }
-// }
 function AddCMD(target, propertyKey, descriptor) {
     target._cmds = target._cmds || {};
     target._cmds[propertyKey] = propertyKey;

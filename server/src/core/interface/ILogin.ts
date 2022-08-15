@@ -1,4 +1,4 @@
-import { UserInput, UserOutput } from "./Interface";
+import { IUserData, UserInput, UserOutput } from "./Interface";
 
 export interface ILogin {
     login(data: LoginInput): void;
@@ -10,5 +10,5 @@ export interface LoginInput extends UserInput {
 }
 
 export interface LoginOutput extends UserOutput {
-
+    userData: IUserData;
 }
