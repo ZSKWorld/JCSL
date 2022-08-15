@@ -31,25 +31,21 @@ var RegisterController = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     RegisterController.prototype.register = function (data) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var userData = Util_1.Util.getData(data.account, data.password);
-            if (userData)
-                _this.response(data.cmd, null, 1003 /* ErrorCode.USER_EXIST */);
+        var userData = Util_1.Util.getData(data.account, data.password);
+        if (userData)
+            this.response(data.cmd, null, 1003 /* ErrorCode.USER_EXIST */);
+        else {
+            if (!data.account)
+                this.response(data.cmd, null, 1004 /* ErrorCode.ACCOUNT_IS_EMPTY */);
+            else if (!data.password)
+                this.response(data.cmd, null, 1005 /* ErrorCode.PASSWORD_IS_EMPTY */);
+            else if (!data.nickname)
+                this.response(data.cmd, null, 1006 /* ErrorCode.NICKNAME_IS_EMPTY */);
             else {
-                if (!data.account)
-                    _this.response(data.cmd, null, 1004 /* ErrorCode.ACCOUNT_IS_EMPTY */);
-                else if (!data.password)
-                    _this.response(data.cmd, null, 1005 /* ErrorCode.PASSWORD_IS_EMPTY */);
-                else if (!data.nickname)
-                    _this.response(data.cmd, null, 1006 /* ErrorCode.NICKNAME_IS_EMPTY */);
-                else {
-                    Util_1.Util.saveData(new UserData_1.UserData(data.account, data.password, data.nickname));
-                    _this.response(data.cmd, null);
-                }
+                Util_1.Util.saveData(new UserData_1.UserData(data.account, data.password, data.nickname));
+                this.response(data.cmd, null);
             }
-            resolve(null);
-        });
+        }
     };
     __decorate([
         BaseController_1.AddCMD

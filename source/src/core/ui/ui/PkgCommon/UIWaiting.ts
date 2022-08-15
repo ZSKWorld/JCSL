@@ -5,6 +5,7 @@ import WaitingItem from "./WaitingItem";
 export default class UIWaiting extends fgui.GComponent {
 
 	public ComWaiting:WaitingItem;
+	public TxtInfo:fgui.GTextField;
 	public static URL:string = "ui://vx9zwserlsqf62";
 
 	public static createInstance():UIWaiting {
@@ -13,5 +14,6 @@ export default class UIWaiting extends fgui.GComponent {
 
 	protected override onConstruct():void {
 		this.ComWaiting = <WaitingItem>(this.getChildAt(1));
+		this.TxtInfo = <fgui.GTextField>(this.getChildAt(2));
 	}
 }

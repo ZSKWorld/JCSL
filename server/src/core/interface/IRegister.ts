@@ -1,7 +1,7 @@
 import { UserInput, UserOutput } from "./Interface";
 
 export interface IRegister {
-    register(data: RegisterInput): Promise<RegisterOutput>;
+    register(data: RegisterInput): void;
 }
 
 export interface RegisterInput extends UserInput {
@@ -9,6 +9,7 @@ export interface RegisterInput extends UserInput {
     password: string;
     nickname:string;
 }
+
 export interface RegisterOutput extends UserOutput {
 
 }

@@ -1,10 +1,12 @@
 import { LogicSceneType } from "../../../../logicScene/LogicSceneType";
 import { NotifyConst } from "../../../common/NotifyConst";
+import { InsertNotify } from "../../../libs/event/EventMgr";
 import { localData } from "../../../libs/localStorage/LocalData";
 import { LocalDataKey } from "../../../libs/localStorage/LocalDataKey";
-import { LoginInput } from "../../../net/network/ILogin";
-import { LoginService } from "../../../net/server/LoginService";
-import { RegisterService } from "../../../net/server/RegisterService";
+import { NetResponse } from "../../../net/NetResponse";
+import { LoginInput, LoginOutput } from "../../../net/network/ILogin";
+import { RegisterOutput } from "../../../net/network/IRegister";
+import { LoginService, RegisterService } from "../../../net/Services";
 import { BaseViewCtrl } from "../../core/BaseViewCtrl";
 import { UIUtility } from "../../tool/UIUtility";
 import { UILoginMainMsg, UILoginMainView } from "../../view/PkgLogin/UILoginMainView";
@@ -18,8 +20,6 @@ export class UILoginMainCtrl extends BaseViewCtrl<UILoginMainView, UILoginMainDa
     override onAwake(): void {
         super.onAwake();
         this.addMessageListener(UILoginMainMsg.OnBtnLoginClick, this.UILoginMain_OnBtnLoginClick);
-        this.addMessageListener(UILoginMainMsg.OnBtnLoginRegisterClick, this.UILoginMain_OnBtnLoginRegisterClick);
-        this.addMessageListener(UILoginMainMsg.OnBtnRegisterBackClick, this.UILoginMain_OnBtnRegisterBackClick);
         this.addMessageListener(UILoginMainMsg.OnBtnRegisterClick, this.UILoginMain_OnBtnRegisterClick);
     }
 
@@ -35,22 +35,7 @@ export class UILoginMainCtrl extends BaseViewCtrl<UILoginMainView, UILoginMainDa
     private UILoginMain_OnBtnLoginClick(): void {
         const { TxtAccount, TxtPassword } = this.view;
         const param = { account: TxtAccount.text, password: TxtPassword.text };
-        LoginService.Inst.login(param).then((res) => {
-            if (!res.error) {
-                localData.set(LocalDataKey.LastLoginAccount, param);
-                this.dispatch(NotifyConst.EnterScene, LogicSceneType.MainScene);
-            }
-            else
-                UIUtility.ShowTipInfo("账号或密码错误");
-        });
-    }
-
-    private UILoginMain_OnBtnLoginRegisterClick(): void {
-
-    }
-
-    private UILoginMain_OnBtnRegisterBackClick(): void {
-
+        LoginService.Inst.login(param);
     }
 
     private UILoginMain_OnBtnRegisterClick(): void {
@@ -63,13 +48,7 @@ export class UILoginMainCtrl extends BaseViewCtrl<UILoginMainView, UILoginMainDa
                 account: TxtRegisterAccount.text,
                 password: TxtRegisterPassword.text,
                 nickname: TxtRegisterName.text
-            }).then((res) => {
-                if (!res.error) {
-                    this.view.setLoginInfo(TxtRegisterAccount.text, TxtRegisterPassword.text);
-                    this.view.ctrlState.selectedIndex = 0;
-                    this.UILoginMain_OnBtnLoginClick();
-                }
-            })
+            });
         }
     }
 
@@ -79,5 +58,25 @@ export class UILoginMainCtrl extends BaseViewCtrl<UILoginMainView, UILoginMainDa
 
     override onDestroy(): void {
         super.onDestroy();
+    }
+
+    @InsertNotify(NetResponse.Response_Login)
+    private loginResponse(msg: LoginOutput) {
+        if (!msg.error) {
+            const { TxtAccount, TxtPassword } = this.view;
+            const param = { account: TxtAccount.text, password: TxtPassword.text };
+            localData.set(LocalDataKey.LastLoginAccount, param);
+            this.dispatch(NotifyConst.EnterScene, LogicSceneType.MainScene);
+        }
+    }
+
+    @InsertNotify(NetResponse.Response_Register)
+    private registerResponse(msg: RegisterOutput) {
+        if (!msg.error) {
+            const { TxtRegisterAccount, TxtRegisterPassword } = this.view;
+            this.view.setLoginInfo(TxtRegisterAccount.text, TxtRegisterPassword.text);
+            this.view.ctrlState.selectedIndex = 0;
+            this.UILoginMain_OnBtnLoginClick();
+        }
     }
 }

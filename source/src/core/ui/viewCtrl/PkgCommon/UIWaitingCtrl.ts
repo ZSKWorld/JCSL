@@ -1,8 +1,8 @@
 import { BaseViewCtrl } from "../../core/BaseViewCtrl";
-import { UIWaitingMsg, UIWaitingView } from "../../view/PkgCommon/UIWaitingView";
+import { UIWaitingView } from "../../view/PkgCommon/UIWaitingView";
 
-export interface UIWaitingData{
-
+export interface UIWaitingData {
+    info: string;
 }
 
 export class UIWaitingCtrl extends BaseViewCtrl<UIWaitingView, UIWaitingData>{
@@ -14,6 +14,11 @@ export class UIWaitingCtrl extends BaseViewCtrl<UIWaitingView, UIWaitingData>{
 
     override onEnable(): void {
         super.onEnable();
+        this.view.playWordAni(this.data.info);
+    }
+
+    override onUpdate(): void {
+        this.view.updateWordAni();
     }
 
 

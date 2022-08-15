@@ -1,50 +1,38 @@
 import { Observer } from "../libs/event/Observer";
 import { Logger } from "../libs/utils/Logger";
-type Resolve = (value: any) => void;
+import { UserInput, UserOutput } from "./network/Interface";
+
 const logger = Logger.Create("WebSocket").setEnable(true);
 class WebSocket extends Observer {
     private url: string = "ws://192.168.1.19:3000";
     private socket: Laya.Socket;
-    private waitList: [ any, Resolve ][];
-    private current: any;
-    private currCb: (value: any) => void;
-    public get connected(): boolean {
-        return this.socket.connected;
-    }
+    private waitList: UserInput[];
+    private current: UserInput;
+    get connected(): boolean { return this.socket.connected; }
 
-    public init(): void {
+    init(): void {
+        this.waitList = [];
         this.socket = new Laya.Socket();
         this.socket.connectByUrl(this.url);
-
-        this.waitList = [];
-
         this.socket.on(Laya.Event.OPEN, this, this.onSocketOpen);
         this.socket.on(Laya.Event.MESSAGE, this, this.onSocketMessage);
         this.socket.on(Laya.Event.ERROR, this, this.onSocketError);
         this.socket.on(Laya.Event.CLOSE, this, this.onSocketClose);
     }
 
-    public sendMsg(msg: any): Promise<any> {
-        if (!this.socket) return;
+    sendMsg(msg: UserInput): void {
         if (this.current && msg.cmd == this.current.cmd) {
             return;
         }
-        if (this.waitList.length > 0) {
-            for (let i = 0; i < this.waitList.length; i++) {
-                if (this.waitList[ i ][ 0 ].cmd == msg.cmd) {
-                    return;
-                }
+        const waitList = this.waitList;
+        if (waitList.length > 0) {
+            for (let i = waitList.length - 1; i >= 0; i--) {
+                if (waitList[ i ].cmd == msg.cmd) return;
             }
         }
-
-        return new Promise((resolve) => {
-            if (msg.cmd == "reconect") {
-                this.waitList.unshift([ msg, resolve ]);
-            } else {
-                this.waitList.push([ msg, resolve ]);
-            }
-            this.executeWaitMsg();
-        });
+        if (msg.cmd == "reconect") this.waitList.unshift(msg);
+        else this.waitList.push(msg);
+        this.executeWaitMsg();
     }
 
     private onSocketOpen(): void {
@@ -52,18 +40,17 @@ class WebSocket extends Observer {
         this.executeWaitMsg();
     }
 
-    private onSocketMessage(message: any): void {
-        const msg = JSON.parse(message);
+    private onSocketMessage(message: string): void {
+        const msg: UserOutput = JSON.parse(message);
         if (msg && !msg.error) {
             if (this.current && this.current.cmd == msg.cmd) {
-                this.currCb(msg);
+                this.dispatch(`Response_${ msg.cmd[ 0 ].toUpperCase() + msg.cmd.substring(1) }`, msg);
+                //发送事件
                 this.current = null;
-                this.currCb = null;
             }
         } else {
-            this.currCb?.(msg);
+
             this.current = null;
-            this.currCb = null;
         }
 
         this.socket.input.clear();
@@ -83,10 +70,9 @@ class WebSocket extends Observer {
 
     private executeWaitMsg(): void {
         if (this.waitList.length > 0 && !this.current && this.connected) {
-            const [ msg, callback ] = this.waitList.shift();
+            const msg = this.waitList.shift();
             this.current = msg;
-            this.currCb = callback;
-            this.socket.send(JSON.stringify(this.current));
+            this.socket.send(JSON.stringify(msg));
         }
     }
 }

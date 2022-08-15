@@ -30,17 +30,13 @@ var LoginController = /** @class */ (function (_super) {
         return _super !== null && _super.apply(this, arguments) || this;
     }
     LoginController.prototype.login = function (data) {
-        var _this = this;
-        return new Promise(function (resolve, reject) {
-            var userData = Util_1.Util.getData(data.account, data.password);
-            if (!userData)
-                _this.response(data.cmd, null, 1002 /* ErrorCode.USER_NOT_EXIST */);
-            else {
-                _this.connection.userLogin(userData);
-                _this.response(data.cmd, userData);
-            }
-            resolve(null);
-        });
+        var userData = Util_1.Util.getData(data.account, data.password);
+        if (!userData)
+            this.response(data.cmd, null, 1002 /* ErrorCode.USER_NOT_EXIST */);
+        else {
+            this.connection.userLogin(userData);
+            this.response(data.cmd, userData);
+        }
     };
     __decorate([
         BaseController_1.AddCMD

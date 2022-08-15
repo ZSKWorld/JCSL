@@ -2,13 +2,13 @@ declare interface ReadOnlyObject<T> {
     readonly [ key: string ]: T;
 }
 
-declare type New<T> = new(...args) => T;
+declare type New<T> = new (...args) => T;
 
 /** 向window注入变量 */
 
 declare function windowImmit(name: string, obj: any): void;
 
-declare module Laya {
+declare namespace Laya {
     interface Script {
         /**
         * 鼠标离开舞台时执行
