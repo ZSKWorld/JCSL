@@ -12,7 +12,7 @@ export class LoginController extends BaseController implements ILogin {
             this.connection.userLogin(userData);
             userData = JSON.parse(JSON.stringify(this.connection.playerData));
             delete data.password;
-            this.response(data.cmd, { userData });
+            this.response(data.cmd, { syncInfo: userData });
         }
     }
 }

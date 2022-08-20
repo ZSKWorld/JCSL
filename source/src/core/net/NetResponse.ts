@@ -1,4 +1,5 @@
 export const enum NetResponse {
+	SyncInfo = "SyncInfo",
 	/** @param HeartOutput */
 	Response_Heart = "Response_Heart",
 	/** @param RegisterOutput */

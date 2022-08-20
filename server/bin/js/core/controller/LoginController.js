@@ -37,7 +37,7 @@ var LoginController = /** @class */ (function (_super) {
             this.connection.userLogin(userData);
             userData = JSON.parse(JSON.stringify(this.connection.playerData));
             delete data.password;
-            this.response(data.cmd, { userData: userData });
+            this.response(data.cmd, { syncInfo: userData });
         }
     };
     __decorate([

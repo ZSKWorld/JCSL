@@ -25,10 +25,11 @@ var HeartController = /** @class */ (function (_super) {
     HeartController.prototype.onConstruct = function () {
         var _this = this;
         _super.prototype.onConstruct.call(this);
-        this._intervalId = setInterval(function () { return _this.heart(); }, 10000);
+        this._intervalId = setInterval(function () { return _this.heart(null); }, 10000);
     };
-    HeartController.prototype.heart = function () {
-        this.response("heart", { timeStamp: Date.now() });
+    HeartController.prototype.heart = function (data) {
+        if (this.connection.logined)
+            this.response("heart", { timeStamp: Date.now() });
     };
     HeartController.prototype.clear = function () {
         _super.prototype.clear.call(this);

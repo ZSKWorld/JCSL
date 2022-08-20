@@ -1,5 +1,7 @@
+import { NotifyConst } from "../common/NotifyConst";
 import { Observer } from "../libs/event/Observer";
 import { Logger } from "../libs/utils/Logger";
+import { NetResponse } from "./NetResponse";
 import { UserInput, UserOutput } from "./network/Interface";
 
 const logger = Logger.Create("WebSocket").setEnable(true);
@@ -30,26 +32,24 @@ class WebSocket extends Observer {
                 if (waitList[ i ].cmd == msg.cmd) return;
             }
         }
-        if (msg.cmd == "reconect") this.waitList.unshift(msg);
-        else this.waitList.push(msg);
+        this.waitList.push(msg);
         this.executeWaitMsg();
     }
 
     private onSocketOpen(): void {
-        logger.log("socket open");
         this.executeWaitMsg();
+        this.dispatch(NotifyConst.SocketOpened);
     }
 
     private onSocketMessage(message: string): void {
         const msg: UserOutput = JSON.parse(message);
         if (msg && !msg.error) {
-            if (this.current && this.current.cmd == msg.cmd) {
-                this.dispatch(`Response_${ msg.cmd[ 0 ].toUpperCase() + msg.cmd.substring(1) }`, msg);
-                //发送事件
+            this.dispatch(`Response_${ msg.cmd[ 0 ].toUpperCase() + msg.cmd.substring(1) }`, msg);
+            if (msg.syncInfo) this.dispatch(NetResponse.SyncInfo, msg.syncInfo);
+            if (this.current && this.current.cmd == msg.cmd)
                 this.current = null;
-            }
         } else {
-
+            this.dispatch(NotifyConst.NetMsgError, msg);
             this.current = null;
         }
 
@@ -57,15 +57,11 @@ class WebSocket extends Observer {
         this.executeWaitMsg();
     }
 
-    private onSocketError(e): void {
-        logger.error("socket error");
-        // this.onSocketClose();
-    }
+    private onSocketError(e): void { }
 
     private onSocketClose(): void {
-        logger.warn("socket close");
         this.socket.connectByUrl(this.url);
-        logger.log("socket reconnectting...");
+        this.dispatch(NotifyConst.SocketClosed);
     }
 
     private executeWaitMsg(): void {

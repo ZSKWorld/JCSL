@@ -2,7 +2,7 @@
  * @Author       : zsk
  * @Date         : 2022-04-18 22:11:15
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-06 18:28:45
+ * @LastEditTime : 2022-08-17 22:54:35
  * @Description  : UI管理类
  */
 import { NotifyConst } from "../../common/NotifyConst";
@@ -187,6 +187,7 @@ class UIManager extends Observer {
 	/** 关闭页面
 	 * @param viewId 页面ID
 	 */
+	@InsertNotify(NotifyConst.RemoveView)
 	removeView(viewId: ViewID) {
 		const { openedViews: _openedViews } = this;
 		for (let i = 0, n = _openedViews.length; i < n; i++) {

@@ -54,8 +54,7 @@ export class Connection {
     }
 
     response(data: UserOutput) {
-        if (this.logined)
-            this._connection.sendUTF(JSON.stringify(data));
+        this._connection.sendUTF(JSON.stringify(data));
     }
 
     private connectionClose() {

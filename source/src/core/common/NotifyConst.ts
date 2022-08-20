@@ -1,3 +1,5 @@
+import { UserOutput } from "../net/network/Interface";
+
 export const enum NotifyConst {
 	/** 基本数据改变事件，无参 */
 	BaseDataChanged = "BaseDataChanged",
@@ -8,12 +10,19 @@ export const enum NotifyConst {
 	 * @param { number } level 等级
 	 */
 	Upgrade = "Upgrade",
-	/** 网络错误，无参 */
-	NetworkError = "NetworkError",
+	/**
+	 * 网络消息错误
+	 * @param { UserOutput } msg 错误消息
+	 */
+	NetMsgError = "NetMsgError",
+	SocketOpened = "SocketOpened",
+	SocketClosed = "SocketClosed",
 	//----------------------------------以下为派发事件-------------------------------------------
 
 	/** 打开页面，参数同uiMgr.addView*/
 	AddView = "AddView",
+	/** 关闭页面，参数同uiMgr.hideView */
+	RemoveView = "HideView",
 	/**
 	 * 添加历练日志
 	 * @param { string | string[] } log

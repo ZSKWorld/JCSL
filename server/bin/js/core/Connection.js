@@ -61,8 +61,7 @@ var Connection = /** @class */ (function () {
         this._logined = true;
     };
     Connection.prototype.response = function (data) {
-        if (this.logined)
-            this._connection.sendUTF(JSON.stringify(data));
+        this._connection.sendUTF(JSON.stringify(data));
     };
     Connection.prototype.connectionClose = function () {
         if (this._playerData) {

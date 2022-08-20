@@ -9,7 +9,8 @@ export class HeartController extends BaseController implements IHeart {
         this._intervalId = setInterval(() => this.heart(null), 10000);
     }
     heart(data: HeartInput) {
-        this.response("heart", { timeStamp: Date.now() });
+        if (this.connection.logined)
+            this.response("heart", { timeStamp: Date.now() });
     }
 
     override clear() {
