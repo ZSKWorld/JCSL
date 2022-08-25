@@ -13,7 +13,7 @@ class BaseService<T> {
                         cmd: property
                     };
                     Object.assign(args, netArgs);
-                    return websocket.sendMsg(args);
+                    websocket.sendMsg(args);
                 };
             }
         });

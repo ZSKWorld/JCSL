@@ -1,11 +1,3 @@
-/*
- * @Author: your name
- * @Date: 2021-08-25 09:32:54
- * @LastEditTime: 2021-08-31 13:21:46
- * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: \mycat\src\script\game\core\mvc\control\Notifier.ts
- */
 import { eventMgr } from "./EventMgr";
 
 /**
