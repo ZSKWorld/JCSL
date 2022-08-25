@@ -1,5 +1,4 @@
 import { eventMgr } from "../../libs/event/EventMgr";
-import { INotifier } from "../../libs/event/Notifier";
 import { ExtensionClass } from "../../libs/utils/Util";
 import { ViewCtrlExtension } from "./interfaces";
 import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
@@ -8,10 +7,10 @@ import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
  * @Author       : zsk
  * @Date         : 2021-08-20 21:36:21
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-14 20:22:41
+ * @LastEditTime : 2022-08-26 01:06:40
  * @Description  : UI控制器脚本基类，可挂在任何Laya.Node（GUI的displayObject）上,该组件为可回收组件。鼠标、键盘交互事件可使用装饰器注册 => InsertKeyEvent、InsertMouseEvent
  */
-export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, D = any> extends ExtensionClass<ViewCtrlExtension, Laya.Script>(Laya.Script) implements INotifier {
+export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, D = any> extends ExtensionClass<ViewCtrlExtension, Laya.Script>(Laya.Script) {
 	/** 页面数据 */
 	data: D;
 	/** 控制器挂载的ui页面 */

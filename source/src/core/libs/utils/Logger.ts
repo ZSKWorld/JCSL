@@ -5,13 +5,14 @@ const enum LogLevel {
 }
 
 export class Logger {
+    private static loggerMap: { [ name: string ]: Logger } = {};
     /** 是否开启日志打印，全局开关 */
     private static enable: boolean = true;
     /** 各类型日志 字体颜色和背景色 */
     private static Color: { [ key in LogLevel ]: [ string, string, string ] } = {
-        [ LogLevel.Log ]: [ "#FFFFFF", "#00AAFF" , "#FF0000" ],
-        [ LogLevel.Warn ]: [ "#000080", "#FFC900" , "#FF0000" ],
-        [ LogLevel.Error ]: [ "#FF0000", "#FFC8C8" , "#FF0000" ],
+        [ LogLevel.Log ]: [ "#FFFFFF", "#00AAFF", "#FF0000" ],
+        [ LogLevel.Warn ]: [ "#000080", "#FFC900", "#FF0000" ],
+        [ LogLevel.Error ]: [ "#FF0000", "#FFC8C8", "#FF0000" ],
     }
 
     /** 处理日志参数
@@ -70,7 +71,12 @@ export class Logger {
     static Error(...message: any[]) { this.DoLog(LogLevel.Error, "", ...message); }
 
     /** 创建日志打印器 */
-    static Create(name: string) { return new Logger(name); }
+    static Create(name: string) {
+        let logger = Logger.loggerMap[ name ];
+        if (!logger)
+            Logger.loggerMap[ name ] = logger = new Logger(name);
+        return logger;
+    }
 
     private constructor(
         private name: string,

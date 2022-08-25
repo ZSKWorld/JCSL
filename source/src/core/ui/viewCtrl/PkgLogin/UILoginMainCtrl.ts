@@ -58,20 +58,4 @@ export class UILoginMainCtrl extends BaseViewCtrl<UILoginMainView, UILoginMainDa
     override onDestroy(): void {
         super.onDestroy();
     }
-
-    @InsertNotify(NetResponse.Response_Login)
-    private loginResponse() {
-        const { TxtAccount, TxtPassword } = this.view;
-        const param = { account: TxtAccount.text, password: TxtPassword.text };
-        localData.set(LocalDataKey.LastLoginAccount, param);
-        this.dispatch(NotifyConst.EnterScene, LogicSceneType.MainScene);
-    }
-
-    @InsertNotify(NetResponse.Response_Register)
-    private registerResponse() {
-        const { TxtRegisterAccount, TxtRegisterPassword } = this.view;
-        this.view.setLoginInfo(TxtRegisterAccount.text, TxtRegisterPassword.text);
-        this.view.ctrlState.selectedIndex = 0;
-        this.UILoginMain_OnBtnLoginClick();
-    }
 }

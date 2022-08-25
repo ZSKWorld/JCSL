@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.Connection = void 0;
+var websocket = require("websocket");
 var EventDispatcher_1 = require("../libs/event/EventDispatcher");
 var Pool_1 = require("../libs/pool/Pool");
 var ConnectionMgr_1 = require("./ConnectionMgr");
@@ -55,7 +56,7 @@ var Connection = /** @class */ (function () {
         var oldConnection = ConnectionMgr_1.connectionMgr.getConnection(this._playerData.uid);
         if (oldConnection) {
             oldConnection.response({ cmd: "", error: 1007 /* ErrorCode.LOGIN_OTHER_PLACE */ });
-            oldConnection._connection.close(0, "login other place");
+            oldConnection._connection.close(websocket.connection.CLOSE_REASON_NORMAL, "login other place");
         }
         ConnectionMgr_1.connectionMgr.addConnection(this._playerData.uid, this);
         this._logined = true;

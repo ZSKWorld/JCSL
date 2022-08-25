@@ -47,7 +47,7 @@ export class Connection {
         const oldConnection = connectionMgr.getConnection(this._playerData.uid);
         if (oldConnection) {
             oldConnection.response({ cmd: "", error: ErrorCode.LOGIN_OTHER_PLACE });
-            oldConnection._connection.close(0, "login other place");
+            oldConnection._connection.close(websocket.connection.CLOSE_REASON_NORMAL, "login other place");
         }
         connectionMgr.addConnection(this._playerData.uid, this);
         this._logined = true;

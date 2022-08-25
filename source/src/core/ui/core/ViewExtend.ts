@@ -2,7 +2,7 @@ import { eventMgr } from "../../libs/event/EventMgr";
 import { userData } from "../../userData/UserData";
 import { BaseViewCtrl } from "./BaseViewCtrl";
 import { IView, IViewCtrl } from "./interfaces";
-import { CtrlClass } from "./UIGlobal";
+import { CtrlClass, ProxyClass } from "./UIGlobal";
 import { uiMgr } from "./UIManager";
 import { ViewID } from "./ViewID";
 
@@ -36,6 +36,9 @@ export class ViewExtend {
 				data != undefined && (viewCtrl.data = data);
 				viewCtrl.listener = listener;
 				viewCtrl.userData = userData;
+				if (!viewCtrl.proxy && ProxyClass[ viewId ])
+					viewCtrl.proxy = new ProxyClass[ viewId ]();
+				viewCtrl.proxy && (viewCtrl.proxy.viewCtrl = viewCtrl);
 			}
 			viewInst.userData = userData;
 			//这里不能使用传入的listener
