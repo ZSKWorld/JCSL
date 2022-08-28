@@ -4,14 +4,13 @@ import { UpperFirst } from "../libs/utils/Util";
 import { NetResponse } from "../net/NetResponse";
 import { IUserData } from "../net/network/Interface";
 
-class UserData extends Observer implements IUserData {
+class UserData extends Observer implements Required<IUserData> {
     uid: string;
     nickname: string;
     account: string;
     password: string;
     registerTime: number;
     lastLoginTime: number;
-    coin: number;
 
     @InsertNotify(NetResponse.SyncInfo)
     private syncInfo(data: IUserData) {

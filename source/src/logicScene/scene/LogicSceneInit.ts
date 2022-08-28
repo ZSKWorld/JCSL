@@ -8,7 +8,7 @@ import { uiMgr } from '../../core/ui/core/UIManager'
 import { ViewExtend } from '../../core/ui/core/ViewExtend'
 import { uiRegister } from '../../core/ui/core/ViewRegister'
 import { LogicSceneType } from '../LogicSceneType'
-import { LogicSceneBase } from './LogicSceneBase'
+import { LogicSceneBase } from '../LogicSceneBase'
 
 /**
  *@Author zsk

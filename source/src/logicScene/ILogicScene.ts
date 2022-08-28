@@ -1,7 +1,9 @@
 /**
- *@Author zsk
- *@Date 2022/7/25 21:43
- *@Description
+ * @Author       : zsk
+ * @Date         : 2022-08-05 21:17:13
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 01:34:09
+ * @Description  : 
  */
 export interface IScene {
 	readonly name: string;

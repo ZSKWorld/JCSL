@@ -8,9 +8,11 @@ import { LogicSceneType } from './LogicSceneType'
 const logger = Logger.Create("LogicSceneMgr").setEnable(true);
 
 /**
- *@Author zsk
- *@Date 2022/7/25 21:42
- *@Description 场景管理
+ * @Author       : zsk
+ * @Date         : 2022-08-05 21:17:13
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 01:36:00
+ * @Description  : 逻辑场景管理类
  */
 class LogicSceneMgr extends Observer {
 	private currentType: LogicSceneType;
@@ -37,7 +39,10 @@ class LogicSceneMgr extends Observer {
 				this.enterCompleted = true;
 				this.currentScene.enter(data);
 				Laya.Resource.destroyUnusedResources();
-			}, () => (this.enterCompleted = true));
+			}, () => {
+				//场景加载失败
+				this.enterCompleted = true;
+			});
 		}
 	}
 }

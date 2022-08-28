@@ -1,7 +1,7 @@
 import { NotifyConst } from '../../core/common/NotifyConst';
 import { ResPath } from '../../core/common/ResPath';
 import { ViewID } from '../../core/ui/core/ViewID';
-import { LogicSceneBase } from './LogicSceneBase';
+import { LogicSceneBase } from '../LogicSceneBase';
 
 /**
  *@Author zsk

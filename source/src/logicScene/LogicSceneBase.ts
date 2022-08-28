@@ -1,7 +1,7 @@
-import { Observer } from '../../core/libs/event/Observer';
-import { loadMgr } from '../../core/libs/load/LoadMgr';
-import { uiMgr } from '../../core/ui/core/UIManager';
-import { IScene } from '../ILogicScene';
+import { Observer } from '../core/libs/event/Observer';
+import { loadMgr } from '../core/libs/load/LoadMgr';
+import { uiMgr } from '../core/ui/core/UIManager';
+import { IScene } from './ILogicScene';
 
 const enum ResGroupType {
 	Normal,
@@ -45,7 +45,6 @@ export abstract class LogicSceneBase extends Observer implements IScene {
 		//todo
 		this.onExit();
 		uiMgr.removeAllView();
-
 		//卸载资源
 		const [ notUIRes, uiRes ] = this.getResGroup(ResGroupType.Normal);
 		notUIRes.forEach(v => Laya.loader.clearRes(v));

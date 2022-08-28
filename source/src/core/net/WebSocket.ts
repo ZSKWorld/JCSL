@@ -9,8 +9,8 @@ const logger = Logger.Create("WebSocket").setEnable(true);
 /**
 * @Author       : zsk
 * @Date         : 2022-08-05 21:17:13
-* @LastEditors  : zsk
-* @LastEditTime : 2022-08-29 01:26:10
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 01:30:16
 * @Description  : 
 */
 class WebSocket extends Observer {
@@ -32,12 +32,16 @@ class WebSocket extends Observer {
 
     sendMsg(msg: UserInput): void {
         if (this.current && msg.cmd == this.current.cmd) {
+            logger.log("重复的请求", msg.cmd);
             return;
         }
         const waitList = this.waitList;
         if (waitList.length > 0) {
             for (let i = waitList.length - 1; i >= 0; i--) {
-                if (waitList[ i ].cmd == msg.cmd) return;
+                if (waitList[ i ].cmd == msg.cmd) {
+                    logger.log("重复的请求", msg.cmd);
+                    return;
+                }
             }
         }
         this.waitList.push(msg);

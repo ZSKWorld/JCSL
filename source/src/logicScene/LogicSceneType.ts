@@ -1,8 +1,5 @@
-/**
- *@Author zsk
- *@Date 2022/7/25 21:44
- *@Description
- */
+
+/** 逻辑场景类型枚举 */
 export const enum LogicSceneType {
 	InitScene = "InitScene",
 	LoginScene = "LoginScene",
