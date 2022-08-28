@@ -1,9 +1,5 @@
-import { LogicSceneType } from "../../../../logicScene/LogicSceneType";
-import { NotifyConst } from "../../../common/NotifyConst";
-import { InsertNotify } from "../../../libs/event/EventMgr";
 import { localData } from "../../../libs/localStorage/LocalData";
 import { LocalDataKey } from "../../../libs/localStorage/LocalDataKey";
-import { NetResponse } from "../../../net/NetResponse";
 import { LoginInput } from "../../../net/network/ILogin";
 import { LoginService, RegisterService } from "../../../net/Services";
 import { BaseViewCtrl } from "../../core/BaseViewCtrl";

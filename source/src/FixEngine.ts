@@ -88,36 +88,6 @@ export class FixEngine {
 		}
 	}
 
-	/** 修复gui GBasicText.text 自动‘宽度’最大尺寸限制不起作用的问题 */
-	private static BasicText() {
-		const prototype = fgui.GBasicTextField.prototype;
-		Object.defineProperty(prototype, "text", {
-			get() { return this._text; },
-			set(value: string) {
-				this._text = value;
-				if (this._text == null)
-					this._text = "";
-				if (this._bitmapFont == null) {
-					if (this._widthAutoSize)
-						this._textField.width = this.maxWidth || 10000;
-					var text2 = this._text;
-					if (this._templateVars)
-						text2 = this.parseTemplate(text2);
-					if (this._ubbEnabled) //laya还不支持同一个文本不同样式
-						this._textField.text = fgui.UBBParser.inst.parse(fgui.ToolSet.encodeHTML(text2), true);
-					else
-						this._textField.text = text2;
-				}
-				else {
-					this._textField.text = "";
-					this._textField[ "setChanged" ]();
-				}
-				if (this.parent && this.parent._underConstruct)
-					this._textField.typeset();
-			}
-		})
-	}
-
 	/** 修复loadPackage重复加载的bug */
 	private static LoadPackage() {
 		fgui.UIPackage.loadPackage = function loadPackage(resKey, completeHandler, progressHandler) {
