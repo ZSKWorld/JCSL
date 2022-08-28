@@ -1,3 +1,10 @@
+/**
+ * @Author       : zsk
+ * @Date         : 2022-08-05 21:17:13
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 01:23:47
+ * @Description  : 数学装饰器
+ */
 import { MathUtil } from "./MathUtil";
 
 /**
@@ -9,7 +16,7 @@ import { MathUtil } from "./MathUtil";
  */
 export function Clamp(min: number, max: number, defaultValue?: number) {
     return function (target: Object, propertyKey: string) {
-        if (typeof target[propertyKey] == "function") return;
+        if (typeof target[ propertyKey ] == "function") return;
         if (Reflect.has(target, propertyKey) == false && Reflect.has(target, propertyKey + "_ClampValue") == false) {
             Reflect.defineProperty(target, propertyKey + "_ClampValue", {
                 value: MathUtil.Clamp(defaultValue ?? min, min, max),

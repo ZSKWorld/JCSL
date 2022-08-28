@@ -1,3 +1,10 @@
+/**
+ * @Author       : zsk
+ * @Date         : 2022-08-05 21:17:13
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 01:22:53
+ * @Description  : 资源加载器
+ */
 class LoadMgr {
 	load(url: string | (string | Laya.loadItem)[], complete?: Laya.Handler | null, progress?: Laya.Handler | null, type?: string | null,
 		priority?: number, cache?: boolean, group?: string | null, ignoreCache?: boolean, useWorkerLoader?: boolean) {

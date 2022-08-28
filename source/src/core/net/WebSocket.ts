@@ -5,6 +5,14 @@ import { NetResponse } from "./NetResponse";
 import { UserInput, UserOutput } from "./network/Interface";
 
 const logger = Logger.Create("WebSocket").setEnable(true);
+
+/**
+* @Author       : zsk
+* @Date         : 2022-08-05 21:17:13
+* @LastEditors  : zsk
+* @LastEditTime : 2022-08-29 01:26:10
+* @Description  : 
+*/
 class WebSocket extends Observer {
     private url: string = "ws://192.168.1.19:3000";
     private socket: Laya.Socket;

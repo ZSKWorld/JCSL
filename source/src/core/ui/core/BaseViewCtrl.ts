@@ -7,8 +7,9 @@ import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
  * @Author       : zsk
  * @Date         : 2021-08-20 21:36:21
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-26 01:06:40
- * @Description  : UI控制器脚本基类，可挂在任何Laya.Node（GUI的displayObject）上,该组件为可回收组件。鼠标、键盘交互事件可使用装饰器注册 => InsertKeyEvent、InsertMouseEvent
+ * @LastEditTime : 2022-08-29 01:18:28
+ * @Description  : UI控制器脚本基类，可挂在任何Laya.Node（GUI的displayObject）上。
+ * @Description  : 该组件为可回收组件。鼠标、键盘交互事件可使用装饰器注册 => InsertKeyEvent、InsertMouseEvent
  */
 export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, D = any> extends ExtensionClass<ViewCtrlExtension, Laya.Script>(Laya.Script) {
 	/** 页面数据 */
@@ -36,6 +37,7 @@ export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, 
 		this._view = this.owner[ "$owner" ];
 		eventMgr.registerNotify(this);
 		eventMgr.registerNotify(this._view);
+		eventMgr.registerNotify(this.proxy);
 		ViewCtrlDIExtend.registerDeviceEvent(this);
 	}
 
@@ -59,13 +61,14 @@ export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, 
 	}
 
 	override onReset() {
-		const { _view, _listener } = this;
+		const { _view, _listener, proxy } = this;
 		Laya.timer.clearAll(this);
 		Laya.timer.clearAll(_view);
 		Laya.Tween.clearAll(this);
 		Laya.Tween.clearAll(_view);
 		eventMgr.offAllCaller(this);
 		eventMgr.offAllCaller(_view);
+		eventMgr.offAllCaller(proxy);
 		_listener?.offAll();
 		Laya.Pool.recoverByClass(_listener);
 		this._view = null;

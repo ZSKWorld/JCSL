@@ -6,7 +6,13 @@ import { CtrlClass, ProxyClass } from "./UIGlobal";
 import { uiMgr } from "./UIManager";
 import { ViewID } from "./ViewID";
 
-/** 页面方法扩展 */
+/**
+ * @Author       : zsk
+ * @Date         : 2022-08-25 23:58:44
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 01:19:55
+ * @Description  : 页面及控制器扩展
+ */
 export class ViewExtend {
 	static init() {
 		this.fguiGComponentExtend();

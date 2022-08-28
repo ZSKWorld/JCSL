@@ -1,10 +1,3 @@
-/**
- * @Author       : zsk
- * @Date         : 2022-04-18 22:11:15
- * @LastEditors  : zsk
- * @LastEditTime : 2022-08-17 22:54:35
- * @Description  : UI管理类
- */
 import { NotifyConst } from "../../common/NotifyConst";
 import { platform } from "../../common/platform/Platform";
 import { InsertNotify } from "../../libs/event/EventMgr";
@@ -59,7 +52,7 @@ class UICache {
 			for (const iterator of this.destroyCache) {
 				const [ viewID, [ view, startTime ] ] = iterator;
 				if ((Date.now() - startTime) >= UICache.DestroyCacheTime) {
-					logger.warn("dispose view", view.name);
+					// logger.warn("dispose view", view.name);
 					view.dispose();
 					this.destroyCache.delete(viewID);
 				}
@@ -69,6 +62,13 @@ class UICache {
 
 }
 
+/**
+ * @Author       : zsk
+ * @Date         : 2022-04-18 22:11:15
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 00:59:45
+ * @Description  : UI管理类
+ */
 class UIManager extends Observer {
 	private cache: UICache;
 

@@ -1,3 +1,12 @@
+/**
+ * @Author       : zsk
+ * @Date         : 2022-08-05 21:17:13
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 01:15:37
+ * @Description  : UI层级定义及层级管理
+ */
+
+/** UI层级 */
 export enum Layer {
     Game = "Game",
     Bottom = "Bottom",
@@ -29,13 +38,13 @@ class LayerManager {
         }
     }
 
-    addObject(obj: fgui.GObject, layer: Layer, index?:number) {
+    addObject(obj: fgui.GObject, layer: Layer, index?: number) {
         if (!obj || obj.isDisposed || !this.layerMap[ layer ]) return;
         index = index ?? this.layerMap[ layer ].numChildren;
         this.layerMap[ layer ].addChild(obj);
     }
 
-    addLayaObject(obj:Laya.Sprite, layer:Layer, index?:number){
+    addLayaObject(obj: Laya.Sprite, layer: Layer, index?: number) {
         if (!obj || obj.destroyed || !this.layerMap[ layer ]) return;
         index = index ?? this.layerMap[ layer ].numChildren;
         this.layerMap[ layer ].displayObject.addChildAt(obj, index);

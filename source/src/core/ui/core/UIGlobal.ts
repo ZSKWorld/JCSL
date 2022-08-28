@@ -1,3 +1,10 @@
+/**
+ * @Author       : zsk
+ * @Date         : 2022-08-05 21:17:13
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 01:17:07
+ * @Description  : 全局的UI集合
+ */
 import { IViewCtrlProxy_Class, IViewCtrl_Class, IView_Class } from "./interfaces";
 import { ViewID } from "./ViewID";
 type ReadOnlyView = ReadOnlyObject<IView_Class> & { readonly [ key in ViewID ]: IView_Class };

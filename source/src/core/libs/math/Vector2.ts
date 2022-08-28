@@ -1,5 +1,12 @@
 import { MathUtil } from "./MathUtil";
 
+/**
+ * @Author       : zsk
+ * @Date         : 2022-08-06 19:16:06
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 01:24:17
+ * @Description  : 2D向量类
+ */
 export class Vector2 {
     constructor(
         public x = 0,

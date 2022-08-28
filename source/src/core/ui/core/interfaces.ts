@@ -3,6 +3,13 @@ import { BaseViewCtrl } from "./BaseViewCtrl";
 import { BaseViewCtrlProxy } from "./BaseViewCtrlProxy";
 import { Layer } from "./GameLayer";
 import { ViewID } from "./ViewID";
+/**
+* @Author       : zsk
+* @Date         : 2022-08-05 21:17:13
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 01:16:24
+* @Description  : 定义页面及控制器类型和扩展
+*/
 
 /**页面状态 */
 interface IViewStateMethod {
@@ -16,7 +23,8 @@ export interface GComponentExtend {
 
 	/**派发全局事件 */
 	dispatch?(notifyName: string, data?: any): void;
-	/** 打开页面
+	/**
+	 * 打开页面
 	 * @param viewId 页面id
 	 * @param data 传入参数
 	 * @param callback 打开后回调
@@ -61,7 +69,10 @@ export interface ViewExtension extends IViewMethod, IViewStateMethod {
 	userData?: IUserData;
 	listener?: Laya.EventDispatcher;
 
-	/**页面创建完毕之后执行，只执行一次, 该方法为虚方法，使用时重写即可 */
+	/**
+	 * 页面创建完毕之后执行，只执行一次。
+	 * 该方法为虚方法，使用时重写即可
+	 */
 	onCreate?(): void;
 
 	/**向控制器发送消息 */
@@ -87,7 +98,11 @@ export type IViewCtrl_Class = new () => IViewCtrl;
 export interface ViewCtrlExtension extends IViewMethod, IViewStateMethod {
 	userData?: IUserData;
 	proxy?: IViewCtrlProxy;
-	/** 每次面板前置调用该方法，onEnable之后调用，和onEnable的区别在于：如果当前面板已经前置onEnable不会重复调用，onForeground会重复调用 */
+	/** 
+	 * 每次面板前置调用该方法，onEnable之后调用。
+	 * 和onEnable的区别在于：如果当前面板已经前置onEnable不会重复调用，onForeground会重复调用。
+	 * 该方法为虚方法，使用时重写即可
+	 */
 	onForeground?(): void;
 };
 

@@ -1,3 +1,10 @@
+/**
+ * @Author       : zsk
+ * @Date         : 2022-08-29 00:30:25
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 01:24:26
+ * @Description  : promise管理
+ */
 
 type Resolve<T> = (value: T | PromiseLike<T>) => void;
 type Reject = (reason?: any) => void;
@@ -41,7 +48,7 @@ class PromiseMgr {
 
     remove(caller: any, reason?: any) {
         for (let i = this._pool.length - 1; i >= 0; i--) {
-            const pe = this._pool[i];
+            const pe = this._pool[ i ];
             if (pe.caller === caller) {
                 this._pool.splice(i, 1);
                 pe.reject(reason);

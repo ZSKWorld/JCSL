@@ -1,3 +1,10 @@
+/**
+ * @Author       : zsk
+ * @Date         : 2022-08-05 21:17:13
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 01:25:00
+ * @Description  : 工具类
+ */
 import { tableMgr } from "../../table/TableManager";
 
 
@@ -6,7 +13,7 @@ import { tableMgr } from "../../table/TableManager";
  * @param cls 要扩展的类
  * @returns
  */
-export function ExtensionClass<E, T>(cls: { new(...args: any) : T }) {
+export function ExtensionClass<E, T>(cls: { new(...args: any): T }) {
     return cls as unknown as { new(): T & E };
 }
 
