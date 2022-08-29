@@ -2,7 +2,7 @@
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 21:53:31
+ * @LastEditTime : 2022-08-29 21:54:29
  * @Description  : 引擎修复
  */
 export class FixEngine {
@@ -14,6 +14,7 @@ export class FixEngine {
 		this.fixLayaPoolSign();
 	}
 
+	/**修复GUI粗体不生效 */
 	private static UbbTagI() {
 		const inst = fairygui.UBBParser.inst as any;
 		inst._handlers[ "i" ] = function onTag_I(tagName, end, attr) {
