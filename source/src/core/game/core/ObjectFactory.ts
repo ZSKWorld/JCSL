@@ -7,7 +7,7 @@ import { JinGangQuan } from "../weapon/JinGangQuan";
 import { GamePoolKey } from "./GameInterface";
 import { GameObject } from "./GameObject";
 import { GameUtil } from "./GameUtil";
-type ObjectMapType = { [ key in GamePoolKey ]: { type: New<GameObject>, moveCtrl: New<MovementBase>, pkg: string, url: string } };
+type ObjectMapType = { [ key in GamePoolKey ]: { type: Class<GameObject>, moveCtrl: Class<MovementBase>, pkg: string, url: string } };
 class ObjectFactory {
     constructor() {
 

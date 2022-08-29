@@ -2,7 +2,7 @@ declare interface ReadOnlyObject<T> {
     readonly [ key: string ]: T;
 }
 
-declare type New<T> = new (...args) => T;
+declare type Class<T> = new (...args: any) => T;
 
 /** 向window注入变量 */
 

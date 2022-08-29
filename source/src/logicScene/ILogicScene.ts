@@ -2,8 +2,8 @@
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:34:09
- * @Description  : 
+ * @LastEditTime : 2022-08-29 21:29:38
+ * @Description  : 逻辑场景类型
  */
 export interface IScene {
 	readonly name: string;

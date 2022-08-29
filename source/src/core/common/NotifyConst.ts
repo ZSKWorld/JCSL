@@ -1,5 +1,12 @@
 import { UserOutput } from "../net/network/Interface";
 
+/**
+ * @Author       : zsk
+ * @Date         : 2022-08-05 21:17:13
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 21:49:01
+ * @Description  : 
+ */
 export const enum NotifyConst {
 	/**
 	 * 网络消息错误

@@ -53,9 +53,9 @@ class TableManager {
 			const keyMap = tableData.keyMap;
 			delete tableData.keyMap;
 			for (const tableKey in tableData) {
-				const data = tableData[tableKey];
-				Object.keys(data).forEach(dataKey => this.decodeData(data[dataKey], keyMap));
-				this[tableKey] = data;
+				const data = tableData[ tableKey ];
+				Object.keys(data).forEach(dataKey => this.decodeData(data[ dataKey ], keyMap));
+				this[ tableKey ] = data;
 			}
 			Laya.loader.clearRes(ResPath.Table_Config);
 		}
@@ -65,14 +65,14 @@ class TableManager {
 		if (data == null) return;
 		if (typeof data != "object") return;
 		Object.keys(data).forEach((key) => {
-			const temp = data[key];
+			const temp = data[ key ];
 			const type = temp?.constructor?.name;
 			if (type == "Object")
 				this.decodeData(temp, keyMap);
 			else if (type == "Array")
 				temp.forEach((v: any) => this.decodeData(v, keyMap));
-			data[keyMap[key]] = temp;
-			delete data[key];
+			data[ keyMap[ key ] ] = temp;
+			delete data[ key ];
 		});
 	}
 }

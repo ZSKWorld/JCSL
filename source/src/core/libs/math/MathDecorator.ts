@@ -2,9 +2,10 @@
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:23:47
+ * @LastEditTime : 2022-08-29 21:49:31
  * @Description  : 数学装饰器
  */
+
 import { MathUtil } from "./MathUtil";
 
 /**

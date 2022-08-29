@@ -1,7 +1,7 @@
-import { Observer } from '../core/libs/event/Observer';
-import { loadMgr } from '../core/libs/load/LoadMgr';
-import { uiMgr } from '../core/ui/core/UIManager';
-import { IScene } from './ILogicScene';
+import { Observer } from "../core/libs/event/Observer";
+import { loadMgr } from "../core/libs/load/LoadMgr";
+import { uiMgr } from "../core/ui/core/UIManager";
+import { IScene } from "./ILogicScene";
 
 const enum ResGroupType {
 	Normal,
@@ -10,9 +10,11 @@ const enum ResGroupType {
 }
 
 /**
- *@Author zsk
- *@Date 2022/7/25 22:02
- *@Description
+ * @Author       : zsk
+ * @Date         : 2022-08-29 21:05:38
+ * @LastEditors  : zsk
+ * @LastEditTime : 2022-08-29 21:29:13
+ * @Description  : 逻辑场景基类
  */
 export abstract class LogicSceneBase extends Observer implements IScene {
 	protected data: any;

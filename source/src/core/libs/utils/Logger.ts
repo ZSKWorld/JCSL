@@ -1,4 +1,3 @@
-
 const enum LogLevel {
     Log = "Log",
     Warn = "Warn",

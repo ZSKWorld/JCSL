@@ -1,5 +1,4 @@
 import { NotifyConst } from "../../common/NotifyConst";
-import { platform } from "../../common/platform/Platform";
 import { InsertNotify } from "../../libs/event/EventMgr";
 import { Observer } from "../../libs/event/Observer";
 import { Logger } from "../../libs/utils/Logger";
@@ -148,8 +147,8 @@ class UIManager extends Observer {
 			else {
 				fgui.UIPackage.loadPackage([ ViewClass[ viewId ].PkgRes ], Laya.Handler.create(this, (res: any[]) => {
 					if (!res || !res.length) {
-						platform.confirm(`界面 ${ viewId } 加载失败，是否重试?`,
-							"", false, () => this.addView(viewId, data, callback, hideTop));
+						if (confirm(`界面 ${ viewId } 加载失败，是否重试?`))
+							this.addView(viewId, data, callback, hideTop);
 					} else {
 						viewInst = this.createViewInstance(viewId);
 						this.addView2(viewId, viewInst, data, hideTop, callback);

@@ -2,19 +2,19 @@
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:25:00
- * @Description  : 工具类
+ * @LastEditTime : 2022-08-29 21:50:04
+ * @Description  : 工具方法集合
  */
-import { tableMgr } from "../../table/TableManager";
 
+import { tableMgr } from "../../table/TableManager";
 
 /**
  * 扩展类字段，用于在外部定义的字段在内部可读，扩展的字段或方法不能在构造期间调用
- * @param cls 要扩展的类
+ * @param clsT 要扩展的类
  * @returns
  */
-export function ExtensionClass<E, T>(cls: { new(...args: any): T }) {
-    return cls as unknown as { new(): T & E };
+export function ExtensionClass<E, T>(clsT: Class<T>) {
+    return clsT as Class<T & E>;
 }
 
 export function GetLang(id: number) { return tableMgr.Lang[ id ].Text; }
