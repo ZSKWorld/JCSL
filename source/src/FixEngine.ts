@@ -2,7 +2,7 @@
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-30 00:56:22
+ * @LastEditTime : 2022-08-30 01:14:36
  * @Description  : 引擎修复
  */
 export class FixEngine {
@@ -10,7 +10,6 @@ export class FixEngine {
 		this.UbbTagI();
 		this.AddGUIObjectEventLockable();
 		this.LoadPackage();
-		this.addScriptStageMouseEvent();
 		this.fixLayaPoolSign();
 	}
 
@@ -178,33 +177,6 @@ export class FixEngine {
 				}
 			}, null, true);
 			fgui.AssetProxy.inst.load(loadKeyArr, descCompleteHandler, null, Laya.Loader.BUFFER);
-		}
-	}
-
-	/** 添加Laya.Script 舞台鼠标事件 */
-	private static addScriptStageMouseEvent() {
-		return;
-		const prototype = Laya.Script.prototype;
-		// prototype.onStageMouseOut = function (e: Laya.Event) { }
-		// prototype.onStageMouseOver = function (e: Laya.Event) { }
-		// prototype.onStageDoubleClick = function (e: Laya.Event) { }
-		// prototype.onStageRightClick = function (e: Laya.Event) { }
-
-		const old: Function = prototype[ "_onEnable" ];
-		prototype[ "_onEnable" ] = function () {
-			// if (this.onStageMouseOut !== prototype.onStageMouseOut) {
-			// 	Laya.stage.on(Laya.Event.MOUSE_OUT, this, this.onStageMouseOut);
-			// }
-			// if (this.onStageMouseOver !== prototype.onStageMouseOver) {
-			// 	Laya.stage.on(Laya.Event.MOUSE_OVER, this, this.onStageMouseOver);
-			// }
-			// if (this.onStageDoubleClick !== prototype.onStageDoubleClick) {
-			// 	Laya.stage.on(Laya.Event.DOUBLE_CLICK, this, this.onStageDoubleClick);
-			// }
-			// if (this.onStageRightClick !== prototype.onStageRightClick) {
-			// 	Laya.stage.on(Laya.Event.RIGHT_CLICK, this, this.onStageRightClick);
-			// }
-			old.call(this);
 		}
 	}
 
