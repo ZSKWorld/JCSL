@@ -5,28 +5,6 @@ declare type Class<T> = new (...args: any) => T;
 declare function windowImmit(name: string, obj: any): void;
 
 declare namespace Laya {
-    interface Script {
-        // /**
-        // * 鼠标进入舞台时执行
-        // * 此方法为虚方法，使用时重写覆盖即可
-        // */
-        // onStageMouseOver(e:Event): void;
-        // /**
-        // * 鼠标离开舞台时执行
-        // * 此方法为虚方法，使用时重写覆盖即可
-        // */
-        // onStageMouseOut(e:Event): void;
-        // /**
-        // * 鼠标双击舞台时执行
-        // * 此方法为虚方法，使用时重写覆盖即可
-        // */
-        // onStageDoubleClick(e:Event): void;
-        // /**
-        // * 鼠标右键舞台时执行
-        // * 此方法为虚方法，使用时重写覆盖即可
-        // */
-        // onStageRightClick(e:Event): void;
-    }
 }
 
 declare namespace fgui {

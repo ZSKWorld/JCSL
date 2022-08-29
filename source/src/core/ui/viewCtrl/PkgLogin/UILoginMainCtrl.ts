@@ -54,9 +54,4 @@ export class UILoginMainCtrl extends BaseViewCtrl<UILoginMainView, UILoginMainDa
     override onDestroy(): void {
         super.onDestroy();
     }
-
-    @InsertMouseEvent(MouseEvent.RightClick)
-    private test() {
-        UIUtility.ShowConfirm("你好");
-    }
 }
