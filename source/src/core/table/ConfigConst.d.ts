@@ -8,7 +8,7 @@ declare interface ConfigConstData {
 	readonly Description: string;
 }
 
-declare interface ConfigConst extends ReadOnlyObject<ConfigConstData> {
+declare interface ConfigConst {
 	/** */
 	readonly 1001: ConfigConstData;
 	/**tip消失时间 */

@@ -6,7 +6,7 @@ declare interface ConfigLangData {
 	readonly Text: string;
 }
 
-declare interface ConfigLang extends ReadOnlyObject<ConfigLangData> {
+declare interface ConfigLang {
 	/**账号已存在 */
 	readonly 1001: ConfigLangData;
 	/**账号不存在 */

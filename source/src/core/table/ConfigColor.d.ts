@@ -6,7 +6,7 @@ declare interface ConfigColorData {
 	readonly Color: string;
 }
 
-declare interface ConfigColor extends ReadOnlyObject<ConfigColorData> {
+declare interface ConfigColor {
 	readonly 1: ConfigColorData;
 	readonly 2: ConfigColorData;
 	readonly 3: ConfigColorData;
