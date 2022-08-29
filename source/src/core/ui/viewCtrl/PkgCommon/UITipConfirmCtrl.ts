@@ -5,9 +5,11 @@ import { UITipConfirmMsg, UITipConfirmView } from "../../view/PkgCommon/UITipCon
 export interface UITipConfirmData {
     text: string;
     title?: string;
-    callback?: Function;
+    callback?: Laya.Handler;
 }
+
 const logger = Logger.Create("UITipConfirmCtrl").setEnable(true);
+
 export class UITipConfirmCtrl extends BaseViewCtrl<UITipConfirmView, UITipConfirmData>{
     private confirmDatas: UITipConfirmData[] = [];
     private curConfirm: UITipConfirmData;
@@ -24,7 +26,7 @@ export class UITipConfirmCtrl extends BaseViewCtrl<UITipConfirmView, UITipConfir
     }
 
     override onForeground(): void {
-        if(this.curConfirm) this.confirmDatas.unshift(this.curConfirm);
+        if (this.curConfirm) this.confirmDatas.unshift(this.curConfirm);
         this.confirmDatas.unshift(this.data);
         this.data = null;
         this.showConfirm();
@@ -44,8 +46,8 @@ export class UITipConfirmCtrl extends BaseViewCtrl<UITipConfirmView, UITipConfir
         else this.view.playAni(true).then(() => this.removeSelf());
     }
 
-    private onBtnCloseClick(result: boolean, e: Laya.Event) {
-        this.curConfirm.callback?.(result);
+    private onBtnCloseClick(result: boolean) {
+        this.curConfirm.callback?.runWith(result);
         this.showConfirm();
     }
 }

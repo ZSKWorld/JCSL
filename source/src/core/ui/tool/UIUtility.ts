@@ -10,7 +10,7 @@ import { UIPoolKey } from "./UIPoolKey";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:27:46
+ * @LastEditTime : 2022-08-29 23:07:25
  * @Description  : UI工具类
  */
 export class UIUtility {
@@ -26,12 +26,12 @@ export class UIUtility {
 	}
 
 	/**
-	 * 显示物品信息栏页面
-	 * @param id 物品id
-	 * @param buy 是否显示购买选项
+	 * 弹确认窗口
+	 * @param text 内容
+	 * @param title 标题，默认："提示"
 	 */
-	static ShowItemInfo(id: number, buy: boolean) {
-		this.getViewFromPool(UIPoolKey.ItemInfo, ViewID.ComItemInfoView, Layer.Bottom, { id, buy });
+	static ShowConfirm(text: string, title?: string, callback?: Laya.Handler) {
+		uiMgr.addView(ViewID.TipConfirmView, { text, title, callback }, null, false);
 	}
 
 	/**

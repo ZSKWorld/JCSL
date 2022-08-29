@@ -2,7 +2,7 @@
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 21:50:04
+ * @LastEditTime : 2022-08-29 22:26:21
  * @Description  : 工具方法集合
  */
 
@@ -20,13 +20,6 @@ export function ExtensionClass<E, T>(clsT: Class<T>) {
 export function GetLang(id: number) { return tableMgr.Lang[ id ].Text; }
 /**根据品质获取颜色字符串 */
 export function GetColorStr(id: number, text: string) { return `[color=${ tableMgr.Color[ id ].Color }]${ text }[/color]`; }
-/**获取多个物品字符串 */
-export function GetItemString(items: { id: number, count: number }[], hasCount = true, color = false) {
-    let str = "";
-    items.forEach((v, index) => str += (color ? GetColorStr(tableMgr.Item[ v.id ].Quality, tableMgr.Item[ v.id ].Name) : tableMgr.Item[ v.id ].Name)
-        + (hasCount ? `x${ v.count }` : "") + (index == items.length - 1 ? "" : "、"));
-    return str;
-}
 
 /** 大写首字母 */
 export function UpperFirst(str: string, splits?: string[]) {

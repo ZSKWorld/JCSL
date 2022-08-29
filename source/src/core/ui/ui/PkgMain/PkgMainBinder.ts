@@ -1,6 +1,5 @@
 /** This is an automatically generated class by FairyGUI. Please do not modify it. **/
 
-import ComItemInfo from "./ComItemInfo";
 import RenderShiLian from "./RenderShiLian";
 import RenderJueSe from "./RenderJueSe";
 import UIMain from "./UIMain";
@@ -17,7 +16,6 @@ import UISetting from "./UISetting";
 
 export default class PkgMainBinder {
 	public static bindAll():void {
-		fgui.UIObjectFactory.setExtension(ComItemInfo.URL, ComItemInfo);
 		fgui.UIObjectFactory.setExtension(RenderShiLian.URL, RenderShiLian);
 		fgui.UIObjectFactory.setExtension(RenderJueSe.URL, RenderJueSe);
 		fgui.UIObjectFactory.setExtension(UIMain.URL, UIMain);

@@ -25,7 +25,6 @@
     <image id="sbd017" name="无标题12.png" path="/Texture/" exported="true"/>
     <image id="sbd018" name="无标题6.png" path="/Texture/" exported="true"/>
     <image id="sbd01a" name="无标题13.png" path="/Texture/" exported="true"/>
-    <component id="irlv1e" name="ComItemInfo.xml" path="/Component/" exported="true"/>
     <image id="irlv1f" name="无标题14.png" path="/Texture/" exported="true"/>
     <image id="btv51p" name="门派.png" path="/Texture/" exported="true"/>
     <component id="amcp1u" name="BtnSphere.xml" path="/Component/"/>
