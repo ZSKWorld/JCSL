@@ -13,15 +13,15 @@
     <richtext id="n8_sbd0" name="TxtContent" xy="375,667" pivot="0.5,0.5" anchor="true" size="610,101" group="n10_sbd0" touchable="false" fontSize="25" color="#e7c235" vAlign="middle" ubb="true" autoSize="height" bold="true" text="消耗：60点精神力&#xA;掉落：技能·乾坤一掷、小魔石、50元宝、棉布1级、棉布2级、食物">
       <relation target="n1_sbd0" sidePair="center-center,middle-middle"/>
     </richtext>
-    <text id="n9_sbd0" name="TxtTitle" xy="323,441" size="104,66" group="n10_sbd0" fontSize="50" color="#ffffff" bold="true" text="提示">
+    <text id="n9_sbd0" name="TxtTitle" xy="323,441" size="106,66" group="n10_sbd0" fontSize="50" color="#ffffff" bold="true" text="提示">
       <relation target="n1_sbd0" sidePair="center-center"/>
     </text>
     <group id="n10_sbd0" name="n10" xy="45,419" size="660,495" advanced="true">
       <relation target="" sidePair="center-center,middle-middle"/>
     </group>
   </displayList>
-  <transition name="EffectShow">
-    <item time="0" type="Alpha" target="n0_sbd0" tween="true" startValue="0" endValue="0.7" duration="6"/>
-    <item time="0" type="XY" target="n10_sbd0" tween="true" startValue="45,-518" endValue="45,419" duration="6"/>
+  <transition name="EffectShow" frameRate="30">
+    <item time="0" type="Alpha" target="n0_sbd0" tween="true" startValue="0" endValue="0.7" duration="10" ease="Back.Out"/>
+    <item time="0" type="XY" target="n10_sbd0" tween="true" startValue="-,-518" endValue="-,419" duration="10" ease="Back.Out"/>
   </transition>
 </component>

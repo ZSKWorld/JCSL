@@ -7,7 +7,7 @@ import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
  * @Author       : zsk
  * @Date         : 2021-08-20 21:36:21
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 21:48:47
+ * @LastEditTime : 2022-08-30 01:01:55
  * @Description  : UI控制器脚本基类，可挂在任何Laya.Node（GUI的displayObject）上。
  * @Description  : 该组件为可回收组件。鼠标、键盘交互事件可使用装饰器注册 => InsertKeyEvent、InsertMouseEvent
  */
@@ -79,19 +79,26 @@ export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, 
 }
 
 /** 按键事件类型 */
-export const enum KeyEventType {
+export const enum KeyEvent {
 	KeyDown = "keydown",
 	KeyPress = "keypress",
 	KeyUp = "keyup",
 }
 
 /** 鼠标事件类型 */
-export const enum MouseEventType {
-	Mouse_Down = "mousedown",
-	Mouse_Move = "mousemove",
-	Mouse_Out = "mouseout",
-	Mouse_Over = "mouseover",
-	Mouse_Up = "mouseup",
+export const enum MouseEvent {
+	MouseOver = "mouseover",
+	MouseDown = "mousedown",
+	MouseMove = "mousemove",
+	MouseUp = "mouseup",
+	MouseOut = "mouseout",
+	DoubleClick = "doubleclick",
+	RightClick = "rightclick",
+	Click = "click",
+	StageMouseDown = "stagemousedown",
+	StageMouseMove = "stagemousemove",
+	StageMouseUp = "stagemouseup",
+	StageClick = "stageclick",
 }
 
 /**
@@ -101,7 +108,7 @@ export const enum MouseEventType {
  * @param once 是否只监听一次
  * @return MethodDecorator
  */
-export function InsertKeyEvent(keyEventType: KeyEventType, key: number, once?: boolean) {
+export function InsertKeyEvent(keyEventType: KeyEvent, key: number, once?: boolean) {
 	return function (target: DIViewCtrl, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
 		if (!target.__keyEventList) target.__keyEventList = {};
 		if (!target.__keyEventList[ keyEventType ]) target.__keyEventList[ keyEventType ] = {};
@@ -125,7 +132,7 @@ export function InsertKeyEvent(keyEventType: KeyEventType, key: number, once?: b
  * @param once 是否只监听一次
  * @return MethodDecorator
  */
-export function InsertMouseEvent(mouseEventType: MouseEventType, once?: boolean) {
+export function InsertMouseEvent(mouseEventType: MouseEvent, once?: boolean) {
 	return function (target: DIViewCtrl, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
 		if (!target.__mouseEventList) target.__mouseEventList = {};
 		if (!target.__mouseEventList[ mouseEventType ]) target.__mouseEventList[ mouseEventType ] = [];

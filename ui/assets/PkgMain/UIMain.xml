@@ -49,14 +49,5 @@
     <text id="n44_sbd0" name="TxtJinBi" xy="227,108" size="180,35" group="n37_sbd0" fontSize="25" color="#ffffff" align="center" vAlign="middle" autoSize="none" bold="true" text="9999999999"/>
     <text id="n45_sbd0" name="TxtTiLi" xy="456,108" size="180,35" group="n37_sbd0" fontSize="25" color="#ffffff" align="center" vAlign="middle" autoSize="none" bold="true" text="9999999999"/>
     <group id="n37_sbd0" name="n37" xy="0,0" size="750,200"/>
-    <graph id="n77_vnr0" name="n77" xy="-40,-44" pivot="0.5,0" anchor="true" size="1392,1620" alpha="0.62" rotation="-30" type="rect"/>
   </displayList>
-  <transition name="aniOpen" frameRate="30">
-    <item time="0" type="Size" target="n77_vnr0" tween="true" startValue="-,1620" endValue="-,5" duration="20" ease="Linear"/>
-  </transition>
-  <transition name="aniClose">
-    <item time="0" type="Rotation" target="n77_vnr0" value="-209.73"/>
-    <item time="0" type="Size" target="n77_vnr0" tween="true" startValue="-,5" endValue="1392,1620" duration="20"/>
-    <item time="0" type="XY" target="n77_vnr0" value="775,1366"/>
-  </transition>
 </component>

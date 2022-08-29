@@ -1,25 +1,17 @@
+import { KeyEvent, MouseEvent } from "./BaseViewCtrl";
 import { IViewCtrl } from "./interfaces";
 
 export type DIViewCtrl = IViewCtrl & {
-	__keyEventList?: {
-		keydown?: { [ keyCode: string ]: Function[] },
-		keypress?: { [ keyCode: string ]: Function[] },
-		keyup?: { [ keyCode: string ]: Function[] },
-	};
-	__mouseEventList?: {
-		mousedown?: Function[],
-		mousemove?: Function[],
-		mouseout?: Function[],
-		mouseover?: Function[],
-		mouseup?: Function[],
-	},
+	__keyEventList?: { [ key in KeyEvent ]?: { [ keyCode: string ]: Function[] } };
+	__mouseEventList?: { [ key in MouseEvent ]?: Function[] },
 }
+
 
 /**
  * @Author       : zsk
  * @Date         : 2022-08-25 23:58:47
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:19:07
+ * @LastEditTime : 2022-08-30 01:02:06
  * @Description  : 页面控制器设备（鼠标、键盘）交互事件扩展
  * @Description  : ViewCtrlDIExtend => ViewCtrlDeviceInteractionExtend的缩写
  */
@@ -37,11 +29,18 @@ export class ViewCtrlDIExtend {
 		}
 		if (__mouseEventList) {
 			const func = this.__doMouseEvent;
+			__mouseEventList.mouseover && (viewCtrl.onMouseOver = func);
 			__mouseEventList.mousedown && (viewCtrl.onMouseDown = func);
 			__mouseEventList.mousemove && (viewCtrl.onMouseMove = func);
-			__mouseEventList.mouseout && (viewCtrl.onMouseOut = func);
-			__mouseEventList.mouseover && (viewCtrl.onMouseOver = func);
 			__mouseEventList.mouseup && (viewCtrl.onMouseUp = func);
+			__mouseEventList.mouseout && (viewCtrl.onMouseOut = func);
+			__mouseEventList.doubleclick && (viewCtrl.onDoubleClick = func);
+			__mouseEventList.rightclick && (viewCtrl.onRightClick = func);
+			__mouseEventList.click && (viewCtrl.onClick = func);
+			__mouseEventList.stagemousedown && (viewCtrl.onStageMouseDown = func);
+			__mouseEventList.stagemousemove && (viewCtrl.onStageMouseMove = func);
+			__mouseEventList.stagemouseup && (viewCtrl.onStageMouseUp = func);
+			__mouseEventList.stageclick && (viewCtrl.onStageClick = func);
 		}
 	}
 
@@ -52,11 +51,19 @@ export class ViewCtrlDIExtend {
 		viewCtrl.onKeyDown = prototype.onKeyDown;
 		viewCtrl.onKeyPress = prototype.onKeyPress;
 		viewCtrl.onKeyUp = prototype.onKeyUp;
+
+		viewCtrl.onMouseOver = prototype.onMouseOver;
 		viewCtrl.onMouseDown = prototype.onMouseDown;
 		viewCtrl.onMouseMove = prototype.onMouseMove;
-		viewCtrl.onMouseOut = prototype.onMouseOut;
-		viewCtrl.onMouseOver = prototype.onMouseOver;
 		viewCtrl.onMouseUp = prototype.onMouseUp;
+		viewCtrl.onMouseOut = prototype.onMouseOut;
+		viewCtrl.onDoubleClick = prototype.onDoubleClick;
+		viewCtrl.onRightClick = prototype.onRightClick;
+		viewCtrl.onClick = prototype.onClick;
+		viewCtrl.onStageMouseDown = prototype.onStageMouseDown;
+		viewCtrl.onStageMouseMove = prototype.onStageMouseMove;
+		viewCtrl.onStageMouseUp = prototype.onStageMouseUp;
+		viewCtrl.onStageClick = prototype.onStageClick;
 
 		this.resetOnceEvent(viewCtrl);
 	}

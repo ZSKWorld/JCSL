@@ -2,7 +2,7 @@ import { localData } from "../../../libs/localStorage/LocalData";
 import { LocalDataKey } from "../../../libs/localStorage/LocalDataKey";
 import { LoginInput } from "../../../net/network/ILogin";
 import { LoginService, RegisterService } from "../../../net/Services";
-import { BaseViewCtrl } from "../../core/BaseViewCtrl";
+import { BaseViewCtrl, InsertMouseEvent, MouseEvent } from "../../core/BaseViewCtrl";
 import { UIUtility } from "../../tool/UIUtility";
 import { UILoginMainMsg, UILoginMainView } from "../../view/PkgLogin/UILoginMainView";
 
@@ -53,5 +53,10 @@ export class UILoginMainCtrl extends BaseViewCtrl<UILoginMainView, UILoginMainDa
 
     override onDestroy(): void {
         super.onDestroy();
+    }
+
+    @InsertMouseEvent(MouseEvent.RightClick)
+    private test() {
+        UIUtility.ShowConfirm("你好");
     }
 }

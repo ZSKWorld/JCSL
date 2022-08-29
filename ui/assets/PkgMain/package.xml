@@ -7,29 +7,29 @@
     <component id="sbd03" name="ComJueSe.xml" path="/Component/"/>
     <component id="sbd04" name="ComShiLian.xml" path="/Component/"/>
     <component id="sbd05" name="ComLingShou.xml" path="/Component/"/>
-    <image id="sbd0e" name="无标题2.png" path="/Texture/" exported="true"/>
-    <image id="sbd0f" name="无标题3.png" path="/Texture/" exported="true"/>
-    <image id="sbd0h" name="无标题5.png" path="/Texture/" exported="true"/>
+    <image id="sbd0e" name="无标题2.png" path="/Texture/"/>
+    <image id="sbd0f" name="无标题3.png" path="/Texture/"/>
+    <image id="sbd0h" name="无标题5.png" path="/Texture/"/>
     <component id="sbd0j" name="RenderGongFa.xml" path="/Component/Render/" exported="true"/>
     <component id="sbd0l" name="CmbDongFu_item.xml" path="/Component/Combox/"/>
     <component id="sbd0m" name="CmbDongFu_popup.xml" path="/Component/Combox/"/>
     <component id="sbd0n" name="CmbDongFu.xml" path="/Component/Combox/" exported="true"/>
-    <image id="sbd0r" name="无标题7.png" path="/Texture/" exported="true"/>
-    <image id="sbd0t" name="无标题8.png" path="/Texture/" exported="true"/>
-    <image id="sbd0v" name="无标题9.png" path="/Texture/" exported="true"/>
-    <image id="sbd0w" name="无标题10.png" path="/Texture/" exported="true"/>
+    <image id="sbd0r" name="无标题7.png" path="/Texture/"/>
+    <image id="sbd0t" name="无标题8.png" path="/Texture/"/>
+    <image id="sbd0v" name="无标题9.png" path="/Texture/"/>
+    <image id="sbd0w" name="无标题10.png" path="/Texture/"/>
     <component id="sbd0x" name="UISetting.xml" path="/" exported="true"/>
-    <image id="sbd0y" name="无标题4.png" path="/Texture/" exported="true"/>
-    <image id="sbd012" name="无标题11.png" path="/Texture/" exported="true"/>
+    <image id="sbd0y" name="无标题4.png" path="/Texture/"/>
+    <image id="sbd012" name="无标题11.png" path="/Texture/"/>
     <component id="sbd013" name="CmbPlayerInfo.xml" path="/Component/Combox/"/>
-    <image id="sbd017" name="无标题12.png" path="/Texture/" exported="true"/>
-    <image id="sbd018" name="无标题6.png" path="/Texture/" exported="true"/>
-    <image id="sbd01a" name="无标题13.png" path="/Texture/" exported="true"/>
-    <image id="irlv1f" name="无标题14.png" path="/Texture/" exported="true"/>
-    <image id="btv51p" name="门派.png" path="/Texture/" exported="true"/>
+    <image id="sbd017" name="无标题12.png" path="/Texture/"/>
+    <image id="sbd018" name="无标题6.png" path="/Texture/"/>
+    <image id="sbd01a" name="无标题13.png" path="/Texture/"/>
+    <image id="irlv1f" name="无标题14.png" path="/Texture/"/>
+    <image id="btv51p" name="门派.png" path="/Texture/"/>
     <component id="amcp1u" name="BtnSphere.xml" path="/Component/"/>
     <component id="j87q1w" name="BtnCheck.xml" path="/Component/"/>
-    <image id="pogd1x" name="无标题15.png" path="/Texture/" exported="true"/>
+    <image id="pogd1x" name="无标题15.png" path="/Texture/"/>
     <component id="neb71y" name="RenderShiLian.xml" path="/Component/Render/" exported="true"/>
     <component id="neb71z" name="RenderJueSe.xml" path="/Component/Render/"/>
   </resources>

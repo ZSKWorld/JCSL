@@ -23,8 +23,6 @@ export default class UIMain extends fgui.GComponent {
 	public LoaderHead2:fgui.GLoader;
 	public TxtJinBi:fgui.GTextField;
 	public TxtTiLi:fgui.GTextField;
-	public aniOpen:fgui.Transition;
-	public aniClose:fgui.Transition;
 	public static URL:string = "ui://vith2b66qjdo0";
 
 	public static createInstance():UIMain {
@@ -47,7 +45,5 @@ export default class UIMain extends fgui.GComponent {
 		this.LoaderHead2 = <fgui.GLoader>(this.getChildAt(15));
 		this.TxtJinBi = <fgui.GTextField>(this.getChildAt(16));
 		this.TxtTiLi = <fgui.GTextField>(this.getChildAt(17));
-		this.aniOpen = this.getTransitionAt(0);
-		this.aniClose = this.getTransitionAt(1);
 	}
 }

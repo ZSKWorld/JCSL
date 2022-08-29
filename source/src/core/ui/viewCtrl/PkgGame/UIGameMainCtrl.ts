@@ -1,6 +1,6 @@
 import { LogicSceneType } from "../../../../logicScene/LogicSceneType";
 import { NotifyConst } from "../../../common/NotifyConst";
-import { BaseViewCtrl, InsertKeyEvent, KeyEventType } from "../../core/BaseViewCtrl";
+import { BaseViewCtrl, InsertKeyEvent, KeyEvent } from "../../core/BaseViewCtrl";
 import { UIGameMainMsg, UIGameMainView } from "../../view/PkgGame/UIGameMainView";
 
 export interface UIGameMainData {
@@ -18,7 +18,7 @@ export class UIGameMainCtrl extends BaseViewCtrl<UIGameMainView, UIGameMainData>
         super.onEnable();
     }
 
-    @InsertKeyEvent(KeyEventType.KeyUp, Laya.Keyboard.ESCAPE)
+    @InsertKeyEvent(KeyEvent.KeyUp, Laya.Keyboard.ESCAPE)
     private onBackClick() {
         this.dispatch(NotifyConst.EnterScene, LogicSceneType.MainScene);
     }
