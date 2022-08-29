@@ -49,26 +49,4 @@ declare interface ConfigLang extends ReadOnlyObject<ConfigLangData> {
 	readonly 1020: ConfigLangData;
 	/**账号已登录 */
 	readonly 1021: ConfigLangData;
-	/**道具 */
-	readonly 1101: ConfigLangData;
-	/**特殊道具 */
-	readonly 1102: ConfigLangData;
-	/**宝石 */
-	readonly 1103: ConfigLangData;
-	/**材料 */
-	readonly 1104: ConfigLangData;
-	/**特殊材料 */
-	readonly 1105: ConfigLangData;
-	/**强化材料 */
-	readonly 1106: ConfigLangData;
-	/**心法书 */
-	readonly 1107: ConfigLangData;
-	/**技能书 */
-	readonly 1108: ConfigLangData;
-	/**丹药 */
-	readonly 1109: ConfigLangData;
-	/**杂物 */
-	readonly 1110: ConfigLangData;
-	/**稀有物品 */
-	readonly 1111: ConfigLangData;
 }

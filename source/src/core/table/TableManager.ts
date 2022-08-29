@@ -2,52 +2,14 @@
 import { ResPath } from "../common/ResPath";
 
 class TableManager {
-	/**关卡表 */
-	readonly Level: ConfigLevel;
-	/**副本表 */
-	readonly FuBen: ConfigFuBen;
-	/**秘境表 */
-	readonly MiJing: ConfigMiJing;
-	/**Boss表 */
-	readonly Boss: ConfigBoss;
-	/**怪物表 */
-	readonly Enemy: ConfigEnemy;
-	/**采集表 */
-	readonly CaiJi: ConfigCaiJi;
-	/**装备表 */
-	readonly Equipment: ConfigEquipment;
-	/**装备加成表 */
-	readonly EquipmentAddition: ConfigEquipmentAddition;
-	/**宝石表 */
-	readonly Gem: ConfigGem;
-	/**道具表 */
-	readonly Props: ConfigProps;
-	/**材料表 */
-	readonly Material: ConfigMaterial;
-	/**食物表 */
-	readonly Food: ConfigFood;
-	/**技能书表 */
-	readonly SkillBook: ConfigSkillBook;
-	/**心法书表 */
-	readonly XinFaBook: ConfigXinFaBook;
 	/**固定文本表 */
 	readonly Lang: ConfigLang;
-	/**物品表 */
-	readonly Item: ConfigItem;
-	/**境界表 */
-	readonly JingJie: ConfigJingJie;
 	/**常量表 */
 	readonly Const: ConfigConst;
-	/**称号表 */
-	readonly Title: ConfigTitle;
-	/**门派表 */
-	readonly Sect: ConfigSect;
-	/**商店表 */
-	readonly Shop: ConfigShop;
 	/**颜色表 */
 	readonly Color: ConfigColor;
 
-	loadTable() {
+    loadTable() {
 		let tableData = Laya.loader.getRes(ResPath.Table_Config);
 		if (tableData) {
 			const keyMap = tableData.keyMap;
@@ -76,5 +38,4 @@ class TableManager {
 		});
 	}
 }
-
 export const tableMgr = new TableManager();
