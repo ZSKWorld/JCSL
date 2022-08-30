@@ -1,9 +1,9 @@
 export const enum ErrorCode {
-    None = 0,
+    NONE = 0,
     /** 未知的命令 */
-    UnknownCmd = 1000,
+    UNKNOWN_CMD = 1000,
     /** 未知的数据类型 */
-    Unknown_Data_Type,
+    UNKNOWN_DATA_TYPE,
     /** 用户不存在 */
     USER_NOT_EXIST,
     /** 用户已存在 */

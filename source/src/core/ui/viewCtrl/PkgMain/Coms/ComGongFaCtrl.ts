@@ -11,7 +11,7 @@ export class ComGongFaCtrl extends BaseViewCtrl<ComGongFaView, ComGongFaData>{
 
     override onAwake(): void {
         super.onAwake();
-        UIUtility.SetList(this.view.ListItem, 50, this, this.onListItemRenderer);
+        UIUtility.SetList(this.view.ListItem, 10, this, this.onListItemRenderer);
     }
 
     override onEnable(): void {

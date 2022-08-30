@@ -25,7 +25,7 @@ var Connection = /** @class */ (function () {
                 if (_this._listener.hasListener(data.cmd))
                     _this._listener.event(data.cmd, data);
                 else
-                    _this.response({ cmd: data.cmd, error: 1000 /* ErrorCode.UnknownCmd */ });
+                    _this.response({ cmd: data.cmd, error: 1000 /* ErrorCode.UNKNOWN_CMD */ });
             }
             // else if (message.type === 'binary') {
             //     connection.sendBytes(message.binaryData);

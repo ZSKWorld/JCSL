@@ -17,7 +17,7 @@ var BaseController = /** @class */ (function () {
         this.connection = null;
     };
     BaseController.prototype.response = function (cmd, data, error) {
-        if (error === void 0) { error = 0 /* ErrorCode.None */; }
+        if (error === void 0) { error = 0 /* ErrorCode.NONE */; }
         if (this.connection) {
             var args = {
                 cmd: cmd,

@@ -1,9 +1,9 @@
 export interface UserInput {
-    cmd?: string,
+    cmd?: string;
 }
 
 export interface UserOutput {
-    cmd: string,
+    cmd: string;
     error?: number;
     syncInfo?: IUserData;
 }

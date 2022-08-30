@@ -21,7 +21,7 @@ export class BaseController {
         this.connection = null;
     }
 
-    protected response(cmd: string, data?: object, error: number = ErrorCode.None) {
+    protected response(cmd: string, data?: object, error: number = ErrorCode.NONE) {
         if (this.connection) {
             let args = {
                 cmd,

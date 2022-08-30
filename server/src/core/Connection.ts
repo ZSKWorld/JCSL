@@ -30,7 +30,7 @@ export class Connection {
                 if (this._listener.hasListener(data.cmd))
                     this._listener.event(data.cmd, data);
                 else
-                    this.response({ cmd: data.cmd, error: ErrorCode.UnknownCmd });
+                    this.response({ cmd: data.cmd, error: ErrorCode.UNKNOWN_CMD });
             }
             // else if (message.type === 'binary') {
             //     connection.sendBytes(message.binaryData);
