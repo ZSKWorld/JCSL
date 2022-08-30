@@ -1,7 +1,7 @@
 import { Util } from "../utils/Util";
 import { IUserData } from "./interface/Interface";
 
-export class UserData implements IUserData {
+export class UserData implements Required<IUserData> {
     uid: string = Util.CreateUID();
     nickname: string = "";
     account: string = "";
@@ -9,6 +9,7 @@ export class UserData implements IUserData {
     registerTime: number = Date.now();
     lastLoginTime: number = 0;
     coin: number = 0;
+    vcoin: number = 0;
 
     constructor(account: string = "", password: string = "", nickname: string = "") {
         this.account = String(account);

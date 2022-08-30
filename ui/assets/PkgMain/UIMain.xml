@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="750,1334" overflow="hidden" designImage="ui://vith2b66sbd0i" designImageOffsetX="-766" designImageAlpha="100" designImageLayer="1" bgColorEnabled="true" bgColor="#000000">
-  <controller name="ctrlShow" homePageType="specific" homePage="2" pages="0,,1,,2,,3,,4," selected="0"/>
+  <controller name="ctrlShow" homePageType="specific" homePage="2" pages="0,,1,,2,,3,,4," selected="3"/>
   <displayList>
     <graph id="n76_neb7" name="n76" xy="0,0" size="750,1334" type="rect" lineSize="0" fillColor="#ff999999"/>
     <component id="n73_neb7" name="ComLingShou" src="sbd05" fileName="Component/ComLingShou.xml" xy="0,200" size="750,1064">
@@ -20,7 +20,7 @@
     </component>
     <component id="n12_sbd0" name="BtnLingShou" src="qjdo1" fileName="Component/BtnTxt.xml" pkg="vx9zwser" xy="0,1264" pivot="0.5,1" size="150,70" group="n58_sbd0">
       <gearColor controller="ctrlShow" pages="0" values="#ffffff" default="#000000"/>
-      <Button title="灵兽" titleColor="#ffffff" titleFontSize="35" controller="ctrlShow" page="0"/>
+      <Button title="灵兽" titleColor="#000000" titleFontSize="35" controller="ctrlShow" page="0"/>
     </component>
     <component id="n14_sbd0" name="BtnGongFa" src="qjdo1" fileName="Component/BtnTxt.xml" pkg="vx9zwser" xy="150,1264" pivot="0.5,1" size="150,70" group="n58_sbd0">
       <gearColor controller="ctrlShow" pages="0,1" values="#000000|#ffffff" default="#000000"/>
@@ -32,7 +32,7 @@
     </component>
     <component id="n16_sbd0" name="BtnJueSe" src="qjdo1" fileName="Component/BtnTxt.xml" pkg="vx9zwser" xy="450,1264" pivot="0.5,1" size="150,70" group="n58_sbd0">
       <gearColor controller="ctrlShow" pages="0,3" values="#000000|#ffffff" default="#000000"/>
-      <Button title="角色" titleColor="#000000" titleFontSize="35" controller="ctrlShow" page="3"/>
+      <Button title="角色" titleColor="#ffffff" titleFontSize="35" controller="ctrlShow" page="3"/>
     </component>
     <component id="n17_sbd0" name="BtnXiuXing" src="qjdo1" fileName="Component/BtnTxt.xml" pkg="vx9zwser" xy="600,1264" pivot="0.5,1" size="150,70" group="n58_sbd0">
       <gearColor controller="ctrlShow" pages="0,4" values="#000000|#ffffff" default="#000000"/>
@@ -42,12 +42,20 @@
     <graph id="n35_sbd0" name="n35" xy="0,0" size="750,200" group="n37_sbd0" type="rect" lineSize="0" lineColor="#ff6d6f74" fillColor="#ffb6996b">
       <relation target="" sidePair="width-width"/>
     </graph>
-    <graph id="n68_neb7" name="n68" xy="227,95" size="180,50" group="n37_sbd0" type="rect" lineSize="0" fillColor="#ffb7a68a"/>
-    <graph id="n70_neb7" name="n70" xy="456,95" size="180,50" group="n37_sbd0" type="rect" lineSize="0" fillColor="#ffb7a68a"/>
+    <graph id="n68_neb7" name="n68" xy="202,139" size="211,50" group="n37_sbd0" type="rect" lineSize="0" fillColor="#ffb7a68a"/>
+    <graph id="n70_neb7" name="n70" xy="436,139" size="211,50" group="n37_sbd0" type="rect" lineSize="0" fillColor="#ffb7a68a"/>
     <loader id="n36_sbd0" name="LoaderHead1" xy="20,90" size="100,100" group="n37_sbd0" touchable="false" url="ui://vx9zwserqjdo4z" fill="scaleFree"/>
     <loader id="n67_neb7" name="LoaderHead2" xy="120,138" size="50,50" group="n37_sbd0" touchable="false" url="ui://vx9zwserqjdo4z" fill="scaleFree"/>
-    <text id="n44_sbd0" name="TxtJinBi" xy="227,108" size="180,35" group="n37_sbd0" fontSize="25" color="#ffffff" align="center" vAlign="middle" autoSize="none" bold="true" text="9999999999"/>
-    <text id="n45_sbd0" name="TxtTiLi" xy="456,108" size="180,35" group="n37_sbd0" fontSize="25" color="#ffffff" align="center" vAlign="middle" autoSize="none" bold="true" text="9999999999"/>
+    <component id="n77_aaul" name="BtnAddCoin" src="irlv60" fileName="Component/BtnIcon.xml" pkg="vx9zwser" xy="363,139" size="50,50" group="n37_sbd0">
+      <Button icon="ui://vx9zwserqjdo4l"/>
+    </component>
+    <component id="n78_aaul" name="BtnAddVcoin" src="irlv60" fileName="Component/BtnIcon.xml" pkg="vx9zwser" xy="597,139" size="50,50" group="n37_sbd0">
+      <Button icon="ui://vx9zwserqjdo4l"/>
+    </component>
+    <image id="n79_aaul" name="n79" src="qjdog" fileName="Texture/Icon_TongBi.png" pkg="vx9zwser" xy="202,139" size="50,50" group="n37_sbd0"/>
+    <image id="n80_aaul" name="n80" src="qjdoj" fileName="Texture/Icon_YinLiang.png" pkg="vx9zwser" xy="437,140" size="50,50" group="n37_sbd0"/>
+    <text id="n44_sbd0" name="TxtCoin" xy="253,152" size="19,35" group="n37_sbd0" fontSize="25" color="#ffffff" vAlign="middle" bold="true" singleLine="true" text="9"/>
+    <text id="n45_sbd0" name="TxtVcoin" xy="487,152" size="19,35" group="n37_sbd0" fontSize="25" color="#ffffff" vAlign="middle" bold="true" singleLine="true" text="9"/>
     <group id="n37_sbd0" name="n37" xy="0,0" size="750,200"/>
   </displayList>
 </component>

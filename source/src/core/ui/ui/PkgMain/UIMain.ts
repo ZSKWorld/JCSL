@@ -21,8 +21,10 @@ export default class UIMain extends fgui.GComponent {
 	public BtnXiuXing:fgui.GButton;
 	public LoaderHead1:fgui.GLoader;
 	public LoaderHead2:fgui.GLoader;
-	public TxtJinBi:fgui.GTextField;
-	public TxtTiLi:fgui.GTextField;
+	public BtnAddCoin:fgui.GButton;
+	public BtnAddVcoin:fgui.GButton;
+	public TxtCoin:fgui.GTextField;
+	public TxtVcoin:fgui.GTextField;
 	public static URL:string = "ui://vith2b66qjdo0";
 
 	public static createInstance():UIMain {
@@ -43,7 +45,9 @@ export default class UIMain extends fgui.GComponent {
 		this.BtnXiuXing = <fgui.GButton>(this.getChildAt(10));
 		this.LoaderHead1 = <fgui.GLoader>(this.getChildAt(14));
 		this.LoaderHead2 = <fgui.GLoader>(this.getChildAt(15));
-		this.TxtJinBi = <fgui.GTextField>(this.getChildAt(16));
-		this.TxtTiLi = <fgui.GTextField>(this.getChildAt(17));
+		this.BtnAddCoin = <fgui.GButton>(this.getChildAt(16));
+		this.BtnAddVcoin = <fgui.GButton>(this.getChildAt(17));
+		this.TxtCoin = <fgui.GTextField>(this.getChildAt(20));
+		this.TxtVcoin = <fgui.GTextField>(this.getChildAt(21));
 	}
 }

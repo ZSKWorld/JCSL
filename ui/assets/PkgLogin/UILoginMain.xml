@@ -19,8 +19,8 @@
     </component>
     <text id="n2_qjdo" name="TxtAccount" xy="304,649" size="270,54" group="n4_qjdo" fontSize="40" color="#ffffff" autoSize="none" bold="true" autoClearText="true" text="123456" input="true" prompt="请输入账号" restrict="[0-9a-zA-Z]"/>
     <text id="n3_qjdo" name="TxtPassword" xy="304,710" size="270,54" group="n4_qjdo" fontSize="40" color="#ffffff" autoSize="none" bold="true" autoClearText="true" text="123456" input="true" prompt="请输入密码" restrict="[0-9a-zA-Z]" password="true"/>
-    <text id="n5_qjdo" name="n5" xy="176,643" size="127,54" group="n4_qjdo" fontSize="40" color="#ffffff" bold="true" text="账号："/>
-    <text id="n6_qjdo" name="n6" xy="176,704" size="127,54" group="n4_qjdo" fontSize="40" color="#ffffff" bold="true" text="密码："/>
+    <text id="n5_qjdo" name="n5" xy="176,648" size="127,54" group="n4_qjdo" fontSize="40" color="#ffffff" bold="true" text="账号："/>
+    <text id="n6_qjdo" name="n6" xy="176,709" size="127,54" group="n4_qjdo" fontSize="40" color="#ffffff" bold="true" text="密码："/>
     <group id="n4_qjdo" name="n4" xy="176,641" size="398,214" advanced="true">
       <gearDisplay controller="ctrlState" pages="0"/>
       <relation target="" sidePair="center-center,middle-middle"/>
@@ -44,9 +44,9 @@
     <text id="n18_sbd0" name="TxtRegisterAccount" xy="303,650" size="270,54" group="n24_sbd0" fontSize="40" color="#ffffff" autoSize="none" bold="true" autoClearText="true" text="123456" input="true" prompt="请输入账号" restrict="0-9a-zA-Z"/>
     <text id="n19_sbd0" name="TxtRegisterPassword" xy="303,711" size="270,54" group="n24_sbd0" fontSize="40" color="#ffffff" autoSize="none" bold="true" autoClearText="true" text="123456" input="true" prompt="请输入密码" restrict="0-9a-zA-Z" password="true"/>
     <text id="n22_sbd0" name="TxtRegisterName" xy="303,772" size="270,54" group="n24_sbd0" fontSize="40" color="#ffffff" autoSize="none" bold="true" autoClearText="true" text="123456" input="true" prompt="请输入昵称" restrict="0-9a-zA-Z_\u4e00-\u9fa5" password="true"/>
-    <text id="n20_sbd0" name="n20" xy="176,644" size="127,54" group="n24_sbd0" fontSize="40" color="#ffffff" bold="true" text="账号："/>
-    <text id="n21_sbd0" name="n21" xy="176,705" size="127,54" group="n24_sbd0" fontSize="40" color="#ffffff" bold="true" text="密码："/>
-    <text id="n23_sbd0" name="n23" xy="176,766" size="127,54" group="n24_sbd0" fontSize="40" color="#ffffff" bold="true" text="昵称："/>
+    <text id="n20_sbd0" name="n20" xy="176,649" size="127,54" group="n24_sbd0" fontSize="40" color="#ffffff" bold="true" text="账号："/>
+    <text id="n21_sbd0" name="n21" xy="176,710" size="127,54" group="n24_sbd0" fontSize="40" color="#ffffff" bold="true" text="密码："/>
+    <text id="n23_sbd0" name="n23" xy="176,771" size="127,54" group="n24_sbd0" fontSize="40" color="#ffffff" bold="true" text="昵称："/>
     <group id="n24_sbd0" name="n24" xy="176,642" size="397,275" advanced="true">
       <gearDisplay controller="ctrlState" pages="1"/>
       <relation target="" sidePair="center-center,middle-middle"/>

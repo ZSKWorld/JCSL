@@ -17,4 +17,6 @@ export interface IUserData {
     lastLoginTime?: number;
     /** 金币 */
     coin?: number;
+    /** 元宝 */
+    vcoin?:number;
 }

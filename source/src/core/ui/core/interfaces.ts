@@ -7,7 +7,7 @@ import { ViewID } from "./ViewID";
 * @Author       : zsk
 * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:16:24
+ * @LastEditTime : 2022-08-30 23:23:00
 * @Description  : 定义页面及控制器类型和扩展
 */
 
@@ -66,7 +66,7 @@ export interface IView_Class {
 /**页面扩展 */
 export interface ViewExtension extends IViewMethod, IViewStateMethod {
 	layer?: Layer;
-	userData?: IUserData;
+	userData?: Readonly<IUserData>;
 	listener?: Laya.EventDispatcher;
 
 	/**
@@ -96,7 +96,7 @@ export type IViewCtrl_Class = new () => IViewCtrl;
 
 /**页面控制器扩展 */
 export interface ViewCtrlExtension extends IViewMethod, IViewStateMethod {
-	userData?: IUserData;
+	userData?: Readonly<IUserData>;
 	proxy?: IViewCtrlProxy;
 	/** 
 	 * 每次面板前置调用该方法，onEnable之后调用。

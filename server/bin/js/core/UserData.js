@@ -14,6 +14,7 @@ var UserData = /** @class */ (function () {
         this.registerTime = Date.now();
         this.lastLoginTime = 0;
         this.coin = 0;
+        this.vcoin = 0;
         this.account = String(account);
         this.password = String(password);
         this.nickname = String(nickname);

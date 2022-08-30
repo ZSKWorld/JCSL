@@ -10,10 +10,10 @@
     <image id="qjdod" name="Icon_ShuXiDu03.png" path="/Texture/"/>
     <image id="qjdoe" name="Icon_ShuXiDu04.png" path="/Texture/"/>
     <image id="qjdof" name="Icon_ShuXiDu05.png" path="/Texture/"/>
-    <image id="qjdog" name="Icon_TongBi.png" path="/Texture/"/>
+    <image id="qjdog" name="Icon_TongBi.png" path="/Texture/" exported="true"/>
     <image id="qjdoh" name="Icon_Wonder.png" path="/Texture/"/>
     <image id="qjdoi" name="Icon_Yilingqu.png" path="/Texture/"/>
-    <image id="qjdoj" name="Icon_YinLiang.png" path="/Texture/"/>
+    <image id="qjdoj" name="Icon_YinLiang.png" path="/Texture/" exported="true"/>
     <image id="qjdok" name="Icon_ShuXiDu01.png" path="/Texture/"/>
     <image id="qjdol" name="Pattern_Biaotiqian.png" path="/Texture/"/>
     <image id="qjdom" name="Pattern_DiWen02.png" path="/Texture/"/>
@@ -159,7 +159,7 @@
     <image id="qjdo4i" name="Icon_AttrShouJia.png" path="/Texture/"/>
     <image id="qjdo4j" name="Icon_AttrTanXian.png" path="/Texture/"/>
     <image id="qjdo4k" name="Icon_AttrXiaoLv.png" path="/Texture/"/>
-    <image id="qjdo4l" name="Icon_Add.png" path="/Texture/"/>
+    <image id="qjdo4l" name="Icon_Add.png" path="/Texture/" exported="true"/>
     <image id="qjdo4m" name="Frame_WuPinKuang04_M.png" path="/Texture/"/>
     <image id="qjdo4n" name="Frame_WuPinKuang04_L.png" path="/Texture/"/>
     <image id="qjdo4o" name="Frame_WuPinKuang03_S.png" path="/Texture/"/>

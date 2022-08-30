@@ -16,5 +16,11 @@
             "command": "node ./bin/js/Main.js",
             "problemMatcher": []
         },
+        {
+            "label": "执行Bat",
+            "type": "shell",
+            "command": "../../tool/bats/BatMain.bat",
+            "problemMatcher": []
+        },
     ]
 }
