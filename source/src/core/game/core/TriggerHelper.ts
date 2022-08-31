@@ -71,28 +71,30 @@ export class TriggerHelper {
         }
 
         const movements = MovementBase.instances.get("Movement_FollowPlayer");
-        const moveCount = movements.length;
-        let ownerA: EnemyBase, ownerB: EnemyBase;
-        let moveA: MovementBase, moveB: MovementBase, tempmove: MovementBase;
-        const { tempV20 } = this;
-        for (i = 0; i < moveCount; i++) {
-            moveA = movements[ i ];
-            ownerA = moveA.owner as EnemyBase;
-            if (!ownerA.colliderEnable) continue;
-            if (!ownerA.collisionEnemyEnable) continue;
-            for (j = i + 1; j < moveCount; j++) {
-                moveB = movements[ j ];
-                ownerB = moveB.owner as EnemyBase;
-                if (moveA == moveB) continue;
-                if (!ownerB.colliderEnable) continue;
-                if (!ownerB.collisionEnemyEnable) continue;
+        if (movements?.length) {
+            const moveCount = movements.length;
+            let ownerA: EnemyBase, ownerB: EnemyBase;
+            let moveA: MovementBase, moveB: MovementBase, tempmove: MovementBase;
+            const { tempV20 } = this;
+            for (i = 0; i < moveCount; i++) {
+                moveA = movements[ i ];
+                ownerA = moveA.owner as EnemyBase;
+                if (!ownerA.colliderEnable) continue;
+                if (!ownerA.collisionEnemyEnable) continue;
+                for (j = i + 1; j < moveCount; j++) {
+                    moveB = movements[ j ];
+                    ownerB = moveB.owner as EnemyBase;
+                    if (moveA == moveB) continue;
+                    if (!ownerB.colliderEnable) continue;
+                    if (!ownerB.collisionEnemyEnable) continue;
 
-                tempV20.setValue(ownerA.x - ownerB.x, ownerA.y - ownerB.y);
-                if (tempV20.lengthSquared <= (ownerA.colliderRadius + ownerB.colliderRadius) ** 2) {
-                    if (Vector2.dot(moveB.moveDir, tempV20) > 0) tempmove = moveB;
-                    else if (Vector2.dot(moveA.moveDir, tempV20.scale(- 1)) > 0) tempmove = moveA;
-                    else continue;
-                    tempmove.collisionDir.add(tempV20.normalize()).normalize();
+                    tempV20.setValue(ownerA.x - ownerB.x, ownerA.y - ownerB.y);
+                    if (tempV20.lengthSquared <= (ownerA.colliderRadius + ownerB.colliderRadius) ** 2) {
+                        if (Vector2.dot(moveB.moveDir, tempV20) > 0) tempmove = moveB;
+                        else if (Vector2.dot(moveA.moveDir, tempV20.scale(- 1)) > 0) tempmove = moveA;
+                        else continue;
+                        tempmove.collisionDir.add(tempV20.normalize()).normalize();
+                    }
                 }
             }
         }

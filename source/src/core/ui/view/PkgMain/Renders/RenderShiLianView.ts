@@ -10,4 +10,8 @@ export class RenderShiLianView extends ExtensionClass<GComponentExtend, RenderSh
         super.onConstruct();
         this.BtnEnter.onClick(this, this.dispatch, [ NotifyConst.EnterScene, LogicSceneType.GameScene ]);
     }
+
+    refresh(index:number){
+        this.TxtDesc.text = `极寒冻土&nbsp;&nbsp;[color=#ff0000][size=30]${index}重天[/size][/color]`;
+    }
 }

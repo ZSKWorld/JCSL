@@ -37,7 +37,7 @@ class GameMgr extends Observer {
         this.container.addChild(player);
         player.addWeapon(objectFactory.createObject(GamePoolKey.Weapon_JingGangFu));
 
-        for (let i = 0; i < 0; i++) {
+        for (let i = 0; i < 10; i++) {
             const enemy = objectFactory.createObject(GamePoolKey.Enemy_Fllow);
             i == 0 && enemy.changeSource(GameUtil.getFGUITexture(ResPath.PkgCommon, "Icon_Book_Yue"));
             enemy.pos(Math.random() * Laya.stage.width, Math.random() * Laya.stage.height);

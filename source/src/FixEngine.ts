@@ -1,8 +1,11 @@
+import { NotifyConst } from "./core/common/NotifyConst";
+import { eventMgr } from "./core/libs/event/EventMgr";
+
 /**
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-30 01:14:36
+ * @LastEditTime : 2022-09-01 01:27:55
  * @Description  : 引擎修复
  */
 export class FixEngine {
@@ -11,6 +14,7 @@ export class FixEngine {
 		this.AddGUIObjectEventLockable();
 		this.LoadPackage();
 		this.fixLayaPoolSign();
+		this.addComponentNetConnect();
 	}
 
 	/**修复GUI粗体不生效 */
@@ -77,15 +81,23 @@ export class FixEngine {
 		gobjProto.addEventLock = function (type?: string, lockChild?: boolean) {
 			if (this.isDisposed || type == "") return;
 			const eventLockMap = this.displayObject.__eventLockMap || (this.displayObject.__eventLockMap = {});
-			type = type == null ? "$LockAll" : type;
+			type = type == void 0 ? "$LockAll" : type;
 			eventLockMap[ type ] = true;
-			eventLockMap[ type + "_LockChild" ] = lockChild == null ? true : lockChild;
+			eventLockMap[ type + "_LockChild" ] = lockChild == void 0 ? true : lockChild;
+		}
+		gobjProto.hasEventLock = function (type?: string) {
+			if (this.isDisposed || type == "") return false;
+			const eventLockMap = this.displayObject.__eventLockMap;
+			if (eventLockMap) {
+				if (type == void 0) return !!eventLockMap[ "$LockAll" ];
+				else return !!eventLockMap[ type ];
+			} else return false;
 		}
 		gobjProto.removeEventLock = function (type?: string) {
 			if (this.isDisposed || type == "") return;
 			const eventLockMap = this.displayObject.__eventLockMap;
 			if (eventLockMap) {
-				if (type == null) eventLockMap[ "$LockAll" ] = false;
+				if (type == void 0) eventLockMap[ "$LockAll" ] = false;
 				else if (eventLockMap[ type ]) eventLockMap[ type ] = false;
 			}
 		}
@@ -190,6 +202,39 @@ export class FixEngine {
 				Laya.Pool[ "_CLSID" ]++;
 			}
 			return className;
+		}
+	}
+
+	/** 添加fgui组件网络关联，网络断开连接后都不能点击*/
+	private static addComponentNetConnect() {
+		const prototype = fgui.GComponent.prototype;
+		const constructFromResource = prototype[ "constructFromResource" ];
+		prototype[ "constructFromResource" ] = function () {
+			constructFromResource.call(this);
+			this.on(Laya.Event.DISPLAY, this, this.$onDisplay);
+			this.on(Laya.Event.UNDISPLAY, this, this.$onUndisplay);
+		};
+		prototype[ "$onDisplay" ] = function () {
+			eventMgr.on(NotifyConst.SocketOpened, this, this.$onNetChanged, [ true ]);
+			eventMgr.on(NotifyConst.SocketClosed, this, this.$onNetChanged, [ false ]);
+		};
+		prototype[ "$onUndisplay" ] = function () {
+			eventMgr.off(NotifyConst.SocketOpened, this, this.$onNetChanged);
+			eventMgr.off(NotifyConst.SocketClosed, this, this.$onNetChanged);
+			this.$onNetChanged(true);
+		};
+		prototype[ "$onNetChanged" ] = function (value: boolean) {
+			if (value) {
+				if (this.oldClickLock !== void 0) {
+					!this.oldClickLock && this.removeEventLock(Laya.Event.CLICK);
+					this.oldClickLock = void 0;
+				}
+			} else {
+				if (this.oldClickLock === void 0) {
+					this.oldClickLock = this.hasEventLock(Laya.Event.CLICK);
+					this.addEventLock(Laya.Event.CLICK);
+				}
+			}
 		}
 	}
 }

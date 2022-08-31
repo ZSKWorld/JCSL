@@ -1,10 +1,11 @@
+import { LogicSceneType } from "../../logicScene/LogicSceneType";
 import { UserOutput } from "../net/network/Interface";
 
 /**
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 21:49:01
+ * @LastEditTime : 2022-08-31 23:03:26
  * @Description  : 
  */
 export const enum NotifyConst {
@@ -30,7 +31,7 @@ export const enum NotifyConst {
 	ClearMainLog = "ClearMainLog",
 	/**
 	 * 切换场景
-	 * @param { SceneType } sceneType 场景类型
+	 * @param { LogicSceneType } sceneType 场景类型
 	 * @param { any } data 场景数据
 	 */
 	EnterScene = "EnterScene",

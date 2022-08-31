@@ -28,6 +28,6 @@ export class ComShiLianCtrl extends BaseViewCtrl<ComShiLianView, ComShiLianData>
     }
 
     private onListItemRenderer(index: number, item: RenderShiLianView) {
-
+        item.refresh(index + 1);
     }
 }

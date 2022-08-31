@@ -24,6 +24,8 @@ declare namespace fgui {
          */
         addEventLock(type?: string, lockChild?: boolean): void;
 
+        hasEventLock(type?: string): boolean;
+
         /**
          * 移除当前GObject的事件锁，为空则移除全局锁
          * @param type 事件名称
