@@ -5,7 +5,7 @@ import { eventMgr } from "./core/libs/event/EventMgr";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-01 01:27:55
+ * @LastEditTime : 2022-09-01 01:47:42
  * @Description  : 引擎修复
  */
 export class FixEngine {
@@ -15,6 +15,7 @@ export class FixEngine {
 		this.LoadPackage();
 		this.fixLayaPoolSign();
 		this.addComponentNetConnect();
+		this.clearEventDispatcherHandler();
 	}
 
 	/**修复GUI粗体不生效 */
@@ -235,6 +236,50 @@ export class FixEngine {
 					this.addEventLock(Laya.Event.CLICK);
 				}
 			}
+		}
+	}
+
+	private static clearEventDispatcherHandler() {
+		const prototype = Laya.EventDispatcher.prototype;
+		prototype.off = function (type: string, caller: any, listener: Function, onceOnly?: boolean) {
+			if (!this._events || !this._events[ type ])
+				return this;
+			var listeners = this._events[ type ];
+			if (listeners != null) {
+				if (listeners.run) {
+					if ((!caller || listeners.caller === caller) && (listener == null || listeners.method === listener) && (!onceOnly || listeners.once)) {
+						delete this._events[ type ];
+						listeners.recover();
+					}
+				}
+				else {
+					var count = 0;
+					for (var i = 0, n = listeners.length; i < n; i++) {
+						var item = listeners[ i ];
+						if (!item) {
+							count++;
+							continue;
+						}
+						if (item && (!caller || item.caller === caller) && (listener == null || item.method === listener) && (!onceOnly || item.once)) {
+							count++;
+							listeners[ i ] = null;
+							item.recover();
+						}
+					}
+					if (count === n)
+						delete this._events[ type ];
+					else if (count > 5000) {
+						const temp = [];
+						for (var i = 0, n = listeners.length; i < n; i++) {
+							var item = listeners[ i ];
+							if (item) temp.push(item);
+						}
+						listeners.length = 0;
+						this._events[ type ] = temp;
+					}
+				}
+			}
+			return this;
 		}
 	}
 }
