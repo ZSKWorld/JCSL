@@ -2,7 +2,7 @@
  * @Author       : zsk
  * @Date         : 2022-08-06 19:16:06
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:24:17
+ * @LastEditTime : 2022-09-02 01:06:43
  * @Description  : 2D向量类
  */
 
@@ -28,7 +28,12 @@ export class Vector2 {
         return this;
     }
 
-    add(v2: Vector2) { return this.setValue(this.x + v2.x, this.y + v2.y); }
+    add(v2: Vector2): Vector2;
+    add(x: number, y?: number): Vector2;
+    add(v1: Vector2 | number, v2 = 0) {
+        if (typeof v1 == "number") return this.setValue(this.x + v1, this.y + v2);
+        return this.setValue(this.x + v1.x, this.y + v1.y);
+    }
 
     sub(v2: Vector2) { return this.setValue(this.x - v2.x, this.y - v2.y); }
 
@@ -58,11 +63,7 @@ export class Vector2 {
         return this.setValue(x * cos + y * sin, -x * sin + y * cos);
     }
 
-    copyTo(destObject: Vector2) { destObject.setValue(this.x, this.y); }
+    copyTo(v2: Vector2) { return v2.setValue(this.x, this.y); }
 
-    clone() {
-        const destVector2 = new Vector2();
-        this.copyTo(destVector2);
-        return destVector2;
-    }
+    clone() { return new Vector2(this.x, this.y); }
 }
