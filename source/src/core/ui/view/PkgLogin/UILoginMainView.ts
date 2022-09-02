@@ -22,10 +22,10 @@ export class UILoginMainView extends ExtensionClass<ViewExtension, UILoginMain>(
 		this.TxtPassword.text = password;
 	}
 
-	afterRegister(){
-        const { TxtRegisterAccount, TxtRegisterPassword } = this;
-        this.setLoginInfo(TxtRegisterAccount.text, TxtRegisterPassword.text);
-        this.ctrlState.selectedIndex = 0;
+	afterRegister() {
+		const { TxtRegisterAccount, TxtRegisterPassword } = this;
+		this.setLoginInfo(TxtRegisterAccount.text, TxtRegisterPassword.text);
+		this.ctrlState.selectedIndex = 0;
 	}
 
 }

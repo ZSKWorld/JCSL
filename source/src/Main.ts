@@ -25,7 +25,7 @@ class Main {
 		if (GameConfig.debug || Laya.Utils.getQueryString("debug") == "true") Laya.enableDebugPanel();
 		if (GameConfig.physicsDebug && Laya[ "PhysicsDebugDraw" ]) Laya[ "PhysicsDebugDraw" ].enable();
 		if (GameConfig.stat) Laya.Stat.show();
-		Laya.alertGlobalError(true);
+		// Laya.alertGlobalError(true);
 
 		fairygui.UIConfig.packageFileExtension = "zip";
 		fairygui.UIConfig.defaultFont = "Arial";//'HYTangMeiRen95W';
