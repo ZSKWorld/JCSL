@@ -1,9 +1,8 @@
-import { Vector2 } from "../../libs/math/Vector2";
 import { MovementBase } from "./MovementBase";
 
 export class Movement_Player extends MovementBase {
     private _mousePressed: boolean;
-    private _lastMousePoint: Vector2 = new Vector2();
+    private _lastMousePoint: Laya.Vector2 = new Laya.Vector2();
 
     protected override onEnable() {
         this.speedOrigin = 5;

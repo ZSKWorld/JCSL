@@ -13980,7 +13980,7 @@ enum IndexFormat {
 		 * @param x X值。
 		 * @param y Y值。
 		 */
-		setValue(x:number,y:number):void;
+		setValue(x:number,y:number):Vector2;
 
 		/**
 		 * 缩放二维向量。

@@ -1,4 +1,3 @@
-import { Vector2 } from "../../libs/math/Vector2";
 import { player } from "../role/Player";
 import { MovementBase } from "./MovementBase";
 
@@ -16,7 +15,7 @@ export class Movement_FollowPlayer extends MovementBase {
     }
 
     protected override onAwake(){
-        this.collisionDir = new Vector2();
+        this.collisionDir = new Laya.Vector2();
     }
 
     protected override onEnable() {

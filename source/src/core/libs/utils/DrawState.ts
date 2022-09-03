@@ -1,40 +1,21 @@
 import { MathUtil } from "../math/MathUtil";
-import { Vector2 } from "../math/Vector2";
+import { recyclableV2, recycleItems } from "./Recyclable";
+class DrawShape {
+
+}
 
 export class DrawState {
-    private static v2Pool: Vector2[] = [];
     private _graphics: Laya.Graphics;
     private _min: number = 0;
     private _max: number = 0;
     private _duration: number = 0;
     private _ratio: number = 0;
     private _lengthes: number[] = [];
-    private _center = new Vector2();
-    private _directs: Vector2[] = [];
-    private _starts: Vector2[] = [];
-    private _targets: Vector2[] = [];
+    private _center = new Laya.Vector2();
+    private _directs: Recyclable<Laya.Vector2>[] = [];
+    private _starts: Recyclable<Laya.Vector2>[] = [];
+    private _targets: Recyclable<Laya.Vector2>[] = [];
     private _updateHandler = Laya.Handler.create(this, this.draw, null, false);
-
-    private static getV2(count: number = 1) {
-        if (count <= 0) return null;
-        if (count == 1) return this.v2Pool.pop() || new Vector2();
-        else {
-            const result: Vector2[] = [];
-            for (let i = 0; i < count; i++) {
-                result.push(this.v2Pool.pop() || new Vector2());
-            }
-            return result;
-        }
-    }
-
-    private static recoverV2(v2: Vector2 | Vector2[]) {
-        if (Array.isArray(v2)) {
-            this.v2Pool.push(...v2);
-            v2.length = 0;
-        }
-        else
-            this.v2Pool.push(v2);
-    }
 
     setData(sp: Laya.Sprite, count: number, min: number, max: number, duration: number) {
         if (!sp) return;
@@ -47,16 +28,15 @@ export class DrawState {
         const angle = 360 / count;
         const { _directs, _starts, _targets, _lengthes } = this;
         _lengthes.length = 0;
-        DrawState.recoverV2(_directs);
-        DrawState.recoverV2(_starts);
-        DrawState.recoverV2(_targets);
+        recycleItems(_directs, _starts, _targets);
         for (let i = 0; i < count; i++) {
             _lengthes.push(0);
-            _directs.push((DrawState.getV2() as Vector2).setValue(0, -1).rotate(angle * i));
+            _directs.push(recyclableV2()[ 0 ].setValue(0, -1).rotate(angle * i));
         }
         _directs.forEach(v => {
-            _starts.push(v.copyTo(DrawState.getV2() as Vector2));
-            _targets.push(v.copyTo(DrawState.getV2() as Vector2));
+            const [ start, target ] = recyclableV2(2);
+            _starts.push(v.copyTo(start));
+            _targets.push(v.copyTo(target));
         });
         this.start();
     }

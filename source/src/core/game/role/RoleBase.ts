@@ -1,4 +1,3 @@
-import { Vector2 } from "../../libs/math/Vector2";
 import { GameObject } from "../core/GameObject";
 
 export abstract class RoleBase extends GameObject {

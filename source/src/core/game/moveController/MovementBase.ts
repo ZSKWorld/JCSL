@@ -1,4 +1,3 @@
-import { Vector2 } from "../../libs/math/Vector2";
 import { GameObject } from "../core/GameObject";
 
 export abstract class  MovementBase {
@@ -7,7 +6,7 @@ export abstract class  MovementBase {
 
     owner: GameObject;
     name: string;
-    public collisionDir:Vector2;
+    public collisionDir:Laya.Vector2;
     protected _moveEnable: boolean = true;
     /** 原始速度 */
     private _speedOrigin: number = 0;
@@ -17,7 +16,7 @@ export abstract class  MovementBase {
     /** 速度回复速率 0 - 1 */
     protected _speedRecoverRate: number = 0.1;
     /** 移动方向 */
-    protected _moveDir: Vector2 = new Vector2();
+    protected _moveDir: Laya.Vector2 = new Laya.Vector2();
     get speedOrigin() { return this._speedOrigin; }
     set speedOrigin(value: number) {
         this._speedOrigin = value;

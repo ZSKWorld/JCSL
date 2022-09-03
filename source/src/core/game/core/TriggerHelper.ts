@@ -1,4 +1,3 @@
-import { Vector2 } from "../../libs/math/Vector2";
 import { Logger } from "../../libs/utils/Logger";
 import { MovementBase } from "../moveController/MovementBase";
 import { EnemyBase } from "../role/EnemyBase";
@@ -13,7 +12,7 @@ const enum TriggerState {
 const logger = Logger.Create("TriggerHelper").setEnable(true);
 
 export class TriggerHelper {
-    private static tempV20 = new Vector2();
+    private static tempV20 = new Laya.Vector2();
     private static triggerStateMap: { [ key: string ]: TriggerState } = {};
 
     static checkTrigger() {
@@ -90,8 +89,8 @@ export class TriggerHelper {
 
                     tempV20.setValue(ownerA.x - ownerB.x, ownerA.y - ownerB.y);
                     if (tempV20.lengthSquared <= (ownerA.colliderRadius + ownerB.colliderRadius) ** 2) {
-                        if (Vector2.dot(moveB.moveDir, tempV20) > 0) tempmove = moveB;
-                        else if (Vector2.dot(moveA.moveDir, tempV20.scale(- 1)) > 0) tempmove = moveA;
+                        if (Laya.Vector2.dot(moveB.moveDir, tempV20) > 0) tempmove = moveB;
+                        else if (Laya.Vector2.dot(moveA.moveDir, tempV20.scale(- 1)) > 0) tempmove = moveA;
                         else continue;
                         tempmove.collisionDir.add(tempV20.normalize()).normalize();
                     }

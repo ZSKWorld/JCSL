@@ -1,11 +1,12 @@
 import { NotifyConst } from "./core/common/NotifyConst";
 import { eventMgr } from "./core/libs/event/EventMgr";
+import { MathUtil } from "./core/libs/math/MathUtil";
 
 /**
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-01 01:47:42
+ * @LastEditTime : 2022-09-03 20:55:31
  * @Description  : 引擎修复
  */
 export class FixEngine {
@@ -13,9 +14,9 @@ export class FixEngine {
 		this.UbbTagI();
 		this.AddGUIObjectEventLockable();
 		this.LoadPackage();
-		this.fixLayaPoolSign();
-		this.addComponentNetConnect();
-		this.clearEventDispatcherHandler();
+		this.FixLayaPoolSign();
+		this.AddComponentNetConnect();
+		this.ClearEventDispatcherHandler();
 	}
 
 	/**修复GUI粗体不生效 */
@@ -194,7 +195,7 @@ export class FixEngine {
 	}
 
 	/** 修复Laya.Pool._getClassSign方法，原方法会导致子类和父类回收到一个对象池中 */
-	private static fixLayaPoolSign() {
+	private static FixLayaPoolSign() {
 		const pool = Laya.Pool;
 		pool[ "_getClassSign" ] = function (cla: any) {
 			var className = cla[ "__className" ] || (Object.prototype.hasOwnProperty.call(cla, "_$gid") ? cla[ "_$gid" ] : null);
@@ -207,7 +208,7 @@ export class FixEngine {
 	}
 
 	/** 添加fgui组件网络关联，网络断开连接后都不能点击*/
-	private static addComponentNetConnect() {
+	private static AddComponentNetConnect() {
 		const prototype = fgui.GComponent.prototype;
 		const constructFromResource = prototype[ "constructFromResource" ];
 		prototype[ "constructFromResource" ] = function () {
@@ -239,7 +240,7 @@ export class FixEngine {
 		}
 	}
 
-	private static clearEventDispatcherHandler() {
+	private static ClearEventDispatcherHandler() {
 		const prototype = Laya.EventDispatcher.prototype;
 		prototype.off = function (type: string, caller: any, listener: Function, onceOnly?: boolean) {
 			if (!this._events || !this._events[ type ])
@@ -282,4 +283,100 @@ export class FixEngine {
 			return this;
 		}
 	}
+}
+
+/** 没有引入laya.d3.js，手动添加Laya.Vector2 */
+Laya.Vector2 = class Vector2 {
+	static readonly ZERO = new Vector2();
+	static readonly ONE = new Vector2(1, 1);
+	constructor(
+		public x = 0,
+		public y = 0,
+	) { }
+
+	static dot(a: Vector2, b: Vector2) { return (a.x * b.x) + (a.y * b.y); }
+
+	static scale(a: Vector2, b: number, out: Vector2) { out.setValue(a.x * b, a.y * b); }
+
+	static normalize(s: Vector2, out: Vector2) {
+		let x = s.x, y = s.y;
+		let len = x * x + y * y;
+		if (len > 0) {
+			len = 1 / Math.sqrt(len);
+			out.x = x * len;
+			out.y = y * len;
+		}
+	}
+
+	static scalarLength(a: Vector2) {
+		let x = a.x, y = a.y;
+		return Math.sqrt(x * x + y * y);
+	}
+
+	static rewriteNumProperty(proto: any, name: string, index: number) { }
+
+	fromArray(array, offset = 0) {
+		this.x = array[ offset + 0 ];
+		this.y = array[ offset + 1 ];
+	}
+
+	toArray(array, offset = 0) {
+		array[ offset + 0 ] = this.x;
+		array[ offset + 1 ] = this.y;
+	}
+
+	cloneTo(destObject) {
+		var destVector2 = destObject;
+		destVector2.x = this.x;
+		destVector2.y = this.y;
+	}
+
+	forNativeElement(nativeElements = null) { }
+
+	get length() { return Math.sqrt(this.lengthSquared); }
+	get lengthSquared() {
+		const { x, y } = this;
+		return x * x + y * y;
+	}
+
+	setValue(x: number, y: number) {
+		this.x = x;
+		this.y = y;
+		return this;
+	}
+
+	add(v2: Vector2): Vector2;
+	add(x: number, y?: number): Vector2;
+	add(v1: Vector2 | number, v2 = 0) {
+		if (typeof v1 == "number") return this.setValue(this.x + v1, this.y + v2);
+		return this.setValue(this.x + v1.x, this.y + v1.y);
+	}
+
+	sub(v2: Vector2) { return this.setValue(this.x - v2.x, this.y - v2.y); }
+
+	scale(scale: number) { return this.setValue(this.x * scale, this.y * scale); }
+
+	dot(v2: Vector2) { return this.x * v2.x + this.y * v2.y; }
+
+	normalize() {
+		const { x, y } = this;
+		let len = x * x + y * y;
+		if (len > 0) {
+			len = 1 / Math.sqrt(len);
+			this.setValue(x * len, y * len);
+		}
+		return this;
+	}
+
+	rotate(angle: number) {
+		const radian = MathUtil.AngleToRadian(angle);
+		const cos = Math.cos(radian);
+		const sin = Math.sin(radian);
+		const { x, y } = this;
+		return this.setValue(x * cos + y * sin, -x * sin + y * cos);
+	}
+
+	copyTo(v2: Vector2) { return v2.setValue(this.x, this.y); }
+
+	clone() { return new Vector2(this.x, this.y); }
 }

@@ -1,3 +1,4 @@
+import { recyclableV2, recycleItems } from "./core/libs/utils/Recyclable";
 import { FixEngine } from "./FixEngine";
 import GameConfig from "./GameConfig";
 import { logicSceneMgr } from './logicScene/LogicSceneMgr';
