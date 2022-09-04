@@ -3,7 +3,6 @@ export const enum ViewID {
 	/**Coms */
 	ComTipInfoView = "ComTipInfoView",
 	ComGongFaView = "ComGongFaView",
-	ComItemInfoView = "ComItemInfoView",
 	ComJueSeView = "ComJueSeView",
 	ComLingShouView = "ComLingShouView",
 	ComShiLianView = "ComShiLianView",

@@ -21,8 +21,6 @@ import UIWaiting from "../ui/PkgCommon/UIWaiting";
 import { ComGongFaCtrl } from "../viewCtrl/PkgMain/Coms/ComGongFaCtrl";
 import { ComGongFaProxy } from "../viewCtrlProxy/PkgMain/Coms/ComGongFaProxy";
 import { ComGongFaView } from "../view/PkgMain/Coms/ComGongFaView";
-import { ComItemInfoProxy } from "../viewCtrlProxy/PkgMain/Coms/ComItemInfoProxy";
-import { ComItemInfoView } from "../view/PkgMain/Coms/ComItemInfoView";
 import { ComJueSeCtrl } from "../viewCtrl/PkgMain/Coms/ComJueSeCtrl";
 import { ComJueSeProxy } from "../viewCtrlProxy/PkgMain/Coms/ComJueSeProxy";
 import { ComJueSeView } from "../view/PkgMain/Coms/ComJueSeView";
