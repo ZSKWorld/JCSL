@@ -1,6 +1,5 @@
 import { Util } from "../../utils/Util";
 import { ErrorCode } from "../ErrorCode";
-import { ILogin, LoginInput } from "../interface/ILogin";
 import { AddCMD, BaseController } from "./BaseController";
 
 export class LoginController extends BaseController implements ILogin {

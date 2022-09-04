@@ -1,14 +1,14 @@
-export interface UserInput {
+declare interface UserInput {
     cmd?: string;
 }
 
-export interface UserOutput {
+declare interface UserOutput {
     cmd: string;
     error?: number;
     syncInfo?: IUserData;
 }
 
-export interface IUserData {
+declare interface IUserData {
     uid?: string;
     nickname?: string;
     account?: string;

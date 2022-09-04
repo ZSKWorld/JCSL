@@ -1,6 +1,5 @@
 import { Util } from "../../utils/Util";
 import { ErrorCode } from "../ErrorCode";
-import { IRegister, RegisterInput } from "../interface/IRegister";
 import { UserData } from "../UserData";
 import { AddCMD, BaseController } from "./BaseController";
 

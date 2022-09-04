@@ -2,13 +2,11 @@
  * @Author       : zsk
  * @Date         : 2022-08-15 23:09:57
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 21:34:03
+ * @LastEditTime : 2022-09-04 20:43:02
  * @Description  : 各个服务器请求代理
  */
 
 import { ProxyAdapter } from "../libs/utils/ProxyAdapter";
-import { ILogin } from "./network/ILogin";
-import { IRegister } from "./network/IRegister";
 import { ServiceObj } from "./ServiceObj";
 import { websocket } from "./WebSocket";
 

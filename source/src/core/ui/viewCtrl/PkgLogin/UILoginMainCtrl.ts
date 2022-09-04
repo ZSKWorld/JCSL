@@ -1,6 +1,5 @@
 import { localData } from "../../../libs/localStorage/LocalData";
 import { LocalDataKey } from "../../../libs/localStorage/LocalDataKey";
-import { LoginInput } from "../../../net/network/ILogin";
 import { LoginService, RegisterService } from "../../../net/Services";
 import { BaseViewCtrl, InsertMouseEvent, MouseEvent } from "../../core/BaseViewCtrl";
 import { UIUtility } from "../../tool/UIUtility";

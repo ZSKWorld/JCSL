@@ -2,7 +2,6 @@ import { NotifyConst } from "../common/NotifyConst";
 import { Observer } from "../libs/event/Observer";
 import { Logger } from "../libs/utils/Logger";
 import { NetResponse } from "./NetResponse";
-import { UserInput, UserOutput } from "./network/Interface";
 
 const logger = Logger.Create("WebSocket").setEnable(true);
 
@@ -10,7 +9,7 @@ const logger = Logger.Create("WebSocket").setEnable(true);
 * @Author       : zsk
 * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 22:21:33
+ * @LastEditTime : 2022-09-04 20:43:07
 * @Description  : 
 */
 class WebSocket extends Observer {

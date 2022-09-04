@@ -1,5 +1,3 @@
-import { IHeart } from "../interface/IHeart";
-import { UserInput, UserOutput } from "../interface/Interface";
 import { BaseController } from "./BaseController";
 
 export class HeartController extends BaseController implements IHeart {
