@@ -11,7 +11,7 @@ const logger = Logger.Create("LogicSceneMgr").setEnable(true);
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 21:29:48
+ * @LastEditTime : 2022-09-04 15:58:17
  * @Description  : 逻辑场景管理类
  */
 class LogicSceneMgr extends Observer {
@@ -42,6 +42,8 @@ class LogicSceneMgr extends Observer {
 			}, () => {
 				//场景加载失败
 				this.enterCompleted = true;
+				if (confirm(`场景 ${ type } 加载失败，是否重试?`))
+					this.enterScene(type, data);
 			});
 		}
 	}

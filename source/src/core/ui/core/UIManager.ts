@@ -97,11 +97,11 @@ class UIManager extends Observer {
 		this.lockPanel.drawRect(0, "", "#00000000");
 		layerMgr.addObject(this.lockPanel, Layer.Lock);
 
-		//延迟250是为了防抖
+		//延迟250防止频繁触发
 		Laya.stage.on(Laya.Event.RESIZE, this, () => Laya.timer.once(250, this, this.onResize));
 	}
 
-	/** 获取一打开的页面索引
+	/** 获取已打开的页面索引
 	 * @param viewId 页面ID
 	 * @return 页面索引
 	 */

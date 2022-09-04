@@ -40,13 +40,13 @@ export abstract class LogicSceneBase extends Observer implements IScene {
 	enter(data: any): void {
 		//todo
 		this.data = data;
+		uiMgr.removeAllView();
 		this.onEnter();
 	}
 
 	exit(): void {
 		//todo
 		this.onExit();
-		uiMgr.removeAllView();
 		//卸载资源
 		const [ notUIRes, uiRes ] = this.getResGroup(ResGroupType.Normal);
 		notUIRes.forEach(v => Laya.loader.clearRes(v));

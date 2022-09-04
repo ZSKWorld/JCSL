@@ -8,10 +8,11 @@ const logger = Logger.Create("BaseViewCtrlProxy").setEnable(true);
  * @Author       : zsk
  * @Date         : 2022-08-25 23:48:24
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:14:33
+ * @LastEditTime : 2022-09-04 15:49:58
  * @Description  : 页面控制器代理，主要处理网络回包事件
  */
 export abstract class BaseViewCtrlProxy<T extends BaseViewCtrl = BaseViewCtrl> extends Notifier {
+    /** 代理的控制器，只读 */
     viewCtrl: T;
 
     sendMessage(type: string, data?: any): void {
