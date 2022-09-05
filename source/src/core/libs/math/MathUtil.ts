@@ -2,7 +2,7 @@
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-05 23:17:53
+ * @LastEditTime : 2022-09-05 23:19:30
  * @Description  : 数学工具类
  */
 export class MathUtil {
@@ -36,6 +36,7 @@ export class MathUtil {
         result = result.replace(/^一十/g, '十');
         return result;
     }
+
     /**数字转组合数字 */
     static ToGroupNumber(num: number, fixed: number = 2) {
         if (num < 1e4) return num.toString();
