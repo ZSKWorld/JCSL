@@ -2,7 +2,7 @@
  * @Author       : zsk
  * @Date         : 2021-08-14 21:47:48
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-03 15:00:14
+ * @LastEditTime : 2022-09-05 23:11:16
  * @Description  : null
  */
 
@@ -13,7 +13,6 @@ export function recyclable<T>(creator: Class<T>): Recyclable<T> {
     const result = Laya.Pool.createByClass(creator) as Recyclable<T> & RecycleMethod;
     if (!result.recycle) {
         result.recycle = function () {
-            console.warn("回收", this);
             this.onRecycle?.();
             Laya.Pool.recoverByClass(this);
         }
@@ -40,7 +39,9 @@ function getRecyclables<T>(creator: Class<T>, count: number = 1) {
     for (let i = 0; i < count; i++) {
         tempRecycleArr.push(recyclable(creator));
     }
-    return tempRecycleArr;
+    return tempRecycleArr as Recyclable<T>[];
 }
 /**获取可回收Vector2 */
 export const recyclableV2 = (count = 1) => getRecyclables(Laya.Vector2, count);
+/**获取可回收Point */
+export const recyclablePoint = (count = 1) => getRecyclables(Laya.Point, count);

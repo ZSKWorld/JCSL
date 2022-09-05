@@ -2,7 +2,7 @@
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:23:53
+ * @LastEditTime : 2022-09-05 23:17:53
  * @Description  : 数学工具类
  */
 export class MathUtil {
@@ -10,6 +10,9 @@ export class MathUtil {
 
     /** 角度转弧度 */
     static AngleToRadian(angle: number) { return angle * this.Radian; }
+
+    /** 弧度转角度 */
+    static RadianToAngle(radian: number) { return radian / this.Radian; }
 
     /**数字转中文数字 */
     static ToChineseNum(num: number) {
@@ -79,6 +82,12 @@ export class MathUtil {
         return this.Clamp(value, 0, 1);
     }
 
+    /** x从0平滑过渡到1 */
+    public static SmoothStep(x: number): number {
+        x = this.Clamp01(x);
+        return (Math.sin(x * Math.PI - Math.PI / 2) + 1) / 2;
+    }
+
     static TimeFormat(seconds: number, keepHour: boolean = true) {
         const hours = Math.floor(seconds / 3600);
         const mins = Math.floor((seconds - hours * 3600) / 60);
@@ -99,5 +108,12 @@ export class MathUtil {
         const mins = Math.floor((seconds - hours * 3600) / 60);
         const secs = seconds - hours * 3600 - mins * 60;
         return (hours ? `${ hours }小时` : "") + ((hours || mins) ? `${ mins }分钟` : "") + `${ secs }秒`;
+    }
+
+    /** 随机颜色字符串 */
+    static RandomColor() {
+        return "#" + Math.floor(Math.random() * 256).toString(16).padStart(2, "0")
+            + Math.floor(Math.random() * 256).toString(16).padStart(2, "0")
+            + Math.floor(Math.random() * 256).toString(16).padStart(2, "0");
     }
 }
