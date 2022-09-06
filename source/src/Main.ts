@@ -28,7 +28,22 @@ class Main {
 		// Laya.alertGlobalError(true);
 
 		fairygui.UIConfig.packageFileExtension = "zip";
-		fairygui.UIConfig.defaultFont = "Arial";//'HYTangMeiRen95W';
+
+		// Font01**
+		// Font02**
+		// Font03
+		// Font04
+		// Font05**
+		// Font06**
+		// Font07
+		// Font08
+		// Font09
+		// Font10
+		// Font11
+		// Font12
+		// Font13
+		fairygui.UIConfig.defaultFont = "Font03";
+		Laya.Text.defaultFont = "Font03";
 		FixEngine.Fix();
 
 		//激活资源版本控制，version.json由IDE发布功能自动生成，如果没有也不影响后续流程

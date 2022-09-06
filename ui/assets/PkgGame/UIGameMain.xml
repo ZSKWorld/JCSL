@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="750,1334">
+<component size="1080,1920">
   <displayList>
-    <component id="n0_ikt1" name="BtnSetting" src="irlv60" fileName="Component/BtnIcon.xml" pkg="vx9zwser" xy="680,20" size="50,50">
+    <component id="n0_ikt1" name="BtnSetting" src="irlv60" fileName="Component/BtnIcon.xml" pkg="vx9zwser" xy="1010,20" size="50,50">
+      <relation target="" sidePair="right-right"/>
       <Button icon="ui://vx9zwsersbd0c"/>
     </component>
   </displayList>

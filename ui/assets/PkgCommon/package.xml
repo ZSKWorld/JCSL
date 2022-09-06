@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <packageDescription id="vx9zwser">
   <resources>
-    <font id="qjdo4" name="HYZhengYuan-65W.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
-    <font id="qjdo5" name="HYDianHeiW.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
-    <font id="qjdo6" name="HYTangMeiRen95W.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
-    <font id="qjdo8" name="HYDiShengYingXiongTiW.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
+    <font id="qjdo4" name="Font11.ttf" path="/Font/" renderMode="smooth" samplePointSize="16"/>
+    <font id="qjdo5" name="Font08.ttf" path="/Font/" renderMode="smooth" samplePointSize="16"/>
+    <font id="qjdo6" name="Font10.ttf" path="/Font/" renderMode="smooth" samplePointSize="16"/>
+    <font id="qjdo8" name="Font07.ttf" path="/Font/" renderMode="smooth" samplePointSize="16"/>
     <image id="qjdob" name="Bg_XingXing01.png" path="/Texture/" exported="true"/>
     <image id="qjdoc" name="Icon_ShuXiDu02.png" path="/Texture/"/>
     <image id="qjdod" name="Icon_ShuXiDu03.png" path="/Texture/"/>
@@ -197,6 +197,16 @@
     <component id="irlv60" name="BtnIcon.xml" path="/Component/" exported="true"/>
     <component id="r0th61" name="WaitingItem.xml" path="/Component/"/>
     <component id="lsqf62" name="UIWaiting.xml" path="/" exported="true"/>
+    <component id="gc8g63" name="ComCurrency.xml" path="/Component/" exported="true"/>
+    <font id="gc8g64" name="Font09.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
+    <font id="gc8g68" name="Font03.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
+    <font id="gc8g69" name="Font04.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
+    <font id="l74a6b" name="Font01.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
+    <font id="l74a6c" name="Font02.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
+    <font id="l74a6d" name="Font05.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
+    <font id="l74a6e" name="Font06.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
+    <font id="l74a6f" name="Font12.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
+    <font id="l74a6g" name="Font13.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
   </resources>
   <publish name="" genCode="true"/>
 </packageDescription>

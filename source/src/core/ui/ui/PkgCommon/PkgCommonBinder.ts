@@ -1,5 +1,6 @@
 /** This is an automatically generated class by FairyGUI. Please do not modify it. **/
 
+import ComCurrency from "./ComCurrency";
 import UIWaiting from "./UIWaiting";
 import WaitingItem from "./WaitingItem";
 import ComTipInfo from "./ComTipInfo";
@@ -9,6 +10,7 @@ import ProgressBar1 from "./ProgressBar1";
 
 export default class PkgCommonBinder {
 	public static bindAll():void {
+		fgui.UIObjectFactory.setExtension(ComCurrency.URL, ComCurrency);
 		fgui.UIObjectFactory.setExtension(UIWaiting.URL, UIWaiting);
 		fgui.UIObjectFactory.setExtension(WaitingItem.URL, WaitingItem);
 		fgui.UIObjectFactory.setExtension(ComTipInfo.URL, ComTipInfo);

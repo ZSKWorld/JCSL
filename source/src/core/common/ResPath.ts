@@ -5,10 +5,19 @@ export const enum ResPath{
 	// res/dragonbones/
 
 	// res/font/
-	Font_HYDianHeiW = "res/font/HYDianHeiW.ttf",
-	Font_HYDiShengYingXiongTiW = "res/font/HYDiShengYingXiongTiW.ttf",
-	Font_HYTangMeiRen95W = "res/font/HYTangMeiRen95W.ttf",
-	Font_HYZhengYuan65W = "res/font/HYZhengYuan65W.ttf",
+	Font_Font01 = "res/font/Font01.ttf",
+	Font_Font02 = "res/font/Font02.ttf",
+	Font_Font03 = "res/font/Font03.ttf",
+	Font_Font04 = "res/font/Font04.ttf",
+	Font_Font05 = "res/font/Font05.ttf",
+	Font_Font06 = "res/font/Font06.ttf",
+	Font_Font07 = "res/font/Font07.ttf",
+	Font_Font08 = "res/font/Font08.ttf",
+	Font_Font09 = "res/font/Font09.ttf",
+	Font_Font10 = "res/font/Font10.ttf",
+	Font_Font11 = "res/font/Font11.ttf",
+	Font_Font12 = "res/font/Font12.ttf",
+	Font_Font13 = "res/font/Font13.ttf",
 
 	// res/table/
 	Table_Config = "res/table/Config.json",
@@ -22,4 +31,6 @@ export const enum ResPath{
 	PkgLogin = "PkgLogin",
 	Ui_PkgMain = "res/ui/PkgMain",
 	PkgMain = "PkgMain",
+	Ui_PkgTest = "res/ui/PkgTest",
+	PkgTest = "PkgTest",
 }
