@@ -4,17 +4,17 @@
     <graph id="n0_gc8g" name="n0" xy="0,0" size="1080,200" type="rect" lineSize="0" lineColor="#ff6d6f74" fillColor="#ffb6996b">
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
-    <graph id="n1_gc8g" name="n1" xy="239,126" size="211,50" type="rect" lineSize="0" fillColor="#ffb7a68a"/>
-    <graph id="n2_gc8g" name="n2" xy="436,139" size="211,50" type="rect" lineSize="0" fillColor="#ffb7a68a"/>
-    <component id="n4_gc8g" name="BtnAddCoin" src="irlv60" fileName="Component/BtnIcon.xml" xy="400,126" size="50,50">
+    <graph id="n1_gc8g" name="n1" xy="256,112" size="390,66" type="rect" lineSize="0" fillColor="#ffb7a68a"/>
+    <graph id="n2_gc8g" name="n2" xy="668,112" size="390,66" type="rect" lineSize="0" fillColor="#ffb7a68a"/>
+    <component id="n4_gc8g" name="BtnAddCoin" src="irlv60" fileName="Component/BtnIcon.xml" xy="580,112" size="66,66">
       <Button icon="ui://vx9zwserqjdo4l"/>
     </component>
-    <component id="n5_gc8g" name="BtnAddVcoin" src="irlv60" fileName="Component/BtnIcon.xml" xy="597,139" size="50,50">
+    <component id="n5_gc8g" name="BtnAddVcoin" src="irlv60" fileName="Component/BtnIcon.xml" xy="992,112" size="66,66">
       <Button icon="ui://vx9zwserqjdo4l"/>
     </component>
-    <image id="n6_gc8g" name="n6" src="qjdog" fileName="Texture/Icon_TongBi.png" xy="239,126" size="50,50"/>
-    <image id="n7_gc8g" name="n7" src="qjdoj" fileName="Texture/Icon_YinLiang.png" xy="437,140" size="50,50"/>
-    <text id="n8_gc8g" name="TxtCoin" xy="290,139" size="19,35" fontSize="25" color="#ffffff" vAlign="middle" bold="true" singleLine="true" text="9"/>
-    <text id="n9_gc8g" name="TxtVcoin" xy="487,152" size="19,35" fontSize="25" color="#ffffff" vAlign="middle" bold="true" singleLine="true" text="9"/>
+    <image id="n6_gc8g" name="n6" src="qjdog" fileName="Texture/Icon_TongBi.png" xy="256,112" size="66,66"/>
+    <image id="n7_gc8g" name="n7" src="qjdoj" fileName="Texture/Icon_YinLiang.png" xy="668,112" size="66,66"/>
+    <text id="n8_gc8g" name="TxtCoin" xy="320,114" size="263,66" fontSize="50" color="#ffffff" align="center" vAlign="middle" autoSize="none" bold="true" singleLine="true" text="999"/>
+    <text id="n9_gc8g" name="TxtVcoin" xy="731,114" size="263,66" fontSize="50" color="#ffffff" align="center" vAlign="middle" autoSize="none" bold="true" singleLine="true" text="999"/>
   </displayList>
 </component>

@@ -12,7 +12,7 @@ export class ComLingShouView extends ExtensionClass<ViewExtension, ComLingShou>(
 
 	override onCreate(): void {
         const { BtnCreate } = this;
-	    BtnCreate.onClick(this, this.sendMessage, [ComLingShouMsg.OnBtnCreateClick]);
+	    BtnCreate.onClick(this, this.sendMessage, [ ComLingShouMsg.OnBtnCreateClick ]);
     }
 
 }

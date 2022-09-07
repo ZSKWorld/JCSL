@@ -29,21 +29,22 @@ class Main {
 
 		fairygui.UIConfig.packageFileExtension = "zip";
 
-		// Font01**
-		// Font02**
-		// Font03
-		// Font04
-		// Font05**
-		// Font06**
-		// Font07
-		// Font08
-		// Font09
-		// Font10
-		// Font11
-		// Font12
-		// Font13
-		fairygui.UIConfig.defaultFont = "Font03";
-		Laya.Text.defaultFont = "Font03";
+		// const font = "Font01";
+		// const font = "Font02";
+		const font = "Font03";
+		// const font = "Font04";
+		// const font = "Font05";
+		// const font = "Font06";
+		// const font = "Font07";
+		// const font = "Font08";
+		// const font = "Font09";
+		// const font = "Font10";
+		// const font = "Font11";
+		// const font = "Font12";
+		// const font = "Font13";
+		// const font = "Font14";
+		fairygui.UIConfig.defaultFont = font;
+		Laya.Text.defaultFont = font;
 		FixEngine.Fix();
 
 		//激活资源版本控制，version.json由IDE发布功能自动生成，如果没有也不影响后续流程

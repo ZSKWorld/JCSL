@@ -18,6 +18,7 @@ export const enum ResPath{
 	Font_Font11 = "res/font/Font11.ttf",
 	Font_Font12 = "res/font/Font12.ttf",
 	Font_Font13 = "res/font/Font13.ttf",
+	Font_Font14 = "res/font/Font14.ttf",
 
 	// res/table/
 	Table_Config = "res/table/Config.json",

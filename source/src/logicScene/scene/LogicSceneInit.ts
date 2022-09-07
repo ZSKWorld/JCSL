@@ -34,6 +34,7 @@ export class LogicSceneInit extends LogicSceneBase {
 			ResPath.Font_Font11,
 			ResPath.Font_Font12,
 			ResPath.Font_Font13,
+			ResPath.Font_Font14,
 			ResPath.Ui_PkgCommon,
 		];
 	}

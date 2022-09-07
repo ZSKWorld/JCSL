@@ -18,7 +18,6 @@ export class UIMainCtrl extends BaseViewCtrl<UIMainView, UIMainData>{
 
     override onEnable(): void {
         super.onEnable();
-		this.view.refreshMoney();
     }
 
 	private UIMain_OnBtnLingShouClick(): void {

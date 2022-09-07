@@ -12,6 +12,6 @@ export class RenderShiLianView extends ExtensionClass<GComponentExtend, RenderSh
     }
 
     refresh(index:number){
-        this.TxtDesc.text = `极寒冻土&nbsp;&nbsp;[color=#ff0000][size=30]${index}重天[/size][/color]`;
+        this.TxtDesc.text = `极寒冻土&nbsp;[color=#ff0000][size=55]${index}重天[/size][/color]`;
     }
 }

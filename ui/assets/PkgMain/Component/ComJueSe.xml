@@ -1,33 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="750,1064" overflow="hidden" designImageOffsetX="-781" designImageAlpha="100">
+<component size="1080,1610" overflow="hidden" designImageOffsetX="-781" designImageAlpha="100">
   <displayList>
-    <list id="n40_sbd0" name="ListRole" xy="115,379" size="520,428" layout="flow_hz" overflow="scroll" lineGap="35" colGap="35" lineItemCount="3" defaultItem="ui://vith2b66neb71z" autoItemSize="true" autoClearItems="true">
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
-      <item/>
+    <list id="n40_sbd0" name="ListRole" xy="189,636" size="700,564" layout="flow_hz" overflow="scroll" lineGap="35" colGap="35" lineItemCount="3" defaultItem="ui://vith2b66neb71z" autoItemSize="true" autoClearItems="true">
       <item/>
       <item/>
       <item/>
@@ -50,63 +24,59 @@
       <item/>
       <item/>
     </list>
-    <graph id="n42_neb7" name="n42" xy="25,374" size="700,4" type="rect" lineSize="2">
-      <relation target="" sidePair="center-center"/>
-    </graph>
-    <graph id="n43_neb7" name="n43" xy="25,807" size="700,4" type="rect" lineSize="2">
-      <relation target="" sidePair="center-center"/>
-    </graph>
-    <graph id="n44_neb7" name="n44" xy="50,0" size="650,265" type="rect" lineSize="2" fillColor="#ffbdb89d"/>
-    <graph id="n45_neb7" name="n45" xy="261,291" size="227,56" type="rect" lineSize="2" fillColor="#ffbdb89d"/>
-    <graph id="n90_neb7" name="n90" xy="84,850" size="581,175" type="rect" lineSize="2" fillColor="#ffbdb89d"/>
-    <loader id="n91_neb7" name="n91" xy="129,861" size="84,152" group="n98_k2iq" fill="scale"/>
-    <component id="n96_neb7" name="n96" src="sbd05i" fileName="Component/BtnCornerTxt.xml" pkg="vx9zwser" xy="467,960" size="154,54" group="n98_k2iq">
-      <Button title="使  用" titleFontSize="25"/>
+    <graph id="n42_neb7" name="n42" xy="95,576" size="890,4" type="rect" lineSize="2"/>
+    <graph id="n43_neb7" name="n43" xy="95,1249" size="890,4" type="rect" lineSize="2"/>
+    <graph id="n44_neb7" name="n44" xy="95,0" size="890,424" type="rect" lineSize="2" fillColor="#ffbdb89d"/>
+    <graph id="n45_neb7" name="n45" xy="426,458" size="227,82" type="rect" lineSize="2" fillColor="#ffbdb89d"/>
+    <graph id="n90_neb7" name="n90" xy="95,1304" size="890,262" type="rect" lineSize="2" fillColor="#ffbdb89d"/>
+    <loader id="n91_neb7" name="n91" xy="125,1334" size="142,201" group="n98_k2iq" fill="scale"/>
+    <component id="n96_neb7" name="n96" src="sbd05i" fileName="Component/BtnCornerTxt.xml" pkg="vx9zwser" xy="776,1466" size="190,84" group="n98_k2iq">
+      <Button title="使用" titleFontSize="50"/>
     </component>
-    <text id="n92_neb7" name="n92" xy="289,863" size="54,35" group="n98_k2iq" fontSize="25" text="小凡">
+    <text id="n92_neb7" name="n92" xy="548,1334" size="114,73" group="n98_k2iq" fontSize="55" text="小凡">
       <relation target="" sidePair="center-center"/>
     </text>
-    <text id="n93_neb7" name="n93" xy="223,914" size="245,29" group="n98_k2iq" fontSize="20" color="#ff0000" text="每升1级，所有伤害增加1%"/>
-    <text id="n94_neb7" name="n94" xy="240,980" size="84,29" group="n98_k2iq" fontSize="20" text="初始法宝"/>
-    <text id="n95_neb7" name="n95" xy="354,980" size="84,29" group="n98_k2iq" fontSize="20" color="#006633" text="初始法宝"/>
-    <group id="n98_k2iq" name="n98" xy="129,861" size="492,153"/>
-    <text id="n47_neb7" name="n47" xy="132,20" size="44,29" group="n55_neb7" fontSize="20" text="生命"/>
-    <text id="n48_neb7" name="n48" xy="132,49" size="84,29" group="n55_neb7" fontSize="20" text="生命恢复"/>
-    <text id="n49_neb7" name="n49" xy="132,78" size="44,29" group="n55_neb7" fontSize="20" text="防御"/>
-    <text id="n50_neb7" name="n50" xy="132,107" size="44,29" group="n55_neb7" fontSize="20" text="伤害"/>
-    <text id="n51_neb7" name="n51" xy="132,136" size="64,29" group="n55_neb7" fontSize="20" text="暴击率"/>
-    <text id="n52_neb7" name="n52" xy="132,165" size="44,29" group="n55_neb7" fontSize="20" text="速度"/>
-    <text id="n53_neb7" name="n53" xy="132,194" size="84,29" group="n55_neb7" fontSize="20" text="弹道数量"/>
-    <text id="n54_neb7" name="n54" xy="132,223" size="84,29" group="n55_neb7" fontSize="20" text="弹道穿透"/>
-    <group id="n55_neb7" name="n55" xy="132,20" size="84,232" group="n97_k2iq"/>
-    <text id="n56_neb7" name="n56" xy="281,20" size="37,29" group="n64_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n65_neb7" name="n65" xy="281,49" size="37,29" group="n64_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n66_neb7" name="n66" xy="281,78" size="37,29" group="n64_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n67_neb7" name="n67" xy="281,107" size="37,29" group="n64_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n68_neb7" name="n68" xy="281,136" size="37,29" group="n64_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n69_neb7" name="n69" xy="281,165" size="37,29" group="n64_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n70_neb7" name="n70" xy="281,194" size="37,29" group="n64_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n71_neb7" name="n71" xy="281,223" size="37,29" group="n64_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <group id="n64_neb7" name="n64" xy="281,20" size="37,232" group="n97_k2iq"/>
-    <text id="n72_neb7" name="n72" xy="442,20" size="84,29" group="n80_neb7" fontSize="20" text="弹道速度"/>
-    <text id="n73_neb7" name="n73" xy="442,49" size="84,29" group="n80_neb7" fontSize="20" text="持续时间"/>
-    <text id="n74_neb7" name="n74" xy="442,78" size="84,29" group="n80_neb7" fontSize="20" text="击退效果"/>
-    <text id="n75_neb7" name="n75" xy="442,107" size="84,29" group="n80_neb7" fontSize="20" text="攻击范围"/>
-    <text id="n76_neb7" name="n76" xy="442,136" size="84,29" group="n80_neb7" fontSize="20" text="冷却缩减"/>
-    <text id="n77_neb7" name="n77" xy="442,165" size="84,29" group="n80_neb7" fontSize="20" text="拾取范围"/>
-    <text id="n78_neb7" name="n78" xy="442,194" size="84,29" group="n80_neb7" fontSize="20" text="金币获取"/>
-    <text id="n79_neb7" name="n79" xy="442,223" size="84,29" group="n80_neb7" fontSize="20" text="经验获取"/>
-    <group id="n80_neb7" name="n80" xy="442,20" size="84,232" group="n97_k2iq"/>
-    <text id="n81_neb7" name="n81" xy="591,20" size="37,29" group="n89_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n82_neb7" name="n82" xy="591,49" size="37,29" group="n89_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n83_neb7" name="n83" xy="591,78" size="37,29" group="n89_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n84_neb7" name="n84" xy="591,107" size="37,29" group="n89_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n85_neb7" name="n85" xy="591,136" size="37,29" group="n89_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n86_neb7" name="n86" xy="591,165" size="37,29" group="n89_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n87_neb7" name="n87" xy="591,194" size="37,29" group="n89_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <text id="n88_neb7" name="n88" xy="591,223" size="37,29" group="n89_neb7" fontSize="20" color="#ff0000" align="right" singleLine="true" text="326"/>
-    <group id="n89_neb7" name="n89" xy="591,20" size="37,232" group="n97_k2iq"/>
-    <group id="n97_k2iq" name="n97" xy="132,20" size="496,232"/>
-    <text id="n46_neb7" name="n46" xy="330,304" size="90,48" fontSize="35" text="角  色"/>
+    <text id="n93_neb7" name="n93" xy="311,1415" size="421,48" group="n98_k2iq" fontSize="35" color="#ff0000" text="每升1级，所有伤害增加1%"/>
+    <text id="n94_neb7" name="n94" xy="311,1487" size="144,48" group="n98_k2iq" fontSize="35" text="初始法宝"/>
+    <text id="n95_neb7" name="n95" xy="500,1487" size="144,48" group="n98_k2iq" fontSize="35" color="#006633" text="初始法宝"/>
+    <group id="n98_k2iq" name="n98" xy="125,1334" size="841,216"/>
+    <text id="n47_neb7" name="n47" xy="202,25" size="74,48" group="n55_neb7" fontSize="35" text="生命"/>
+    <text id="n48_neb7" name="n48" xy="202,73" size="144,48" group="n55_neb7" fontSize="35" text="生命恢复"/>
+    <text id="n49_neb7" name="n49" xy="202,121" size="74,48" group="n55_neb7" fontSize="35" text="防御"/>
+    <text id="n50_neb7" name="n50" xy="202,169" size="74,48" group="n55_neb7" fontSize="35" text="伤害"/>
+    <text id="n51_neb7" name="n51" xy="202,217" size="109,48" group="n55_neb7" fontSize="35" text="暴击率"/>
+    <text id="n52_neb7" name="n52" xy="202,265" size="74,48" group="n55_neb7" fontSize="35" text="速度"/>
+    <text id="n53_neb7" name="n53" xy="202,313" size="144,48" group="n55_neb7" fontSize="35" text="弹道数量"/>
+    <text id="n54_neb7" name="n54" xy="202,361" size="144,48" group="n55_neb7" fontSize="35" text="弹道穿透"/>
+    <group id="n55_neb7" name="n55" xy="202,25" size="144,384" group="n97_k2iq"/>
+    <text id="n56_neb7" name="n56" xy="385,25" size="56,48" group="n64_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n65_neb7" name="n65" xy="385,73" size="56,48" group="n64_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n66_neb7" name="n66" xy="385,121" size="56,48" group="n64_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n67_neb7" name="n67" xy="385,169" size="56,48" group="n64_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n68_neb7" name="n68" xy="385,217" size="56,48" group="n64_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n69_neb7" name="n69" xy="385,265" size="56,48" group="n64_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n70_neb7" name="n70" xy="385,313" size="56,48" group="n64_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n71_neb7" name="n71" xy="385,361" size="56,48" group="n64_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <group id="n64_neb7" name="n64" xy="385,25" size="56,384" group="n97_k2iq"/>
+    <text id="n72_neb7" name="n72" xy="587,25" size="144,48" group="n80_neb7" fontSize="35" text="弹道速度"/>
+    <text id="n73_neb7" name="n73" xy="587,73" size="144,48" group="n80_neb7" fontSize="35" text="持续时间"/>
+    <text id="n74_neb7" name="n74" xy="587,121" size="144,48" group="n80_neb7" fontSize="35" text="击退效果"/>
+    <text id="n75_neb7" name="n75" xy="587,169" size="144,48" group="n80_neb7" fontSize="35" text="攻击范围"/>
+    <text id="n76_neb7" name="n76" xy="587,217" size="144,48" group="n80_neb7" fontSize="35" text="冷却缩减"/>
+    <text id="n77_neb7" name="n77" xy="587,265" size="144,48" group="n80_neb7" fontSize="35" text="拾取范围"/>
+    <text id="n78_neb7" name="n78" xy="587,313" size="144,48" group="n80_neb7" fontSize="35" text="金币获取"/>
+    <text id="n79_neb7" name="n79" xy="587,361" size="144,48" group="n80_neb7" fontSize="35" text="经验获取"/>
+    <group id="n80_neb7" name="n80" xy="587,25" size="144,384" group="n97_k2iq"/>
+    <text id="n81_neb7" name="n81" xy="789,25" size="56,48" group="n89_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n82_neb7" name="n82" xy="789,73" size="56,48" group="n89_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n83_neb7" name="n83" xy="789,121" size="56,48" group="n89_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n84_neb7" name="n84" xy="789,169" size="56,48" group="n89_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n85_neb7" name="n85" xy="789,217" size="56,48" group="n89_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n86_neb7" name="n86" xy="789,265" size="56,48" group="n89_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n87_neb7" name="n87" xy="789,313" size="56,48" group="n89_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <text id="n88_neb7" name="n88" xy="789,361" size="56,48" group="n89_neb7" fontSize="35" color="#ff0000" align="right" singleLine="true" text="326"/>
+    <group id="n89_neb7" name="n89" xy="789,25" size="56,384" group="n97_k2iq"/>
+    <group id="n97_k2iq" name="n97" xy="202,25" size="643,384"/>
+    <text id="n46_neb7" name="n46" xy="469,471" size="142,73" fontSize="55" text="角 色"/>
   </displayList>
 </component>

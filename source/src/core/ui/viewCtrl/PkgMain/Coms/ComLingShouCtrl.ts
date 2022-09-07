@@ -1,7 +1,7 @@
 import { BaseViewCtrl } from "../../../core/BaseViewCtrl";
 import { ComLingShouMsg, ComLingShouView } from "../../../view/PkgMain/Coms/ComLingShouView";
 
-export interface ComLingShouData{
+export interface ComLingShouData {
 
 }
 

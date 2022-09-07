@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="750,1064" overflow="hidden" designImageOffsetX="-722" designImageOffsetY="-225" designImageAlpha="100">
+<component size="1080,1610" overflow="hidden" designImageOffsetX="-722" designImageOffsetY="-225" designImageAlpha="100">
   <displayList>
-    <list id="n15_sbd0" name="ListItem" xy="65,0" size="620,1064" overflow="scroll" scrollBarFlags="1028" scrollBar="auto" lineGap="20" defaultItem="ui://vith2b66sbd0j" autoClearItems="true">
+    <list id="n15_sbd0" name="ListItem" xy="65,0" size="950,1610" overflow="scroll" scrollBarFlags="1028" scrollBar="auto" lineGap="20" defaultItem="ui://vith2b66sbd0j" autoClearItems="true">
       <relation target="" sidePair="width-width,height-height"/>
       <item title="sdfsdf">
         <property target="title" propertyId="0" value="[size=40]士大夫撒士大夫撒大苏打给 的分公司的大苏打给 的分公司的[/size]"/>

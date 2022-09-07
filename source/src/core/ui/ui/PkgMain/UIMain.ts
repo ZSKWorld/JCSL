@@ -19,6 +19,7 @@ export default class UIMain extends fgui.GComponent {
 	public BtnShiLian:fgui.GButton;
 	public BtnJueSe:fgui.GButton;
 	public BtnXiuXing:fgui.GButton;
+	public ComCurrency:fgui.GComponent;
 	public LoaderHead1:fgui.GLoader;
 	public static URL:string = "ui://vith2b66qjdo0";
 
@@ -38,6 +39,7 @@ export default class UIMain extends fgui.GComponent {
 		this.BtnShiLian = <fgui.GButton>(this.getChildAt(8));
 		this.BtnJueSe = <fgui.GButton>(this.getChildAt(9));
 		this.BtnXiuXing = <fgui.GButton>(this.getChildAt(10));
+		this.ComCurrency = <fgui.GComponent>(this.getChildAt(11));
 		this.LoaderHead1 = <fgui.GLoader>(this.getChildAt(12));
 	}
 }
