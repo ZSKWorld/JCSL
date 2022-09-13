@@ -8,16 +8,20 @@ export interface ComShiLianData {
 }
 
 export class ComShiLianCtrl extends BaseViewCtrl<ComShiLianView, ComShiLianData>{
+    private _showAni: boolean;
+    private _firstItem: number;
 
     override onAwake(): void {
         super.onAwake();
-        UIUtility.SetList(this.view.ListItem, 10, this, this.onListItemRenderer);
     }
 
     override onEnable(): void {
         super.onEnable();
+        this._showAni = true;
+        this._firstItem = -1;
+        UIUtility.SetList(this.view.ListItem, 10, this, this.onListItemRenderer);
+        this._showAni = false;
     }
-
 
     override onDisable(): void {
         super.onDisable();
@@ -28,6 +32,7 @@ export class ComShiLianCtrl extends BaseViewCtrl<ComShiLianView, ComShiLianData>
     }
 
     private onListItemRenderer(index: number, item: RenderShiLianView) {
-        item.refresh(index + 1);
+        if(this._firstItem == -1) this._firstItem = index;
+        item.refresh(index + 1, this._showAni, Math.max((index - this._firstItem) * 0.05, 0.01));
     }
 }

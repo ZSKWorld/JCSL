@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="1080,1920" overflow="hidden" designImage="ui://vith2b66sbd0i" designImageOffsetX="-766" designImageAlpha="100" designImageLayer="1" bgColorEnabled="true" bgColor="#000000">
-  <controller name="ctrlShow" homePageType="specific" homePage="2" pages="0,,1,,2,,3,,4," selected="3"/>
+  <controller name="ctrlShow" homePageType="specific" homePage="2" pages="0,,1,,2,,3,,4," selected="0"/>
   <displayList>
     <graph id="n76_neb7" name="n76" xy="0,0" size="1080,1920" type="rect" lineSize="0" fillColor="#ff999999">
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
+    <graph id="n83_wvci" name="n83" xy="0,0" size="1080,200" type="rect" lineSize="0" fillColor="#ffb6996b"/>
     <component id="n73_neb7" name="ComLingShou" src="sbd05" fileName="Component/ComLingShou.xml" xy="0,200">
       <gearDisplay controller="ctrlShow" pages="0"/>
     </component>
@@ -22,7 +23,7 @@
     </component>
     <component id="n12_sbd0" name="BtnLingShou" src="qjdo1" fileName="Component/BtnTxt.xml" pkg="vx9zwser" xy="0,1810" pivot="0.5,1" size="216,110" group="n58_sbd0">
       <gearColor controller="ctrlShow" pages="0" values="#ffffff" default="#000000"/>
-      <Button title="灵兽" titleColor="#000000" titleFontSize="65" controller="ctrlShow" page="0"/>
+      <Button title="灵兽" titleColor="#ffffff" titleFontSize="65" controller="ctrlShow" page="0"/>
     </component>
     <component id="n14_sbd0" name="BtnGongFa" src="qjdo1" fileName="Component/BtnTxt.xml" pkg="vx9zwser" xy="216,1810" pivot="0.5,1" size="216,110" group="n58_sbd0">
       <gearColor controller="ctrlShow" pages="0,1" values="#000000|#ffffff" default="#000000"/>
@@ -34,14 +35,19 @@
     </component>
     <component id="n16_sbd0" name="BtnJueSe" src="qjdo1" fileName="Component/BtnTxt.xml" pkg="vx9zwser" xy="648,1810" pivot="0.5,1" size="216,110" group="n58_sbd0">
       <gearColor controller="ctrlShow" pages="0,3" values="#000000|#ffffff" default="#000000"/>
-      <Button title="角色" titleColor="#ffffff" titleFontSize="65" controller="ctrlShow" page="3"/>
+      <Button title="角色" titleColor="#000000" titleFontSize="65" controller="ctrlShow" page="3"/>
     </component>
     <component id="n17_sbd0" name="BtnXiuXing" src="qjdo1" fileName="Component/BtnTxt.xml" pkg="vx9zwser" xy="864,1810" pivot="0.5,1" size="216,110" group="n58_sbd0">
       <gearColor controller="ctrlShow" pages="0,4" values="#000000|#ffffff" default="#000000"/>
       <Button title="修行" titleColor="#000000" titleFontSize="65" controller="ctrlShow" page="4"/>
     </component>
     <group id="n58_sbd0" name="n58" xy="0,1810" size="1080,110"/>
-    <component id="n81_gc8g" name="ComCurrency" src="gc8g63" fileName="Component/ComCurrency.xml" pkg="vx9zwser" xy="0,0"/>
+    <component id="n81_gc8g" name="ComCurrency" src="gc8g63" fileName="Component/ComCurrency.xml" pkg="vx9zwser" xy="233,100"/>
     <loader id="n82_gc8g" name="LoaderHead1" xy="20,22" size="160,160" touchable="false" url="ui://vx9zwserqjdo4z" fill="scaleFree"/>
   </displayList>
+  <transition name="t1" autoPlay="true" frameRate="30">
+    <item time="0" type="XY" target="n81_gc8g" tween="true" startValue="-,-100" endValue="233,100" duration="6"/>
+    <item time="0" type="XY" target="n82_gc8g" tween="true" startValue="-,-178" endValue="20,22" duration="6"/>
+    <item time="0" type="XY" target="n83_wvci" tween="true" startValue="-,-200" endValue="0,0" duration="6"/>
+  </transition>
 </component>

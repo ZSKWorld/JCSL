@@ -9,10 +9,10 @@
       <gearLook controller="button" pages="0,1,2,3" values="0,0,0,0|1,0,0,0|1,0,0,0|1,0,0,0" tween="true"/>
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
-    <text id="n1_sbd0" name="TxtName" xy="12,152" size="190,42" fontSize="30" color="#ffffff" align="center" vAlign="middle" leading="0" bold="true" singleLine="true" autoClearText="true" text="五级体力宝石">
+    <text id="n1_sbd0" name="TxtName" xy="15,152" size="184,42" fontSize="30" color="#ffffff" align="center" vAlign="middle" leading="0" singleLine="true" autoClearText="true" text="五级体力宝石">
       <relation target="" sidePair="center-center,middle-middle"/>
     </text>
-    <text id="n2_sbd0" name="TxtCount" xy="169,308" size="36,42" fontSize="30" color="#77f7d1" bold="true" autoClearText="true" text="99">
+    <text id="n2_sbd0" name="TxtCount" xy="171,308" size="34,42" fontSize="30" color="#77f7d1" autoClearText="true" text="99">
       <relation target="" sidePair="right-right,bottom-bottom"/>
     </text>
   </displayList>

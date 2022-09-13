@@ -59,11 +59,4 @@
       <item/>
     </list>
   </displayList>
-  <transition name="t0" autoPlay="true"/>
-  <transition name="RenWuIn"/>
-  <transition name="RenWuOut"/>
-  <transition name="XinFaIn"/>
-  <transition name="XinFaOut"/>
-  <transition name="SkillIn"/>
-  <transition name="SkillOut"/>
 </component>

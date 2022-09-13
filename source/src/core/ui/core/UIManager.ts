@@ -170,7 +170,7 @@ class UIManager extends Observer {
 			this.openedViews.unshift(viewInst);
 			layerMgr.addObject(viewInst, viewInst.layer || Layer.Bottom);
 		}
-		viewCtrl?.onForeground?.();
+		viewCtrl?._onForeground();
 		callback && callback.run();
 		this.lockPanel.visible = false;
 	}

@@ -10,7 +10,7 @@ import { UIPoolKey } from "./UIPoolKey";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-30 00:09:45
+ * @LastEditTime : 2022-09-13 08:18:55
  * @Description  : UI工具类
  */
 export class UIUtility {
@@ -48,8 +48,9 @@ export class UIUtility {
 		caller: any,
 		renderFunc: (index?: number, item?: any) => void,
 		clickFunc?: (item?: any, evt?: Laya.Event, index?: number) => void,
+		virtual: boolean = true,
 	): void {
-		list.setVirtual();
+		virtual && list.setVirtual();
 		list.itemRenderer?.recover();
 		list.itemRenderer = Laya.Handler.create(caller, renderFunc, null, false);
 		clickFunc && list.on(fgui.Events.CLICK_ITEM, caller, clickFunc);

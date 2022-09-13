@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="950,200">
+<component size="950,200" overflow="hidden">
   <displayList>
     <graph id="n2_neb7" name="n2" xy="0,0" size="950,200" type="rect" lineSize="0" fillColor="#ffd2b98b">
       <relation target="" sidePair="width-width,height-height"/>

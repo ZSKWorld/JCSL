@@ -7,7 +7,7 @@ import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
  * @Author       : zsk
  * @Date         : 2021-08-20 21:36:21
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-30 01:01:55
+ * @LastEditTime : 2022-09-13 08:52:50
  * @Description  : UI控制器脚本基类，可挂在任何Laya.Node（GUI的displayObject）上。
  * @Description  : 该组件为可回收组件。鼠标、键盘交互事件可使用装饰器注册 => InsertKeyEvent、InsertMouseEvent
  */
@@ -18,8 +18,11 @@ export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, 
 	private _view: V;
 	/** 页面消息中心 */
 	private _listener: Laya.EventDispatcher;
+	/** 子页面控制器集合 */
+	private _subCtrls: BaseViewCtrl[] = [];
 
 	get view() { return this._view; }
+	get subCtrls() { return this._subCtrls; }
 
 	get listener() { return this._listener || (this._listener = Laya.Pool.createByClass(Laya.EventDispatcher)); }
 
@@ -41,6 +44,19 @@ export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, 
 		ViewCtrlDIExtend.registerDeviceEvent(this);
 	}
 
+	/** 私有方法，不可重写 */
+	_onForeground() {
+		this.onForeground?.();
+		this.subCtrls.forEach(v => v._onForeground());
+	}
+
+	/** 
+	 * 每次面板前置调用该方法，onEnable之后调用。
+	 * 和onEnable的区别在于：如果当前面板再次前置onEnable不会重复调用，onForeground会重复调用。
+	 * 该方法为虚方法，使用时重写即可
+	 */
+	protected onForeground?(): void;
+
 	/**
 	 * 添加页面消息监听
 	 * @param type 消息类型
@@ -61,7 +77,7 @@ export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, 
 	}
 
 	override onReset() {
-		const { _view, _listener, proxy } = this;
+		const { _view, _listener, _subCtrls, proxy } = this;
 		Laya.timer.clearAll(this);
 		Laya.timer.clearAll(_view);
 		Laya.Tween.clearAll(this);
@@ -71,6 +87,7 @@ export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, 
 		eventMgr.offAllCaller(proxy);
 		_listener?.offAll();
 		Laya.Pool.recoverByClass(_listener);
+		_subCtrls.length = 0;
 		this._view = null;
 		this.data = null;
 		this._listener = null;

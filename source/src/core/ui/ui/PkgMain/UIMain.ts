@@ -21,6 +21,7 @@ export default class UIMain extends fgui.GComponent {
 	public BtnXiuXing:fgui.GButton;
 	public ComCurrency:fgui.GComponent;
 	public LoaderHead1:fgui.GLoader;
+	public t1:fgui.Transition;
 	public static URL:string = "ui://vith2b66qjdo0";
 
 	public static createInstance():UIMain {
@@ -29,17 +30,18 @@ export default class UIMain extends fgui.GComponent {
 
 	protected override onConstruct():void {
 		this.ctrlShow = this.getControllerAt(0);
-		this.ComLingShou = <ComLingShou>(this.getChildAt(1));
-		this.ComGongFa = <ComGongFa>(this.getChildAt(2));
-		this.ComShiLian = <ComShiLian>(this.getChildAt(3));
-		this.ComJueSe = <ComJueSe>(this.getChildAt(4));
-		this.ComXiuXing = <ComXiuXing>(this.getChildAt(5));
-		this.BtnLingShou = <fgui.GButton>(this.getChildAt(6));
-		this.BtnGongFa = <fgui.GButton>(this.getChildAt(7));
-		this.BtnShiLian = <fgui.GButton>(this.getChildAt(8));
-		this.BtnJueSe = <fgui.GButton>(this.getChildAt(9));
-		this.BtnXiuXing = <fgui.GButton>(this.getChildAt(10));
-		this.ComCurrency = <fgui.GComponent>(this.getChildAt(11));
-		this.LoaderHead1 = <fgui.GLoader>(this.getChildAt(12));
+		this.ComLingShou = <ComLingShou>(this.getChildAt(2));
+		this.ComGongFa = <ComGongFa>(this.getChildAt(3));
+		this.ComShiLian = <ComShiLian>(this.getChildAt(4));
+		this.ComJueSe = <ComJueSe>(this.getChildAt(5));
+		this.ComXiuXing = <ComXiuXing>(this.getChildAt(6));
+		this.BtnLingShou = <fgui.GButton>(this.getChildAt(7));
+		this.BtnGongFa = <fgui.GButton>(this.getChildAt(8));
+		this.BtnShiLian = <fgui.GButton>(this.getChildAt(9));
+		this.BtnJueSe = <fgui.GButton>(this.getChildAt(10));
+		this.BtnXiuXing = <fgui.GButton>(this.getChildAt(11));
+		this.ComCurrency = <fgui.GComponent>(this.getChildAt(12));
+		this.LoaderHead1 = <fgui.GLoader>(this.getChildAt(13));
+		this.t1 = this.getTransitionAt(0);
 	}
 }

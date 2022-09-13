@@ -1,4 +1,3 @@
-import { IUserData } from "../../net/network/Interface";
 import { BaseViewCtrl } from "./BaseViewCtrl";
 import { BaseViewCtrlProxy } from "./BaseViewCtrlProxy";
 import { Layer } from "./GameLayer";
@@ -7,7 +6,7 @@ import { ViewID } from "./ViewID";
 * @Author       : zsk
 * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-30 23:23:00
+ * @LastEditTime : 2022-09-13 08:42:51
 * @Description  : 定义页面及控制器类型和扩展
 */
 
@@ -68,6 +67,7 @@ export interface ViewExtension extends IViewMethod, IViewStateMethod {
 	layer?: Layer;
 	userData?: Readonly<IUserData>;
 	listener?: Laya.EventDispatcher;
+	viewCtrl?: IViewCtrl;
 
 	/**
 	 * 页面创建完毕之后执行，只执行一次。
@@ -98,12 +98,6 @@ export type IViewCtrl_Class = new () => IViewCtrl;
 export interface ViewCtrlExtension extends IViewMethod, IViewStateMethod {
 	userData?: Readonly<IUserData>;
 	proxy?: IViewCtrlProxy;
-	/** 
-	 * 每次面板前置调用该方法，onEnable之后调用。
-	 * 和onEnable的区别在于：如果当前面板已经前置onEnable不会重复调用，onForeground会重复调用。
-	 * 该方法为虚方法，使用时重写即可
-	 */
-	onForeground?(): void;
 };
 
 

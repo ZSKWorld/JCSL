@@ -6,7 +6,7 @@ import { MathUtil } from "./core/libs/math/MathUtil";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-03 20:55:31
+ * @LastEditTime : 2022-09-13 07:52:19
  * @Description  : 引擎修复
  */
 export class FixEngine {
@@ -17,6 +17,7 @@ export class FixEngine {
 		this.FixLayaPoolSign();
 		this.AddComponentNetConnect();
 		this.ClearEventDispatcherHandler();
+		this.PlayTransitionAction();
 	}
 
 	/**修复GUI粗体不生效 */
@@ -281,6 +282,17 @@ export class FixEngine {
 				}
 			}
 			return this;
+		}
+	}
+
+	/** 修改控制器动效播放机制为每次都从头播放 */
+	private static PlayTransitionAction() {
+		const prototype = fgui.PlayTransitionAction.prototype;
+		prototype[ "enter" ] = function (controller: fgui.Controller) {
+			if (!this._currentTransition) {
+				this._currentTransition = controller.parent.getTransition(this.transitionName);
+			}
+			this._currentTransition.play(null, this.playTimes, this.delay);
 		}
 	}
 }

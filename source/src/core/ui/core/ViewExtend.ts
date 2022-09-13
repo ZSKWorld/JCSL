@@ -10,7 +10,7 @@ import { ViewID } from "./ViewID";
  * @Author       : zsk
  * @Date         : 2022-08-25 23:58:44
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:19:55
+ * @LastEditTime : 2022-09-13 08:39:19
  * @Description  : 页面及控制器扩展
  */
 export class ViewExtend {
@@ -45,8 +45,11 @@ export class ViewExtend {
 				if (!viewCtrl.proxy && ProxyClass[ viewId ])
 					viewCtrl.proxy = new ProxyClass[ viewId ]();
 				viewCtrl.proxy && (viewCtrl.proxy.viewCtrl = viewCtrl);
+				if (viewInst !== this)
+					(this as IView).viewCtrl?.subCtrls.push(viewCtrl);
 			}
 			viewInst.userData = userData;
+			viewInst.viewCtrl = viewCtrl;
 			//这里不能使用传入的listener
 			viewInst.listener = viewCtrl?.listener;
 			newComp && viewInst.onCreate?.();

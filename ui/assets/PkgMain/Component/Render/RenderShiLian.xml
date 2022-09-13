@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="950,300">
+<component size="950,300" pivot="0.5,0.5" overflow="hidden">
   <displayList>
     <graph id="n2_neb7" name="n2" xy="0,0" size="950,300" type="rect" lineSize="0" fillColor="#ffd2b98b">
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
     <richtext id="n4_neb7" name="TxtDesc" xy="244,70" size="484,92" fontSize="70" vAlign="bottom" ubb="true" singleLine="true" text="极寒冻土 [size=55][color=#ff0000]五重境[/color][/size]">
-      <relation target="" sidePair="center-center,middle-middle"/>
+      <relation target="" sidePair="center-center"/>
     </richtext>
     <component id="n6_neb7" name="BtnEnter" src="sbd05i" fileName="Component/BtnCornerTxt.xml" pkg="vx9zwser" xy="353,191" size="244,87" controller="ctrlBgColor,1">
+      <relation target="" sidePair="center-center"/>
       <Button title="进入" titleColor="#ffffff" titleFontSize="50"/>
     </component>
   </displayList>
+  <transition name="showAni">
+    <item time="0" type="Alpha" value="1"/>
+    <item time="0" type="Size" tween="true" startValue="0,-" endValue="950,300" duration="6"/>
+  </transition>
   <customProperty target="title" propertyId="0"/>
 </component>

@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="154,53" pivot="0.5,0.5" extention="Button" designImageAlpha="97">
-  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0"/>
+  <controller name="button" pages="0,up,1,down,2,over,3,selectedOver" selected="0">
+    <action type="play_transition" fromPage="1" toPage="2" transition="t1"/>
+  </controller>
   <controller name="ctrlBgColor" exported="true" pages="0,蓝,1,红,2,黄,4,绿,3,黑灰,5,金黄,6,橙色,7,白色,8,粉色,9,灰色1,10,蓝绿" selected="0"/>
   <displayList>
-    <graph id="n0_qjdo" name="n0" xy="0,0" size="154,53" touchable="false" type="rect" lineSize="0" fillColor="#ff53bede" corner="10">
+    <graph id="n0_qjdo" name="n0" xy="0,0" size="154,53" touchable="false" type="rect" lineSize="0" fillColor="#ff53bede" corner="25">
       <gearColor controller="ctrlBgColor" pages="0,2,4,3,5,6,7,8,9,10" values="#53bede|#e7c235|#54b554|#343844|#fcc254|#e38153|#ffffff|#eb90a0|#393939|#31aa8f" default="#d64a46"/>
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
-    <graph id="n4_mz80" name="n4" xy="0,0" size="154,53" alpha="0" touchable="false" blend="add" type="rect" lineSize="4" lineColor="#ffffffff" fillColor="#00000000" corner="10">
-      <gearLook controller="button" pages="0,1,2,3" values="0,0,0,0|1,0,0,0|1,0,0,0|1,0,0,0" tween="true"/>
+    <graph id="n4_mz80" name="n4" xy="0,0" pivot="0.5,0.5" size="154,53" alpha="0" touchable="false" type="rect" lineSize="4" lineColor="#ffffffff" fillColor="#0053bede" corner="25">
       <relation target="" sidePair="width-width,height-height"/>
     </graph>
     <text id="n3_qjdo" name="title" xy="46,8" size="64,42" fontSize="30" autoClearText="true" text="登录">
@@ -16,4 +17,16 @@
     </text>
   </displayList>
   <Button downEffect="scale" downEffectValue=".9"/>
+  <transition name="t0" autoPlay="true" frameRate="30">
+    <item time="0" type="Alpha" tween="true" startValue="0" endValue="1" duration="4" ease="Linear"/>
+    <item time="0" type="Scale" tween="true" startValue="0.7,0.7" endValue="1.1,1.1" duration="4" ease="Linear"/>
+    <item time="4" type="Scale" tween="true" startValue="1.1,1.1" endValue="1.01,1.01" duration="3" ease="Linear"/>
+    <item time="7" type="Scale" tween="true" startValue="1.01,1.01" endValue="1.05,1.05" duration="3" ease="Linear"/>
+    <item time="10" type="Scale" tween="true" startValue="1.05,1.05" endValue="1,1" duration="3" ease="Linear"/>
+    <item time="13" type="Scale" value="1,1"/>
+  </transition>
+  <transition name="t1" options="2">
+    <item time="0" type="Alpha" target="n4_mz80" tween="true" startValue="1" endValue="0" duration="9" ease="Linear"/>
+    <item time="0" type="Scale" target="n4_mz80" tween="true" startValue="1,1" endValue="1.1,1.2" duration="9"/>
+  </transition>
 </component>
