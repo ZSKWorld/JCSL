@@ -1,6 +1,6 @@
 import { eventMgr } from "../../libs/event/EventMgr";
 import { ExtensionClass } from "../../libs/utils/Util";
-import { ViewCtrlExtension, ViewCtrlEvents, IViewCtrlProxy, IView } from "./interfaces";
+import { IView, IViewCtrlProxy, ViewCtrlEvents, ViewCtrlExtension } from "./interfaces";
 import { ProxyClass } from "./UIGlobal";
 import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
 
@@ -8,7 +8,7 @@ import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
  * @Author       : zsk
  * @Date         : 2021-08-20 21:36:21
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-13 08:52:50
+ * @LastEditTime : 2022-09-14 20:43:29
  * @Description  : UI控制器脚本基类，可挂在任何Laya.Node（GUI的displayObject）上。
  * @Description  : 该组件为可回收组件。鼠标、键盘交互事件可使用装饰器注册 => InsertKeyEvent、InsertMouseEvent
  */
@@ -23,7 +23,7 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	private _proxy: IViewCtrlProxy;
 	/** 子页面控制器集合 */
 	private _subCtrls: BaseViewCtrl[] = [];
-	
+
 	get view() { return this._view; }
 	get listener() { return this._listener; }
 	set listener(value: Laya.EventDispatcher) {
@@ -38,13 +38,6 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	get proxy() { return this._proxy; }
 	get subCtrls() { return this._subCtrls; }
 
-	override onAdded() {
-		this._view = this.owner[ "$owner" ];
-		this.listener = Laya.Pool.createByClass(Laya.EventDispatcher);
-		this._proxy = Laya.Pool.createByClass(ProxyClass[ this.viewId ]);
-		this._proxy.viewCtrl = this;
-	}
-
 	override onAwake() {
 		eventMgr.registerNotify(this);
 		eventMgr.registerNotify(this._view);
@@ -52,16 +45,6 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 		ViewCtrlDIExtend.registerDeviceEvent(this);
 		this.addMessageListener(ViewCtrlEvents.OnForeground, this._onForeground);
 		this.addMessageListener(ViewCtrlEvents.OnBackground, this._onBackground);
-	}
-
-	/**
-	 * 添加页面消息监听
-	 * @param type 消息类型
-	 * @param callback 回调函数
-	 * @param args 参数
-	 */
-	addMessageListener(type: string, callback: Function, args?: any[]) {
-		this._listener.on(type, this, callback, args);
 	}
 
 	/**
@@ -93,25 +76,49 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 		ViewCtrlDIExtend.offDeviceEvent(this);
 	}
 
+	/**
+	 * 添加页面消息监听
+	 * @param type 消息类型
+	 * @param callback 回调函数
+	 * @param args 参数
+	 */
+	protected addMessageListener(type: string, callback: Function, args?: any[]) {
+		this._listener.on(type, this, callback, args);
+	}
+
+	/**
+	 * 组件被挂载时执行，早于awake，方法只执行一次
+	 * 此方法为虚方法，使用时重写覆盖即可
+	 */
+	protected onAdded(): void { }
+
 	/** 
 	 * 每次面板前置调用该方法，onEnable之后调用。
 	 * 该方法为虚方法，使用时重写即可
 	 */
-	protected onForeground?(): void;
+	protected onForeground(): void { }
 
 	/** 
 	 * 每次面板后置调用该方法，onDisable之后调用。
 	 * 该方法为虚方法，使用时重写即可
 	 */
-	protected onBackground?(): void;
+	protected onBackground(): void { }
+
+	private _onAdded() {
+		this._view = this.owner[ "$owner" ];
+		this.listener = Laya.Pool.createByClass(Laya.EventDispatcher);
+		this._proxy = Laya.Pool.createByClass(ProxyClass[ this.viewId ]);
+		this._proxy.viewCtrl = this;
+		this.onAdded();
+	}
 
 	private _onForeground() {
-		this.onForeground?.();
+		this.onForeground();
 		this.subCtrls.forEach(v => v._onForeground());
 	}
 
 	private _onBackground() {
-		this.onBackground?.();
+		this.onBackground();
 		this.subCtrls.forEach(v => v._onBackground());
 	}
 }

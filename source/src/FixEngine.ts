@@ -6,7 +6,7 @@ import { MathUtil } from "./core/libs/math/MathUtil";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-13 07:52:19
+ * @LastEditTime : 2022-09-14 20:38:53
  * @Description  : 引擎修复
  */
 export class FixEngine {
@@ -19,7 +19,6 @@ export class FixEngine {
 		this.AddComponentNetConnect();
 		this.ClearEventDispatcherHandler();
 		this.PlayTransitionAction();
-		this.ScriptOnAdded();
 	}
 
 	/**修复GUI粗体不生效 */
@@ -312,13 +311,6 @@ export class FixEngine {
 				this._currentTransition = controller.parent.getTransition(this.transitionName);
 			}
 			this._currentTransition.play(null, this.playTimes, this.delay);
-		}
-	}
-
-	private static ScriptOnAdded() {
-		const prototype = Laya.Script.prototype;
-		prototype[ "_onAdded" ] = function () {
-			this.onAdded && this.onAdded();
 		}
 	}
 }

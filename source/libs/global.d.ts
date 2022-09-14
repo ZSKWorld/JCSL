@@ -26,14 +26,6 @@ declare namespace Laya {
         rotate(angle: number): Vector2;
         copyTo(v2: Vector2): Vector2;
     }
-
-    interface Script {
-        /**
-         * 组件被挂载时执行，早于awake，方法只执行一次
-         * 此方法为虚方法，使用时重写覆盖即可
-         */
-        onAdded(): void;
-    }
 }
 
 declare namespace fgui {
