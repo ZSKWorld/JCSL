@@ -8,9 +8,9 @@ import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
  * @Author       : zsk
  * @Date         : 2021-08-20 21:36:21
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-14 20:43:29
+ * @LastEditTime : 2022-09-15 00:40:25
  * @Description  : UI控制器脚本基类，可挂在任何Laya.Node（GUI的displayObject）上。
- * @Description  : 该组件为可回收组件。鼠标、键盘交互事件可使用装饰器注册 => InsertKeyEvent、InsertMouseEvent
+ * 该组件为可回收组件。鼠标、键盘交互事件可使用装饰器注册 => InsertKeyEvent、InsertMouseEvent
  */
 export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends ExtensionClass<ViewCtrlExtension, Laya.Script>(Laya.Script) {
 	/** 页面数据 */
@@ -41,7 +41,7 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	override onAwake() {
 		eventMgr.registerNotify(this);
 		eventMgr.registerNotify(this._view);
-		eventMgr.registerNotify(this.proxy);
+		eventMgr.registerNotify(this._proxy);
 		ViewCtrlDIExtend.registerDeviceEvent(this);
 		this.addMessageListener(ViewCtrlEvents.OnForeground, this._onForeground);
 		this.addMessageListener(ViewCtrlEvents.OnBackground, this._onBackground);
@@ -58,21 +58,23 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 
 	override onReset() {
 		const { _view, _listener, _subCtrls, _proxy } = this;
-		Laya.timer.clearAll(this);
-		Laya.timer.clearAll(_view);
-		Laya.Tween.clearAll(this);
-		Laya.Tween.clearAll(_view);
-		eventMgr.offAllCaller(this);
-		eventMgr.offAllCaller(_view);
-		eventMgr.offAllCaller(_proxy);
-		_listener?.offAll();
-		Laya.Pool.recoverByClass(_listener);
-		Laya.Pool.recoverByClass(_proxy);
-		_subCtrls.length = 0;
 		this.data = null;
 		this._view = null;
 		this._listener = null;
 		this._proxy = null;
+		_subCtrls.length = 0;
+		_listener?.offAll();
+		Laya.timer.clearAll(this);
+		Laya.timer.clearAll(_view);
+		Laya.timer.clearAll(_proxy);
+		Laya.Tween.clearAll(this);
+		Laya.Tween.clearAll(_view);
+		Laya.Tween.clearAll(_proxy);
+		eventMgr.offAllCaller(this);
+		eventMgr.offAllCaller(_view);
+		eventMgr.offAllCaller(_proxy);
+		Laya.Pool.recoverByClass(_proxy);
+		Laya.Pool.recoverByClass(_listener);
 		ViewCtrlDIExtend.offDeviceEvent(this);
 	}
 
@@ -90,7 +92,7 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	 * 组件被挂载时执行，早于awake，方法只执行一次
 	 * 此方法为虚方法，使用时重写覆盖即可
 	 */
-	protected onAdded(): void { }
+	// protected onAdded(): void { }
 
 	/** 
 	 * 每次面板前置调用该方法，onEnable之后调用。
@@ -106,20 +108,20 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 
 	private _onAdded() {
 		this._view = this.owner[ "$owner" ];
-		this.listener = Laya.Pool.createByClass(Laya.EventDispatcher);
+		this._listener = Laya.Pool.createByClass(Laya.EventDispatcher);
 		this._proxy = Laya.Pool.createByClass(ProxyClass[ this.viewId ]);
 		this._proxy.viewCtrl = this;
-		this.onAdded();
+		// this.onAdded();
 	}
 
 	private _onForeground() {
 		this.onForeground();
-		this.subCtrls.forEach(v => v._onForeground());
+		this._subCtrls.forEach(v => v._onForeground());
 	}
 
 	private _onBackground() {
 		this.onBackground();
-		this.subCtrls.forEach(v => v._onBackground());
+		this._subCtrls.forEach(v => v._onBackground());
 	}
 }
 

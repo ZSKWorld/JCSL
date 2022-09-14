@@ -27,25 +27,10 @@ class Main {
 		if (GameConfig.stat) Laya.Stat.show();
 		// Laya.alertGlobalError(true);
 
-		fairygui.UIConfig.packageFileExtension = "zip";
-
-		// const font = "Font01";
-		// const font = "Font02";
-		const font = "Font03";
-		// const font = "Font04";
-		// const font = "Font05";
-		// const font = "Font06";
-		// const font = "Font07";
-		// const font = "Font08";
-		// const font = "Font09";
-		// const font = "Font10";
-		// const font = "Font11";
-		// const font = "Font12";
-		// const font = "Font13";
-		// const font = "Font14";
-		fairygui.UIConfig.defaultFont = font;
-		Laya.Text.defaultFont = font;
 		FixEngine.Fix();
+		Laya.Text.defaultFont = "Font03";
+		fairygui.UIConfig.defaultFont = "Font03";
+		fairygui.UIConfig.packageFileExtension = "zip";
 
 		//激活资源版本控制，version.json由IDE发布功能自动生成，如果没有也不影响后续流程
 		Laya.ResourceVersion.enable("version.json", Laya.Handler.create(this, this.onVersionLoaded), Laya.ResourceVersion.FILENAME_VERSION);

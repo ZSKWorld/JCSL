@@ -9,7 +9,7 @@ import { uiMgr } from "./UIManager";
  * @Author       : zsk
  * @Date         : 2022-08-25 23:58:44
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-14 20:47:58
+ * @LastEditTime : 2022-09-15 00:06:15
  * @Description  : 页面及控制器扩展
  */
 export class ViewExtend {
@@ -23,8 +23,8 @@ export class ViewExtend {
 		prototype.sendMessage = function (type, data) { (<IView>this).listener?.event(type, data); };
 		prototype.dispatch = function (type, data) { eventMgr.event(type, data); };
 		prototype.addView = function (viewId, data, callback, hideTop) { uiMgr.addView(viewId, data, callback, hideTop); };
-		prototype.removeTop = function () { uiMgr.removeTop(); };
-		prototype.removeAll = function () { uiMgr.removeAllView(); };
+		prototype.removeTopView = function () { uiMgr.removeTopView(); };
+		prototype.removeAllView = function () { uiMgr.removeAllView(); };
 		prototype.removeView = function (viewId) { uiMgr.removeView(viewId); };
 		prototype.removeSelf = function () { uiMgr.removeView((<IView>this).viewId); };
 		prototype.initView = function (viewId, viewInst, listener, data) {
@@ -69,8 +69,8 @@ export class ViewExtend {
 	private static baseCtrlExtend() {
 		let prototype = BaseViewCtrl.prototype as IViewCtrl;
 		prototype.addView = function (viewId, data, callback, hideTop) { uiMgr.addView(viewId, data, callback, hideTop); };
-		prototype.removeTop = function () { uiMgr.removeTop(); };
-		prototype.removeAll = function () { uiMgr.removeAllView(); };
+		prototype.removeTopView = function () { uiMgr.removeTopView(); };
+		prototype.removeAllView = function () { uiMgr.removeAllView(); };
 		prototype.removeView = function (viewId) { uiMgr.removeView(viewId); };
 		prototype.removeSelf = function () { uiMgr.removeView((<IViewCtrl>this).view.viewId); };
 	}

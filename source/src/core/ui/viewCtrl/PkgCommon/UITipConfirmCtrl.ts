@@ -11,8 +11,8 @@ export interface UITipConfirmData {
 const logger = Logger.Create("UITipConfirmCtrl").setEnable(true);
 
 export class UITipConfirmCtrl extends BaseViewCtrl<UITipConfirmView, UITipConfirmData>{
-    private confirmDatas: UITipConfirmData[] = [];
-    private curConfirm: UITipConfirmData;
+    private _confirmDatas: UITipConfirmData[] = [];
+    private _curConfirm: UITipConfirmData;
 
     override onAwake(): void {
         super.onAwake();
@@ -26,8 +26,8 @@ export class UITipConfirmCtrl extends BaseViewCtrl<UITipConfirmView, UITipConfir
     }
 
     override onForeground(): void {
-        if (this.curConfirm) this.confirmDatas.unshift(this.curConfirm);
-        this.confirmDatas.unshift(this.data);
+        if (this._curConfirm) this._confirmDatas.unshift(this._curConfirm);
+        this._confirmDatas.unshift(this.data);
         this.data = null;
         this.showConfirm();
     }
@@ -41,13 +41,13 @@ export class UITipConfirmCtrl extends BaseViewCtrl<UITipConfirmView, UITipConfir
     }
 
     private showConfirm() {
-        this.curConfirm = this.confirmDatas.shift();
-        if (this.curConfirm) this.view.setContent(this.curConfirm.text, this.curConfirm.title);
+        this._curConfirm = this._confirmDatas.shift();
+        if (this._curConfirm) this.view.setContent(this._curConfirm.text, this._curConfirm.title);
         else this.view.playAni(true).then(() => this.removeSelf());
     }
 
     private onBtnCloseClick(result: boolean) {
-        this.curConfirm.callback?.runWith(result);
+        this._curConfirm.callback?.runWith(result);
         this.showConfirm();
     }
 }

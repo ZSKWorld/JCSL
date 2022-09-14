@@ -6,7 +6,7 @@ import { ViewID } from "./ViewID";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-14 23:27:20
+ * @LastEditTime : 2022-09-15 00:56:54
  * @Description  : 定义页面及控制器类型和扩展
  */
 export const enum ViewCtrlEvents {
@@ -30,10 +30,10 @@ export interface GComponentExtend {
 	addView?<T = any>(viewId: ViewID, data?: T, callback?: Laya.Handler, hideTop?: boolean): void;
 
 	/**移除最上层页面 */
-	removeTop?(): void;
+	removeTopView?(): void;
 
 	/**移除所有页面 */
-	removeAll?(): void;
+	removeAllView?(): void;
 
 	/** 移除页面
 	 * @param viewId 页面id

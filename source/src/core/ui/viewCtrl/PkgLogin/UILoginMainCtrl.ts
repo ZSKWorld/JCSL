@@ -19,11 +19,8 @@ export class UILoginMainCtrl extends BaseViewCtrl<UILoginMainView, UILoginMainDa
 
     override onEnable(): void {
         super.onEnable();
-
         const data = localData.get<LoginInput>(LocalDataKey.LastLoginAccount);
-        if (data) {
-            this.view.setLoginInfo(data.account, data.password);
-        }
+        data && this.view.setLoginInfo(data.account, data.password);
     }
 
     private UILoginMain_OnBtnLoginClick(): void {

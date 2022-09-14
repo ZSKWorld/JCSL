@@ -8,7 +8,7 @@ const enum LogLevel {
  * @Author       : zsk
  * @Date         : 2022-08-05 23:09:46
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:24:50
+ * @LastEditTime : 2022-09-15 01:12:04
  * @Description  : 日志打印工具
  */
 export class Logger {
@@ -86,18 +86,18 @@ export class Logger {
     }
 
     private constructor(
-        private name: string,
+        private _name: string,
         /** 是否开启打印日志，实例开关 */
-        private enable: boolean = true,
+        private _enable: boolean = true,
     ) { }
 
-    setEnable(enable: boolean) { this.enable = true; return this; }
+    setEnable(enable: boolean) { this._enable = true; return this; }
 
-    log(...message: any[]) { this.enable && Logger.DoLog(LogLevel.Log, this.name, ...message); }
+    log(...message: any[]) { this._enable && Logger.DoLog(LogLevel.Log, this._name, ...message); }
 
-    warn(...message: any[]) { this.enable && Logger.DoLog(LogLevel.Warn, this.name, ...message); }
+    warn(...message: any[]) { this._enable && Logger.DoLog(LogLevel.Warn, this._name, ...message); }
 
-    error(...message: any[]) { this.enable && Logger.DoLog(LogLevel.Error, this.name, ...message); }
+    error(...message: any[]) { this._enable && Logger.DoLog(LogLevel.Error, this._name, ...message); }
 }
 
 windowImmit("Logger", Logger)

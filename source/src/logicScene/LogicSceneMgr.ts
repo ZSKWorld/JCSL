@@ -11,37 +11,37 @@ const logger = Logger.Create("LogicSceneMgr").setEnable(true);
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-04 15:58:17
+ * @LastEditTime : 2022-09-15 01:07:45
  * @Description  : 逻辑场景管理类
  */
 class LogicSceneMgr extends Observer {
-	private currentType: LogicSceneType;
-	private currentScene: IScene;
-	private enterCompleted: boolean = true;
-	private sceneMap: Map<LogicSceneType, IScene>;
+	private _currentType: LogicSceneType;
+	private _currentScene: IScene;
+	private _enterCompleted: boolean = true;
+	private _sceneMap: Map<LogicSceneType, IScene>;
 
 	init(sceneMap: [ LogicSceneType, IScene ][]) {
-		if (!this.sceneMap)
-			this.sceneMap = new Map(sceneMap);
+		if (!this._sceneMap)
+			this._sceneMap = new Map(sceneMap);
 	}
 
 	@InsertNotify(NotifyConst.EnterScene)
 	enterScene(type: LogicSceneType, data?: any) {
-		if (!this.enterCompleted) return;
-		if (this.currentType != type) {
-			this.enterCompleted = false;
-			const newScene = this.sceneMap.get(type);
+		if (!this._enterCompleted) return;
+		if (this._currentType != type) {
+			this._enterCompleted = false;
+			const newScene = this._sceneMap.get(type);
 			newScene.load().then(() => {
-				this.currentType = type;
-				if (this.currentScene)
-					this.currentScene.exit();
-				this.currentScene = newScene;
-				this.enterCompleted = true;
-				this.currentScene.enter(data);
+				this._currentType = type;
+				if (this._currentScene)
+					this._currentScene.exit();
+				this._currentScene = newScene;
+				this._enterCompleted = true;
+				this._currentScene.enter(data);
 				Laya.Resource.destroyUnusedResources();
 			}, () => {
 				//场景加载失败
-				this.enterCompleted = true;
+				this._enterCompleted = true;
 				if (confirm(`场景 ${ type } 加载失败，是否重试?`))
 					this.enterScene(type, data);
 			});
