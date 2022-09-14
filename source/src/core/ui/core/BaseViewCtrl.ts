@@ -1,6 +1,6 @@
 import { eventMgr } from "../../libs/event/EventMgr";
 import { ExtensionClass } from "../../libs/utils/Util";
-import { ViewCtrlExtension, ViewCtrlEvents, IViewCtrlProxy } from "./interfaces";
+import { ViewCtrlExtension, ViewCtrlEvents, IViewCtrlProxy, IView } from "./interfaces";
 import { ProxyClass } from "./UIGlobal";
 import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
 
@@ -12,7 +12,7 @@ import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
  * @Description  : UI控制器脚本基类，可挂在任何Laya.Node（GUI的displayObject）上。
  * @Description  : 该组件为可回收组件。鼠标、键盘交互事件可使用装饰器注册 => InsertKeyEvent、InsertMouseEvent
  */
-export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, D = any> extends ExtensionClass<ViewCtrlExtension, Laya.Script>(Laya.Script) {
+export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends ExtensionClass<ViewCtrlExtension, Laya.Script>(Laya.Script) {
 	/** 页面数据 */
 	data: D;
 	/** 控制器挂载的ui页面 */

@@ -27,7 +27,7 @@ export class ViewExtend {
 		prototype.removeTop = function () { uiMgr.removeTop(); };
 		prototype.removeAll = function () { uiMgr.removeAllView(); };
 		prototype.removeView = function (viewId) { uiMgr.removeView(viewId); };
-		prototype.removeSelf = function () { uiMgr.removeView((<IView>this).name as ViewID); };
+		prototype.removeSelf = function () { uiMgr.removeView((<IView>this).viewId); };
 		prototype.initView = function (viewId, viewInst, listener, data) {
 			//是否是新挂载组件，只有新挂载的组件才执行onCreate方法
 			let newComp = true;
@@ -45,12 +45,15 @@ export class ViewExtend {
 				data != null && (viewCtrl.data = data);
 				viewCtrl.listener = listener;
 				viewCtrl.userData = userData;
-				if (viewInst !== this)
-					(this as IView).viewCtrl?.subCtrls.push(viewCtrl);
+				if (viewInst !== this){
+					const that = (this as IView);
+					const ThisCtrlCls = CtrlClass[that.viewId];
+					const thisCtrl = that.getComponent(ThisCtrlCls);
+					thisCtrl?.subCtrls.push(viewCtrl);
+				}
 			}
 			viewInst.viewId = viewId;
 			viewInst.userData = userData;
-			viewInst.viewCtrl = viewCtrl;
 			//这里不能使用传入的listener，传入的可能为空值
 			viewInst.listener = viewCtrl?.listener;
 			newComp && viewInst.onCreate?.();
@@ -61,7 +64,6 @@ export class ViewExtend {
 			const _this = this as IView;
 			_this.userData = null;
 			_this.listener = null;
-			_this.viewCtrl = null;
 		}
 	}
 
@@ -71,6 +73,6 @@ export class ViewExtend {
 		prototype.removeTop = function () { uiMgr.removeTop(); };
 		prototype.removeAll = function () { uiMgr.removeAllView(); };
 		prototype.removeView = function (viewId) { uiMgr.removeView(viewId); };
-		prototype.removeSelf = function () { uiMgr.removeView((<IViewCtrl>this).view.name as ViewID); };
+		prototype.removeSelf = function () { uiMgr.removeView((<IViewCtrl>this).view.viewId); };
 	}
 }

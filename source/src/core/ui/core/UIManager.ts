@@ -180,7 +180,7 @@ class UIManager extends Observer {
 	/** 关闭顶层页面 */
 	removeTop() {
 		if (this.topView) {
-			this.removeView(this.topView.name as ViewID);
+			this.removeView(this.topView.viewId);
 			this.topView && !this.topView.parent && layerMgr.addObject(this.topView, this.topView.layer || Layer.Bottom);
 		}
 	}
@@ -207,7 +207,7 @@ class UIManager extends Observer {
 	removeAllView() {
 		this.openedViews.forEach(viewInst => {
 			viewInst.removeFromParent();
-			this.cache.addDestroyCache(viewInst.name as ViewID, viewInst);
+			this.cache.addDestroyCache(viewInst.viewId, viewInst);
 		});
 		this.openedViews.length = 0;
 	}

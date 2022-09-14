@@ -10,9 +10,9 @@ import { ViewID } from "./ViewID";
  * @Description  : 定义页面及控制器类型和扩展
  */
 export const enum ViewCtrlEvents {
-	/** 页面控制器前置事件 */
+	/** 页面前置事件 */
 	OnForeground = "OnForeground",
-	/** 页面控制器后置事件 */
+	/** 页面后置事件 */
 	OnBackground = "OnBackground",
 }
 
@@ -49,7 +49,7 @@ interface IViewMethod extends GComponentExtend {
 }
 
 interface IViewCommon {
-	viewId:ViewID;
+	viewId?:ViewID;
 	userData?: Readonly<IUserData>;
 }
 
@@ -69,7 +69,6 @@ export interface IView_Class {
 export interface ViewExtension extends IViewMethod, IViewCommon {
 	layer?: Layer;
 	listener?: Laya.EventDispatcher;
-	viewCtrl?: IViewCtrl;
 
 	/**
 	 * 页面创建完毕之后执行，只执行一次。
