@@ -1,6 +1,6 @@
 import { eventMgr } from "../../libs/event/EventMgr";
 import { ExtensionClass } from "../../libs/utils/Util";
-import { IView, IViewCtrlProxy, ViewCtrlEvents, ViewCtrlExtension } from "./interfaces";
+import { IView, IViewCtrlProxy, ViewCtrlEvents, ViewCtrlExtension } from "./Interfaces";
 import { ProxyClass } from "./UIGlobal";
 import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
 

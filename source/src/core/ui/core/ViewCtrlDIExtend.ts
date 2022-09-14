@@ -1,5 +1,5 @@
 import { KeyEvent, MouseEvent } from "./BaseViewCtrl";
-import { IViewCtrl } from "./interfaces";
+import { IViewCtrl } from "./Interfaces";
 
 export type DIViewCtrl = IViewCtrl & {
 	__keyEventList?: { [ key in KeyEvent ]?: { [ keyCode: string ]: Function[] } };

@@ -5,7 +5,7 @@
  * @LastEditTime : 2022-08-29 23:19:19
  * @Description  : 全局的UI集合
  */
-import { IViewCtrlProxy_Class, IViewCtrl_Class, IView_Class } from "./interfaces";
+import { IViewCtrlProxy_Class, IViewCtrl_Class, IView_Class } from "./Interfaces";
 import { ViewID } from "./ViewID";
 type ReadOnlyView = Readonly<IView_Class> & { readonly [ key in ViewID ]: IView_Class };
 type ReadOnlyViewCtrl = Readonly<IViewCtrl_Class> & { readonly [ key in ViewID ]: IViewCtrl_Class };

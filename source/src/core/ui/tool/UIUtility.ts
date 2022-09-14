@@ -1,7 +1,7 @@
 import { NotifyConst } from "../../common/NotifyConst";
 import { eventMgr } from "../../libs/event/EventMgr";
 import { Layer, layerMgr } from "../core/GameLayer";
-import { IView } from "../core/interfaces";
+import { IView } from "../core/Interfaces";
 import { uiMgr } from "../core/UIManager";
 import { ViewID } from "../core/ViewID";
 import { UIPoolKey } from "./UIPoolKey";

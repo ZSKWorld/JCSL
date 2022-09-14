@@ -1,5 +1,5 @@
 import { ExtensionClass } from "../../../../libs/utils/Util";
-import { ViewExtension } from "../../../core/interfaces";
+import { ViewExtension } from "../../../core/Interfaces";
 import ComXiuXing from "../../../ui/PkgMain/ComXiuXing";
 import { ResPath } from "../../../../common/ResPath";
 

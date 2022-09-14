@@ -1,6 +1,6 @@
 import { ResPath } from "../../../common/ResPath";
 import { ExtensionClass } from "../../../libs/utils/Util";
-import { ViewExtension } from "../../core/interfaces";
+import { ViewExtension } from "../../core/Interfaces";
 import UILoginMain from "../../ui/PkgLogin/UILoginMain";
 
 export const enum UILoginMainMsg {

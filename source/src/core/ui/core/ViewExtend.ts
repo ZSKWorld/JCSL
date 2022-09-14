@@ -1,7 +1,7 @@
 import { eventMgr } from "../../libs/event/EventMgr";
 import { userData } from "../../userData/UserData";
 import { BaseViewCtrl } from "./BaseViewCtrl";
-import { IView, IViewCtrl } from "./interfaces";
+import { IView, IViewCtrl } from "./Interfaces";
 import { CtrlClass } from "./UIGlobal";
 import { uiMgr } from "./UIManager";
 

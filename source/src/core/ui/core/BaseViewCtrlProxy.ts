@@ -1,6 +1,6 @@
 import { Notifier } from "../../libs/event/Notifier";
 import { Logger } from "../../libs/utils/Logger";
-import { IViewCtrl } from "./interfaces";
+import { IViewCtrl } from "./Interfaces";
 
 const logger = Logger.Create("BaseViewCtrlProxy").setEnable(true);
 

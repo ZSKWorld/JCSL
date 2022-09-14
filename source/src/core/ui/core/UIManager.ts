@@ -3,7 +3,7 @@ import { InsertNotify } from "../../libs/event/EventMgr";
 import { Observer } from "../../libs/event/Observer";
 import { Logger } from "../../libs/utils/Logger";
 import { Layer, layerMgr } from "./GameLayer";
-import { IView, ViewCtrlEvents } from "./interfaces";
+import { IView, ViewCtrlEvents } from "./Interfaces";
 import { ViewClass } from "./UIGlobal";
 import { ViewID } from "./ViewID";
 

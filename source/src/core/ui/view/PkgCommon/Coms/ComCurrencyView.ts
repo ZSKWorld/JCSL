@@ -2,7 +2,7 @@ import { ResPath } from "../../../../common/ResPath";
 import { InsertNotify } from "../../../../libs/event/EventMgr";
 import { ExtensionClass } from "../../../../libs/utils/Util";
 import { UserDataEvent } from "../../../../userData/UserDataEvent";
-import { ViewExtension } from "../../../core/interfaces";
+import { ViewExtension } from "../../../core/Interfaces";
 import ComCurrency from "../../../ui/PkgCommon/ComCurrency";
 
 export const enum ComCurrencyMsg {

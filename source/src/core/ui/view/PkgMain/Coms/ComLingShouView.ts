@@ -1,5 +1,5 @@
 import { ExtensionClass } from "../../../../libs/utils/Util";
-import { ViewExtension } from "../../../core/interfaces";
+import { ViewExtension } from "../../../core/Interfaces";
 import ComLingShou from "../../../ui/PkgMain/ComLingShou";
 import { ResPath } from "../../../../common/ResPath";
 

@@ -40,7 +40,7 @@ import { ComTipInfoView } from "../view/PkgCommon/Coms/ComTipInfoView";
 import { ComXiuXingCtrl } from "../viewCtrl/PkgMain/Coms/ComXiuXingCtrl";
 import { ComXiuXingProxy } from "../viewCtrlProxy/PkgMain/Coms/ComXiuXingProxy";
 import { ComXiuXingView } from "../view/PkgMain/Coms/ComXiuXingView";
-import { IViewCtrlProxy_Class, IViewCtrl_Class, IView_Class } from "./interfaces";
+import { IViewCtrlProxy_Class, IViewCtrl_Class, IView_Class } from "./Interfaces";
 import { Logger } from "../../libs/utils/Logger";
 import { RenderGongFaView } from "../view/PkgMain/Renders/RenderGongFaView";
 import { RenderJueSeView } from "../view/PkgMain/Renders/RenderJueSeView";
