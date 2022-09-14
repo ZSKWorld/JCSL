@@ -6,7 +6,7 @@ import { ViewID } from "./ViewID";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-13 08:42:51
+ * @LastEditTime : 2022-09-14 23:25:58
  * @Description  : 定义页面及控制器类型和扩展
  */
 export const enum ViewCtrlEvents {
@@ -49,7 +49,7 @@ interface IViewMethod extends GComponentExtend {
 }
 
 interface IViewCommon {
-	viewId?:ViewID;
+	viewId?: ViewID;
 	userData?: Readonly<IUserData>;
 }
 

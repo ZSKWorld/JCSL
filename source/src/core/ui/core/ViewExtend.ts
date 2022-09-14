@@ -4,13 +4,12 @@ import { BaseViewCtrl } from "./BaseViewCtrl";
 import { IView, IViewCtrl } from "./interfaces";
 import { CtrlClass } from "./UIGlobal";
 import { uiMgr } from "./UIManager";
-import { ViewID } from "./ViewID";
 
 /**
  * @Author       : zsk
  * @Date         : 2022-08-25 23:58:44
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-13 08:39:19
+ * @LastEditTime : 2022-09-14 20:47:58
  * @Description  : 页面及控制器扩展
  */
 export class ViewExtend {
@@ -38,16 +37,16 @@ export class ViewExtend {
 				if (viewCtrl) newComp = false;
 				else {
 					viewCtrl = Laya.Pool.createByClass(CtrlCls);
-					viewCtrl["_destroyed"] = false;
+					viewCtrl[ "_destroyed" ] = false;
 					viewCtrl.viewId = viewId;
 					viewInst.addComponentIntance(viewCtrl);
 				}
 				data != null && (viewCtrl.data = data);
 				viewCtrl.listener = listener;
 				viewCtrl.userData = userData;
-				if (viewInst !== this){
+				if (viewInst !== this) {
 					const that = (this as IView);
-					const ThisCtrlCls = CtrlClass[that.viewId];
+					const ThisCtrlCls = CtrlClass[ that.viewId ];
 					const thisCtrl = that.getComponent(ThisCtrlCls);
 					thisCtrl?.subCtrls.push(viewCtrl);
 				}
