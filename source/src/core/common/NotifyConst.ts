@@ -1,5 +1,4 @@
 import { LogicSceneType } from "../../logicScene/LogicSceneType";
-import { UserOutput } from "../net/network/Interface";
 
 /**
  * @Author       : zsk

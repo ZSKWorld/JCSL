@@ -3,7 +3,7 @@ import { InsertNotify } from "../../libs/event/EventMgr";
 import { Observer } from "../../libs/event/Observer";
 import { Logger } from "../../libs/utils/Logger";
 import { Layer, layerMgr } from "./GameLayer";
-import { IView } from "./interfaces";
+import { IView, ViewCtrlEvents } from "./interfaces";
 import { ViewClass } from "./UIGlobal";
 import { ViewID } from "./ViewID";
 
@@ -12,7 +12,7 @@ const logger = Logger.Create("UIManager").setEnable(true);
 /** 页面缓存管理 */
 class UICache {
 	/**销毁缓存时间，毫秒 */
-	private static readonly DestroyCacheTime = 5000;
+	private static readonly DestroyCacheTime = 1 * 60 * 1000;
 
 	/**销毁缓存，销毁前保留一段时间，期间不在使用就销毁 */
 	private destroyCache: Map<ViewID, [ IView, number ]> = new Map();
@@ -164,13 +164,15 @@ class UIManager extends Observer {
 	}
 
 	private addView2(viewID: ViewID, viewInst: IView, data: any, hideTop: boolean, callback: Laya.Handler) {
-		const viewCtrl = viewInst.initView(viewID, viewInst, null, data);
+		viewInst.initView(viewID, viewInst, null, data);
 		if (viewInst != this.topView) {
-			hideTop && this.topView && this.topView.removeFromParent();
+			const topView = this.topView;
+			hideTop && topView?.removeFromParent();
+			topView?.sendMessage(ViewCtrlEvents.OnBackground);
 			this.openedViews.unshift(viewInst);
 			layerMgr.addObject(viewInst, viewInst.layer || Layer.Bottom);
 		}
-		viewCtrl?._onForeground();
+		viewInst.sendMessage(ViewCtrlEvents.OnForeground);
 		callback && callback.run();
 		this.lockPanel.visible = false;
 	}

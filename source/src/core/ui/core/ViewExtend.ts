@@ -2,7 +2,7 @@ import { eventMgr } from "../../libs/event/EventMgr";
 import { userData } from "../../userData/UserData";
 import { BaseViewCtrl } from "./BaseViewCtrl";
 import { IView, IViewCtrl } from "./interfaces";
-import { CtrlClass, ProxyClass } from "./UIGlobal";
+import { CtrlClass } from "./UIGlobal";
 import { uiMgr } from "./UIManager";
 import { ViewID } from "./ViewID";
 
@@ -36,25 +36,33 @@ export class ViewExtend {
 			if (CtrlCls) {
 				viewCtrl = viewInst.getComponent(CtrlCls);
 				if (viewCtrl) newComp = false;
-				else viewCtrl = viewInst.addComponent(CtrlCls);
-			}
-			if (viewCtrl) {
-				data != undefined && (viewCtrl.data = data);
+				else {
+					viewCtrl = Laya.Pool.createByClass(CtrlCls);
+					viewCtrl["_destroyed"] = false;
+					viewCtrl.viewId = viewId;
+					viewInst.addComponentIntance(viewCtrl);
+				}
+				data != null && (viewCtrl.data = data);
 				viewCtrl.listener = listener;
 				viewCtrl.userData = userData;
-				if (!viewCtrl.proxy && ProxyClass[ viewId ])
-					viewCtrl.proxy = new ProxyClass[ viewId ]();
-				viewCtrl.proxy && (viewCtrl.proxy.viewCtrl = viewCtrl);
 				if (viewInst !== this)
 					(this as IView).viewCtrl?.subCtrls.push(viewCtrl);
 			}
+			viewInst.viewId = viewId;
 			viewInst.userData = userData;
 			viewInst.viewCtrl = viewCtrl;
-			//这里不能使用传入的listener
+			//这里不能使用传入的listener，传入的可能为空值
 			viewInst.listener = viewCtrl?.listener;
 			newComp && viewInst.onCreate?.();
-			return viewCtrl;
 		};
+		const oldDispose = prototype.dispose;
+		prototype.dispose = function () {
+			oldDispose.call(this);
+			const _this = this as IView;
+			_this.userData = null;
+			_this.listener = null;
+			_this.viewCtrl = null;
+		}
 	}
 
 	private static baseCtrlExtend() {

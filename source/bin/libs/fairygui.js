@@ -1668,17 +1668,6 @@
         static cast(sprite) {
             return (sprite["$owner"]);
         }
-
-        //Custom
-        addComponent(componentType) { 
-            return this._displayObject.addComponent(componentType);
-        }
-        getComponent(componentType) {
-            return this._displayObject.getComponent(componentType);
-        }
-        getComponents(componentType){
-            return this._displayObject.getComponents(componentType);
-        }
     }
     fgui.GObject = GObject;
     fgui.BlendMode = {

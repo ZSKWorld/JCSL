@@ -1,6 +1,7 @@
 import { eventMgr } from "../../libs/event/EventMgr";
 import { ExtensionClass } from "../../libs/utils/Util";
-import { ViewCtrlExtension } from "./interfaces";
+import { ViewCtrlExtension, ViewCtrlEvents, IViewCtrlProxy } from "./interfaces";
+import { ProxyClass } from "./UIGlobal";
 import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
 
 /**
@@ -18,14 +19,13 @@ export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, 
 	private _view: V;
 	/** 页面消息中心 */
 	private _listener: Laya.EventDispatcher;
+	/** 控制器网络回包代理 */
+	private _proxy: IViewCtrlProxy;
 	/** 子页面控制器集合 */
 	private _subCtrls: BaseViewCtrl[] = [];
-
+	
 	get view() { return this._view; }
-	get subCtrls() { return this._subCtrls; }
-
-	get listener() { return this._listener || (this._listener = Laya.Pool.createByClass(Laya.EventDispatcher)); }
-
+	get listener() { return this._listener; }
 	set listener(value: Laya.EventDispatcher) {
 		if (value && value != this._listener) {
 			if (this._listener) {
@@ -35,27 +35,24 @@ export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, 
 			this._listener = value;
 		}
 	}
+	get proxy() { return this._proxy; }
+	get subCtrls() { return this._subCtrls; }
+
+	override onAdded() {
+		this._view = this.owner[ "$owner" ];
+		this.listener = Laya.Pool.createByClass(Laya.EventDispatcher);
+		this._proxy = Laya.Pool.createByClass(ProxyClass[ this.viewId ]);
+		this._proxy.viewCtrl = this;
+	}
 
 	override onAwake() {
-		this._view = this.owner[ "$owner" ];
 		eventMgr.registerNotify(this);
 		eventMgr.registerNotify(this._view);
 		eventMgr.registerNotify(this.proxy);
 		ViewCtrlDIExtend.registerDeviceEvent(this);
+		this.addMessageListener(ViewCtrlEvents.OnForeground, this._onForeground);
+		this.addMessageListener(ViewCtrlEvents.OnBackground, this._onBackground);
 	}
-
-	/** 私有方法，不可重写 */
-	_onForeground() {
-		this.onForeground?.();
-		this.subCtrls.forEach(v => v._onForeground());
-	}
-
-	/** 
-	 * 每次面板前置调用该方法，onEnable之后调用。
-	 * 和onEnable的区别在于：如果当前面板再次前置onEnable不会重复调用，onForeground会重复调用。
-	 * 该方法为虚方法，使用时重写即可
-	 */
-	protected onForeground?(): void;
 
 	/**
 	 * 添加页面消息监听
@@ -64,7 +61,7 @@ export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, 
 	 * @param args 参数
 	 */
 	addMessageListener(type: string, callback: Function, args?: any[]) {
-		!this.destroyed && this.listener.on(type, this, callback, args);
+		this._listener.on(type, this, callback, args);
 	}
 
 	/**
@@ -77,21 +74,47 @@ export abstract class BaseViewCtrl<V extends fgui.GComponent = fgui.GComponent, 
 	}
 
 	override onReset() {
-		const { _view, _listener, _subCtrls, proxy } = this;
+		const { _view, _listener, _subCtrls, _proxy } = this;
 		Laya.timer.clearAll(this);
 		Laya.timer.clearAll(_view);
 		Laya.Tween.clearAll(this);
 		Laya.Tween.clearAll(_view);
 		eventMgr.offAllCaller(this);
 		eventMgr.offAllCaller(_view);
-		eventMgr.offAllCaller(proxy);
+		eventMgr.offAllCaller(_proxy);
 		_listener?.offAll();
 		Laya.Pool.recoverByClass(_listener);
+		Laya.Pool.recoverByClass(_proxy);
 		_subCtrls.length = 0;
-		this._view = null;
 		this.data = null;
+		this._view = null;
 		this._listener = null;
+		this._proxy = null;
 		ViewCtrlDIExtend.offDeviceEvent(this);
+	}
+
+	/** 
+	 * 每次面板前置调用该方法，onEnable之后调用。
+	 * 和onEnable的区别在于：如果当前面板再次前置onEnable不会重复调用，onForeground会重复调用。
+	 * 该方法为虚方法，使用时重写即可
+	 */
+	protected onForeground?(): void;
+
+	/** 
+	 * 每次面板后置调用该方法，onDisable之后调用。
+	 * 和onDisable的区别在于：如果当前面板再次后置onDisable不会重复调用，onBackground会重复调用。
+	 * 该方法为虚方法，使用时重写即可
+	 */
+	protected onBackground?(): void;
+
+	private _onForeground() {
+		this.onForeground?.();
+		this.subCtrls.forEach(v => v._onForeground());
+	}
+
+	private _onBackground() {
+		this.onBackground?.();
+		this.subCtrls.forEach(v => v._onBackground());
 	}
 }
 

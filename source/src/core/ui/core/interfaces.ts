@@ -3,19 +3,17 @@ import { BaseViewCtrlProxy } from "./BaseViewCtrlProxy";
 import { Layer } from "./GameLayer";
 import { ViewID } from "./ViewID";
 /**
-* @Author       : zsk
-* @Date         : 2022-08-05 21:17:13
+ * @Author       : zsk
+ * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
  * @LastEditTime : 2022-09-13 08:42:51
-* @Description  : 定义页面及控制器类型和扩展
-*/
-
-/**页面状态 */
-interface IViewStateMethod {
-	/**进入前台时执行 */
-	// onForeground?(): void;
-	/**进入后台时执行 */
-	// onBackground?(): void;
+ * @Description  : 定义页面及控制器类型和扩展
+ */
+export const enum ViewCtrlEvents {
+	/** 页面控制器前置事件 */
+	OnForeground = "OnForeground",
+	/** 页面控制器后置事件 */
+	OnBackground = "OnBackground",
 }
 
 export interface GComponentExtend {
@@ -50,6 +48,11 @@ interface IViewMethod extends GComponentExtend {
 	removeSelf?(): void;
 }
 
+interface IViewCommon {
+	viewId:ViewID;
+	userData?: Readonly<IUserData>;
+}
+
 /**页面实例类型 */
 export type IView = fgui.GComponent & ViewExtension;
 
@@ -63,9 +66,8 @@ export interface IView_Class {
 };
 
 /**页面扩展 */
-export interface ViewExtension extends IViewMethod, IViewStateMethod {
+export interface ViewExtension extends IViewMethod, IViewCommon {
 	layer?: Layer;
-	userData?: Readonly<IUserData>;
 	listener?: Laya.EventDispatcher;
 	viewCtrl?: IViewCtrl;
 
@@ -82,9 +84,9 @@ export interface ViewExtension extends IViewMethod, IViewStateMethod {
 	 * @description 初始化页面
 	 * @param viewId 页面ID
 	 * @param viewInst 组件页面对象
-	 * @param listener 事件监听器
+	 * @param listener 页面消息监听器
 	 */
-	initView?(viewId: ViewID, viewInst: IView, listener: Laya.EventDispatcher, data?: any): IViewCtrl;
+	initView?(viewId: ViewID, viewInst: IView, listener: Laya.EventDispatcher, data?: any): void;
 };
 
 
@@ -95,9 +97,7 @@ export type IViewCtrl = BaseViewCtrl & ViewCtrlExtension;
 export type IViewCtrl_Class = new () => IViewCtrl;
 
 /**页面控制器扩展 */
-export interface ViewCtrlExtension extends IViewMethod, IViewStateMethod {
-	userData?: Readonly<IUserData>;
-	proxy?: IViewCtrlProxy;
+export interface ViewCtrlExtension extends IViewMethod, IViewCommon {
 };
 
 

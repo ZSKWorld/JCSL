@@ -12,12 +12,14 @@ import { MathUtil } from "./core/libs/math/MathUtil";
 export class FixEngine {
 	static Fix() {
 		this.UbbTagI();
+		this.GComponentExtension();
 		this.AddGUIObjectEventLockable();
 		this.LoadPackage();
 		this.FixLayaPoolSign();
 		this.AddComponentNetConnect();
 		this.ClearEventDispatcherHandler();
 		this.PlayTransitionAction();
+		this.ScriptOnAdded();
 	}
 
 	/**修复GUI粗体不生效 */
@@ -29,6 +31,22 @@ export class FixEngine {
 		inst._handlers[ "u" ] = function onTag_U(tagName, end, attr) {
 			if (!end) return "<a href=\" \">";
 			else return "</a>";
+		}
+	}
+
+	private static GComponentExtension() {
+		const prototype = fgui.GComponent.prototype;
+		prototype.addComponentIntance = function (component) {
+			return this._displayObject.addComponentIntance(component);
+		}
+		prototype.addComponent = function (componentType) {
+			return this._displayObject.addComponent(componentType);
+		}
+		prototype.getComponent = function (componentType) {
+			return this._displayObject.getComponent(componentType);
+		}
+		prototype.getComponents = function (componentType) {
+			return this._displayObject.getComponents(componentType);
 		}
 	}
 
@@ -241,6 +259,7 @@ export class FixEngine {
 		}
 	}
 
+	/** 定量清理注册事件数组中空元素 */
 	private static ClearEventDispatcherHandler() {
 		const prototype = Laya.EventDispatcher.prototype;
 		prototype.off = function (type: string, caller: any, listener: Function, onceOnly?: boolean) {
@@ -293,6 +312,13 @@ export class FixEngine {
 				this._currentTransition = controller.parent.getTransition(this.transitionName);
 			}
 			this._currentTransition.play(null, this.playTimes, this.delay);
+		}
+	}
+
+	private static ScriptOnAdded() {
+		const prototype = Laya.Script.prototype;
+		prototype[ "_onAdded" ] = function () {
+			this.onAdded && this.onAdded();
 		}
 	}
 }
