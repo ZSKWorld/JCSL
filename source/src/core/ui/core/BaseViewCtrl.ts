@@ -95,14 +95,12 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 
 	/** 
 	 * 每次面板前置调用该方法，onEnable之后调用。
-	 * 和onEnable的区别在于：如果当前面板再次前置onEnable不会重复调用，onForeground会重复调用。
 	 * 该方法为虚方法，使用时重写即可
 	 */
 	protected onForeground?(): void;
 
 	/** 
 	 * 每次面板后置调用该方法，onDisable之后调用。
-	 * 和onDisable的区别在于：如果当前面板再次后置onDisable不会重复调用，onBackground会重复调用。
 	 * 该方法为虚方法，使用时重写即可
 	 */
 	protected onBackground?(): void;
