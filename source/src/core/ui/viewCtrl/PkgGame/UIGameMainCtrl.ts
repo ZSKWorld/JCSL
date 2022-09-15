@@ -9,28 +9,29 @@ export interface UIGameMainData {
 
 export class UIGameMainCtrl extends BaseViewCtrl<UIGameMainView, UIGameMainData>{
 
-    override onAwake(): void {
-        this.addMessageListener(UIGameMainMsg.OnBtnSettingClick, this.UIGameMain_OnBtnSettingClick);
-    }
+	override onAwake(): void {
+		this.addMessageListener(UIGameMainMsg.OnBtnSettingClick, this.onBtnSettingClick);
+	}
 
-    override onEnable(): void {
-        
-    }
+	override onEnable(): void {
 
-    @InsertKeyEvent(KeyEvent.KeyUp, Laya.Keyboard.ESCAPE)
-    private onBackClick() {
-        this.dispatch(NotifyConst.EnterScene, LogicSceneType.MainScene);
-    }
+	}
 
-    private UIGameMain_OnBtnSettingClick(): void {
+	override onDisable(): void {
 
-    }
+	}
 
-    override onDisable(): void {
-        
-    }
+	override onDestroy(): void {
 
-    override onDestroy(): void {
-        
-    }
+	}
+
+	private onBtnSettingClick(): void {
+
+	}
+
+	@InsertKeyEvent(KeyEvent.KeyUp, Laya.Keyboard.ESCAPE)
+	private exitGame() {
+		this.dispatch(NotifyConst.EnterScene, LogicSceneType.MainScene);
+	}
+
 }

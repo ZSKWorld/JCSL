@@ -7,23 +7,23 @@ export interface ComLingShouData {
 
 export class ComLingShouCtrl extends BaseViewCtrl<ComLingShouView, ComLingShouData>{
 
-    override onAwake(): void {
-		this.addMessageListener(ComLingShouMsg.OnBtnCreateClick, this.ComLingShou_OnBtnCreateClick);
-    }
-
-    override onEnable(): void {
-        
-    }
-
-	private ComLingShou_OnBtnCreateClick(): void {
-	
+	override onAwake(): void {
+		this.addMessageListener(ComLingShouMsg.OnBtnCreateClick, this.onBtnCreateClick);
 	}
 
-    override onDisable(): void {
-        
-    }
+	override onEnable(): void {
 
-    override onDestroy(): void {
-        
-    }
+	}
+
+	private onBtnCreateClick(): void {
+
+	}
+
+	override onDisable(): void {
+
+	}
+
+	override onDestroy(): void {
+
+	}
 }
