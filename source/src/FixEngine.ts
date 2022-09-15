@@ -6,15 +6,15 @@ import { MathUtil } from "./core/libs/math/MathUtil";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-14 20:38:53
+ * @LastEditTime : 2022-09-15 22:12:30
  * @Description  : 引擎修复
  */
 export class FixEngine {
 	static Fix() {
 		this.UbbTagI();
 		this.GComponentExtension();
+		this.GListClickItemDispatch();
 		this.AddGUIObjectEventLockable();
-		this.LoadPackage();
 		this.FixLayaPoolSign();
 		this.AddComponentNetConnect();
 		this.ClearEventDispatcherHandler();
@@ -46,6 +46,15 @@ export class FixEngine {
 		}
 		prototype.getComponents = function (componentType) {
 			return this._displayObject.getComponents(componentType);
+		}
+	}
+
+	/** 修改GList的itemclick事件参数 */
+	private static GListClickItemDispatch() {
+		const prototype = fgui.GList.prototype;
+		prototype[ "dispatchItemEvent" ] = function (item, evt) {
+			var index = this.childIndexToItemIndex(this.getChildIndex(item));
+			this.displayObject.event(fgui.Events.CLICK_ITEM, [ item, evt, index ]);
 		}
 	}
 
@@ -124,91 +133,6 @@ export class FixEngine {
 		gobjProto.removeAllEventLock = function () {
 			if (this.isDisposed) return;
 			this.displayObject.__eventLockMap = null;
-		}
-	}
-
-	/** 修复loadPackage重复加载的bug */
-	private static LoadPackage() {
-		fgui.UIPackage.loadPackage = function loadPackage(resKey, completeHandler, progressHandler) {
-			const UIPackage = fgui.UIPackage as any;
-			let loadKeyArr = [];
-			let keys = [];
-			let i;
-			if (Array.isArray(resKey)) {
-				for (i = 0; i < resKey.length; i++) {
-					loadKeyArr.push({ url: resKey[ i ] + "." + fgui.UIConfig.packageFileExtension, type: Laya.Loader.BUFFER });
-					keys.push(resKey[ i ]);
-				}
-			}
-			else {
-				loadKeyArr = [ { url: resKey + "." + fgui.UIConfig.packageFileExtension, type: Laya.Loader.BUFFER } ];
-				keys = [ resKey ];
-			}
-			let pkgArr = [];
-			let pkg;
-			for (i = 0; i < loadKeyArr.length; i++) {
-				pkg = UIPackage._instById[ keys[ i ] ];
-				if (pkg) {
-					pkgArr.push(pkg);
-					loadKeyArr.splice(i, 1);
-					keys.splice(i, 1);
-					i--;
-				}
-			}
-			if (loadKeyArr.length == 0) {
-				completeHandler.runWith([ pkgArr ]);
-				return;
-			}
-			var descCompleteHandler = Laya.Handler.create(this, function () {
-				let pkg;
-				let urls = [];
-				for (i = 0; i < loadKeyArr.length; i++) {
-					let asset = fgui.AssetProxy.inst.getRes(loadKeyArr[ i ].url);
-					if (asset) {
-						pkg = new UIPackage();
-						pkgArr.push(pkg);
-						pkg._resKey = keys[ i ];
-						pkg.loadPackage(new fgui.ByteBuffer(asset));
-						let cnt = pkg._items.length;
-						for (let j = 0; j < cnt; j++) {
-							let pi = pkg._items[ j ];
-							if (pi.type == fgui.PackageItemType.Atlas) {
-								urls.push({ url: pi.file, type: Laya.Loader.IMAGE });
-							}
-							else if (pi.type == fgui.PackageItemType.Sound) {
-								urls.push({ url: pi.file, type: Laya.Loader.SOUND });
-							}
-						}
-					}
-				}
-				if (urls.length > 0) {
-					fgui.AssetProxy.inst.load(urls, Laya.Handler.create(this, function () {
-						for (i = 0; i < pkgArr.length; i++) {
-							pkg = pkgArr[ i ];
-							if (!UIPackage._instById[ pkg.id ]) {
-								UIPackage._instById[ pkg.id ] = pkg;
-								UIPackage._instByName[ pkg.name ] = pkg;
-								// UIPackage._instByName[pkg._resKey] = pkg;
-								UIPackage._instById[ pkg._resKey ] = pkg;
-							}
-						}
-						completeHandler.runWith([ pkgArr ]);
-					}, null, true), progressHandler);
-				}
-				else {
-					for (i = 0; i < pkgArr.length; i++) {
-						pkg = pkgArr[ i ];
-						if (!UIPackage._instById[ pkg.id ]) {
-							UIPackage._instById[ pkg.id ] = pkg;
-							UIPackage._instByName[ pkg.name ] = pkg;
-							// UIPackage._instByName[pkg._resKey] = pkg;
-							UIPackage._instById[ pkg._resKey ] = pkg;
-						}
-					}
-					completeHandler.runWith([ pkgArr ]);
-				}
-			}, null, true);
-			fgui.AssetProxy.inst.load(loadKeyArr, descCompleteHandler, null, Laya.Loader.BUFFER);
 		}
 	}
 

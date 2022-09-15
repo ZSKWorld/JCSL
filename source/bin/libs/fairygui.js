@@ -12,6 +12,9 @@
         getRes(url) {
             return this._asset.getRes(url);
         }
+        getItemRes(item) {
+            return this.getRes(item.file);
+        }
         load(url, complete, progress, type, priority, cache) {
             this._asset.load(url, complete, progress, type, priority, cache);
         }
@@ -1942,7 +1945,7 @@
                 if (this._templateVars)
                     text2 = this.parseTemplate(text2);
                 if (this._ubbEnabled) //laya还不支持同一个文本不同样式
-                    this._textField.text = fgui.UBBParser.inst.parse(fgui.ToolSet.encodeHTML(text2), true);
+                    this._textField.text = fgui.UBBParser.inst.parse(text2, true);
                 else
                     this._textField.text = text2;
             }
@@ -4294,7 +4297,7 @@
                 this.dropdown.parent.hidePopup();
             this._selectedIndex = -1;
             this.selectedIndex = index;
-            fgui.Events.dispatch(fgui.Events.STATE_CHANGED, this.displayObject);
+            fgui.Events.dispatch(fgui.Events.STATE_CHANGED, this.displayObject, evt);
         }
         __rollover() {
             this._over = true;
@@ -5345,7 +5348,7 @@
             return this._defaultItem;
         }
         set defaultItem(val) {
-            this._defaultItem = val;
+            this._defaultItem = fgui.UIPackage.normalizeURL(val);
         }
         get autoResizeItem() {
             return this._autoResizeItem;
@@ -5762,8 +5765,7 @@
             this.dispatchItemEvent(item, fgui.Events.createEvent(fgui.Events.CLICK_ITEM, this.displayObject, evt));
         }
         dispatchItemEvent(item, evt) {
-            var index = this.childIndexToItemIndex(this.getChildIndex(item));
-            this.displayObject.event(fgui.Events.CLICK_ITEM, [item, evt, index]);
+            this.displayObject.event(fgui.Events.CLICK_ITEM, [item, evt]);
         }
         setSelectionOnEvent(item, evt) {
             if (!(item instanceof fgui.GButton) || this._selectionMode == fgui.ListSelectionMode.None)
@@ -6426,7 +6428,7 @@
             var needRender;
             var deltaSize = 0;
             var firstItemDeltaSize = 0;
-            var url = this.defaultItem;
+            var url = this._defaultItem;
             var ii, ii2;
             var i, j;
             var partSize = (this._scrollPane.viewWidth - this._columnGap * (this._curLineItemCount - 1)) / this._curLineItemCount;
@@ -6561,7 +6563,7 @@
             var needRender;
             var deltaSize = 0;
             var firstItemDeltaSize = 0;
-            var url = this.defaultItem;
+            var url = this._defaultItem;
             var ii, ii2;
             var i, j;
             var partSize = (this._scrollPane.viewHeight - this._lineGap * (this._curLineItemCount - 1)) / this._curLineItemCount;
@@ -7219,7 +7221,7 @@
                 nextPos += buffer.pos;
                 str = buffer.readS();
                 if (str == null) {
-                    str = this.defaultItem;
+                    str = this._defaultItem;
                     if (!str) {
                         buffer.pos = nextPos;
                         continue;
@@ -7895,7 +7897,7 @@
             }
         }
         get content() {
-            return;
+            return this._content;
         }
         loadContent() {
             this.clearContent();
@@ -13761,7 +13763,7 @@
                             if (!UIPackage._instById[pkg.id]) {
                                 UIPackage._instById[pkg.id] = pkg;
                                 UIPackage._instByName[pkg.name] = pkg;
-                                UIPackage._instByName[pkg._resKey] = pkg;
+                                UIPackage._instById[pkg._resKey] = pkg;
                             }
                         }
                         completeHandler.runWith([pkgArr]);
@@ -13773,7 +13775,7 @@
                         if (!UIPackage._instById[pkg.id]) {
                             UIPackage._instById[pkg.id] = pkg;
                             UIPackage._instByName[pkg.name] = pkg;
-                            UIPackage._instByName[pkg._resKey] = pkg;
+                            UIPackage._instById[pkg._resKey] = pkg;
                         }
                     }
                     completeHandler.runWith([pkgArr]);
@@ -14115,6 +14117,9 @@
             UIPackage._constructing--;
             return g;
         }
+        getItems() {
+            return this._items;
+        }
         getItemById(itemId) {
             return this._itemsById[itemId];
         }
@@ -14136,7 +14141,12 @@
                         var sprite = this._sprites[item.id];
                         if (sprite) {
                             var atlasTexture = (this.getItemAsset(sprite.atlas));
-                            item.texture = Laya.Texture.create(atlasTexture, sprite.rect.x, sprite.rect.y, sprite.rect.width, sprite.rect.height, sprite.offset.x, sprite.offset.y, sprite.originalSize.x, sprite.originalSize.y);
+                            if (atlasTexture) {
+                                item.texture = Laya.Texture.create(atlasTexture, sprite.rect.x, sprite.rect.y, sprite.rect.width, sprite.rect.height, sprite.offset.x, sprite.offset.y, sprite.originalSize.x, sprite.originalSize.y);
+                            }
+                            else {
+                                item.texture = null;
+                            }
                         }
                         else
                             item.texture = null;
@@ -14145,7 +14155,7 @@
                 case fgui.PackageItemType.Atlas:
                     if (!item.decoded) {
                         item.decoded = true;
-                        item.texture = fgui.AssetProxy.inst.getRes(item.file);
+                        item.texture = fgui.AssetProxy.inst.getItemRes(item);
                         //if(!fgui.UIConfig.textureLinearSampling)
                         //item.texture.isLinearSampling = false;
                     }
@@ -14166,7 +14176,7 @@
                     return item.rawData;
                 case fgui.PackageItemType.Misc:
                     if (item.file)
-                        return fgui.AssetProxy.inst.getRes(item.file);
+                        return fgui.AssetProxy.inst.getItemRes(item);
                     else
                         return null;
                 default:
@@ -16841,7 +16851,7 @@
             return this;
         }
         _toColor(start, end, duration) {
-            this._valueSize = 4;
+            this._valueSize = 5;
             this._startValue.color = start;
             this._endValue.color = end;
             this._value.color = start;
@@ -16849,7 +16859,7 @@
             return this;
         }
         _shake(startX, startY, amplitude, duration) {
-            this._valueSize = 5;
+            this._valueSize = 6;
             this._startValue.x = startX;
             this._startValue.y = startY;
             this._startValue.w = amplitude;
@@ -16944,7 +16954,7 @@
             this._normalizedTime = fgui.evaluateEase(this._easeType, reversed ? (this._duration - tt) : tt, this._duration, this._easeOvershootOrAmplitude, this._easePeriod);
             this._value.setZero();
             this._deltaValue.setZero();
-            if (this._valueSize == 5) {
+            if (this._valueSize == 6) {
                 if (this._ended == 0) {
                     var r = this._startValue.w * (1 - this._normalizedTime);
                     var rx = r * (Math.random() > 0.5 ? 1 : -1);
@@ -16972,7 +16982,8 @@
                 this._value.y = pt.y;
             }
             else {
-                for (var i = 0; i < this._valueSize; i++) {
+                let cnt = Math.min(this._valueSize, 4);
+                for (var i = 0; i < cnt; i++) {
                     var n1 = this._startValue.getField(i);
                     var n2 = this._endValue.getField(i);
                     var f = n1 + (n2 - n1) * this._normalizedTime;
