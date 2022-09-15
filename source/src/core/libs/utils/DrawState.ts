@@ -31,7 +31,9 @@ export class DrawState {
         recycleItems(_directs, _starts, _targets);
         for (let i = 0; i < count; i++) {
             _lengthes.push(0);
-            _directs.push(recyclableV2()[ 0 ].setValue(0, -1).rotate(angle * i));
+            const v2 = recyclableV2()[ 0 ];
+            v2.setValue(0, -1);
+            _directs.push(v2.rotate(angle * i));
         }
         _directs.forEach(v => {
             const [ start, target ] = recyclableV2(2);

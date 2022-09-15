@@ -9,7 +9,8 @@ export class Movement_FollowPlayer extends MovementBase {
         if (!_updateMoveDir) {
             this._updateMoveDir = true;
             const { x: px, y: py } = player;
-            _moveDir.setValue(px - owner.x, py - owner.y).normalize();
+            _moveDir.setValue(px - owner.x, py - owner.y);
+            _moveDir.normalize();
         }
         return _moveDir;
     }

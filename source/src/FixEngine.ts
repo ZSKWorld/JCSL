@@ -6,7 +6,7 @@ import { MathUtil } from "./core/libs/math/MathUtil";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-15 22:12:30
+ * @LastEditTime : 2022-09-15 22:25:30
  * @Description  : 引擎修复
  */
 export class FixEngine {
@@ -296,19 +296,25 @@ Laya.Vector2 = class Vector2 {
 	setValue(x: number, y: number) {
 		this.x = x;
 		this.y = y;
-		return this;
 	}
 
 	add(v2: Vector2): Vector2;
 	add(x: number, y?: number): Vector2;
 	add(v1: Vector2 | number, v2 = 0) {
-		if (typeof v1 == "number") return this.setValue(this.x + v1, this.y + v2);
-		return this.setValue(this.x + v1.x, this.y + v1.y);
+		if (typeof v1 == "number") this.setValue(this.x + v1, this.y + v2);
+		else this.setValue(this.x + v1.x, this.y + v1.y);
+		return this;
 	}
 
-	sub(v2: Vector2) { return this.setValue(this.x - v2.x, this.y - v2.y); }
+	sub(v2: Vector2) {
+		this.setValue(this.x - v2.x, this.y - v2.y);
+		return this;
+	}
 
-	scale(scale: number) { return this.setValue(this.x * scale, this.y * scale); }
+	scale(scale: number) {
+		this.setValue(this.x * scale, this.y * scale);
+		return this;
+	}
 
 	dot(v2: Vector2) { return this.x * v2.x + this.y * v2.y; }
 
@@ -327,10 +333,14 @@ Laya.Vector2 = class Vector2 {
 		const cos = Math.cos(radian);
 		const sin = Math.sin(radian);
 		const { x, y } = this;
-		return this.setValue(x * cos + y * sin, -x * sin + y * cos);
+		this.setValue(x * cos + y * sin, -x * sin + y * cos);
+		return this;
 	}
 
-	copyTo(v2: Vector2) { return v2.setValue(this.x, this.y); }
+	copyTo(v2: Vector2) {
+		v2.setValue(this.x, this.y);
+		return this;
+	}
 
 	clone() { return new Vector2(this.x, this.y); }
 }

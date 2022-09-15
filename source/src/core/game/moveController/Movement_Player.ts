@@ -24,8 +24,8 @@ export class Movement_Player extends MovementBase {
     private onMouseMove(): void {
         if (!this._mousePressed) return;
         const { mouseX, mouseY } = Laya.stage;
-        this._moveDir.setValue(mouseX - this._lastMousePoint.x, mouseY - this._lastMousePoint.y)
-            .normalize().scale(this.speed);
+        this._moveDir.setValue(mouseX - this._lastMousePoint.x, mouseY - this._lastMousePoint.y);
+        this._moveDir.normalize().scale(this.speed);
         // this.lastMousePoint.setValue(Laya.stage.mouseX, Laya.stage.mouseY);
     }
 
