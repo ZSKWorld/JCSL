@@ -152,11 +152,11 @@ class UIManager extends Observer {
 	 */
 	@InsertNotify(NotifyConst.RemoveView)
 	removeView(viewId: ViewID) {
-		const { _openedViews: openedViews } = this;
-		for (let i = openedViews.length - 1; i >= 0; i--) {
-			const viewInst = openedViews[ i ];
+		const { _openedViews } = this;
+		for (let i = _openedViews.length - 1; i >= 0; i--) {
+			const viewInst = _openedViews[ i ];
 			if (viewId == null || viewInst.viewId == viewId) {
-				openedViews.splice(i, 1);
+				_openedViews.splice(i, 1);
 				viewInst.removeFromParent();
 				viewInst.sendMessage(ViewCtrlEvents.OnBackground);
 				this._cache.addDestroyCache(viewInst.viewId, viewInst);
@@ -174,10 +174,10 @@ class UIManager extends Observer {
 	removeAllView() { this.removeView(null); }
 
 	private onResize() {
-		const { _openedViews: openedViews, _lockPanel: lockPanel } = this;
-		lockPanel.makeFullScreen();
-		for (let i = openedViews.length - 1; i >= 0; i--) {
-			openedViews[ i ] && openedViews[ i ].makeFullScreen();
+		const { _openedViews, _lockPanel } = this;
+		_lockPanel.makeFullScreen();
+		for (let i = _openedViews.length - 1; i >= 0; i--) {
+			_openedViews[ i ] && _openedViews[ i ].makeFullScreen();
 		}
 	}
 
@@ -186,9 +186,9 @@ class UIManager extends Observer {
 	 * @return 页面索引
 	 */
 	private getOpenViewIndex(viewId: ViewID) {
-		const { _openedViews: openedViews } = this;
-		for (let i = 0, n = openedViews.length; i < n; i++) {
-			const view = openedViews[ i ];
+		const { _openedViews } = this;
+		for (let i = 0, n = _openedViews.length; i < n; i++) {
+			const view = _openedViews[ i ];
 			if (view.viewId == viewId) return i;
 		}
 		return -1;
