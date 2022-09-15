@@ -20,50 +20,50 @@ import UISetting from "../ui/PkgMain/UISetting";
 import UITipConfirm from "../ui/PkgCommon/UITipConfirm";
 import UIWaiting from "../ui/PkgCommon/UIWaiting";
 import { ComCurrencyCtrl } from "../viewCtrl/PkgCommon/Coms/ComCurrencyCtrl";
-import { ComCurrencyProxy } from "../viewCtrlProxy/PkgCommon/Coms/ComCurrencyProxy";
+import { ComCurrencyNetProcessor } from "../viewNetProcessor/PkgCommon/Coms/ComCurrencyNetProcessor";
 import { ComCurrencyView } from "../view/PkgCommon/Coms/ComCurrencyView";
 import { ComGongFaCtrl } from "../viewCtrl/PkgMain/Coms/ComGongFaCtrl";
-import { ComGongFaProxy } from "../viewCtrlProxy/PkgMain/Coms/ComGongFaProxy";
+import { ComGongFaNetProcessor } from "../viewNetProcessor/PkgMain/Coms/ComGongFaNetProcessor";
 import { ComGongFaView } from "../view/PkgMain/Coms/ComGongFaView";
 import { ComJueSeCtrl } from "../viewCtrl/PkgMain/Coms/ComJueSeCtrl";
-import { ComJueSeProxy } from "../viewCtrlProxy/PkgMain/Coms/ComJueSeProxy";
+import { ComJueSeNetProcessor } from "../viewNetProcessor/PkgMain/Coms/ComJueSeNetProcessor";
 import { ComJueSeView } from "../view/PkgMain/Coms/ComJueSeView";
 import { ComLingShouCtrl } from "../viewCtrl/PkgMain/Coms/ComLingShouCtrl";
-import { ComLingShouProxy } from "../viewCtrlProxy/PkgMain/Coms/ComLingShouProxy";
+import { ComLingShouNetProcessor } from "../viewNetProcessor/PkgMain/Coms/ComLingShouNetProcessor";
 import { ComLingShouView } from "../view/PkgMain/Coms/ComLingShouView";
 import { ComShiLianCtrl } from "../viewCtrl/PkgMain/Coms/ComShiLianCtrl";
-import { ComShiLianProxy } from "../viewCtrlProxy/PkgMain/Coms/ComShiLianProxy";
+import { ComShiLianNetProcessor } from "../viewNetProcessor/PkgMain/Coms/ComShiLianNetProcessor";
 import { ComShiLianView } from "../view/PkgMain/Coms/ComShiLianView";
 import { ComTipInfoCtrl } from "../viewCtrl/PkgCommon/Coms/ComTipInfoCtrl";
-import { ComTipInfoProxy } from "../viewCtrlProxy/PkgCommon/Coms/ComTipInfoProxy";
+import { ComTipInfoNetProcessor } from "../viewNetProcessor/PkgCommon/Coms/ComTipInfoNetProcessor";
 import { ComTipInfoView } from "../view/PkgCommon/Coms/ComTipInfoView";
 import { ComXiuXingCtrl } from "../viewCtrl/PkgMain/Coms/ComXiuXingCtrl";
-import { ComXiuXingProxy } from "../viewCtrlProxy/PkgMain/Coms/ComXiuXingProxy";
+import { ComXiuXingNetProcessor } from "../viewNetProcessor/PkgMain/Coms/ComXiuXingNetProcessor";
 import { ComXiuXingView } from "../view/PkgMain/Coms/ComXiuXingView";
-import { IViewCtrlProxy_Class, IViewCtrl_Class, IView_Class } from "./Interfaces";
+import { INetProcessor_Class, IViewCtrl_Class, IView_Class } from "./Interfaces";
 import { Logger } from "../../libs/utils/Logger";
 import { RenderGongFaView } from "../view/PkgMain/Renders/RenderGongFaView";
 import { RenderJueSeView } from "../view/PkgMain/Renders/RenderJueSeView";
 import { RenderShiLianView } from "../view/PkgMain/Renders/RenderShiLianView";
 import { UIGameMainCtrl } from "../viewCtrl/PkgGame/UIGameMainCtrl";
-import { UIGameMainProxy } from "../viewCtrlProxy/PkgGame/UIGameMainProxy";
+import { UIGameMainNetProcessor } from "../viewNetProcessor/PkgGame/UIGameMainNetProcessor";
 import { UIGameMainView } from "../view/PkgGame/UIGameMainView";
 import { UILoginMainCtrl } from "../viewCtrl/PkgLogin/UILoginMainCtrl";
-import { UILoginMainProxy } from "../viewCtrlProxy/PkgLogin/UILoginMainProxy";
+import { UILoginMainNetProcessor } from "../viewNetProcessor/PkgLogin/UILoginMainNetProcessor";
 import { UILoginMainView } from "../view/PkgLogin/UILoginMainView";
 import { UIMainCtrl } from "../viewCtrl/PkgMain/UIMainCtrl";
-import { UIMainProxy } from "../viewCtrlProxy/PkgMain/UIMainProxy";
+import { UIMainNetProcessor } from "../viewNetProcessor/PkgMain/UIMainNetProcessor";
 import { UIMainView } from "../view/PkgMain/UIMainView";
 import { UISettingCtrl } from "../viewCtrl/PkgMain/UISettingCtrl";
-import { UISettingProxy } from "../viewCtrlProxy/PkgMain/UISettingProxy";
+import { UISettingNetProcessor } from "../viewNetProcessor/PkgMain/UISettingNetProcessor";
 import { UISettingView } from "../view/PkgMain/UISettingView";
 import { UITipConfirmCtrl } from "../viewCtrl/PkgCommon/UITipConfirmCtrl";
-import { UITipConfirmProxy } from "../viewCtrlProxy/PkgCommon/UITipConfirmProxy";
+import { UITipConfirmNetProcessor } from "../viewNetProcessor/PkgCommon/UITipConfirmNetProcessor";
 import { UITipConfirmView } from "../view/PkgCommon/UITipConfirmView";
 import { UIWaitingCtrl } from "../viewCtrl/PkgCommon/UIWaitingCtrl";
-import { UIWaitingProxy } from "../viewCtrlProxy/PkgCommon/UIWaitingProxy";
+import { UIWaitingNetProcessor } from "../viewNetProcessor/PkgCommon/UIWaitingNetProcessor";
 import { UIWaitingView } from "../view/PkgCommon/UIWaitingView";
-import { ViewClass, ProxyClass, CtrlClass } from "./UIGlobal";
+import { ViewClass, NetProcessorClass, CtrlClass } from "./UIGlobal";
 import { ViewID } from "./ViewID";
 
 const logger = Logger.Create("ViewRegister").setEnable(true);
@@ -113,29 +113,29 @@ class ViewRegister {
     private registerView() {
 		const register = this.registView;
 		//Coms
-		register(ViewID.ComCurrencyView, ComCurrencyView, ComCurrencyCtrl, ComCurrencyProxy);
-		register(ViewID.ComTipInfoView, ComTipInfoView, ComTipInfoCtrl, ComTipInfoProxy);
-		register(ViewID.ComGongFaView, ComGongFaView, ComGongFaCtrl, ComGongFaProxy);
-		register(ViewID.ComJueSeView, ComJueSeView, ComJueSeCtrl, ComJueSeProxy);
-		register(ViewID.ComLingShouView, ComLingShouView, ComLingShouCtrl, ComLingShouProxy);
-		register(ViewID.ComShiLianView, ComShiLianView, ComShiLianCtrl, ComShiLianProxy);
-		register(ViewID.ComXiuXingView, ComXiuXingView, ComXiuXingCtrl, ComXiuXingProxy);
+		register(ViewID.ComCurrencyView, ComCurrencyView, ComCurrencyCtrl, ComCurrencyNetProcessor);
+		register(ViewID.ComTipInfoView, ComTipInfoView, ComTipInfoCtrl, ComTipInfoNetProcessor);
+		register(ViewID.ComGongFaView, ComGongFaView, ComGongFaCtrl, ComGongFaNetProcessor);
+		register(ViewID.ComJueSeView, ComJueSeView, ComJueSeCtrl, ComJueSeNetProcessor);
+		register(ViewID.ComLingShouView, ComLingShouView, ComLingShouCtrl, ComLingShouNetProcessor);
+		register(ViewID.ComShiLianView, ComShiLianView, ComShiLianCtrl, ComShiLianNetProcessor);
+		register(ViewID.ComXiuXingView, ComXiuXingView, ComXiuXingCtrl, ComXiuXingNetProcessor);
 
 		//Views
-		register(ViewID.TipConfirmView, UITipConfirmView, UITipConfirmCtrl, UITipConfirmProxy);
-		register(ViewID.WaitingView, UIWaitingView, UIWaitingCtrl, UIWaitingProxy);
-		register(ViewID.GameMainView, UIGameMainView, UIGameMainCtrl, UIGameMainProxy);
-		register(ViewID.LoginMainView, UILoginMainView, UILoginMainCtrl, UILoginMainProxy);
-		register(ViewID.MainView, UIMainView, UIMainCtrl, UIMainProxy);
-		register(ViewID.SettingView, UISettingView, UISettingCtrl, UISettingProxy);
+		register(ViewID.TipConfirmView, UITipConfirmView, UITipConfirmCtrl, UITipConfirmNetProcessor);
+		register(ViewID.WaitingView, UIWaitingView, UIWaitingCtrl, UIWaitingNetProcessor);
+		register(ViewID.GameMainView, UIGameMainView, UIGameMainCtrl, UIGameMainNetProcessor);
+		register(ViewID.LoginMainView, UILoginMainView, UILoginMainCtrl, UILoginMainNetProcessor);
+		register(ViewID.MainView, UIMainView, UIMainCtrl, UIMainNetProcessor);
+		register(ViewID.SettingView, UISettingView, UISettingCtrl, UISettingNetProcessor);
 	}
 
-	private registView(viewId: ViewID, viewCls: IView_Class, ctrlCls?: IViewCtrl_Class, proxyCls?:IViewCtrlProxy_Class) {
+	private registView(viewId: ViewID, viewCls: IView_Class, ctrlCls?: IViewCtrl_Class, netProcessorCls?:INetProcessor_Class) {
 		if (!viewCls) throw new Error("参数不能为空！");
 		if (!ViewClass[viewId]) {
 			(ViewClass as any)[viewId] = viewCls;
 			(CtrlClass as any)[viewId] = ctrlCls;
-			(ProxyClass as any)[viewId] = proxyCls;
+			(NetProcessorClass as any)[viewId] = netProcessorCls;
 		} else {
 			logger.warn(`重复添加映射 => ${viewId}`);
 		}

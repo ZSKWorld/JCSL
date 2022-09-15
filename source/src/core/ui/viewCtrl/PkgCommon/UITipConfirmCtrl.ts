@@ -31,11 +31,8 @@ export class UITipConfirmCtrl extends BaseViewCtrl<UITipConfirmView, UITipConfir
     }
 
     override onDisable(): void {
-        
-    }
-
-    override onDestroy(): void {
-        
+        this._curConfirm = null;
+        this._confirmDatas.length = 0;
     }
 
     private showConfirm() {
@@ -45,7 +42,7 @@ export class UITipConfirmCtrl extends BaseViewCtrl<UITipConfirmView, UITipConfir
     }
 
     private onBtnCloseClick(result: boolean) {
-        this._curConfirm.callback?.runWith(result);
+        result && this._curConfirm.callback?.run();
         this.showConfirm();
     }
 }

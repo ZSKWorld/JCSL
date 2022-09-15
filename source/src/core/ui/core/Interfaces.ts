@@ -1,12 +1,12 @@
+import { BaseNetProcessor } from "./BaseNetProcessor";
 import { BaseViewCtrl } from "./BaseViewCtrl";
-import { BaseViewCtrlProxy } from "./BaseViewCtrlProxy";
 import { Layer } from "./GameLayer";
 import { ViewID } from "./ViewID";
 /**
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-15 00:56:54
+ * @LastEditTime : 2022-09-15 23:37:14
  * @Description  : 定义页面及控制器类型和扩展
  */
 export const enum ViewCtrlEvents {
@@ -100,6 +100,6 @@ export interface ViewCtrlExtension extends IViewMethod, IViewCommon {
 };
 
 
-export type IViewCtrlProxy = BaseViewCtrlProxy;
+export type INetProcessor = BaseNetProcessor;
 
-export type IViewCtrlProxy_Class = new () => IViewCtrlProxy;
+export type INetProcessor_Class = new () => INetProcessor;

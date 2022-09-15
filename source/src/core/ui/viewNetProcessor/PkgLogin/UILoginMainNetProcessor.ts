@@ -4,11 +4,11 @@ import { InsertNotify } from "../../../libs/event/EventMgr";
 import { localData } from "../../../libs/localStorage/LocalData";
 import { LocalDataKey } from "../../../libs/localStorage/LocalDataKey";
 import { NetResponse } from "../../../net/NetResponse";
-import { BaseViewCtrlProxy } from "../../core/BaseViewCtrlProxy";
+import { BaseNetProcessor } from "../../core/BaseNetProcessor";
 import { UILoginMainMsg } from "../../view/PkgLogin/UILoginMainView";
 import { UILoginMainCtrl } from "../../viewCtrl/PkgLogin/UILoginMainCtrl";
 
-export class UILoginMainProxy extends BaseViewCtrlProxy<UILoginMainCtrl>{
+export class UILoginMainNetProcessor extends BaseNetProcessor<UILoginMainCtrl>{
 
     @InsertNotify(NetResponse.Response_Login)
     private loginResponse() {

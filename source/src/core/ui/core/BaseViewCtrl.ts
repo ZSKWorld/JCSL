@@ -1,14 +1,14 @@
 import { eventMgr } from "../../libs/event/EventMgr";
 import { ExtensionClass } from "../../libs/utils/Util";
-import { IView, IViewCtrlProxy, ViewCtrlEvents, ViewCtrlExtension } from "./Interfaces";
-import { ProxyClass } from "./UIGlobal";
+import { INetProcessor, IView, ViewCtrlEvents, ViewCtrlExtension } from "./Interfaces";
+import { NetProcessorClass } from "./UIGlobal";
 import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
 
 /**
  * @Author       : zsk
  * @Date         : 2021-08-20 21:36:21
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-15 22:34:56
+ * @LastEditTime : 2022-09-15 23:37:59
  * @Description  : UI控制器脚本基类，可挂在任何Laya.Node（GUI的displayObject）上。
  * 该组件为可回收组件。鼠标、键盘交互事件可使用装饰器注册 => InsertKeyEvent、InsertMouseEvent
  */
@@ -20,7 +20,7 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	/** 页面消息中心 */
 	private _listener: Laya.EventDispatcher;
 	/** 控制器网络回包代理 */
-	private _proxy: IViewCtrlProxy;
+	private _netProcessor: INetProcessor;
 	/** 子页面控制器集合 */
 	private _subCtrls: BaseViewCtrl[] = [];
 
@@ -35,7 +35,7 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 			this._listener = value;
 		}
 	}
-	get proxy() { return this._proxy; }
+	get netProcessor() { return this._netProcessor; }
 	get subCtrls() { return this._subCtrls; }
 
 	/**
@@ -48,23 +48,23 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	}
 
 	override onReset() {
-		const { _view, _listener, _subCtrls, _proxy } = this;
+		const { _view, _listener, _subCtrls, _netProcessor } = this;
 		this.data = null;
 		this._view = null;
 		this._listener = null;
-		this._proxy = null;
+		this._netProcessor = null;
 		_subCtrls.length = 0;
 		_listener?.offAll();
 		Laya.timer.clearAll(this);
 		Laya.timer.clearAll(_view);
-		Laya.timer.clearAll(_proxy);
+		Laya.timer.clearAll(_netProcessor);
 		Laya.Tween.clearAll(this);
 		Laya.Tween.clearAll(_view);
-		Laya.Tween.clearAll(_proxy);
+		Laya.Tween.clearAll(_netProcessor);
 		eventMgr.offAllCaller(this);
 		eventMgr.offAllCaller(_view);
-		eventMgr.offAllCaller(_proxy);
-		Laya.Pool.recoverByClass(_proxy);
+		eventMgr.offAllCaller(_netProcessor);
+		Laya.Pool.recoverByClass(_netProcessor);
 		Laya.Pool.recoverByClass(_listener);
 		ViewCtrlDIExtend.offDeviceEvent(this);
 	}
@@ -94,11 +94,11 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	private _onAdded() {
 		this._view = this.owner[ "$owner" ];
 		this._listener = Laya.Pool.createByClass(Laya.EventDispatcher);
-		this._proxy = Laya.Pool.createByClass(ProxyClass[ this.viewId ]);
-		this._proxy.viewCtrl = this;
+		this._netProcessor = Laya.Pool.createByClass(NetProcessorClass[ this.viewId ]);
+		this._netProcessor.viewCtrl = this;
 		eventMgr.registerNotify(this);
 		eventMgr.registerNotify(this._view);
-		eventMgr.registerNotify(this._proxy);
+		eventMgr.registerNotify(this._netProcessor);
 		ViewCtrlDIExtend.registerDeviceEvent(this);
 		this.addMessageListener(ViewCtrlEvents.OnForeground, this._onForeground);
 		this.addMessageListener(ViewCtrlEvents.OnBackground, this._onBackground);
