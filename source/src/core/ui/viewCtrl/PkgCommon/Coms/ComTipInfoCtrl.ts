@@ -16,7 +16,6 @@ export class ComTipInfoCtrl extends BaseViewCtrl<ComTipInfoView, ComTipInfoData>
     private _moveEnable: boolean;
 
     override onEnable(): void {
-        super.onEnable();
         this._time = this._duration;
         this._moveEnable = false;
         this.view.setContent(this.data.text, this.data.color || "#ffffff");
@@ -38,7 +37,6 @@ export class ComTipInfoCtrl extends BaseViewCtrl<ComTipInfoView, ComTipInfoData>
     }
 
     override onDisable(): void {
-        super.onDisable();
         Laya.Pool.recover(UIPoolKey.TipInfo, this.view);
     }
 }

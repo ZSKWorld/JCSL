@@ -12,11 +12,10 @@ export class ComShiLianCtrl extends BaseViewCtrl<ComShiLianView, ComShiLianData>
     private _firstItem: number;
 
     override onAwake(): void {
-        super.onAwake();
+        
     }
 
     override onEnable(): void {
-        super.onEnable();
         this._showAni = true;
         this._firstItem = -1;
         UIUtility.SetList(this.view.ListItem, 10, this, this.onListItemRenderer);
@@ -24,11 +23,11 @@ export class ComShiLianCtrl extends BaseViewCtrl<ComShiLianView, ComShiLianData>
     }
 
     override onDisable(): void {
-        super.onDisable();
+        
     }
 
     override onDestroy(): void {
-        super.onDestroy();
+        
     }
 
     private onListItemRenderer(index: number, item: RenderShiLianView) {

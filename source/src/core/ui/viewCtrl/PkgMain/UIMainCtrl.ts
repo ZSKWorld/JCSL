@@ -8,7 +8,6 @@ export interface UIMainData{
 export class UIMainCtrl extends BaseViewCtrl<UIMainView, UIMainData>{
 
     override onAwake(): void {
-        super.onAwake();
 		this.addMessageListener(UIMainMsg.OnBtnLingShouClick, this.UIMain_OnBtnLingShouClick);
 		this.addMessageListener(UIMainMsg.OnBtnGongFaClick, this.UIMain_OnBtnGongFaClick);
 		this.addMessageListener(UIMainMsg.OnBtnShiLianClick, this.UIMain_OnBtnShiLianClick);
@@ -17,7 +16,7 @@ export class UIMainCtrl extends BaseViewCtrl<UIMainView, UIMainData>{
     }
 
     override onEnable(): void {
-        super.onEnable();
+		
     }
 
 	private UIMain_OnBtnLingShouClick(): void {
@@ -41,10 +40,10 @@ export class UIMainCtrl extends BaseViewCtrl<UIMainView, UIMainData>{
 	}
 
     override onDisable(): void {
-        super.onDisable();
+		
     }
 
     override onDestroy(): void {
-        super.onDestroy();
+		
     }
 }

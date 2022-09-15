@@ -8,13 +8,11 @@ export interface ComCurrencyData {
 export class ComCurrencyCtrl extends BaseViewCtrl<ComCurrencyView, ComCurrencyData>{
 
     override onAwake(): void {
-        super.onAwake();
 		this.addMessageListener(ComCurrencyMsg.OnBtnAddCoinClick, this.ComCurrency_OnBtnAddCoinClick);
 		this.addMessageListener(ComCurrencyMsg.OnBtnAddVcoinClick, this.ComCurrency_OnBtnAddVcoinClick);
     }
 
     override onEnable(): void {
-        super.onEnable();
 		this.view.refreshMoney();
     }
 
@@ -27,10 +25,10 @@ export class ComCurrencyCtrl extends BaseViewCtrl<ComCurrencyView, ComCurrencyDa
 	}
 
     override onDisable(): void {
-        super.onDisable();
+        
     }
 
     override onDestroy(): void {
-        super.onDestroy();
+        
     }
 }

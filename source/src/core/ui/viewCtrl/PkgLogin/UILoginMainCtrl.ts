@@ -12,13 +12,11 @@ export interface UILoginMainData {
 export class UILoginMainCtrl extends BaseViewCtrl<UILoginMainView, UILoginMainData>{
 
     override onAwake(): void {
-        super.onAwake();
         this.addMessageListener(UILoginMainMsg.OnBtnLoginClick, this.UILoginMain_OnBtnLoginClick);
         this.addMessageListener(UILoginMainMsg.OnBtnRegisterClick, this.UILoginMain_OnBtnRegisterClick);
     }
 
     override onEnable(): void {
-        super.onEnable();
         const data = localData.get<LoginInput>(LocalDataKey.LastLoginAccount);
         data && this.view.setLoginInfo(data.account, data.password);
     }
@@ -44,10 +42,10 @@ export class UILoginMainCtrl extends BaseViewCtrl<UILoginMainView, UILoginMainDa
     }
 
     override onDisable(): void {
-        super.onDisable();
+        
     }
 
     override onDestroy(): void {
-        super.onDestroy();
+        
     }
 }

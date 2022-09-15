@@ -15,13 +15,11 @@ export class UITipConfirmCtrl extends BaseViewCtrl<UITipConfirmView, UITipConfir
     private _curConfirm: UITipConfirmData;
 
     override onAwake(): void {
-        super.onAwake();
         this.addMessageListener(UITipConfirmMsg.OnBtnBgClick, this.onBtnCloseClick, [ false ]);
         this.addMessageListener(UITipConfirmMsg.OnBtnConfirmClick, this.onBtnCloseClick, [ true ]);
     }
 
     override onEnable(): void {
-        super.onEnable();
         this.view.playAni();
     }
 
@@ -33,11 +31,11 @@ export class UITipConfirmCtrl extends BaseViewCtrl<UITipConfirmView, UITipConfir
     }
 
     override onDisable(): void {
-        super.onDisable();
+        
     }
 
     override onDestroy(): void {
-        super.onDestroy();
+        
     }
 
     private showConfirm() {

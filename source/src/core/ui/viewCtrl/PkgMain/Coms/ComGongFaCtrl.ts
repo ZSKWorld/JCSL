@@ -10,21 +10,20 @@ export interface ComGongFaData{
 export class ComGongFaCtrl extends BaseViewCtrl<ComGongFaView, ComGongFaData>{
 
     override onAwake(): void {
-        super.onAwake();
         UIUtility.SetList(this.view.ListItem, 10, this, this.onListItemRenderer);
     }
 
     override onEnable(): void {
-        super.onEnable();
+        
     }
 
 
     override onDisable(): void {
-        super.onDisable();
+        
     }
 
     override onDestroy(): void {
-        super.onDestroy();
+        
     }
 
     private onListItemRenderer(index:number, item:RenderGongFaView){

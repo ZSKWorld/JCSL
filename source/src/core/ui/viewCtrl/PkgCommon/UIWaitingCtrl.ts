@@ -4,12 +4,10 @@ import { UIWaitingView } from "../../view/PkgCommon/UIWaitingView";
 export class UIWaitingCtrl extends BaseViewCtrl<UIWaitingView, string>{
 
     override onAwake(): void {
-        super.onAwake();
-
+        
     }
 
     override onEnable(): void {
-        super.onEnable();
         this.view.playWordAni(this.data);
     }
 
@@ -19,10 +17,10 @@ export class UIWaitingCtrl extends BaseViewCtrl<UIWaitingView, string>{
 
 
     override onDisable(): void {
-        super.onDisable();
+        
     }
 
     override onDestroy(): void {
-        super.onDestroy();
+        
     }
 }

@@ -8,7 +8,7 @@ import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
  * @Author       : zsk
  * @Date         : 2021-08-20 21:36:21
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-15 00:40:25
+ * @LastEditTime : 2022-09-15 22:34:56
  * @Description  : UI控制器脚本基类，可挂在任何Laya.Node（GUI的displayObject）上。
  * 该组件为可回收组件。鼠标、键盘交互事件可使用装饰器注册 => InsertKeyEvent、InsertMouseEvent
  */
@@ -37,15 +37,6 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	}
 	get proxy() { return this._proxy; }
 	get subCtrls() { return this._subCtrls; }
-
-	override onAwake() {
-		eventMgr.registerNotify(this);
-		eventMgr.registerNotify(this._view);
-		eventMgr.registerNotify(this._proxy);
-		ViewCtrlDIExtend.registerDeviceEvent(this);
-		this.addMessageListener(ViewCtrlEvents.OnForeground, this._onForeground);
-		this.addMessageListener(ViewCtrlEvents.OnBackground, this._onBackground);
-	}
 
 	/**
 	 * 封装一个派发全局事件的接口，避免eventMgr过度引用
@@ -88,12 +79,6 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 		this._listener.on(type, this, callback, args);
 	}
 
-	/**
-	 * 组件被挂载时执行，早于awake，方法只执行一次
-	 * 此方法为虚方法，使用时重写覆盖即可
-	 */
-	// protected onAdded(): void { }
-
 	/** 
 	 * 每次面板前置调用该方法，onEnable之后调用。
 	 * 该方法为虚方法，使用时重写即可
@@ -111,7 +96,12 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 		this._listener = Laya.Pool.createByClass(Laya.EventDispatcher);
 		this._proxy = Laya.Pool.createByClass(ProxyClass[ this.viewId ]);
 		this._proxy.viewCtrl = this;
-		// this.onAdded();
+		eventMgr.registerNotify(this);
+		eventMgr.registerNotify(this._view);
+		eventMgr.registerNotify(this._proxy);
+		ViewCtrlDIExtend.registerDeviceEvent(this);
+		this.addMessageListener(ViewCtrlEvents.OnForeground, this._onForeground);
+		this.addMessageListener(ViewCtrlEvents.OnBackground, this._onBackground);
 	}
 
 	private _onForeground() {

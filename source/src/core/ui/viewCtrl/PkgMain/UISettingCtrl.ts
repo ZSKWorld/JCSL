@@ -1,14 +1,13 @@
 import { BaseViewCtrl } from "../../core/BaseViewCtrl";
 import { UISettingMsg, UISettingView } from "../../view/PkgMain/UISettingView";
 
-export interface UISettingData{
+export interface UISettingData {
 
 }
 
 export class UISettingCtrl extends BaseViewCtrl<UISettingView, UISettingData>{
 
     override onAwake(): void {
-        super.onAwake();
 		this.addMessageListener(UISettingMsg.OnBtnBgClick, this.UISetting_OnBtnBgClick);
 		this.addMessageListener(UISettingMsg.OnBtnHangUpClick, this.UISetting_OnBtnHangUpClick);
 		this.addMessageListener(UISettingMsg.OnBtnMuteClick, this.UISetting_OnBtnMuteClick);
@@ -19,7 +18,7 @@ export class UISettingCtrl extends BaseViewCtrl<UISettingView, UISettingData>{
     }
 
     override onEnable(): void {
-        super.onEnable();
+        
     }
 
 	private UISetting_OnBtnBgClick(): void {
@@ -51,10 +50,10 @@ export class UISettingCtrl extends BaseViewCtrl<UISettingView, UISettingData>{
 	}
 
     override onDisable(): void {
-        super.onDisable();
+        
     }
 
     override onDestroy(): void {
-        super.onDestroy();
+        
     }
 }
