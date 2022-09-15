@@ -21,6 +21,14 @@ export class UISettingCtrl extends BaseViewCtrl<UISettingView, UISettingData>{
         
     }
 
+    override onDisable(): void {
+        
+    }
+
+    override onDestroy(): void {
+        
+    }
+
 	private onBtnBgClick(): void {
 	
 	}
@@ -48,12 +56,4 @@ export class UISettingCtrl extends BaseViewCtrl<UISettingView, UISettingData>{
 	private onBtnBackClick(): void {
 	
 	}
-
-    override onDisable(): void {
-        
-    }
-
-    override onDestroy(): void {
-        
-    }
 }
