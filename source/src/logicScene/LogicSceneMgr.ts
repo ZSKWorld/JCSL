@@ -11,7 +11,7 @@ const logger = Logger.Create("LogicSceneMgr").setEnable(true);
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-15 01:07:45
+ * @LastEditTime : 2022-09-15 23:56:34
  * @Description  : 逻辑场景管理类
  */
 class LogicSceneMgr extends Observer {
@@ -26,7 +26,7 @@ class LogicSceneMgr extends Observer {
 	}
 
 	@InsertNotify(NotifyConst.EnterScene)
-	enterScene(type: LogicSceneType, data?: any) {
+	private enterScene(type: LogicSceneType, data?: any) {
 		if (!this._enterCompleted) return;
 		if (this._currentType != type) {
 			this._enterCompleted = false;

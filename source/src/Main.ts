@@ -1,3 +1,5 @@
+import { NotifyConst } from "./core/common/NotifyConst";
+import { Notifier } from "./core/libs/event/Notifier";
 import { FixEngine } from "./FixEngine";
 import GameConfig from "./GameConfig";
 import { logicSceneMgr } from './logicScene/LogicSceneMgr';
@@ -7,8 +9,9 @@ import { LogicSceneInit } from './logicScene/scene/LogicSceneInit';
 import { LogicSceneLogin } from './logicScene/scene/LogicSceneLogin';
 import { LogicSceneMain } from './logicScene/scene/LogicSceneMain';
 
-class Main {
+class Main extends Notifier{
 	constructor() {
+		super();
 		//根据IDE设置初始化引擎
 		if (window[ "Laya3D" ]) Laya3D.init(GameConfig.width, GameConfig.height);
 		else Laya.init(GameConfig.width, GameConfig.height, Laya[ "WebGL" ]);
@@ -48,7 +51,7 @@ class Main {
 			[ LogicSceneType.MainScene, new LogicSceneMain() ],
 			[ LogicSceneType.GameScene, new LogicSceneGame() ],
 		]);
-		logicSceneMgr.enterScene(LogicSceneType.InitScene);
+		this.dispatch(NotifyConst.EnterScene, LogicSceneType.InitScene);
 	}
 
 }

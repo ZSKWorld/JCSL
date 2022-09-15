@@ -112,7 +112,6 @@ class UIManager extends Observer {
 	 * @param callback 回调
 	 * @param hideTop 是否隐藏顶部页面
 	 */
-	@InsertNotify(NotifyConst.AddView)
 	addView<T = any>(viewId: ViewID, data?: T, callback?: Laya.Handler, hideTop: boolean = true) {
 		let viewInst: IView;
 		this._lockPanel.visible = true;
@@ -150,7 +149,6 @@ class UIManager extends Observer {
 	/** 移除页面
 	 * @param viewId 页面ID，为null则移除全部页面
 	 */
-	@InsertNotify(NotifyConst.RemoveView)
 	removeView(viewId: ViewID) {
 		const { _openedViews } = this;
 		for (let i = _openedViews.length - 1; i >= 0; i--) {

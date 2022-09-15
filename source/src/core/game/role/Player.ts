@@ -7,29 +7,29 @@ import { RoleBase } from "./RoleBase";
 
 const logger = Logger.Create("PlayerController").setEnable(true);
 class Player extends RoleBase {
-    private phSp: Laya.Sprite;
-    private weapons: WeaponBase[] = [];
+    private _phSp: Laya.Sprite;
+    private _weapons: WeaponBase[] = [];
 
     override onAwake() {
         super.onAwake();
         this._camp = Camp.Player;
         this.anchor(0.5, 0.5);
-        this.phSp = new Laya.Sprite();
-        this.phSp.size(100, 10);
-        this.phSp.graphics.drawRect(0, 0, 100, 10, "#ff0000");
-        this.addChild(this.phSp);
+        this._phSp = new Laya.Sprite();
+        this._phSp.size(100, 10);
+        this._phSp.graphics.drawRect(0, 0, 100, 10, "#ff0000");
+        this.addChild(this._phSp);
         this.zOrder = 999;
     }
 
     override recover() {
         super.recover();
-        this.weapons.forEach(v => v.recover());
-        this.weapons.length = 0;
+        this._weapons.forEach(v => v.recover());
+        this._weapons.length = 0;
     }
 
     addWeapon(weapon: WeaponBase) {
         weapon.setCamp(this._camp);
-        this.weapons.push(weapon);
+        this._weapons.push(weapon);
         this.addChild(weapon);
         weapon.pos(this.width / 2, this.height / 2, true);
     }
@@ -50,8 +50,8 @@ class Player extends RoleBase {
 
     protected override onResize(): void {
         super.onResize();
-        if (this.phSp)
-            this.phSp.pos((this.width - 100) / 2, -10, true);
+        if (this._phSp)
+            this._phSp.pos((this.width - 100) / 2, -10, true);
     }
 }
 

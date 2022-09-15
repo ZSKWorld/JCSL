@@ -22,26 +22,26 @@ const enum GameState {
 }
 
 class GameMgr extends Observer {
-    private container: Laya.Sprite;
+    private _container: Laya.Sprite;
     private _state: GameState = GameState.Over;
 
     get state() { return this._state; }
 
     start(): void {
-        if (!this.container) {
-            this.container = new Laya.Sprite();
-            layerMgr.addLayaObject(this.container, Layer.Game);
+        if (!this._container) {
+            this._container = new Laya.Sprite();
+            layerMgr.addLayaObject(this._container, Layer.Game);
         }
         player.changeSource(GameUtil.getFGUITexture(ResPath.PkgCommon, "Bg_XingXing02"));
         player.pos(Laya.stage.width / 2, Laya.stage.height / 2);
-        this.container.addChild(player);
+        this._container.addChild(player);
         player.addWeapon(objectFactory.createObject(GamePoolKey.Weapon_JingGangFu));
 
         for (let i = 0; i < 10; i++) {
             const enemy = objectFactory.createObject(GamePoolKey.Enemy_Fllow);
             i == 0 && enemy.changeSource(GameUtil.getFGUITexture(ResPath.PkgCommon, "Icon_Book_Yue"));
             enemy.pos(Math.random() * Laya.stage.width, Math.random() * Laya.stage.height);
-            this.container.addChild(enemy);
+            this._container.addChild(enemy);
         }
 
         this._state = GameState.Running;

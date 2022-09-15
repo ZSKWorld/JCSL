@@ -1,5 +1,3 @@
-import { NotifyConst } from "../../common/NotifyConst";
-import { eventMgr } from "../../libs/event/EventMgr";
 import { Layer, layerMgr } from "../core/GameLayer";
 import { IView } from "../core/Interfaces";
 import { uiMgr } from "../core/UIManager";
@@ -10,7 +8,7 @@ import { UIPoolKey } from "./UIPoolKey";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-13 08:18:55
+ * @LastEditTime : 2022-09-15 23:54:03
  * @Description  : UI工具类
  */
 export class UIUtility {
@@ -22,7 +20,6 @@ export class UIUtility {
 	static ShowTipInfo(text: string, color?: string) {
 		const tip = this.getViewFromPool(UIPoolKey.TipInfo, ViewID.ComTipInfoView, Layer.Bottom, { text, color }, false);
 		tip.touchable = false;
-		eventMgr.event(NotifyConst.AddMainLog, text);
 	}
 
 	/**

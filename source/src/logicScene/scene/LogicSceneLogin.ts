@@ -1,5 +1,6 @@
 import { NotifyConst } from "../../core/common/NotifyConst";
 import { ResPath } from "../../core/common/ResPath";
+import { uiMgr } from "../../core/ui/core/UIManager";
 import { ViewID } from "../../core/ui/core/ViewID";
 import { LogicSceneBase } from "../LogicSceneBase";
 
@@ -7,7 +8,7 @@ import { LogicSceneBase } from "../LogicSceneBase";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 21:28:43
+ * @LastEditTime : 2022-09-15 23:53:26
  * @Description  : 登录逻辑场景
  */
 export class LogicSceneLogin extends LogicSceneBase {
@@ -16,7 +17,7 @@ export class LogicSceneLogin extends LogicSceneBase {
 	}
 
 	protected onEnter(): void {
-		this.dispatch(NotifyConst.AddView, ViewID.LoginMainView);
+		uiMgr.addView(ViewID.LoginMainView);
 	}
 
 	protected onExit(): void {
