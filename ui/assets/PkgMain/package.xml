@@ -13,8 +13,6 @@
     <component id="sbd0n" name="CmbDongFu.xml" path="/Component/Combox/" exported="true"/>
     <component id="sbd0x" name="UISetting.xml" path="/" exported="true"/>
     <component id="sbd013" name="CmbPlayerInfo.xml" path="/Component/Combox/"/>
-    <component id="amcp1u" name="BtnSphere.xml" path="/Component/"/>
-    <component id="j87q1w" name="BtnCheck.xml" path="/Component/"/>
     <component id="neb71y" name="RenderShiLian.xml" path="/Component/Render/" exported="true"/>
     <component id="neb71z" name="RenderJueSe.xml" path="/Component/Render/"/>
   </resources>

@@ -41,6 +41,9 @@
       <gearColor controller="ctrlShow" pages="0,4" values="#000000|#ffffff" default="#000000"/>
       <Button title="修行" titleColor="#000000" titleFontSize="65" controller="ctrlShow" page="4"/>
     </component>
+    <graph id="n84_w8os" name="n84" xy="0,1810" size="216,110" group="n58_sbd0" touchable="false" type="rect" lineSize="2" lineColor="#ffffffff" fillColor="#00ffffff">
+      <gearXY controller="ctrlShow" pages="1,2,3,4" values="216,1810|432,1810|648,1810|864,1810" default="0,1810" tween="true" duration=".2"/>
+    </graph>
     <group id="n58_sbd0" name="n58" xy="0,1810" size="1080,110"/>
     <component id="n81_gc8g" name="ComCurrency" src="gc8g63" fileName="Component/ComCurrency.xml" pkg="vx9zwser" xy="233,100"/>
     <loader id="n82_gc8g" name="LoaderHead1" xy="20,22" size="160,160" touchable="false" url="ui://vx9zwserqjdo4z" fill="scaleFree"/>

@@ -40,8 +40,8 @@ export default class UIMain extends fgui.GComponent {
 		this.BtnShiLian = <fgui.GButton>(this.getChildAt(9));
 		this.BtnJueSe = <fgui.GButton>(this.getChildAt(10));
 		this.BtnXiuXing = <fgui.GButton>(this.getChildAt(11));
-		this.ComCurrency = <fgui.GComponent>(this.getChildAt(12));
-		this.LoaderHead1 = <fgui.GLoader>(this.getChildAt(13));
+		this.ComCurrency = <fgui.GComponent>(this.getChildAt(13));
+		this.LoaderHead1 = <fgui.GLoader>(this.getChildAt(14));
 		this.t1 = this.getTransitionAt(0);
 	}
 }
