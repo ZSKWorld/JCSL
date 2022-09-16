@@ -10,7 +10,6 @@
     <image id="qjdo2x" name="Frame_DialogCompletePV01.png" path="/Texture/" scale="9grid" scale9grid="100,7,128,2"/>
     <image id="qjdo4l" name="Icon_Add.png" path="/Texture/" exported="true"/>
     <component id="qjdo1" name="BtnTxt.xml" path="/Component/" exported="true"/>
-    <component id="fhzd5a" name="BtnCircleIcon.xml" path="/Component/" exported="true"/>
     <component id="sbd05c" name="ComTipInfo.xml" path="/Component/" exported="true"/>
     <component id="sbd05i" name="BtnCornerTxt.xml" path="/Component/" exported="true"/>
     <component id="sbd05j" name="UITipConfirm.xml" path="/" exported="true"/>

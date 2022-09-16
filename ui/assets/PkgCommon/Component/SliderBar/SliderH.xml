@@ -12,7 +12,7 @@
       <relation target="n1_sbd0" sidePair="right-right"/>
       <relation target="n5_sbd0" sidePair="width-width"/>
     </graph>
-    <text id="n5_sbd0" name="title" xy="145,-4" size="10,29" fontSize="20" leading="0" bold="true" singleLine="true" text="">
+    <text id="n5_sbd0" name="title" xy="145,-4" size="10,29" fontSize="20" leading="0" singleLine="true" text="">
       <relation target="n4_sbd0" sidePair="center-center,middle-middle"/>
     </text>
   </displayList>
