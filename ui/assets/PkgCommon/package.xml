@@ -30,6 +30,7 @@
     <font id="l74a6f" name="Font12.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
     <font id="l74a6g" name="Font13.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
     <font id="tfsh6h" name="Font14.ttf" path="/Font/" renderMode="" samplePointSize="16"/>
+    <image id="w8os6j" name="btn1.png" path="/Texture/" exported="true"/>
   </resources>
   <publish name="" genCode="true"/>
 </packageDescription>

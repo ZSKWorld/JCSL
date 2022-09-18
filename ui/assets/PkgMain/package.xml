@@ -15,6 +15,7 @@
     <component id="sbd013" name="CmbPlayerInfo.xml" path="/Component/Combox/"/>
     <component id="neb71y" name="RenderShiLian.xml" path="/Component/Render/" exported="true"/>
     <component id="neb71z" name="RenderJueSe.xml" path="/Component/Render/"/>
+    <image id="w8os6i" name="bg1.png" path="/Texture/" scale="9grid" scale9grid="82,73,74,13"/>
   </resources>
   <publish name="" genCode="true"/>
 </packageDescription>

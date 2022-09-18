@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="950,200" overflow="hidden">
   <displayList>
-    <graph id="n2_neb7" name="n2" xy="0,0" size="950,200" type="rect" lineSize="0" fillColor="#ffd2b98b">
+    <image id="n2_neb7" name="n2" src="w8os6i" fileName="Texture/bg1.png" xy="-18,-18" size="986,236">
       <relation target="" sidePair="width-width,height-height"/>
-    </graph>
+    </image>
     <loader id="n3_neb7" name="n3" xy="20,20" size="140,160" fill="scaleFree"/>
-    <text id="n1_neb7" name="TxtName" xy="186,29" size="208,66" fontSize="50" bold="true" text="九转玄功"/>
-    <text id="n4_neb7" name="TxtDesc" xy="186,95" size="282,94" fontSize="35" text="所有伤害+5%&#xA;（满级增加25%）"/>
-    <component id="n5_neb7" name="n5" src="qjdo1" fileName="Component/BtnTxt.xml" pkg="vx9zwser" xy="684,50" size="244,99">
-      <Button title="已满级" titleColor="#ffffff" titleFontSize="55"/>
+    <text id="n1_neb7" name="TxtName" xy="186,29" size="208,66" fontSize="50" color="#ffffff" bold="true" text="九转玄功"/>
+    <text id="n4_neb7" name="TxtDesc" xy="186,95" size="282,94" fontSize="35" color="#cccccc" text="所有伤害+5%&#xA;（满级增加25%）"/>
+    <component id="n5_neb7" name="n5" src="irlv60" fileName="Component/BtnIcon.xml" pkg="vx9zwser" xy="607,42" size="316,115">
+      <Button title="已满级" titleColor="#ffffff" titleFontSize="55" icon="ui://vx9zwserw8os6j"/>
     </component>
   </displayList>
   <customProperty target="title" propertyId="0"/>

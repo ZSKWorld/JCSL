@@ -1,5 +1,6 @@
 import { NotifyConst } from "../../core/common/NotifyConst";
 import { ResPath } from "../../core/common/ResPath";
+import { CustomSpriteManager } from "../../core/libs/customSprite/CustomSpriteManager";
 import { websocket } from "../../core/net/WebSocket";
 import { tableMgr } from "../../core/table/TableManager";
 import { layerMgr } from "../../core/ui/core/GameLayer";
@@ -33,6 +34,7 @@ export class LogicSceneInit extends LogicSceneBase {
 		layerMgr.init();
 		uiMgr.init();
 		websocket.init();
+		CustomSpriteManager.init();
 		this.dispatch(NotifyConst.EnterScene, LogicSceneType.LoginScene);
 	}
 
