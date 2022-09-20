@@ -30,14 +30,14 @@ export class BaseCustomSprite<T extends Laya.Value2D> extends Laya.Sprite {
 
     // 自定义渲染提交
     override customRender(context: Laya.Context, x: number, y: number) {
-        this.onCustomRender();
+        this.onCustomRender(context, x, y);
         const { texture, width, height, shaderValue } = this;
         //这一步很重要
         context.drawTarget(texture.bitmap as any, x, y, width, height, null, shaderValue);
     }
 
     /** 虚函数，使用时重写即可 */
-    protected onCustomRender() {
+    protected onCustomRender(context: Laya.Context, x: number, y: number) {
 
     }
 }

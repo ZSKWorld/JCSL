@@ -18,7 +18,6 @@ export const SpriteVS = `
         uniform mat4 u_MvpMatrix;
     #endif
     varying vec4 v_texcoordAlpha;
-    varying vec4 v_texcoordAlpha2;
     varying vec4 v_color;
     varying float v_useTex;
     void main() {
@@ -34,7 +33,6 @@ export const SpriteVS = `
         #endif
         v_texcoordAlpha.xy = posuv.zw;
         v_texcoordAlpha.z = attribColor.a/255.0;
-        v_texcoordAlpha2.xy = posuv2.zw;
         v_color = attribColor/255.0;
         v_color.xyz*=v_color.w;
         v_useTex = attribFlags.r/255.0;
@@ -59,15 +57,20 @@ export const SpriteVS = `
 //片元着色器  一个简单的功能 根据噪图 过滤掉低于阈值的颜色
 export const PS_CS1: string = `
     precision mediump float;
-    varying vec4 v_color;
     uniform float u_Time;
+    uniform float u_LightWidth;
     uniform sampler2D texture;
     uniform sampler2D u_NoiseTex;
-    //消融阈值  0 - 1
-    uniform float u_Alph;
+    varying vec4 v_color;
     varying vec4 v_texcoordAlpha;
-    varying vec4 v_texcoordAlpha2;
     void main(){
-        gl_FragColor = (texture2D(u_NoiseTex, v_texcoordAlpha2.xy)) * u_Alph;
+        vec4 noiseC;
+        if(u_LightWidth > 0.0){
+            vec2 rangeX = vec2(0.0,u_LightWidth)+(sin(u_Time/500.0) + 1.0) / 2.0*(1.0+u_LightWidth+0.1)-u_LightWidth-0.05;
+            if(v_texcoordAlpha.x >= rangeX.x && v_texcoordAlpha.x <= rangeX.y){
+                noiseC = texture2D(u_NoiseTex, v_texcoordAlpha.xy);
+            }
+        }
+        gl_FragColor = texture2D(texture, v_texcoordAlpha.xy) + noiseC;
     }
 `;
