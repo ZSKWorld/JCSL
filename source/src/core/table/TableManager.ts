@@ -39,3 +39,4 @@ class TableManager {
 	}
 }
 export const tableMgr = new TableManager();
+windowImmit("tableMgr", tableMgr);

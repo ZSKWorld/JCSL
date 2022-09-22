@@ -1,4 +1,5 @@
-import { BaseViewCtrl } from "../../core/BaseViewCtrl";
+import { BaseViewCtrl, InsertMouseEvent, MouseEvent } from "../../core/BaseViewCtrl";
+import { UIUtility } from "../../tool/UIUtility";
 import { UIMainMsg, UIMainView } from "../../view/PkgMain/UIMainView";
 
 export interface UIMainData {
@@ -46,5 +47,4 @@ export class UIMainCtrl extends BaseViewCtrl<UIMainView, UIMainData>{
 	private onBtnXiuXingClick(): void {
 	
 	}
-
 }

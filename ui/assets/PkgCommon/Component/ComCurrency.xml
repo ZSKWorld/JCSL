@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="802,66">
   <displayList>
-    <graph id="n1_gc8g" name="n1" xy="0,0" size="390,66" type="rect" lineSize="0" fillColor="#ffb7a68a"/>
-    <graph id="n2_gc8g" name="n2" xy="412,0" size="390,66" type="rect" lineSize="0" fillColor="#ffb7a68a"/>
+    <image id="n1_gc8g" name="n1" src="ee1x6k" fileName="Texture/bg_info_top.png" xy="0,0" size="390,66"/>
+    <image id="n2_gc8g" name="n2" src="ee1x6k" fileName="Texture/bg_info_top.png" xy="412,0" size="390,66"/>
     <component id="n4_gc8g" name="BtnAddCoin" src="irlv60" fileName="Component/BtnIcon.xml" xy="324,0" size="66,66">
       <Button icon="ui://vx9zwserqjdo4l"/>
     </component>

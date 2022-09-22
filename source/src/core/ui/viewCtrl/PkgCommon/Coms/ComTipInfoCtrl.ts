@@ -11,7 +11,8 @@ export interface ComTipInfoData {
 export class ComTipInfoCtrl extends BaseViewCtrl<ComTipInfoView, ComTipInfoData>{
 
     private _speed: number = +tableMgr.Const[ 1004 ].Value;
-    private _duration = (+tableMgr.Const[ 1002 ].Value) * 1000;
+    private _duration = +tableMgr.Const[ 1002 ].Value * 1000;
+    private _lineTime = +tableMgr.Const[ 1003 ].Value * 1000;
     private _time: number;
     private _moveEnable: boolean;
 
@@ -20,8 +21,8 @@ export class ComTipInfoCtrl extends BaseViewCtrl<ComTipInfoView, ComTipInfoData>
         this._moveEnable = false;
         this.view.setContent(this.data.text, this.data.color || "#ffffff");
         this.view.playShowAni(Laya.Handler.create(this, () => {
-            const lineNum = this.view.height <= 59 ? 1 : (1 + (this.view.height - 59) / 34);
-            Laya.timer.once(lineNum * (+tableMgr.Const[ 1003 ].Value * 1000), this, () => {
+            const lineNum = Math.ceil(this.view.height / 66);
+            Laya.timer.once(lineNum * this._lineTime, this, () => {
                 this._moveEnable = true;
             });
         }));
