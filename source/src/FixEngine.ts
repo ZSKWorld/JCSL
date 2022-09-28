@@ -6,7 +6,7 @@ import { MathUtil } from "./core/libs/math/MathUtil";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-15 22:25:30
+ * @LastEditTime : 2022-09-28 20:32:07
  * @Description  : 引擎修复
  */
 export class FixEngine {
@@ -19,6 +19,7 @@ export class FixEngine {
 		this.AddComponentNetConnect();
 		this.ClearEventDispatcherHandler();
 		this.PlayTransitionAction();
+		this.FixGUIInputSingleLine();
 	}
 
 	/**修复GUI粗体不生效 */
@@ -236,6 +237,20 @@ export class FixEngine {
 			}
 			this._currentTransition.play(null, this.playTimes, this.delay);
 		}
+	}
+
+	/** 修复gui 输入框自动换行 */
+	private static FixGUIInputSingleLine() {
+		const prototype = fgui.GTextInput.prototype;
+		Object.defineProperty(prototype, "singleLine", {
+			get() {
+				return !this._input.multiline;
+			},
+			set(v) {
+				this._input.multiline = !v;
+				this._input.wordWrap = !v;
+			}
+		});
 	}
 }
 
