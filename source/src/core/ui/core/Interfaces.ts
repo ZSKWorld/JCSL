@@ -93,7 +93,7 @@ export interface ViewExtension extends IViewMethod, IViewCommon {
 export type IViewCtrl = BaseViewCtrl & ViewCtrlExtension;
 
 /**页面控制器类类型 */
-export type IViewCtrl_Class = new () => IViewCtrl;
+export type IViewCtrl_Class = Class<IViewCtrl>;
 
 /**页面控制器扩展 */
 export interface ViewCtrlExtension extends IViewMethod, IViewCommon {
@@ -102,4 +102,4 @@ export interface ViewCtrlExtension extends IViewMethod, IViewCommon {
 
 export type INetProcessor = BaseNetProcessor;
 
-export type INetProcessor_Class = new () => INetProcessor;
+export type INetProcessor_Class = Class<INetProcessor>;
