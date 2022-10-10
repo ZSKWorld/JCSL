@@ -1,20 +1,20 @@
 /**
  * 密封类方法装饰器工厂
  * @param funcName 方法名或方法名数组
- * @example
+ * @example 
  * # 使用示例
  * ```ts
  * //密封BaseClass中的destroy方法
  * -@SealFunction("destroy")
  * class BaseClass {
- *              public destroy(){
+ *      public destroy(){
  *      
- *              }
+ *      }
  * }
  * class ChildClass extends BaseClass{
- *              public destroy(){
- *                  //这里重写父类方法，运行时会报错
- *              }
+ *      public destroy(){
+ *          //这里重写父类方法，运行时会报错
+ *      }
  * }
  * ```
  */
