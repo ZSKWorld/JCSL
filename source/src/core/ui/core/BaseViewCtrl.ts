@@ -153,7 +153,7 @@ export function InsertKeyEvent(keyEventType: KeyEvent, key: number, once?: boole
 
 		const func = descriptor.value;
 		const list: Function[] = target.__keyEventList[ keyEventType ][ key ];
-		if (list.includes(func) == false) {
+		if (list.indexOf(func) < 0) {
 			list.push(func);
 			if (once) {
 				func[ key ] = func[ key ] || {};
@@ -176,7 +176,7 @@ export function InsertMouseEvent(mouseEventType: MouseEvent, once?: boolean) {
 
 		const func = descriptor.value;
 		const list: Function[] = target.__mouseEventList[ mouseEventType ];
-		if (list.includes(func) == false) {
+		if (list.indexOf(func) < 0) {
 			list.push(func);
 			if (once) {
 				func[ mouseEventType ] = func[ mouseEventType ] || {};
