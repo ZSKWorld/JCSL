@@ -6,7 +6,7 @@ import { MathUtil } from "./core/libs/math/MathUtil";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-28 20:32:07
+ * @LastEditTime : 2022-10-10 22:30:53
  * @Description  : 引擎修复
  */
 export class FixEngine {
@@ -62,14 +62,13 @@ export class FixEngine {
 	/**添加ui节点事件锁 */
 	private static AddGUIObjectEventLockable() {
 		const touchMgrPrototype = Laya.TouchManager.prototype;
-		const lockChildMap: Map<number, boolean> = new Map();
+		const lockChildMap = new Map<number, boolean>();
 		//拦截触摸事件派发，处理事件锁
 		touchMgrPrototype[ "sendEvents" ] = function (eles: (Laya.Sprite & { __eventLockMap: any })[], type) {
 			let i, len, tE, eventLockMap, lockChild
 			len = eles.length;
 			this._event._stoped = false;
-			let _target
-			_target = eles[ 0 ];
+			let _target = eles[ 0 ];
 			lockChildMap.clear();
 			for (i = len - 1; i >= 0; i--) {
 				tE = eles[ i ];
