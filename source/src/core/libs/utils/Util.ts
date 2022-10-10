@@ -2,7 +2,7 @@
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-03 03:07:50
+ * @LastEditTime : 2022-10-10 22:03:43
  * @Description  : 工具方法集合
  */
 
@@ -18,6 +18,7 @@ export function ExtensionClass<E, T>(clsT: Class<T>) {
 }
 
 export function GetLang(id: number) { return tableMgr.Lang[ id ].Text; }
+
 /**根据品质获取颜色字符串 */
 export function GetColorStr(id: number, text: string) { return `[color=${ tableMgr.Color[ id ].Color }]${ text }[/color]`; }
 
