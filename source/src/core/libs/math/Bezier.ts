@@ -4,7 +4,7 @@ import { recyclablePoint } from "../utils/Recyclable";
  * @Author       : zsk
  * @Date         : 2022-09-05 21:57:22
  * @LastEditors  : zsk
- * @LastEditTime : 2022-10-11 22:18:45
+ * @LastEditTime : 2022-10-11 23:37:12
  * @Description  : 匀速贝塞尔曲线，文档：https://www.freesion.com/article/2280255606/
  */
 export class Bezier {
@@ -13,13 +13,14 @@ export class Bezier {
         const u = 1 - t;
         const tt = t * t;
         const uu = u * u;
+        const ut2 = u * t * 2;
 
         const p = recyclablePoint()[ 0 ];
         p.x = uu * start.x;
         p.y = uu * start.y;
 
-        p.x += 2 * u * t * control.x;
-        p.y += 2 * u * t * control.y;
+        p.x += ut2 * control.x;
+        p.y += ut2 * control.y;
 
         p.x += tt * end.x;
         p.y += tt * end.y;
@@ -133,3 +134,4 @@ export class Bezier {
         return Math.sqrt(a * t * t + b * t + c);
     }
 }
+windowImmit("Bezier", Bezier);
