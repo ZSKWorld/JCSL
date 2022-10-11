@@ -11,13 +11,17 @@ export type DIViewCtrl = IViewCtrl & {
  * @Author       : zsk
  * @Date         : 2022-08-25 23:58:47
  * @LastEditors  : zsk
- * @LastEditTime : 2022-08-30 01:02:06
+ * @LastEditTime : 2022-10-11 22:38:44
  * @Description  : 页面控制器设备（鼠标、键盘）交互事件扩展
  * @Description  : ViewCtrlDIExtend => ViewCtrlDeviceInteractionExtend的缩写
  */
 export class ViewCtrlDIExtend {
 
-	/**注册设备交互事件 */
+	/**
+	 * 注册设备交互事件
+	 * @param viewCtrl {@link DIViewCtrl} 目标控制器
+	 * @returns 
+	 */
 	static registerDeviceEvent(viewCtrl: DIViewCtrl) {
 		if (!viewCtrl) return;
 		const { __keyEventList, __mouseEventList } = viewCtrl;
@@ -44,7 +48,11 @@ export class ViewCtrlDIExtend {
 		}
 	}
 
-	/**关闭设备交互事件 */
+	/**
+	 * 关闭设备交互事件
+	 * @param viewCtrl {@link DIViewCtrl} 目标控制器
+	 * @returns 
+	 */
 	static offDeviceEvent(viewCtrl: DIViewCtrl) {
 		if (!viewCtrl) return;
 		const prototype = Laya.Script.prototype;

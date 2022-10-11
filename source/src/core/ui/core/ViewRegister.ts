@@ -87,26 +87,26 @@ class ViewRegister {
     /**页面替换bind */
     private viewBind() {
 		//Coms
-		fairygui.UIObjectFactory.setExtension(ComCurrency.URL, ComCurrencyView);
-		fairygui.UIObjectFactory.setExtension(ComTipInfo.URL, ComTipInfoView);
-		fairygui.UIObjectFactory.setExtension(ComGongFa.URL, ComGongFaView);
-		fairygui.UIObjectFactory.setExtension(ComJueSe.URL, ComJueSeView);
-		fairygui.UIObjectFactory.setExtension(ComLingShou.URL, ComLingShouView);
-		fairygui.UIObjectFactory.setExtension(ComShiLian.URL, ComShiLianView);
-		fairygui.UIObjectFactory.setExtension(ComXiuXing.URL, ComXiuXingView);
+		fgui.UIObjectFactory.setExtension(ComCurrency.URL, ComCurrencyView);
+		fgui.UIObjectFactory.setExtension(ComTipInfo.URL, ComTipInfoView);
+		fgui.UIObjectFactory.setExtension(ComGongFa.URL, ComGongFaView);
+		fgui.UIObjectFactory.setExtension(ComJueSe.URL, ComJueSeView);
+		fgui.UIObjectFactory.setExtension(ComLingShou.URL, ComLingShouView);
+		fgui.UIObjectFactory.setExtension(ComShiLian.URL, ComShiLianView);
+		fgui.UIObjectFactory.setExtension(ComXiuXing.URL, ComXiuXingView);
 
 		//Renders
-		fairygui.UIObjectFactory.setExtension(RenderGongFa.URL, RenderGongFaView);
-		fairygui.UIObjectFactory.setExtension(RenderJueSe.URL, RenderJueSeView);
-		fairygui.UIObjectFactory.setExtension(RenderShiLian.URL, RenderShiLianView);
+		fgui.UIObjectFactory.setExtension(RenderGongFa.URL, RenderGongFaView);
+		fgui.UIObjectFactory.setExtension(RenderJueSe.URL, RenderJueSeView);
+		fgui.UIObjectFactory.setExtension(RenderShiLian.URL, RenderShiLianView);
 
 		//Views
-		fairygui.UIObjectFactory.setExtension(UITipConfirm.URL, UITipConfirmView);
-		fairygui.UIObjectFactory.setExtension(UIWaiting.URL, UIWaitingView);
-		fairygui.UIObjectFactory.setExtension(UIGameMain.URL, UIGameMainView);
-		fairygui.UIObjectFactory.setExtension(UILoginMain.URL, UILoginMainView);
-		fairygui.UIObjectFactory.setExtension(UIMain.URL, UIMainView);
-		fairygui.UIObjectFactory.setExtension(UISetting.URL, UISettingView);
+		fgui.UIObjectFactory.setExtension(UITipConfirm.URL, UITipConfirmView);
+		fgui.UIObjectFactory.setExtension(UIWaiting.URL, UIWaitingView);
+		fgui.UIObjectFactory.setExtension(UIGameMain.URL, UIGameMainView);
+		fgui.UIObjectFactory.setExtension(UILoginMain.URL, UILoginMainView);
+		fgui.UIObjectFactory.setExtension(UIMain.URL, UIMainView);
+		fgui.UIObjectFactory.setExtension(UISetting.URL, UISettingView);
 	}
 
     /**页面注册 */

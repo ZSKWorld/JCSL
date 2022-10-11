@@ -8,7 +8,7 @@ import { UIPoolKey } from "./UIPoolKey";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-15 23:54:03
+ * @LastEditTime : 2022-10-11 22:14:39
  * @Description  : UI工具类
  */
 export class UIUtility {
@@ -27,20 +27,26 @@ export class UIUtility {
 	 * @param text 内容
 	 * @param title 标题，默认："提示"
 	 */
+	/**
+	 * 弹确认窗口
+	 * @param text 内容
+	 * @param title 标题，默认："提示"
+	 * @param callback {@link Laya.Handler} 回调函数
+	 */
 	static ShowConfirm(text: string, title?: string, callback?: Laya.Handler) {
 		uiMgr.addView(ViewID.TipConfirmView, { text, title, callback }, null, false);
 	}
 
 	/**
 	 * 设置list
-	 * @param list list组件
+	 * @param list {@link fgui.GList} list组件
 	 * @param numItems 元素数量
 	 * @param caller 调用者
 	 * @param renderFunc 渲染回调
 	 * @param clickFunc 点击回调
 	 */
 	static SetList(
-		list: fairygui.GList,
+		list: fgui.GList,
 		numItems: number,
 		caller: any,
 		renderFunc: (index?: number, item?: any) => void,
@@ -57,7 +63,7 @@ export class UIUtility {
 
 	/**
 	 * 设置下拉框
-	 * @param cmb 下拉框组件
+	 * @param cmb {@link fgui.GComboBox} 下拉框组件
 	 * @param items item数组
 	 * @param values value数组
 	 * @param caller 调用者
@@ -84,9 +90,9 @@ export class UIUtility {
 
 	/**
 	 * 从对象池中获取页面实例，没有则创建，有的话则从对象池中获取
-	 * @param key 对象池标识
-	 * @param viewID 页面ID
-	 * @param layer 层级
+	 * @param key {@link UIPoolKey} 对象池标识
+	 * @param viewID {@link ViewID} 页面ID
+	 * @param layer {@link Layer} 层级
 	 * @param data 初始数据
 	 * @param fullScreen 是否全屏
 	 */

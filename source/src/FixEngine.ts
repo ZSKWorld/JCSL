@@ -6,7 +6,7 @@ import { MathUtil } from "./core/libs/math/MathUtil";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-10-10 22:30:53
+ * @LastEditTime : 2022-10-11 22:08:20
  * @Description  : 引擎修复
  */
 export class FixEngine {
@@ -24,7 +24,7 @@ export class FixEngine {
 
 	/**修复GUI粗体不生效 */
 	private static UbbTagI() {
-		const inst = fairygui.UBBParser.inst as any;
+		const inst = fgui.UBBParser.inst as any;
 		inst._handlers[ "i" ] = function onTag_I(tagName, end, attr) {
 			return end ? ("</span>") : ("<span style='italic:true'>");
 		}

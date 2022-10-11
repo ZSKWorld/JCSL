@@ -10,8 +10,9 @@ TableManager_1.tableMgr.loadTable();
 var server = http.createServer(function (request, response) {
     response.writeHead(200);
     response.end();
-}).listen({ port: 3000, host: "192.168.1.19" }, function () {
-    Logger_1.Logger.log("服务器已启动，端口号：" + server.address().port, "green" /* Color.green */);
+}).listen({ host: "192.168.0.101", port: 8003 }, function () {
+    var _a = server.address(), address = _a.address, family = _a.family, port = _a.port;
+    Logger_1.Logger.log("\u670D\u52A1\u5668\u5DF2\u542F\u52A8\uFF1A".concat(address, ",").concat(family, ",").concat(port), "green" /* Color.green */);
 });
 var wsServer = new websocket.server({ httpServer: server, autoAcceptConnections: false });
 wsServer.on('request', function (request) {

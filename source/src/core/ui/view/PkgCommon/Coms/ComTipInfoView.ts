@@ -23,6 +23,10 @@ export class ComTipInfoView extends ExtensionClass<ViewExtension, ComTipInfo>(Co
         this.setXY(Laya.stage.width / 2, Laya.stage.height / 2);
     }
 
+    /**
+     * 播放显示动画
+     * @param onComplete {@link Laya.Handler} 完成回调
+     */
     playShowAni(onComplete?: Laya.Handler, times?: number, delay?: number, startTime?: number, endTime?: number) {
         this.t0.play(onComplete, times, delay, startTime, endTime);
     }

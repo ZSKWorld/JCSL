@@ -6,7 +6,7 @@ import { ViewID } from "./ViewID";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-15 23:37:14
+ * @LastEditTime : 2022-10-11 22:35:22
  * @Description  : 定义页面及控制器类型和扩展
  */
 export const enum ViewCtrlEvents {
@@ -22,9 +22,9 @@ export interface GComponentExtend {
 	dispatch?(notifyName: string, data?: any): void;
 	/**
 	 * 打开页面
-	 * @param viewId 页面id
+	 * @param viewId {@link ViewID} 页面id
 	 * @param data 传入参数
-	 * @param callback 打开后回调
+	 * @param callback {@link Laya.Handler} 打开后回调
 	 * @param hideTop 是否隐藏上一页面
 	 */
 	addView?<T = any>(viewId: ViewID, data?: T, callback?: Laya.Handler, hideTop?: boolean): void;
@@ -36,7 +36,7 @@ export interface GComponentExtend {
 	removeAllView?(): void;
 
 	/** 移除页面
-	 * @param viewId 页面id
+	 * @param viewId {@link ViewID} 页面id
 	 */
 	removeView?(viewId: ViewID): void;
 }
@@ -81,9 +81,9 @@ export interface ViewExtension extends IViewMethod, IViewCommon {
 
 	/**
 	 * @description 初始化页面
-	 * @param viewId 页面ID
-	 * @param viewInst 组件页面对象
-	 * @param listener 页面消息监听器
+	 * @param viewId {@link ViewID} 页面ID
+	 * @param viewInst {@link IView} 组件页面对象
+	 * @param listener {@link Laya.EventDispatcher} 页面消息监听器
 	 */
 	initView?(viewId: ViewID, viewInst: IView, listener: Laya.EventDispatcher, data?: any): void;
 };

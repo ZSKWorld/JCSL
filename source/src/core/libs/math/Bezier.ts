@@ -4,7 +4,7 @@ import { recyclablePoint } from "../utils/Recyclable";
  * @Author       : zsk
  * @Date         : 2022-09-05 21:57:22
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-05 23:21:00
+ * @LastEditTime : 2022-10-11 22:18:45
  * @Description  : 匀速贝塞尔曲线，文档：https://www.freesion.com/article/2280255606/
  */
 export class Bezier {
@@ -26,11 +26,18 @@ export class Bezier {
         return p;
     }
 
-    /**普通贝塞尔点集合 */
-    static NormalPoints(start: Point, end: Point, control: Point, step: number) {
+    /**
+     * 普通贝塞尔点集合
+     * @param start {@link Point} 起始位置
+     * @param end {@link Point} 结束位置 
+     * @param control {@link Point} 控制点位置 
+     * @param pointNum 点数量
+     * @returns 
+     */
+    static NormalPoints(start: Point, end: Point, control: Point, pointNum: number) {
         const points: Recyclable<Laya.Point>[] = [];
-        for (let i = 0; i <= step; i++) {
-            points.push(this.NormalPoint(start, end, control, i / step))
+        for (let i = 0; i <= pointNum; i++) {
+            points.push(this.NormalPoint(start, end, control, i / pointNum))
         }
         return points;
     }
@@ -61,8 +68,15 @@ export class Bezier {
         return point;
     }
 
-    /**匀速贝塞尔点集合 */
-    static UniformPoints(start: Point, end: Point, control: Point, step: number) {
+    /**
+     * 匀速贝塞尔点集合
+     * @param start {@link Point} 起始位置
+     * @param end {@link Point} 结束位置
+     * @param control {@link Point} 控制点位置
+     * @param pointNum 点数量
+     * @returns 
+     */
+    static UniformPoints(start: Point, end: Point, control: Point, pointNum: number) {
         let ax = start.x - 2 * control.x + end.x;
         let ay = start.y - 2 * control.y + end.y;
         let bx = 2 * control.x - 2 * start.x;
@@ -75,8 +89,8 @@ export class Bezier {
         const points: Recyclable<Laya.Point>[] = [];
         //曲线总长度
         const total_length = this.GetLength(A, B, C, 1);
-        for (let i = 0; i <= step; i++) {
-            let t = i / step;
+        for (let i = 0; i <= pointNum; i++) {
+            let t = i / pointNum;
             //按照线形增长,此时对应的曲线长度
             let l = t * total_length;
             //根据 L 函数的反函数，求得 l 对应的 t 值

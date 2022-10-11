@@ -17,6 +17,15 @@ export class DrawState {
     private _targets: Recyclable<Laya.Vector2>[] = [];
     private _updateHandler = Laya.Handler.create(this, this.draw, null, false);
 
+    /**
+     * 设置绘制数据
+     * @param sp {@link Laya.Sprite} 要绘制的Sprite对象
+     * @param count 数量
+     * @param min 最小值
+     * @param max 最大值
+     * @param duration 持续时间
+     * @returns 
+     */
     setData(sp: Laya.Sprite, count: number, min: number, max: number, duration: number) {
         if (!sp) return;
         Laya.Tween.clearAll(this);

@@ -12,8 +12,9 @@ tableMgr.loadTable();
 const server = http.createServer(function (request, response) {
     response.writeHead(200);
     response.end();
-}).listen({ port: 3000, host: "192.168.1.19" }, function () {
-    Logger.log("服务器已启动，端口号：" + (server.address() as AddressInfo).port, Color.green);
+}).listen({ host: "192.168.0.101", port: 8003 }, function () {
+    const { address, family, port } = server.address() as AddressInfo;
+    Logger.log(`服务器已启动：${ address },${ family },${ port }`, Color.green);
 });
 
 const wsServer = new websocket.server({ httpServer: server, autoAcceptConnections: false });

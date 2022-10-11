@@ -38,12 +38,26 @@ class LayerManager {
         }
     }
 
+    /**
+     * 添加对象
+     * @param obj {@link fgui.GObject} 要添加的对象
+     * @param layer {@link Layer} 目标层级
+     * @param index 插入位置
+     * @returns 
+     */
     addObject(obj: fgui.GObject, layer: Layer, index?: number) {
         if (!obj || obj.isDisposed || !this._layerMap[ layer ]) return;
         index = index ?? this._layerMap[ layer ].numChildren;
         this._layerMap[ layer ].addChild(obj);
     }
 
+    /**
+     * 添加Laya.Sprite对象
+     * @param obj {@link Laya.Sprite} 要添加的Laya.Sprite对象
+     * @param layer {@link Layer} 目标层级
+     * @param index 插入位置
+     * @returns 
+     */
     addLayaObject(obj: Laya.Sprite, layer: Layer, index?: number) {
         if (!obj || obj.destroyed || !this._layerMap[ layer ]) return;
         index = index ?? this._layerMap[ layer ].numChildren;

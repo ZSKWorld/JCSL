@@ -23,13 +23,21 @@ class UICache {
 	constructor() { Laya.timer.loop(UICache.DestroyCacheTime, this, this.checkDestroyCache); }
 
 
-	/** 添加待销毁页面 */
+	/**
+	 * 添加待销毁页面
+	 * @param viewId {@link ViewID} 页面ID
+	 * @param viewInst {@link IView} 页面实例
+	 */
 	addDestroyCache(viewId: ViewID, viewInst: IView) {
 		if (ViewClass[ viewId ].DontDestroy) this._dontDestroyCache.set(viewId, viewInst);
 		else this._destroyCache.set(viewId, [ viewInst, Date.now() ]);
 	}
 
-	/** 从缓存中获取页面 */
+	/**
+	 * 从缓存中获取页面
+	 * @param viewId {@link ViewID} 页面ID
+	 * @returns 
+	 */
 	getViewFromCache(viewId: ViewID) {
 		let viewInst: IView;
 		if (ViewClass[ viewId ].DontDestroy) {
@@ -93,7 +101,7 @@ class UIManager extends Observer {
 	}
 
 	/** 创建页面实例
-	 * @param viewId 页面ID
+	 * @param viewId {@link ViewID} 页面ID
 	 * @param fullScreen 是否全屏
 	 * @param init 是否初始化页面
 	 * @param data 页面数据
@@ -107,9 +115,9 @@ class UIManager extends Observer {
 	}
 
 	/** 添加页面
-	 * @param viewId 页面ID
+	 * @param viewId {@link ViewID} 页面ID
 	 * @param data 页面数据
-	 * @param callback 回调
+	 * @param callback {@link Laya.Handler} 回调
 	 * @param hideTop 是否隐藏顶部页面
 	 */
 	addView<T = any>(viewId: ViewID, data?: T, callback?: Laya.Handler, hideTop: boolean = true) {
@@ -147,7 +155,7 @@ class UIManager extends Observer {
 	}
 
 	/** 移除页面
-	 * @param viewId 页面ID，为null则移除全部页面
+	 * @param viewId {@link ViewID} 页面ID，为null则移除全部页面
 	 */
 	removeView(viewId: ViewID) {
 		const { _openedViews } = this;
@@ -179,10 +187,7 @@ class UIManager extends Observer {
 		}
 	}
 
-	/** 获取已打开的页面索引
-	 * @param viewId 页面ID
-	 * @return 页面索引
-	 */
+	/** 获取已打开的页面索引 */
 	private getOpenViewIndex(viewId: ViewID) {
 		const { _openedViews } = this;
 		for (let i = 0, n = _openedViews.length; i < n; i++) {

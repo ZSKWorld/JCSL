@@ -9,11 +9,11 @@ const logger = Logger.Create("WebSocket").setEnable(true);
 * @Author       : zsk
 * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-15 01:10:59
+ * @LastEditTime : 2022-10-11 22:28:25
 * @Description  : 
 */
 class WebSocket extends Observer {
-    private _url: string = "ws://192.168.1.19:3000";
+    private _url: string = "ws://192.168.0.101:8003";
     private _socket: Laya.Socket;
     private _waitList: UserInput[];
     private _current: UserInput;
@@ -50,7 +50,7 @@ class WebSocket extends Observer {
         const msg: UserOutput = JSON.parse(message);
         if (msg && !msg.error) {
             this.dispatch(`Response_${ msg.cmd[ 0 ].toUpperCase() + msg.cmd.substring(1) }`, msg);
-            if (msg.syncInfo) this.dispatch(NetResponse.SyncInfo, msg.syncInfo);
+            if (msg.syncInfo) this.dispatch(NetResponse.Response_SyncInfo, msg.syncInfo);
             if (this._current && this._current.cmd == msg.cmd)
                 this._current = null;
         } else {
