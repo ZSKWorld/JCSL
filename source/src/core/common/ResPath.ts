@@ -24,14 +24,14 @@ export const enum ResPath{
 	Table_Config = "res/table/Config.json",
 
 	// res/ui/
-	Ui_PkgCommon = "res/ui/PkgCommon",
 	PkgCommon = "PkgCommon",
-	Ui_PkgGame = "res/ui/PkgGame",
+	Ui_PkgCommon = "res/ui/PkgCommon",
 	PkgGame = "PkgGame",
-	Ui_PkgLogin = "res/ui/PkgLogin",
+	Ui_PkgGame = "res/ui/PkgGame",
 	PkgLogin = "PkgLogin",
-	Ui_PkgMain = "res/ui/PkgMain",
+	Ui_PkgLogin = "res/ui/PkgLogin",
 	PkgMain = "PkgMain",
-	Ui_PkgTest = "res/ui/PkgTest",
+	Ui_PkgMain = "res/ui/PkgMain",
 	PkgTest = "PkgTest",
+	Ui_PkgTest = "res/ui/PkgTest",
 }
