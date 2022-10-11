@@ -100,7 +100,7 @@ export class Image extends UIComponent {
     }
     override set dataSource(value) {
         this._dataSource = value;
-        if (typeof (value) == 'string')
+        if (typeof (value) == "string")
             this.skin = value;
         else
             super.dataSource = value;

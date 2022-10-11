@@ -1,13 +1,14 @@
 import { NotifyConst } from "./core/common/NotifyConst";
+import { ResPath } from "./core/common/ResPath";
 import { Notifier } from "./core/libs/event/Notifier";
 import { FixEngine } from "./FixEngine";
 import GameConfig from "./GameConfig";
-import { logicSceneMgr } from './logicScene/LogicSceneMgr';
-import { LogicSceneType } from './logicScene/LogicSceneType';
-import { LogicSceneGame } from './logicScene/scene/LogicSceneGame';
-import { LogicSceneInit } from './logicScene/scene/LogicSceneInit';
-import { LogicSceneLogin } from './logicScene/scene/LogicSceneLogin';
-import { LogicSceneMain } from './logicScene/scene/LogicSceneMain';
+import { logicSceneMgr } from "./logicScene/LogicSceneMgr";
+import { LogicSceneType } from "./logicScene/LogicSceneType";
+import { LogicSceneGame } from "./logicScene/scene/LogicSceneGame";
+import { LogicSceneInit } from "./logicScene/scene/LogicSceneInit";
+import { LogicSceneLogin } from "./logicScene/scene/LogicSceneLogin";
+import { LogicSceneMain } from "./logicScene/scene/LogicSceneMain";
 
 class Main extends Notifier{
 	constructor() {
@@ -31,8 +32,8 @@ class Main extends Notifier{
 		// Laya.alertGlobalError(true);
 
 		FixEngine.Fix();
-		Laya.Text.defaultFont = "Font03";
-		fgui.UIConfig.defaultFont = "Font03";
+		Laya.Text.defaultFont = ResPath.Font03;
+		fgui.UIConfig.defaultFont = ResPath.Font03;
 		fgui.UIConfig.packageFileExtension = "zip";
 
 		//激活资源版本控制，version.json由IDE发布功能自动生成，如果没有也不影响后续流程

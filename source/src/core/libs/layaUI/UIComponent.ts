@@ -84,7 +84,7 @@ export class UIComponent extends Laya.Sprite {
     set_dataSource(value) {
         this._dataSource = value;
         for (var prop in this._dataSource) {
-            if (prop in this && !(typeof (this[ prop ]) == 'function')) {
+            if (prop in this && !(typeof (this[ prop ]) == "function")) {
                 this[ prop ] = this._dataSource[ prop ];
             }
         }

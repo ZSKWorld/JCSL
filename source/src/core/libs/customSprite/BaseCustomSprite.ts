@@ -3,7 +3,7 @@ export class BaseCustomSprite<T extends Laya.Value2D> extends Laya.Sprite {
     protected shaderValue: T;
     override get texture() { return this._texture; }
     override set texture(value: Laya.Texture) {
-        if (typeof (value) == 'string') {
+        if (typeof (value) == "string") {
             this.loadImage(value);
         }
         else if (this._texture != value) {
