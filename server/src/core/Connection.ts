@@ -6,7 +6,6 @@ import { HeartController } from "./controller/HeartController";
 import { LoginController } from "./controller/LoginController";
 import { RegisterController } from "./controller/RegisterController";
 import { ErrorCode } from "./ErrorCode";
-import { UserInput, UserOutput } from "./interface/Interface";
 import { UserData } from "./UserData";
 export class Connection {
     private _listener = Pool.get(PoolKey.EventDispatcher, EventDispatcher);

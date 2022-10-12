@@ -1,6 +1,5 @@
 import * as fs from "fs";
 import * as path from "path";
-import { IUserData } from "../core/interface/Interface";
 export class Util {
     /**生成uid */
     static CreateUID() {

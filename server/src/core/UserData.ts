@@ -1,5 +1,4 @@
 import { Util } from "../utils/Util";
-import { IUserData } from "./interface/Interface";
 
 export class UserData implements Required<IUserData> {
     uid: string = Util.CreateUID();

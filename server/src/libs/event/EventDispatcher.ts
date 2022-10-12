@@ -4,22 +4,21 @@ export class EventDispatcher {
     private _events: any;
     
     hasListener(type: string) {
-        var listener = this._events && this._events[ type ];
-        return !!listener;
+        return !!(this._events && this._events[ type ]);
     }
 
     event(type: string, data: any = null) {
         if (!this._events || !this._events[ type ])
             return false;
-        var listeners = this._events[ type ];
+        const listeners = this._events[ type ];
         if (listeners.run) {
             if (listeners.once)
                 delete this._events[ type ];
             data != null ? listeners.runWith(data) : listeners.run();
         }
         else {
-            for (var i = 0, n = listeners.length; i < n; i++) {
-                var listener = listeners[ i ];
+            for (let i = 0, n = listeners.length; i < n; i++) {
+                const listener = listeners[ i ];
                 if (listener) {
                     (data != null) ? listener.runWith(data) : listener.run();
                 }
