@@ -9,7 +9,7 @@ const logger = Logger.Create("WebSocket").setEnable(true);
 * @Author       : zsk
 * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-10-11 22:28:25
+ * @LastEditTime : 2022-10-13 21:14:02
 * @Description  : 
 */
 class WebSocket extends Observer {
@@ -42,8 +42,8 @@ class WebSocket extends Observer {
     }
 
     private onSocketOpen(): void {
-        this.executeWaitMsg();
         this.dispatch(NotifyConst.SocketOpened);
+        this.executeWaitMsg();
     }
 
     private onSocketMessage(message: string): void {
@@ -65,15 +65,14 @@ class WebSocket extends Observer {
     private onSocketError(e): void { }
 
     private onSocketClose(): void {
-        this._socket.connectByUrl(this._url);
         this.dispatch(NotifyConst.SocketClosed);
+        this._socket.connectByUrl(this._url);
     }
 
     private executeWaitMsg(): void {
-        if (this._waitList.length > 0 && !this._current && this.connected) {
-            const msg = this._waitList.shift();
-            this._current = msg;
-            this._socket.send(JSON.stringify(msg));
+        if (this.connected && !this._current && this._waitList.length > 0) {
+            this._current = this._waitList.shift();
+            this._socket.send(JSON.stringify(this._current));
         }
     }
 }

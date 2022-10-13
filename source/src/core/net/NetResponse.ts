@@ -10,4 +10,5 @@ export const enum NetResponse {
 	Response_Login = "Response_Login",
 
 	/** 参数类型：{@link RegisterOutput} */
-	Response_Register = "Response_Register",}
+	Response_Register = "Response_Register",
+}
