@@ -10,7 +10,7 @@ export const enum UITipConfirmMsg {
 
 export class UITipConfirmView extends ExtensionClass<ViewExtension, UITipConfirm>(UITipConfirm) {
 	static readonly PkgRes = ResPath.Ui_PkgCommon;
-	static DontDestroy: boolean = true;
+	static readonly DontDestroy = true;
 
 	override onCreate(): void {
 		const { BtnBg, BtnConfirm } = this;

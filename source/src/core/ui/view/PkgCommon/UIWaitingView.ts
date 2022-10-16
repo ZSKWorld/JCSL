@@ -9,7 +9,7 @@ export const enum UIWaitingMsg {
 
 export class UIWaitingView extends ExtensionClass<ViewExtension, UIWaiting>(UIWaiting) {
     static readonly PkgRes = ResPath.Ui_PkgCommon;
-    static DontDestroy = true;
+    static readonly DontDestroy = true;
 
     override onCreate(): void {
 
