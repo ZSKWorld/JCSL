@@ -1,17 +1,17 @@
+import { ResPath } from "../../../../common/ResPath";
 import { ExtensionClass } from "../../../../libs/utils/Util";
 import { ViewExtension } from "../../../core/Interfaces";
 import ComTipInfo from "../../../ui/PkgCommon/ComTipInfo";
-import { ResPath } from "../../../../common/ResPath";
 
 export const enum ComTipInfoMsg {
 
 }
 
 export class ComTipInfoView extends ExtensionClass<ViewExtension, ComTipInfo>(ComTipInfo) {
-    static PkgRes = ResPath.Ui_PkgCommon;
+    static readonly PkgRes = ResPath.Ui_PkgCommon;
 
-	override onCreate(): void {
-        
+    override onCreate(): void {
+
     }
     setAlpha(alpha: number) {
         this.alpha = alpha;

@@ -8,7 +8,7 @@ export const enum UIGameMainMsg {
 }
 
 export class UIGameMainView extends ExtensionClass<ViewExtension, UIGameMain>(UIGameMain) {
-    static PkgRes = ResPath.Ui_PkgGame;
+    static readonly PkgRes = ResPath.Ui_PkgGame;
 
     override onCreate(): void {
         const { BtnSetting } = this;

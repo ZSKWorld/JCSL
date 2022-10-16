@@ -9,7 +9,7 @@ export const enum UILoginMainMsg {
 }
 
 export class UILoginMainView extends ExtensionClass<ViewExtension, UILoginMain>(UILoginMain) {
-	static PkgRes = ResPath.Ui_PkgLogin;
+	static readonly PkgRes = ResPath.Ui_PkgLogin;
 
 	override onCreate(): void {
 		const { BtnLogin, BtnRegister } = this;

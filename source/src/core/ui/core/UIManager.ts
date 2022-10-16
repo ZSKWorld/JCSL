@@ -27,7 +27,7 @@ class UICache {
 	 */
 	addDestroyCache(viewInst: IView) {
 		const viewId = viewInst.viewId;
-		if (ViewClass[ viewId ].DontDestroy) this._dontDestroyCache.set(viewId, viewInst);
+		if (/**ViewClass[ viewId ].DontDestroy */true) this._dontDestroyCache.set(viewId, viewInst);
 		else this._destroyCache.set(viewId, [ viewInst, Date.now() ]);
 	}
 
@@ -38,7 +38,7 @@ class UICache {
 	 */
 	getViewFromCache(viewId: ViewID) {
 		let viewInst: IView;
-		if (ViewClass[ viewId ].DontDestroy) {
+		if (/**ViewClass[ viewId ].DontDestroy */true) {
 			if (this._dontDestroyCache.has(viewId)) {
 				viewInst = this._dontDestroyCache.get(viewId);
 				this._dontDestroyCache.delete(viewId);

@@ -9,7 +9,7 @@ export const enum UITipConfirmMsg {
 }
 
 export class UITipConfirmView extends ExtensionClass<ViewExtension, UITipConfirm>(UITipConfirm) {
-	static PkgRes = ResPath.Ui_PkgCommon;
+	static readonly PkgRes = ResPath.Ui_PkgCommon;
 	static DontDestroy: boolean = true;
 
 	override onCreate(): void {
@@ -18,21 +18,21 @@ export class UITipConfirmView extends ExtensionClass<ViewExtension, UITipConfirm
 		BtnConfirm.onClick(this, this.sendMessage, [ UITipConfirmMsg.OnBtnConfirmClick ]);
 	}
 
-    setContent(text: string, title: string) {
-        this.TxtContent.text = text;
-        this.TxtTitle.text = title || "提示";
-    }
+	setContent(text: string, title: string) {
+		this.TxtContent.text = text;
+		this.TxtTitle.text = title || "提示";
+	}
 
-    playAni(close?: boolean) {
+	playAni(close?: boolean) {
 		this.addEventLock(Laya.Event.CLICK);
-        return new Promise((resolve) => {
-            const completed = Laya.Handler.create(this, ()=>{
+		return new Promise((resolve) => {
+			const completed = Laya.Handler.create(this, () => {
 				resolve(null);
 				this.removeEventLock(Laya.Event.CLICK);
 			});
-            if (close) this.EffectShow.playReverse(completed);
-            else this.EffectShow.play(completed);
-        });
-    }
+			if (close) this.EffectShow.playReverse(completed);
+			else this.EffectShow.play(completed);
+		});
+	}
 
 }
