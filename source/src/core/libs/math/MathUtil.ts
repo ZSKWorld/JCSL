@@ -1,10 +1,4 @@
-/**
- * @Author       : zsk
- * @Date         : 2022-08-05 21:17:13
- * @LastEditors  : zsk
- * @LastEditTime : 2022-10-11 23:19:06
- * @Description  : 数学工具类
- */
+/** 数学工具类 */
 export class MathUtil {
     static readonly Radian = Math.PI / 180;
 

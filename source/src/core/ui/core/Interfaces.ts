@@ -2,13 +2,7 @@ import { BaseNetProcessor } from "./BaseNetProcessor";
 import { BaseViewCtrl } from "./BaseViewCtrl";
 import { Layer } from "./GameLayer";
 import { ViewID } from "./ViewID";
-/**
- * @Author       : zsk
- * @Date         : 2022-08-05 21:17:13
- * @LastEditors  : zsk
- * @LastEditTime : 2022-10-16 18:14:58
- * @Description  : 定义页面及控制器类型和扩展
- */
+
 export const enum ViewCtrlEvents {
 	/** 页面前置事件 */
 	OnForeground = "OnForeground",

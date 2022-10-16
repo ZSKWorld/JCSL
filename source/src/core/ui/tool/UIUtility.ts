@@ -4,13 +4,7 @@ import { uiMgr } from "../core/UIManager";
 import { ViewID } from "../core/ViewID";
 import { UIPoolKey } from "./UIPoolKey";
 
-/**
- * @Author       : zsk
- * @Date         : 2022-08-05 21:17:13
- * @LastEditors  : zsk
- * @LastEditTime : 2022-10-16 18:00:32
- * @Description  : UI工具类
- */
+/** UI工具类 */
 export class UIUtility {
 	/**
 	 * 弹浮动提示

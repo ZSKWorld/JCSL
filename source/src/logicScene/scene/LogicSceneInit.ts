@@ -10,13 +10,7 @@ import { uiRegister } from "../../core/ui/core/ViewRegister";
 import { LogicSceneBase } from "../LogicSceneBase";
 import { LogicSceneType } from "../LogicSceneType";
 
-/**
- * @Author       : zsk
- * @Date         : 2022-08-05 21:17:13
- * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 21:27:52
- * @Description  : 初始化逻辑场景
- */
+/** 初始化逻辑场景 */
 export class LogicSceneInit extends LogicSceneBase {
 
 	protected override getConstResArray(): string[] {

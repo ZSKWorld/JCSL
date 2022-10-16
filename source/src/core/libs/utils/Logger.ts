@@ -4,13 +4,7 @@ const enum LogLevel {
     Error = "Error",
 }
 
-/**
- * @Author       : zsk
- * @Date         : 2022-08-05 23:09:46
- * @LastEditors  : zsk
- * @LastEditTime : 2022-09-15 01:12:04
- * @Description  : 日志打印工具
- */
+/** 日志打印工具 */
 export class Logger {
     private static loggerMap: { [ name: string ]: Logger } = {};
     /** 是否开启日志打印，全局开关 */

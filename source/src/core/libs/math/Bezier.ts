@@ -1,12 +1,6 @@
 import { recyclablePoint } from "../utils/Recyclable";
 
-/**
- * @Author       : zsk
- * @Date         : 2022-09-05 21:57:22
- * @LastEditors  : zsk
- * @LastEditTime : 2022-10-11 23:37:12
- * @Description  : 匀速贝塞尔曲线，文档：https://www.freesion.com/article/2280255606/
- */
+/** 匀速贝塞尔曲线，文档：https://www.freesion.com/article/2280255606/ */
 export class Bezier {
     /**普通贝塞尔点 */
     static NormalPoint(start: Point, end: Point, control: Point, t: number) {

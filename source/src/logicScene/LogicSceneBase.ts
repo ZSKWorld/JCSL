@@ -9,13 +9,7 @@ const enum ResGroupType {
 	All,
 }
 
-/**
- * @Author       : zsk
- * @Date         : 2022-08-29 21:05:38
- * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 21:29:13
- * @Description  : 逻辑场景基类
- */
+/** 逻辑场景基类 */
 export abstract class LogicSceneBase extends Observer implements IScene {
 	protected data: any;
 

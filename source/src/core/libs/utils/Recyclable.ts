@@ -1,12 +1,4 @@
 /**
- * @Author       : zsk
- * @Date         : 2021-08-14 21:47:48
- * @LastEditors  : zsk
- * @LastEditTime : 2022-09-05 23:11:16
- * @Description  : null
- */
-
-/**
  * 获取一个可回收的对象
  */
 export function recyclable<T>(creator: Class<T>): Recyclable<T> {

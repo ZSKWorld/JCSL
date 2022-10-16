@@ -7,13 +7,7 @@ import { LogicSceneType } from "./LogicSceneType";
 
 const logger = Logger.Create("LogicSceneMgr").setEnable(true);
 
-/**
- * @Author       : zsk
- * @Date         : 2022-08-05 21:17:13
- * @LastEditors  : zsk
- * @LastEditTime : 2022-09-15 23:56:34
- * @Description  : 逻辑场景管理类
- */
+/** 逻辑场景管理类 */
 class LogicSceneMgr extends Observer {
 	private _currentType: LogicSceneType;
 	private _currentScene: IScene;

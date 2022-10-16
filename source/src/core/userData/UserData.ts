@@ -6,13 +6,6 @@ import { NetResponse } from "../net/NetResponse";
 
 const logger = Logger.Create("UserData").setEnable(true);
 
-/**
- * @Author       : zsk
- * @Date         : 2022-08-05 21:17:13
- * @LastEditors  : zsk
- * @LastEditTime : 2022-10-11 22:28:35
- * @Description  : 玩家数据
- */
 class UserData extends Observer implements Required<IUserData> {
     uid: string;
     nickname: string;

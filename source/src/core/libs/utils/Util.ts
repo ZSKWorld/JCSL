@@ -1,10 +1,4 @@
-/**
- * @Author       : zsk
- * @Date         : 2022-08-05 21:17:13
- * @LastEditors  : zsk
- * @LastEditTime : 2022-10-10 22:03:43
- * @Description  : 工具方法集合
- */
+/** 工具方法集合 */
 
 import { tableMgr } from "../../table/TableManager";
 

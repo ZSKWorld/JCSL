@@ -67,13 +67,7 @@ class UICache {
 
 }
 
-/**
- * @Author       : zsk
- * @Date         : 2022-04-18 22:11:15
- * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 00:59:45
- * @Description  : UI管理类
- */
+/** UI管理类 */
 class UIManager extends Observer {
 	/**待销毁缓存 */
 	private _cache: UICache;

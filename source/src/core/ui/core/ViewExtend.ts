@@ -5,13 +5,7 @@ import { IView, IViewCtrl } from "./Interfaces";
 import { CtrlClass } from "./UIGlobal";
 import { uiMgr } from "./UIManager";
 
-/**
- * @Author       : zsk
- * @Date         : 2022-08-25 23:58:44
- * @LastEditors  : zsk
- * @LastEditTime : 2022-10-16 18:11:42
- * @Description  : 页面及控制器扩展
- */
+/** 页面及控制器扩展 */
 export class ViewExtend {
 	static init() {
 		this.fguiGComponentExtend();

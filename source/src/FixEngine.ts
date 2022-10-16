@@ -2,13 +2,7 @@ import { NotifyConst } from "./core/common/NotifyConst";
 import { eventMgr } from "./core/libs/event/EventMgr";
 import { MathUtil } from "./core/libs/math/MathUtil";
 
-/**
- * @Author       : zsk
- * @Date         : 2022-08-05 21:17:13
- * @LastEditors  : zsk
- * @LastEditTime : 2022-10-11 22:08:20
- * @Description  : 引擎修复
- */
+/** 引擎修复 */
 export class FixEngine {
 	static Fix() {
 		this.UbbTagI();

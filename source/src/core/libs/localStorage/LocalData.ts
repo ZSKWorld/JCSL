@@ -1,11 +1,3 @@
-
-/**
- * @Author       : zsk
- * @Date         : 2021-09-17 13:15:52
- * @LastEditors  : zsk
- * @LastEditTime : 2021-09-17 14:07:41
- * @Description  : null
- */
 class LocalData {
     set(key: string, value: any): void {
         Laya.LocalStorage.setJSON(key, value);

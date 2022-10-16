@@ -1,11 +1,3 @@
-/**
- * @Author       : zsk
- * @Date         : 2022-08-29 00:30:25
- * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:24:26
- * @Description  : promise管理
- */
-
 type Resolve<T> = (value: T | PromiseLike<T>) => void;
 type Reject = (reason?: any) => void;
 type Executor<T> = (resolve: Resolve<T>, reject: Reject) => void;
@@ -36,6 +28,8 @@ class PromiseElement {
     }
 
 }
+
+/** promise管理 */
 class PromiseMgr {
     private _pool: PromiseElement[] = [];
 

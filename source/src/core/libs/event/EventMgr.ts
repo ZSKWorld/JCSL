@@ -1,10 +1,4 @@
-/**
- * @Author       : zsk
- * @Date         : 2022-08-05 21:17:13
- * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:28:16
- * @Description  : 消息事件处理器
- */
+/** 事件监听器 */
 class EventListener extends Laya.EventDispatcher {
 
     /**注册监听事件 */

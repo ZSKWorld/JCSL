@@ -1,12 +1,5 @@
 import { LogicSceneType } from "../../logicScene/LogicSceneType";
 
-/**
- * @Author       : zsk
- * @Date         : 2022-08-05 21:17:13
- * @LastEditors  : zsk
- * @LastEditTime : 2022-10-11 23:11:06
- * @Description  : 
- */
 export const enum NotifyConst {
 	/**
 	 * 网络消息错误

@@ -9,13 +9,7 @@ export enum Layer {
     Lock = "Lock",
 }
 
-/**
- * @Author       : zsk
- * @Date         : 2022-08-05 21:17:13
- * @LastEditors  : zsk
- * @LastEditTime : 2022-08-29 01:15:37
- * @Description  : UI层级管理
- */
+/** UI层级管理 */
 class LayerManager {
     private _layerMap: { [ key in Layer ]: fgui.GComponent };
 

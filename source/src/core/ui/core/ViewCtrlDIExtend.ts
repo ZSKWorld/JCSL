@@ -6,15 +6,9 @@ export type DIViewCtrl = IViewCtrl & {
 	__mouseEventList?: { [ key in MouseEvent ]?: Function[] },
 }
 
-
-/**
- * @Author       : zsk
- * @Date         : 2022-08-25 23:58:47
- * @LastEditors  : zsk
- * @LastEditTime : 2022-10-11 22:38:44
- * @Description  : 页面控制器设备（鼠标、键盘）交互事件扩展
- * @Description  : ViewCtrlDIExtend => ViewCtrlDeviceInteractionExtend的缩写
- */
+/** 
+ * 页面控制器设备（鼠标、键盘）交互事件扩展 ViewCtrlDIExtend => ViewCtrlDeviceInteractionExtend的缩写
+  */
 export class ViewCtrlDIExtend {
 
 	/**
