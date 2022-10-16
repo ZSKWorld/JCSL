@@ -1,5 +1,3 @@
-import { NotifyConst } from "../../common/NotifyConst";
-import { InsertNotify } from "../../libs/event/EventMgr";
 import { Observer } from "../../libs/event/Observer";
 import { Logger } from "../../libs/utils/Logger";
 import { Layer, layerMgr } from "./GameLayer";
@@ -25,10 +23,10 @@ class UICache {
 
 	/**
 	 * 添加待销毁页面
-	 * @param viewId {@link ViewID} 页面ID
 	 * @param viewInst {@link IView} 页面实例
 	 */
-	addDestroyCache(viewId: ViewID, viewInst: IView) {
+	addDestroyCache(viewInst: IView) {
+		const viewId = viewInst.viewId;
 		if (ViewClass[ viewId ].DontDestroy) this._dontDestroyCache.set(viewId, viewInst);
 		else this._destroyCache.set(viewId, [ viewInst, Date.now() ]);
 	}
@@ -98,6 +96,13 @@ class UIManager extends Observer {
 
 		//延迟250防止频繁触发
 		Laya.stage.on(Laya.Event.RESIZE, this, () => Laya.timer.once(250, this, this.onResize));
+
+		//初始化时就创建的UI
+		[ ViewID.WaitingView ].forEach(v => {
+			const viewInst = this.createViewInstance(v);
+			viewInst.initView(viewInst, null);
+			this._cache.addDestroyCache(viewInst);
+		});
 	}
 
 	/** 创建页面实例
@@ -127,7 +132,7 @@ class UIManager extends Observer {
 		if (openedIndex == -1) {
 			//先尝试从待销毁缓存池中获取
 			viewInst = this._cache.getViewFromCache(viewId);
-			if (viewInst) this.addView2(viewId, viewInst, data, hideTop, callback);
+			if (viewInst) this.addView2(viewInst, data, hideTop, callback);
 			else {
 				fgui.UIPackage.loadPackage([ ViewClass[ viewId ].PkgRes ], Laya.Handler.create(this, (res: any[]) => {
 					if (!res || !res.length) {
@@ -135,7 +140,7 @@ class UIManager extends Observer {
 							this.addView(viewId, data, callback, hideTop);
 					} else {
 						viewInst = this.createViewInstance(viewId);
-						this.addView2(viewId, viewInst, data, hideTop, callback);
+						this.addView2(viewInst, data, hideTop, callback);
 					}
 				}));
 			}
@@ -143,7 +148,7 @@ class UIManager extends Observer {
 			viewInst = this._openedViews[ openedIndex ];
 			if (openedIndex == 0) logger.warn(`Error:${ viewId }已经被打开`);
 			else this._openedViews.splice(openedIndex, 1);
-			this.addView2(viewId, viewInst, data, hideTop, callback);
+			this.addView2(viewInst, data, hideTop, callback);
 		}
 	}
 
@@ -165,7 +170,7 @@ class UIManager extends Observer {
 				_openedViews.splice(i, 1);
 				viewInst.removeFromParent();
 				viewInst.sendMessage(ViewCtrlEvents.OnBackground);
-				this._cache.addDestroyCache(viewInst.viewId, viewInst);
+				this._cache.addDestroyCache(viewInst);
 				break;
 			}
 		}
@@ -197,8 +202,8 @@ class UIManager extends Observer {
 		return -1;
 	}
 
-	private addView2(viewID: ViewID, viewInst: IView, data: any, hideTop: boolean, callback: Laya.Handler) {
-		viewInst.initView(viewID, viewInst, null, data);
+	private addView2(viewInst: IView, data: any, hideTop: boolean, callback: Laya.Handler) {
+		viewInst.initView(viewInst, null, data);
 		const topView = this.topView;
 		if (viewInst != topView) {
 			this._openedViews.unshift(viewInst);

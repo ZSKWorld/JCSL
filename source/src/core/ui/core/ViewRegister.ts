@@ -130,14 +130,16 @@ class ViewRegister {
 		register(ViewID.SettingView, UISettingView, UISettingCtrl, UISettingNetProcessor);
 	}
 
-	private registView(viewId: ViewID, viewCls: IView_Class, ctrlCls?: IViewCtrl_Class, netProcessorCls?:INetProcessor_Class) {
+	private registView(viewId: ViewID, viewCls: IView_Class, ctrlCls?: IViewCtrl_Class, netProcessorCls?: INetProcessor_Class) {
 		if (!viewCls) throw new Error("参数不能为空！");
-		if (!ViewClass[viewId]) {
-			(ViewClass as any)[viewId] = viewCls;
-			(CtrlClass as any)[viewId] = ctrlCls;
-			(NetProcessorClass as any)[viewId] = netProcessorCls;
+		if (!ViewClass[ viewId ]) {
+			viewCls.prototype.viewId = viewId;
+			ctrlCls.prototype.viewId = viewId;
+			(ViewClass as any)[ viewId ] = viewCls;
+			(CtrlClass as any)[ viewId ] = ctrlCls;
+			(NetProcessorClass as any)[ viewId ] = netProcessorCls;
 		} else {
-			logger.warn(`重复添加映射 => ${viewId}`);
+			logger.warn(`重复添加映射 => ${ viewId }`);
 		}
 	}
 }

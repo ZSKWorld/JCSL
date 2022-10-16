@@ -16,19 +16,18 @@ export class UIMainView extends ExtensionClass<ViewExtension, UIMain>(UIMain) {
     static PkgRes = ResPath.Ui_PkgMain;
 
 	override onCreate(): void {
-        const { listener, ComLingShou, ComGongFa, ComShiLian, ComJueSe, ComXiuXing, ComCurrency, BtnLingShou, BtnGongFa, BtnShiLian, BtnJueSe, BtnXiuXing } = this;
+        const { listener, ComLingShou, ComGongFa, ComShiLian, ComJueSe, ComXiuXing, BtnLingShou, BtnGongFa, BtnShiLian, BtnJueSe, BtnXiuXing } = this;
 	    BtnLingShou.onClick(this, this.sendMessage, [ UIMainMsg.OnBtnLingShouClick ]);
 	    BtnGongFa.onClick(this, this.sendMessage, [ UIMainMsg.OnBtnGongFaClick ]);
 	    BtnShiLian.onClick(this, this.sendMessage, [ UIMainMsg.OnBtnShiLianClick ]);
 	    BtnJueSe.onClick(this, this.sendMessage, [ UIMainMsg.OnBtnJueSeClick ]);
 	    BtnXiuXing.onClick(this, this.sendMessage, [ UIMainMsg.OnBtnXiuXingClick ]);
 
-		this.initView(ViewID.ComLingShouView, ComLingShou, listener);
-		this.initView(ViewID.ComGongFaView, ComGongFa, listener);
-		this.initView(ViewID.ComShiLianView, ComShiLian, listener);
-		this.initView(ViewID.ComJueSeView, ComJueSe, listener);
-		this.initView(ViewID.ComXiuXingView, ComXiuXing, listener);
-		this.initView(ViewID.ComCurrencyView, ComCurrency, listener);
+		this.initView(ComLingShou, listener);
+		this.initView(ComGongFa, listener);
+		this.initView(ComShiLian, listener);
+		this.initView(ComJueSe, listener);
+		this.initView(ComXiuXing, listener);
     }
 
 }

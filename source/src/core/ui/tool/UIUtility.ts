@@ -8,7 +8,7 @@ import { UIPoolKey } from "./UIPoolKey";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-10-11 22:14:39
+ * @LastEditTime : 2022-10-16 18:00:32
  * @Description  : UI工具类
  */
 export class UIUtility {
@@ -100,7 +100,7 @@ export class UIUtility {
 		const viewInst = <IView>Laya.Pool.getItemByCreateFun(
 			key, () => uiMgr.createViewInstance(viewID, fullScreen)
 		);
-		viewInst.initView(viewID, viewInst, null, data);
+		viewInst.initView(viewInst, null, data);
 		layerMgr.addObject(viewInst, layer);
 		return viewInst;
 	}

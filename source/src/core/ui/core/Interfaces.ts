@@ -6,7 +6,7 @@ import { ViewID } from "./ViewID";
  * @Author       : zsk
  * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-10-11 22:35:22
+ * @LastEditTime : 2022-10-16 18:14:58
  * @Description  : 定义页面及控制器类型和扩展
  */
 export const enum ViewCtrlEvents {
@@ -49,7 +49,7 @@ interface IViewMethod extends GComponentExtend {
 }
 
 interface IViewCommon {
-	viewId?: ViewID;
+	readonly viewId?: ViewID;
 	userData?: Readonly<IUserData>;
 }
 
@@ -59,15 +59,15 @@ export type IView = fgui.GComponent & ViewExtension;
 /**页面类类型 */
 export interface IView_Class {
 	new(): IView;
-	PkgRes?: string;
+	readonly PkgRes?: string;
 	/** 是否不可销毁 */
-	DontDestroy?: boolean;
+	readonly DontDestroy?: boolean;
 	createInstance?(): IView;
 };
 
 /**页面扩展 */
 export interface ViewExtension extends IViewMethod, IViewCommon {
-	layer?: Layer;
+	readonly layer?: Layer;
 	listener?: Laya.EventDispatcher;
 
 	/**
@@ -85,7 +85,7 @@ export interface ViewExtension extends IViewMethod, IViewCommon {
 	 * @param viewInst {@link IView} 组件页面对象
 	 * @param listener {@link Laya.EventDispatcher} 页面消息监听器
 	 */
-	initView?(viewId: ViewID, viewInst: IView, listener: Laya.EventDispatcher, data?: any): void;
+	initView?(viewInst: IView, listener: Laya.EventDispatcher, data?: any): void;
 };
 
 

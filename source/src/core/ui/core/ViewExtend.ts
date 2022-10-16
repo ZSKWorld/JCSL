@@ -9,7 +9,7 @@ import { uiMgr } from "./UIManager";
  * @Author       : zsk
  * @Date         : 2022-08-25 23:58:44
  * @LastEditors  : zsk
- * @LastEditTime : 2022-09-15 00:06:15
+ * @LastEditTime : 2022-10-16 18:11:42
  * @Description  : 页面及控制器扩展
  */
 export class ViewExtend {
@@ -27,20 +27,15 @@ export class ViewExtend {
 		prototype.removeAllView = function () { uiMgr.removeAllView(); };
 		prototype.removeView = function (viewId) { uiMgr.removeView(viewId); };
 		prototype.removeSelf = function () { uiMgr.removeView((<IView>this).viewId); };
-		prototype.initView = function (viewId, viewInst, listener, data) {
+		prototype.initView = function (viewInst, listener, data) {
 			//是否是新挂载组件，只有新挂载的组件才执行onCreate方法
 			let newComp = true;
-			let CtrlCls = CtrlClass[ viewId ];
 			let viewCtrl: IViewCtrl;
+			const CtrlCls = CtrlClass[ viewInst.viewId ];
 			if (CtrlCls) {
 				viewCtrl = viewInst.getComponent(CtrlCls);
 				if (viewCtrl) newComp = false;
-				else {
-					viewCtrl = Laya.Pool.createByClass(CtrlCls);
-					viewCtrl[ "_destroyed" ] = false;
-					viewCtrl.viewId = viewId;
-					viewInst.addComponentIntance(viewCtrl);
-				}
+				else viewCtrl = viewInst.addComponent(CtrlCls);
 				data != null && (viewCtrl.data = data);
 				viewCtrl.listener = listener;
 				viewCtrl.userData = userData;
@@ -51,7 +46,6 @@ export class ViewExtend {
 					thisCtrl?.subCtrls.push(viewCtrl);
 				}
 			}
-			viewInst.viewId = viewId;
 			viewInst.userData = userData;
 			//这里不能使用传入的listener，传入的可能为空值
 			viewInst.listener = viewCtrl?.listener;

@@ -9,7 +9,7 @@ const logger = Logger.Create("WebSocket").setEnable(true);
 * @Author       : zsk
 * @Date         : 2022-08-05 21:17:13
  * @LastEditors  : zsk
- * @LastEditTime : 2022-10-13 21:14:02
+ * @LastEditTime : 2022-10-16 16:56:07
 * @Description  : 
 */
 class WebSocket extends Observer {
@@ -49,8 +49,8 @@ class WebSocket extends Observer {
     private onSocketMessage(message: string): void {
         const msg: UserOutput = JSON.parse(message);
         if (msg && !msg.error) {
-            this.dispatch(`Response_${ msg.cmd[ 0 ].toUpperCase() + msg.cmd.substring(1) }`, msg);
             if (msg.syncInfo) this.dispatch(NetResponse.Response_SyncInfo, msg.syncInfo);
+            this.dispatch(`Response_${ msg.cmd[ 0 ].toUpperCase() + msg.cmd.substring(1) }`, msg);
             if (this._current && this._current.cmd == msg.cmd)
                 this._current = null;
         } else {
