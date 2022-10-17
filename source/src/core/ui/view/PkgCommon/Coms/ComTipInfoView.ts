@@ -16,19 +16,9 @@ export class ComTipInfoView extends ExtensionClass<ViewExtension, ComTipInfo>(Co
     setAlpha(alpha: number) {
         this.alpha = alpha;
     }
-    setContent(text: string, color: string) {
-        this.text = text;
-        this.color = color;
-        this.setAlpha(1);
-        this.setXY(Laya.stage.width / 2, Laya.stage.height / 2);
-    }
-
-    /**
-     * 播放显示动画
-     * @param onComplete {@link Laya.Handler} 完成回调
-     */
-    playShowAni(onComplete?: Laya.Handler, times?: number, delay?: number, startTime?: number, endTime?: number) {
-        this.t0.play(onComplete, times, delay, startTime, endTime);
+    setContent(text: string, color = "#ffffff") {
+        this.title.text = text;
+        this.title.color = color;
     }
 
 }

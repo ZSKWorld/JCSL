@@ -1,4 +1,3 @@
-import { tableMgr } from "../../../../table/TableManager";
 import { BaseViewCtrl } from "../../../core/BaseViewCtrl";
 import { UIPoolKey } from "../../../tool/UIPoolKey";
 import { ComTipInfoView } from "../../../view/PkgCommon/Coms/ComTipInfoView";
@@ -9,35 +8,62 @@ export interface ComTipInfoData {
 }
 
 export class ComTipInfoCtrl extends BaseViewCtrl<ComTipInfoView, ComTipInfoData>{
-
-    private _speed: number = +tableMgr.Const[ 1004 ].Value;
-    private _duration = +tableMgr.Const[ 1002 ].Value * 1000;
-    private _lineTime = +tableMgr.Const[ 1003 ].Value * 1000;
+    private static tipIndex = 0;
+    private static displayTips: ComTipInfoCtrl[] = [];
+    private static readonly MoveUpSpeed: number = 10;
     private _time: number;
     private _moveEnable: boolean;
+    private _moveUpDis: number = 0;
+    private _tipIndex: number = 0;
 
     override onEnable(): void {
-        this._time = this._duration;
+        const tips = ComTipInfoCtrl.displayTips;
+        this._tipIndex = ComTipInfoCtrl.tipIndex++;
+        tips.forEach(v => v.moveOffset(true));
+        tips.push(this);
+        const { view, data } = this;
+        this._time = 1000;
+        this._moveUpDis = 0;
         this._moveEnable = false;
-        this.view.setContent(this.data.text, this.data.color || "#ffffff");
-        this.view.playShowAni(Laya.Handler.create(this, () => {
-            const lineNum = Math.ceil(this.view.height / 66);
-            Laya.timer.once(lineNum * this._lineTime, this, () => {
-                this._moveEnable = true;
-            });
-        }));
+        view.setXY(Laya.stage.width + view.width / 2, Laya.stage.height / 2);
+        view.setContent(data.text, data.color);
+        Laya.Tween.to(view, { x: Laya.stage.width / 2 }, 300, Laya.Ease.backOut, Laya.Handler.create(this, () => this._moveEnable = true));
     }
 
     override onUpdate(): void {
-        if (!this._moveEnable) return;
         const { view } = this;
-        if (this._time <= 0) return view.removeFromParent();
-        this._time -= Laya.timer.delta;
-        view.setXY(view.x, view.y - this._speed);
-        view.setAlpha(Math.max(0, this._time / this._duration));
+        if (this._moveUpDis != 0) {
+            const top = this._moveUpDis > 0;
+            if (Math.abs(this._moveUpDis) >= ComTipInfoCtrl.MoveUpSpeed) {
+                const offset = (top ? -1 : 1) * ComTipInfoCtrl.MoveUpSpeed;
+                this._moveUpDis += offset;
+                view.y += offset;
+            } else {
+                view.y -= this._moveUpDis;
+                this._moveUpDis = 0;
+            }
+        }
+        if (this._moveEnable) {
+            if (this._time > 0) this._time -= Laya.timer.delta;
+            else {
+                this._moveEnable = false;
+                Laya.Tween.to(view, { x: -view.width / 2 }, 300, Laya.Ease.backIn, Laya.Handler.create(view, view.removeFromParent));
+            }
+        }
     }
 
     override onDisable(): void {
-        Laya.Pool.recover(UIPoolKey.TipInfo, this.view);
+        const { _tipIndex, view } = this;
+        const tips = ComTipInfoCtrl.displayTips;
+        for (let i = tips.length - 1; i >= 0; i--) {
+            const tip = tips[ i ];
+            if (tip == this) tips.splice(i, 1);
+            else tip._tipIndex < _tipIndex && tip.moveOffset(false)
+        }
+        Laya.Pool.recover(UIPoolKey.TipInfo, view);
+    }
+
+    private moveOffset(top: boolean) {
+        this._moveUpDis += (top ? 1 : -1) * this.view.height;
     }
 }

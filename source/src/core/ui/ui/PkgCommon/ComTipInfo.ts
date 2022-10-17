@@ -1,8 +1,8 @@
 /** This is an automatically generated class by FairyGUI. Please do not modify it. **/
 
-export default class ComTipInfo extends fgui.GLabel {
+export default class ComTipInfo extends fgui.GComponent {
 
-	public t0:fgui.Transition;
+	public title:fgui.GRichTextField;
 	public static URL:string = "ui://vx9zwsersbd05c";
 
 	public static createInstance():ComTipInfo {
@@ -10,6 +10,6 @@ export default class ComTipInfo extends fgui.GLabel {
 	}
 
 	protected override onConstruct():void {
-		this.t0 = this.getTransitionAt(0);
+		this.title = <fgui.GRichTextField>(this.getChildAt(1));
 	}
 }

@@ -4,8 +4,6 @@ import { ResPath } from "../common/ResPath";
 class TableManager {
 	/**固定文本表 */
 	readonly Lang: ConfigLang;
-	/**常量表 */
-	readonly Const: ConfigConst;
 	/**颜色表 */
 	readonly Color: ConfigColor;
 

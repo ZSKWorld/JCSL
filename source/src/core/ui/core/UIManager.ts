@@ -13,10 +13,10 @@ class UICache {
 	private static readonly DestroyCacheTime = 1 * 60 * 1000;
 
 	/**销毁缓存，销毁前保留一段时间，期间不在使用就销毁 */
-	private _destroyCache: Map<ViewID, [ IView, number ]> = new Map();
+	private _destroyCache = new Map<ViewID, [ IView, number ]>();
 
 	/**不会销毁的页面缓存 */
-	private _dontDestroyCache: Map<ViewID, IView> = new Map();
+	private _dontDestroyCache = new Map<ViewID, IView>();
 
 	constructor() { Laya.timer.loop(UICache.DestroyCacheTime, this, this.checkDestroyCache); }
 
