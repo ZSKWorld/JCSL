@@ -12,6 +12,7 @@ import { LogicSceneType } from "../LogicSceneType";
 
 /** 初始化逻辑场景 */
 export class LogicSceneInit extends LogicSceneBase {
+	private static inited = false;
 
 	protected override getConstResArray(): string[] {
 		return [
@@ -22,13 +23,16 @@ export class LogicSceneInit extends LogicSceneBase {
 	}
 
 	protected onEnter(): void {
-		ViewExtend.init();
-		tableMgr.loadTable();
-		uiRegister.Init();
-		layerMgr.init();
-		uiMgr.init();
-		websocket.init();
-		CustomSpriteManager.init();
+		if (LogicSceneInit.inited == false) {
+			ViewExtend.init();
+			tableMgr.loadTable();
+			uiRegister.Init();
+			layerMgr.init();
+			uiMgr.init();
+			websocket.init();
+			CustomSpriteManager.init();
+			LogicSceneInit.inited = true;
+		}
 		this.dispatch(NotifyConst.EnterScene, LogicSceneType.LoginScene);
 	}
 

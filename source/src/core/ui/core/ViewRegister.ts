@@ -66,7 +66,7 @@ import { UIWaitingView } from "../view/PkgCommon/UIWaitingView";
 import { ViewClass, NetProcessorClass, CtrlClass } from "./UIGlobal";
 import { ViewID } from "./ViewID";
 
-const logger = Logger.Create("ViewRegister").setEnable(true);
+const logger = Logger.Create("ViewRegister", true);
 
 class ViewRegister {
 

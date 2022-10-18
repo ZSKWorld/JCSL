@@ -9,7 +9,7 @@ const enum TriggerState {
     Stay,
 }
 
-const logger = Logger.Create("TriggerHelper").setEnable(true);
+const logger = Logger.Create("TriggerHelper", true);
 
 export class TriggerHelper {
     private static tempV20 = new Laya.Vector2();

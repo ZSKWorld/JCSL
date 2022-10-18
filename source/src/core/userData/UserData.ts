@@ -4,7 +4,7 @@ import { Logger } from "../libs/utils/Logger";
 import { UpperFirst } from "../libs/utils/Util";
 import { NetResponse } from "../net/NetResponse";
 
-const logger = Logger.Create("UserData").setEnable(true);
+const logger = Logger.Create("UserData", true);
 
 class UserData extends Observer implements Required<IUserData> {
     uid: string;

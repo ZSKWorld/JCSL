@@ -5,7 +5,7 @@ import { Movement_Player } from "../moveController/Movement_Player";
 import { WeaponBase } from "../weapon/WeaponBase";
 import { RoleBase } from "./RoleBase";
 
-const logger = Logger.Create("PlayerController").setEnable(true);
+const logger = Logger.Create("PlayerController", true);
 class Player extends RoleBase {
     private _phSp: Laya.Sprite;
     private _weapons: WeaponBase[] = [];
@@ -34,18 +34,18 @@ class Player extends RoleBase {
         weapon.pos(this.width / 2, this.height / 2, true);
     }
 
-    override onTriggerEnter(other: GameObject) {   }
+    override onTriggerEnter(other: GameObject) { }
 
-    override onTriggerStay(other: GameObject) {   }
+    override onTriggerStay(other: GameObject) { }
 
-    override onTriggerExit(other: GameObject) {    }
+    override onTriggerExit(other: GameObject) { }
 
     protected onHurt(hurt: number): void {
-        
+
     }
 
     protected onDead(): void {
-        
+
     }
 
     protected override onResize(): void {

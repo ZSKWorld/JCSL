@@ -40,9 +40,10 @@ export class UIWaitingCtrl extends BaseViewCtrl<UIWaitingView, string>{
 
     }
 
-    @InsertNotify(NotifyConst.SocketClosed)
-    private show() {
-        this.addView(this.viewId, null, null, false);
+    @InsertNotify(NotifyConst.SocketClosed, false, [ "网络已断开" ])
+    private show(data: string) {
+        if (this.isShow == false)
+            this.addView(this.viewId, data, null, false);
     }
 
     @InsertNotify(NotifyConst.SocketOpened)

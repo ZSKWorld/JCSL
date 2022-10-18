@@ -3,7 +3,7 @@ import { Observer } from "../libs/event/Observer";
 import { Logger } from "../libs/utils/Logger";
 import { NetResponse } from "./NetResponse";
 
-const logger = Logger.Create("WebSocket").setEnable(true);
+const logger = Logger.Create("WebSocket", true);
 
 class WebSocket extends Observer {
     private _url: string = "ws://192.168.0.101:8003";
@@ -13,13 +13,15 @@ class WebSocket extends Observer {
     get connected(): boolean { return this._socket.connected; }
 
     init(): void {
-        this._waitList = [];
-        this._socket = new Laya.Socket();
-        this._socket.connectByUrl(this._url);
-        this._socket.on(Laya.Event.OPEN, this, this.onSocketOpen);
-        this._socket.on(Laya.Event.MESSAGE, this, this.onSocketMessage);
-        this._socket.on(Laya.Event.ERROR, this, this.onSocketError);
-        this._socket.on(Laya.Event.CLOSE, this, this.onSocketClose);
+        if(!this._waitList){
+            this._waitList = [];
+            this._socket = new Laya.Socket();
+            this._socket.connectByUrl(this._url);
+            this._socket.on(Laya.Event.OPEN, this, this.onSocketOpen);
+            this._socket.on(Laya.Event.MESSAGE, this, this.onSocketMessage);
+            this._socket.on(Laya.Event.ERROR, this, this.onSocketError);
+            this._socket.on(Laya.Event.CLOSE, this, this.onSocketClose);
+        }
     }
 
     sendMsg(msg: UserInput): void {

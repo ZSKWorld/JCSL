@@ -6,8 +6,7 @@ var EventDispatcher = /** @class */ (function () {
     function EventDispatcher() {
     }
     EventDispatcher.prototype.hasListener = function (type) {
-        var listener = this._events && this._events[type];
-        return !!listener;
+        return !!(this._events && this._events[type]);
     };
     EventDispatcher.prototype.event = function (type, data) {
         if (data === void 0) { data = null; }

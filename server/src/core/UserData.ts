@@ -16,7 +16,7 @@ export class UserData implements Required<IUserData> {
         this.nickname = String(nickname);
     }
 
-    initData(data: any) {
+    initData(data: IUserData) {
         Object.keys(data).forEach(v => this[ v ] = data[ v ]);
         this.lastLoginTime = Date.now();
     }

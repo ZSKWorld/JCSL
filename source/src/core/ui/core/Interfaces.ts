@@ -3,7 +3,7 @@ import { BaseViewCtrl } from "./BaseViewCtrl";
 import { Layer } from "./GameLayer";
 import { ViewID } from "./ViewID";
 
-export const enum ViewCtrlEvents {
+export const enum ViewEvents {
 	/** 页面前置事件 */
 	OnForeground = "OnForeground",
 	/** 页面后置事件 */
@@ -90,8 +90,7 @@ export type IViewCtrl = BaseViewCtrl & ViewCtrlExtension;
 export type IViewCtrl_Class = Class<IViewCtrl>;
 
 /**页面控制器扩展 */
-export interface ViewCtrlExtension extends IViewMethod, IViewCommon {
-};
+export interface ViewCtrlExtension extends IViewMethod, IViewCommon { };
 
 
 export type INetProcessor = BaseNetProcessor;

@@ -16,13 +16,14 @@ export class Connection {
     ];
 
     private _logined: boolean;
-    private _connection: websocket.connection;
+    private _socket: websocket.connection;
     private _playerData: UserData;
-    get logined() { return this._logined; }
+    get logined() { return !!this._logined; }
     get playerData() { return this._playerData; }
     get listener() { return this._listener; }
+    get socket() { return this._socket; }
     constructor(connection: websocket.connection) {
-        this._connection = connection;
+        this._socket = connection;
         connection.on('message', (message) => {
             if (message.type === 'utf8') {
                 const data: UserInput = JSON.parse(message.utf8Data);
@@ -40,33 +41,35 @@ export class Connection {
         });
     }
 
-    userLogin(data: any) {
-        this._playerData = new UserData();
-        this._playerData.initData(data);
-        const oldConnection = connectionMgr.getConnection(this._playerData.uid);
-        if (oldConnection) {
+    userLogin(data: IUserData) {
+        const oldConnection = connectionMgr.getConnectionByUid(data.uid);
+        if (oldConnection && oldConnection != this) {
             oldConnection.response({ cmd: "", error: ErrorCode.LOGIN_OTHER_PLACE });
-            oldConnection._connection.close(websocket.connection.CLOSE_REASON_NORMAL, "login other place");
+            oldConnection._socket.close(websocket.connection.CLOSE_REASON_NORMAL, "login other place");
         }
-        connectionMgr.addConnection(this._playerData.uid, this);
-        this._logined = true;
+        if(!this._logined){
+            this._playerData = new UserData();
+            this._playerData.initData(data);
+            this._logined = true;
+            connectionMgr.addConnection(this._playerData.uid, this._playerData.account, this);
+        }
     }
 
     response(data: UserOutput) {
-        this._connection.sendUTF(JSON.stringify(data));
+        this._socket.sendUTF(JSON.stringify(data));
     }
 
     private connectionClose() {
         if (this._playerData) {
             this._playerData.save();
-            connectionMgr.removeConnection(this._playerData.uid);
+            connectionMgr.removeConnectionByUid(this._playerData.uid);
         }
         this._listener.offAll();
         Pool.recover(PoolKey.EventDispatcher, this._listener);
         this._controllers.forEach(v => v.clear());
         this._logined = false;
         this._listener = null;
-        this._connection = null;
+        this._socket = null;
         this._playerData = null;
         this._controllers = null;
     }

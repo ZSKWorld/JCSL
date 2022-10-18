@@ -10,7 +10,7 @@ import { TriggerHelper } from "./core/TriggerHelper";
 import { MovementBase } from "./moveController/MovementBase";
 import { player } from "./role/Player";
 
-const logger = Logger.Create("GameMgr").setEnable(true);
+const logger = Logger.Create("GameMgr", true);
 
 const enum GameState {
     /**游戏运行中 */

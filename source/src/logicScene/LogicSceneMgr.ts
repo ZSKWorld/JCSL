@@ -5,7 +5,7 @@ import { Logger } from "../core/libs/utils/Logger";
 import { IScene } from "./ILogicScene";
 import { LogicSceneType } from "./LogicSceneType";
 
-const logger = Logger.Create("LogicSceneMgr").setEnable(true);
+const logger = Logger.Create("LogicSceneMgr", true);
 
 /** 逻辑场景管理类 */
 class LogicSceneMgr extends Observer {

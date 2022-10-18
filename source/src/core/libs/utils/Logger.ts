@@ -2,10 +2,13 @@ const enum LogLevel {
     Log = "Log",
     Warn = "Warn",
     Error = "Error",
+    Assert = "Assert",
 }
 
 /** 日志打印工具 */
 export class Logger {
+    /** 默认日志打印器 */
+    private static readonly default = new Logger("Default", true);
     private static loggerMap: { [ name: string ]: Logger } = {};
     /** 是否开启日志打印，全局开关 */
     private static enable: boolean = true;
@@ -14,6 +17,19 @@ export class Logger {
         [ LogLevel.Log ]: [ "#FFFFFF", "#00AAFF", "#FF0000" ],
         [ LogLevel.Warn ]: [ "#000080", "#FFC900", "#FF0000" ],
         [ LogLevel.Error ]: [ "#FF0000", "#FFC8C8", "#FF0000" ],
+        [ LogLevel.Assert ]: [ "#FF0000", "#FFC8C8", "#FF0000" ],
+    }
+
+    /** 设置全局开关 */
+    static SetEnable(enable: boolean) { this.enable = enable; }
+
+    /** 创建日志打印器 */
+    static Create(name: string, enable = true) {
+        if (!this.enable) return this.default;
+        let logger = Logger.loggerMap[ name ];
+        if (!logger)
+            Logger.loggerMap[ name ] = logger = new Logger(name);
+        return logger.setEnable(enable);
     }
 
     /** 处理日志参数
@@ -59,24 +75,9 @@ export class Logger {
             case LogLevel.Log: console.log(...logArr); break;
             case LogLevel.Warn: console.warn(...logArr); break;
             case LogLevel.Error: console.error(...logArr); break;
+            case LogLevel.Assert: console.error(...logArr); break;
             default: break;
         }
-    }
-
-    static SetEnable(enable: boolean) { this.enable = enable; }
-
-    static Log(...message: any[]) { this.DoLog(LogLevel.Log, "", ...message); }
-
-    static Warn(...message: any[]) { this.DoLog(LogLevel.Warn, "", ...message); }
-
-    static Error(...message: any[]) { this.DoLog(LogLevel.Error, "", ...message); }
-
-    /** 创建日志打印器 */
-    static Create(name: string) {
-        let logger = Logger.loggerMap[ name ];
-        if (!logger)
-            Logger.loggerMap[ name ] = logger = new Logger(name);
-        return logger;
     }
 
     private constructor(
@@ -85,13 +86,15 @@ export class Logger {
         private _enable: boolean = true,
     ) { }
 
-    setEnable(enable: boolean) { this._enable = true; return this; }
-
     log(...message: any[]) { this._enable && Logger.DoLog(LogLevel.Log, this._name, ...message); }
 
     warn(...message: any[]) { this._enable && Logger.DoLog(LogLevel.Warn, this._name, ...message); }
 
     error(...message: any[]) { this._enable && Logger.DoLog(LogLevel.Error, this._name, ...message); }
+
+    assert(assert: boolean, tipText?: string) { this._enable && !assert && Logger.DoLog(LogLevel.Assert, this._name, tipText || "assert failed !"); }
+
+    private setEnable(enable: boolean) { this._enable = enable; return this; }
 }
 
 windowImmit("Logger", Logger)

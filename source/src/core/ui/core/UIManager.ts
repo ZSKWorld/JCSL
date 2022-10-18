@@ -1,11 +1,11 @@
 import { Observer } from "../../libs/event/Observer";
 import { Logger } from "../../libs/utils/Logger";
 import { Layer, layerMgr } from "./GameLayer";
-import { IView, ViewCtrlEvents } from "./Interfaces";
+import { IView, ViewEvents as ViewEvent } from "./Interfaces";
 import { ViewClass } from "./UIGlobal";
 import { ViewID } from "./ViewID";
 
-const logger = Logger.Create("UIManager").setEnable(true);
+const logger = Logger.Create("UIManager", true);
 
 /** 页面缓存管理 */
 class UICache {
@@ -27,7 +27,9 @@ class UICache {
 	 */
 	addDestroyCache(viewInst: IView) {
 		const viewId = viewInst.viewId;
-		if (/**ViewClass[ viewId ].DontDestroy */true) this._dontDestroyCache.set(viewId, viewInst);
+		if (/**ViewClass[ viewId ].DontDestroy */true) {
+			this._dontDestroyCache.set(viewId, viewInst);
+		}
 		else this._destroyCache.set(viewId, [ viewInst, Date.now() ]);
 	}
 
@@ -81,6 +83,7 @@ class UIManager extends Observer {
 	private get topView() { return this._openedViews[ 0 ]; }
 
 	init() {
+		if (this._cache) return;
 		this._cache = new UICache();
 
 		this._lockPanel = new fgui.GGraph();
@@ -157,21 +160,22 @@ class UIManager extends Observer {
 	 * @param viewId {@link ViewID} 页面ID，为null则移除全部页面
 	 */
 	removeView(viewId: ViewID) {
+		let oldTop = this.topView;
 		const { _openedViews } = this;
 		for (let i = _openedViews.length - 1; i >= 0; i--) {
 			const viewInst = _openedViews[ i ];
 			if (viewId == null || viewInst.viewId == viewId) {
 				_openedViews.splice(i, 1);
 				viewInst.removeFromParent();
-				viewInst.sendMessage(ViewCtrlEvents.OnBackground);
+				viewInst.sendMessage(ViewEvent.OnBackground);
 				this._cache.addDestroyCache(viewInst);
 				break;
 			}
 		}
 		const topView = this.topView;
-		if (topView) {
+		if (topView && (oldTop != topView || !topView.parent)) {
 			!topView.parent && layerMgr.addObject(topView, topView.layer || Layer.Bottom);
-			topView.sendMessage(ViewCtrlEvents.OnForeground);
+			topView.sendMessage(ViewEvent.OnForeground);
 		}
 	}
 
@@ -202,10 +206,10 @@ class UIManager extends Observer {
 		if (viewInst != topView) {
 			this._openedViews.unshift(viewInst);
 			hideTop && topView?.removeFromParent();
-			topView?.sendMessage(ViewCtrlEvents.OnBackground);
+			topView?.sendMessage(ViewEvent.OnBackground);
 			layerMgr.addObject(viewInst, viewInst.layer || Layer.Bottom);
 		}
-		viewInst.sendMessage(ViewCtrlEvents.OnForeground);
+		viewInst.sendMessage(ViewEvent.OnForeground);
 		callback && callback.run();
 		this._lockPanel.visible = false;
 	}

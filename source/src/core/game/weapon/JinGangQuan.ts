@@ -10,7 +10,7 @@ class JinGangQuanItem extends WeaponBase {
     }
 }
 
-const logger = Logger.Create("JinGangQuan").setEnable(true);
+const logger = Logger.Create("JinGangQuan", true);
 
 export class JinGangQuan extends WeaponBase {
     private _items: JinGangQuanItem[] = [];

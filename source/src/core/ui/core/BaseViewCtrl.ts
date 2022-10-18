@@ -1,8 +1,11 @@
 import { eventMgr } from "../../libs/event/EventMgr";
+import { Logger } from "../../libs/utils/Logger";
 import { ExtensionClass } from "../../libs/utils/Util";
-import { INetProcessor, IView, ViewCtrlEvents, ViewCtrlExtension } from "./Interfaces";
+import { INetProcessor, IView, ViewCtrlExtension, ViewEvents } from "./Interfaces";
 import { NetProcessorClass } from "./UIGlobal";
 import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
+
+const logger = Logger.Create("BaseViewCtrl", true);
 
 /**
  * UI控制器脚本基类，用来处理页面各种逻辑，刷新逻辑在页面View中执行，可挂在任何Laya.Node（GUI的displayObject）上。
@@ -13,6 +16,8 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	data: D;
 	/** 控制器挂载的ui页面 */
 	private _view: V;
+	/** 页面是否显示中 */
+	private _isShow: boolean;
 	/** 页面消息中心 */
 	private _listener: Laya.EventDispatcher;
 	/** 控制器网络回包代理 */
@@ -21,6 +26,7 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	private _subCtrls: BaseViewCtrl[] = [];
 
 	get view() { return this._view; }
+	get isShow() { return !!this._isShow; }
 	get listener() { return this._listener; }
 	set listener(value: Laya.EventDispatcher) {
 		if (value && value != this._listener) {
@@ -48,6 +54,7 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 		this.data = null;
 		this._view = null;
 		this._listener = null;
+		_netProcessor.destroy();
 		this._netProcessor = null;
 		_subCtrls.length = 0;
 		_listener?.offAll();
@@ -70,9 +77,11 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	 * @param type 消息类型
 	 * @param callback 回调函数
 	 * @param args 参数
+	 * @param once 是否只执行一次，默认 false
 	 */
-	protected addMessageListener(type: string, callback: Function, args?: any[]) {
-		this._listener.on(type, this, callback, args);
+	protected addMessageListener(type: string, callback: Function, args?: any[], once?: boolean) {
+		if (once) this._listener.once(type, this, callback, args);
+		else this._listener.on(type, this, callback, args);
 	}
 
 	/** 
@@ -89,27 +98,38 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 
 	private _onAdded() {
 		this._view = this.owner[ "$owner" ];
+		logger.assert(!this._listener, "_listener未清除");
 		this._listener = Laya.Pool.createByClass(Laya.EventDispatcher);
+		logger.assert(!this._netProcessor, "_netProcessor未清除");
 		this._netProcessor = Laya.Pool.createByClass(NetProcessorClass[ this.viewId ]);
 		this._netProcessor.viewCtrl = this;
 		eventMgr.registerNotify(this);
 		eventMgr.registerNotify(this._view);
 		eventMgr.registerNotify(this._netProcessor);
 		ViewCtrlDIExtend.registerDeviceEvent(this);
-		this.addMessageListener(ViewCtrlEvents.OnForeground, this._onForeground);
-		this.addMessageListener(ViewCtrlEvents.OnBackground, this._onBackground);
+		this.addMessageListener(ViewEvents.OnForeground, this.__onForeground);
+		this.addMessageListener(ViewEvents.OnBackground, this.__onBackground);
+	}
+	private _onEnable() {
+		this._isShow = true;
+		super[ "_onEnable" ]();
+	}
+	private _onDisable() {
+		this._isShow = false;
+		super[ "_onDisable" ]();
 	}
 
-	private _onForeground() {
+	private __onForeground() {
 		this.onForeground();
-		this._subCtrls.forEach(v => v._onForeground());
+		this._subCtrls.forEach(v => v.__onForeground());
 	}
 
-	private _onBackground() {
+	private __onBackground() {
 		this.onBackground();
-		this._subCtrls.forEach(v => v._onBackground());
+		this._subCtrls.forEach(v => v.__onBackground());
 	}
 }
+windowImmit("BaseViewCtrl", BaseViewCtrl);
 
 /** 按键事件类型 */
 export const enum KeyEvent {

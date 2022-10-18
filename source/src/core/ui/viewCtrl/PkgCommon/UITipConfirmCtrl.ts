@@ -8,7 +8,7 @@ export interface UITipConfirmData {
     callback?: Laya.Handler;
 }
 
-const logger = Logger.Create("UITipConfirmCtrl").setEnable(true);
+const logger = Logger.Create("UITipConfirmCtrl", true);
 
 export class UITipConfirmCtrl extends BaseViewCtrl<UITipConfirmView, UITipConfirmData>{
     private _confirmDatas: UITipConfirmData[] = [];

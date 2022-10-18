@@ -3,7 +3,7 @@ import { Logger } from "../../libs/utils/Logger";
 import { MovementBase } from "../moveController/MovementBase";
 import { Camp, ITrigger } from "./GameInterface";
 
-const logger = Logger.Create("GameObject").setEnable(true);
+const logger = Logger.Create("GameObject", true);
 
 export abstract class GameObject extends Image implements ITrigger {
     private static GID = 5;

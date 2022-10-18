@@ -1,17 +1,43 @@
 import { Connection } from "./Connection";
 
 class ConnectionMgr {
-    private connectionMap: { [ uid: string ]: Connection } = {};
-    addConnection(uid: string, connection: Connection) {
-        this.connectionMap[ uid ] = connection;
+    private connectionUidMap: { [ uid: string ]: Connection } = {};
+    private connectionAccMap: { [ account: string ]: Connection } = {};
+    addConnection(uid: string, account: string, connection: Connection) {
+        this.connectionUidMap[ uid ] = connection;
+        this.connectionAccMap[ account ] = connection;
     }
 
-    removeConnection(uid: string) {
-        delete this.connectionMap[ uid ];
+    removeConnectionByUid(uid: string) {
+        const connection = this.connectionUidMap[ uid ];
+        delete this.connectionUidMap[ uid ];
+        for (const key in this.connectionAccMap) {
+            const element = this.connectionAccMap[ key ];
+            if (element == connection) {
+                delete this.connectionAccMap[ key ];
+                return;
+            }
+        }
     }
 
-    getConnection(uid: string): Connection {
-        return this.connectionMap[ uid ];
+    removeConnectionByAcc(account: string) {
+        const connection = this.connectionAccMap[ account ];
+        delete this.connectionAccMap[ account ];
+        for (const key in this.connectionUidMap) {
+            const element = this.connectionUidMap[ key ];
+            if (element == connection) {
+                delete this.connectionUidMap[ key ];
+                return;
+            }
+        }
+    }
+
+    getConnectionByUid(uid: string): Connection {
+        return this.connectionUidMap[ uid ];
+    }
+
+    getConnectionByAcc(account: string): Connection {
+        return this.connectionAccMap[ account ];
     }
 }
 

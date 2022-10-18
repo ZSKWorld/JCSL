@@ -1,4 +1,6 @@
-import { BaseViewCtrl } from "../../../core/BaseViewCtrl";
+import { LogicSceneType } from "../../../../../logicScene/LogicSceneType";
+import { NotifyConst } from "../../../../common/NotifyConst";
+import { BaseViewCtrl, InsertKeyEvent, KeyEvent } from "../../../core/BaseViewCtrl";
 import { UIUtility } from "../../../tool/UIUtility";
 import { ComJueSeMsg, ComJueSeView } from "../../../view/PkgMain/Coms/ComJueSeView";
 import { RenderJueSeView } from "../../../view/PkgMain/Renders/RenderJueSeView";
@@ -28,5 +30,10 @@ export class ComJueSeCtrl extends BaseViewCtrl<ComJueSeView, ComJueSeData>{
 
     private onListRoleRenderer(index:number, item:RenderJueSeView){
         
+    }
+
+    @InsertKeyEvent(KeyEvent.KeyUp, Laya.Keyboard.ESCAPE)
+    private test(){
+        this.dispatch(NotifyConst.EnterScene, LogicSceneType.InitScene);
     }
 }
