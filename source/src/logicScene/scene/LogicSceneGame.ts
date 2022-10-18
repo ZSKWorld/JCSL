@@ -9,7 +9,7 @@ export class LogicSceneGame extends LogicSceneBase {
 
 	protected override getResArray(): string[] {
 		return [
-			ResPath.Ui_PkgGame
+			ResPath.UIPath.PkgGame
 		];
 	}
 

@@ -13,8 +13,8 @@ class ObjectFactory {
 
     }
     private _objectMap: ObjectMapType = {
-        [ GamePoolKey.Enemy_Fllow ]: { type: EnemyNormal, moveCtrl: Movement_FollowPlayer, pkg: ResPath.PkgCommon, url: "Icon_Book_Lu" },
-        [ GamePoolKey.Weapon_JingGangFu ]: { type: JinGangQuan, moveCtrl: Movement_Rotate, pkg: ResPath.PkgCommon, url: "" },
+        [ GamePoolKey.Enemy_Fllow ]: { type: EnemyNormal, moveCtrl: Movement_FollowPlayer, pkg: ResPath.UIName.PkgCommon, url: "Icon_Book_Lu" },
+        [ GamePoolKey.Weapon_JingGangFu ]: { type: JinGangQuan, moveCtrl: Movement_Rotate, pkg: ResPath.UIName.PkgCommon, url: "" },
     }
 
     createObject<T extends GameObject>(key: GamePoolKey) {

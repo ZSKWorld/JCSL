@@ -8,7 +8,7 @@ class TableManager {
 	readonly Color: ConfigColor;
 
     loadTable() {
-		let tableData = Laya.loader.getRes(ResPath.Table_Config);
+		let tableData = Laya.loader.getRes(ResPath.TablePath.Config);
 		if (tableData) {
 			const keyMap = tableData.keyMap;
 			delete tableData.keyMap;
@@ -17,7 +17,7 @@ class TableManager {
 				Object.keys(data).forEach(dataKey => this.decodeData(data[ dataKey ], keyMap));
 				this[ tableKey ] = data;
 			}
-			Laya.loader.clearRes(ResPath.Table_Config);
+			Laya.loader.clearRes(ResPath.TablePath.Config);
 		}
 	}
 

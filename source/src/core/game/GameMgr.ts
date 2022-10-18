@@ -32,14 +32,14 @@ class GameMgr extends Observer {
             this._container = new Laya.Sprite();
             layerMgr.addLayaObject(this._container, Layer.Game);
         }
-        player.changeSource(GameUtil.getFGUITexture(ResPath.PkgCommon, "Bg_XingXing02"));
+        player.changeSource(GameUtil.getFGUITexture(ResPath.UIName.PkgCommon, "Bg_XingXing02"));
         player.pos(Laya.stage.width / 2, Laya.stage.height / 2);
         this._container.addChild(player);
         player.addWeapon(objectFactory.createObject(GamePoolKey.Weapon_JingGangFu));
 
         for (let i = 0; i < 10; i++) {
             const enemy = objectFactory.createObject(GamePoolKey.Enemy_Fllow);
-            i == 0 && enemy.changeSource(GameUtil.getFGUITexture(ResPath.PkgCommon, "Icon_Book_Yue"));
+            i == 0 && enemy.changeSource(GameUtil.getFGUITexture(ResPath.UIName.PkgCommon, "Icon_Book_Yue"));
             enemy.pos(Math.random() * Laya.stage.width, Math.random() * Laya.stage.height);
             this._container.addChild(enemy);
         }

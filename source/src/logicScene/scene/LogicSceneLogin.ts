@@ -6,7 +6,7 @@ import { LogicSceneBase } from "../LogicSceneBase";
 /** 登录逻辑场景 */
 export class LogicSceneLogin extends LogicSceneBase {
 	protected override getResArray(): string[] {
-		return [ ResPath.Ui_PkgLogin ];
+		return [ ResPath.UIPath.PkgLogin ];
 	}
 
 	protected onEnter(): void {

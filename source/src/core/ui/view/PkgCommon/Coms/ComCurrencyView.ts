@@ -11,7 +11,7 @@ export const enum ComCurrencyMsg {
 }
 
 export class ComCurrencyView extends ExtensionClass<ViewExtension, ComCurrency>(ComCurrency) {
-	static readonly PkgRes = ResPath.Ui_PkgCommon;
+	static readonly PkgRes = ResPath.UIPath.PkgCommon;
 
 	override onCreate(): void {
 		const { BtnAddCoin, BtnAddVcoin } = this;

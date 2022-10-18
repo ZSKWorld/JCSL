@@ -7,7 +7,7 @@ import { LogicSceneBase } from "../LogicSceneBase";
 export class LogicSceneMain extends LogicSceneBase {
 	protected override getResArray(): string[] {
 		return [
-			ResPath.Ui_PkgMain
+			ResPath.UIPath.PkgMain
 		];
 	}
 

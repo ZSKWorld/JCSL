@@ -8,7 +8,7 @@ export const enum ComGongFaMsg {
 }
 
 export class ComGongFaView extends ExtensionClass<ViewExtension, ComGongFa>(ComGongFa) {
-    static readonly PkgRes = ResPath.Ui_PkgMain;
+    static readonly PkgRes = ResPath.UIPath.PkgMain;
 
     override onCreate(): void {
 

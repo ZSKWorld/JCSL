@@ -8,7 +8,7 @@ export const enum ComShiLianMsg {
 }
 
 export class ComShiLianView extends ExtensionClass<ViewExtension, ComShiLian>(ComShiLian) {
-    static readonly PkgRes = ResPath.Ui_PkgMain;
+    static readonly PkgRes = ResPath.UIPath.PkgMain;
 
     override onCreate(): void {
 

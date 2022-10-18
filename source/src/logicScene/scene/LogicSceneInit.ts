@@ -15,9 +15,9 @@ export class LogicSceneInit extends LogicSceneBase {
 
 	protected override getConstResArray(): string[] {
 		return [
-			ResPath.Table_Config,
-			ResPath.Font_Font03,
-			ResPath.Ui_PkgCommon,
+			ResPath.TablePath.Config,
+			ResPath.FontPath.Font03,
+			ResPath.UIPath.PkgCommon,
 		];
 	}
 

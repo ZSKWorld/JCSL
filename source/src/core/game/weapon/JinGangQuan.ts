@@ -6,7 +6,7 @@ class JinGangQuanItem extends WeaponBase {
     constructor(skin?: string | Laya.Texture) {
         super(skin);
         this.anchor(0.5, 0.5);
-        this.changeSource(GameUtil.getFGUITexture(ResPath.PkgCommon, "Btn_Xingxi"));
+        this.changeSource(GameUtil.getFGUITexture(ResPath.UIName.PkgCommon, "Btn_Xingxi"));
     }
 }
 

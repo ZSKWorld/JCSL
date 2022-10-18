@@ -6,6 +6,19 @@ import { UIPoolKey } from "./UIPoolKey";
 
 /** UI工具类 */
 export class UIUtility {
+    /**
+	 * 获取gui图集贴图
+	 * @param pkg 包名
+	 * @param name 贴图名字
+	 * @returns 
+	 */
+    static getFGUITexture(pkg: string, name: string) {
+        let temp = fgui.UIPackage.getItemByURL(fgui.UIPackage.getItemURL(pkg, name)).getBranch();
+        temp = temp.getHighResolution();
+        temp.load();
+        return temp.texture;
+    }
+
 	/**
 	 * 弹浮动提示
 	 * @param text 文字

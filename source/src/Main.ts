@@ -32,8 +32,8 @@ class Main extends Notifier{
 		// Laya.alertGlobalError(true);
 
 		FixEngine.Fix();
-		Laya.Text.defaultFont = ResPath.Font03;
-		fgui.UIConfig.defaultFont = ResPath.Font03;
+		Laya.Text.defaultFont = ResPath.FontName.Font03;
+		fgui.UIConfig.defaultFont = ResPath.FontName.Font03;
 		fgui.UIConfig.packageFileExtension = "zip";
 
 		//激活资源版本控制，version.json由IDE发布功能自动生成，如果没有也不影响后续流程

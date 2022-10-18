@@ -8,7 +8,7 @@ export const enum ComXiuXingMsg {
 }
 
 export class ComXiuXingView extends ExtensionClass<ViewExtension, ComXiuXing>(ComXiuXing) {
-    static readonly PkgRes = ResPath.Ui_PkgMain;
+    static readonly PkgRes = ResPath.UIPath.PkgMain;
 
     override onCreate(): void {
 

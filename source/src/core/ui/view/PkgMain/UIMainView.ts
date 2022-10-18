@@ -12,7 +12,7 @@ export const enum UIMainMsg {
 }
 
 export class UIMainView extends ExtensionClass<ViewExtension, UIMain>(UIMain) {
-	static readonly PkgRes = ResPath.Ui_PkgMain;
+	static readonly PkgRes = ResPath.UIPath.PkgMain;
 
 	override onCreate(): void {
 		const { listener, ComLingShou, ComGongFa, ComShiLian, ComJueSe, ComXiuXing, BtnLingShou, BtnGongFa, BtnShiLian, BtnJueSe, BtnXiuXing } = this;

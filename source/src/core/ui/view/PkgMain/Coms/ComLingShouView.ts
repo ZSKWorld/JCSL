@@ -8,7 +8,7 @@ export const enum ComLingShouMsg {
 }
 
 export class ComLingShouView extends ExtensionClass<ViewExtension, ComLingShou>(ComLingShou) {
-    static readonly PkgRes = ResPath.Ui_PkgMain;
+    static readonly PkgRes = ResPath.UIPath.PkgMain;
 
     override onCreate(): void {
         const { BtnCreate } = this;
