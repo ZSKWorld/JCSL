@@ -56,27 +56,34 @@ export class DrawState {
         this._ratio = 0;
         this._starts.forEach((v, index) => v.copyTo(this._targets[ index ]));
         this._lengthes.forEach((_, index) => this._lengthes[ index ] = MathUtil.RandomInt(this._min, this._max));
+
         this._directs.forEach((v, index) => v.copyTo(this._starts[ index ]).scale(this._lengthes[ index ]));
         Laya.Tween.to(this, { _ratio: 1 }, this._duration, null, Laya.Handler.create(this, this.start)).update = this._updateHandler;
     }
 
     private draw() {
-        const { _graphics, _directs, _max, _center, _targets, _starts, _ratio, } = this;
+        const { _graphics, _directs, _min, _max, _center, _targets, _starts, _ratio, } = this;
         _graphics.clear();
 
-        let range: number[] = _directs.reduce((pv, v) => {
+        let maxRange: number[] = _directs.reduce((pv, v) => {
             pv.push(v.x * _max, v.y * _max);
             return pv;
         }, []);
-        //画范围
-        _graphics.drawPoly(_center.x, _center.y, range, "#4657FF");
+        //画最大范围
+        _graphics.drawPoly(_center.x, _center.y, maxRange, "#4657FF");
+        const minRange: number[] = _directs.reduce((pv, v) => {
+            pv.push(v.x * _min, v.y * _min);
+            return pv;
+        }, []);
+        //画最小范围
+        _graphics.drawPoly(_center.x, _center.y, minRange, "#00f0f0");
 
         let points: number[] = _targets.reduce((pv, v, index) => {
             pv.push(v.x + (_starts[ index ].x - v.x) * _ratio, v.y + (_starts[ index ].y - v.y) * _ratio);
             return pv;
         }, []);
         //画显示区
-        _graphics.drawPoly(_center.x, _center.y, points, "#ff0000");
+        _graphics.drawPoly(_center.x, _center.y, points, "#ff000090");
         //画显示区线框
         _graphics.drawLines(_center.x, _center.y, [ ...points, points[ 0 ], points[ 1 ] ], "#ffffff", 2);
         //画圆心
@@ -86,13 +93,13 @@ export class DrawState {
             _graphics.drawCircle(_center.x + points[ i ], _center.y + points[ i + 1 ], 4, "#00ff00");
         }
 
-        range.push(...range.reduce((pv, v, index, arr) => {
+        maxRange.push(...maxRange.reduce((pv, v, index, arr) => {
             if (index % 2 == 0) {
                 pv.push(v, arr[ index + 1 ], 0, 0);
             }
             return pv;
         }, []));
         //画线框
-        _graphics.drawLines(_center.x, _center.y, range, "#FFE600", 2);
+        _graphics.drawLines(_center.x, _center.y, maxRange, "#FFE600", 2);
     }
 }

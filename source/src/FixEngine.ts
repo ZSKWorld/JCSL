@@ -347,7 +347,7 @@ Laya.Vector2 = class Vector2 {
 
 	copyTo(v2: Vector2) {
 		v2.setValue(this.x, this.y);
-		return this;
+		return v2;
 	}
 
 	clone() { return new Vector2(this.x, this.y); }
