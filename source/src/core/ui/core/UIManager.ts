@@ -1,7 +1,7 @@
 import { Observer } from "../../libs/event/Observer";
 import { Logger } from "../../libs/utils/Logger";
 import { Layer, layerMgr } from "./GameLayer";
-import { IView, ViewEvents as ViewEvent } from "./Interfaces";
+import { IView, ViewEvent } from "./Interfaces";
 import { ViewClass } from "./UIGlobal";
 import { ViewID } from "./ViewID";
 
@@ -93,13 +93,6 @@ class UIManager extends Observer {
 
 		//延迟250防止频繁触发
 		Laya.stage.on(Laya.Event.RESIZE, this, () => Laya.timer.once(250, this, this.onResize));
-
-		//初始化时就创建的UI
-		[ ViewID.WaitingView ].forEach(v => {
-			const viewInst = this.createViewInstance(v);
-			viewInst.initView(viewInst, null);
-			this._cache.addDestroyCache(viewInst);
-		});
 	}
 
 	/** 创建页面实例
@@ -142,10 +135,11 @@ class UIManager extends Observer {
 				}));
 			}
 		} else {
-			viewInst = this._openedViews[ openedIndex ];
 			if (openedIndex == 0) logger.warn(`Error:${ viewId }已经被打开`);
-			else this._openedViews.splice(openedIndex, 1);
-			this.addView2(viewInst, data, hideTop, callback);
+			else {
+				viewInst = this._openedViews.splice(openedIndex, 1)[ 0 ];
+				this.addView2(viewInst, data, hideTop, callback);
+			}
 		}
 	}
 
@@ -168,6 +162,7 @@ class UIManager extends Observer {
 				_openedViews.splice(i, 1);
 				viewInst.removeFromParent();
 				viewInst.sendMessage(ViewEvent.OnBackground);
+				viewInst.sendMessage(ViewEvent.OnRemoved);
 				this._cache.addDestroyCache(viewInst);
 				break;
 			}

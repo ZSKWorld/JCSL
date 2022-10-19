@@ -39,15 +39,4 @@ export class UIWaitingCtrl extends BaseViewCtrl<UIWaitingView, string>{
     override onDestroy(): void {
 
     }
-
-    @InsertNotify(NotifyConst.SocketClosed, false, [ "网络已断开" ])
-    private show(data: string) {
-        if (this.isShow == false)
-            this.addView(this.viewId, data, null, false);
-    }
-
-    @InsertNotify(NotifyConst.SocketOpened)
-    private hide() {
-        this.removeSelf();
-    }
 }

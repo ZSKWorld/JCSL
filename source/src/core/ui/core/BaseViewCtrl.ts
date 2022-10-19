@@ -1,7 +1,7 @@
 import { eventMgr } from "../../libs/event/EventMgr";
 import { Logger } from "../../libs/utils/Logger";
 import { ExtensionClass } from "../../libs/utils/Util";
-import { INetProcessor, IView, ViewCtrlExtension, ViewEvents } from "./Interfaces";
+import { INetProcessor, IView, ViewCtrlExtension, ViewEvent } from "./Interfaces";
 import { NetProcessorClass } from "./UIGlobal";
 import { DIViewCtrl, ViewCtrlDIExtend } from "./ViewCtrlDIExtend";
 
@@ -107,13 +107,16 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 		eventMgr.registerNotify(this._view);
 		eventMgr.registerNotify(this._netProcessor);
 		ViewCtrlDIExtend.registerDeviceEvent(this);
-		this.addMessageListener(ViewEvents.OnForeground, this.__onForeground);
-		this.addMessageListener(ViewEvents.OnBackground, this.__onBackground);
+		this.addMessageListener(ViewEvent.OnRemoved, this.__onRemoved);
+		this.addMessageListener(ViewEvent.OnForeground, this.__onForeground);
+		this.addMessageListener(ViewEvent.OnBackground, this.__onBackground);
 	}
+
 	private _onEnable() {
 		this._isShow = true;
 		super[ "_onEnable" ]();
 	}
+
 	private _onDisable() {
 		this._isShow = false;
 		super[ "_onDisable" ]();
@@ -127,6 +130,11 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	private __onBackground() {
 		this.onBackground();
 		this._subCtrls.forEach(v => v.__onBackground());
+	}
+
+	private __onRemoved(){
+		this._subCtrls.forEach(v => v.__onRemoved());
+		this.destroy();
 	}
 }
 windowImmit("BaseViewCtrl", BaseViewCtrl);
