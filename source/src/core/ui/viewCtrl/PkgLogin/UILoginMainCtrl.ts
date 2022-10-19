@@ -1,7 +1,7 @@
 import { localData } from "../../../libs/localStorage/LocalData";
 import { LocalDataKey } from "../../../libs/localStorage/LocalDataKey";
 import { LoginService, RegisterService } from "../../../net/Services";
-import { BaseViewCtrl, InsertMouseEvent, MouseEvent } from "../../core/BaseViewCtrl";
+import { BaseViewCtrl } from "../../core/BaseViewCtrl";
 import { UIUtility } from "../../tool/UIUtility";
 import { UILoginMainMsg, UILoginMainView } from "../../view/PkgLogin/UILoginMainView";
 
@@ -22,11 +22,11 @@ export class UILoginMainCtrl extends BaseViewCtrl<UILoginMainView, UILoginMainDa
     }
 
     override onDisable(): void {
-        
+
     }
 
     override onDestroy(): void {
-        
+
     }
 
     private onBtnLoginClick(): void {

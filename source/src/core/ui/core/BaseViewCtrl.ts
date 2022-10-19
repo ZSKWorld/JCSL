@@ -132,7 +132,7 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 		this._subCtrls.forEach(v => v.__onBackground());
 	}
 
-	private __onRemoved(){
+	private __onRemoved() {
 		this._subCtrls.forEach(v => v.__onRemoved());
 		this.destroy();
 	}
