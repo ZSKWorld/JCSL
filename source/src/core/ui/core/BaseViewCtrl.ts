@@ -20,7 +20,7 @@ export abstract class BaseViewCtrl<V extends IView = IView, D = any> extends Ext
 	private _isShow: boolean;
 	/** 页面消息中心 */
 	private _listener: Laya.EventDispatcher;
-	/** 控制器网络回包代理 */
+	/** 处理控制器网络回包 */
 	private _netProcessor: INetProcessor;
 	/** 子页面控制器集合 */
 	private _subCtrls: BaseViewCtrl[] = [];
