@@ -1,5 +1,4 @@
 import { ResPath } from "../../core/common/ResPath";
-import { gameMgr } from "../../core/game/GameMgr";
 import { uiMgr } from "../../core/ui/core/UIManager";
 import { ViewID } from "../../core/ui/core/ViewID";
 import { LogicSceneBase } from "../LogicSceneBase";
@@ -15,11 +14,10 @@ export class LogicSceneGame extends LogicSceneBase {
 
 	protected onEnter(): void {
 		uiMgr.addView(ViewID.GameMainView);
-		gameMgr.start();
 	}
 
 	protected onExit(): void {
-		gameMgr.exit();
+
 	}
 
 }
