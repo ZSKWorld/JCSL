@@ -6,7 +6,6 @@ import { IViewCtrl } from "./Interfaces";
 const logger = Logger.Create("BaseNetProcessor", true);
 
 /** 控制器网络回包处理器 */
-@SealFunction("destroy")
 export abstract class BaseNetProcessor<T extends IViewCtrl = IViewCtrl> extends Notifier {
     /** 代理的控制器，只读 */
     viewCtrl: T;
@@ -15,7 +14,6 @@ export abstract class BaseNetProcessor<T extends IViewCtrl = IViewCtrl> extends 
         this.viewCtrl.listener.event(type, data);
     }
 
-    /** @sealed */
     destroy() {
         this.viewCtrl = null;
         this.onDestroy();
